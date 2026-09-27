@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyen Duy Trang - Mobile Engineer CV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+    /* ==========================================================================
+       1. CẤU HÌNH TYPOGRAPHY & PHONG CÁCH TỐI GIẢN DẠNG PHẲNG TRẮNG ĐEN
+       ========================================================================== */
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      
+      /* Bảng màu Trắng - Đen - Xám than tối giản chuẩn ATS */
+      --c-black: #0F172A;
+      --c-dark: #1E293B;
+      --c-body: #334155;
+      --c-muted: #64748B;
+      --c-border: #CBD5E1;
+      --c-border-light: #E2E8F0;
+      --c-bg-canvas: #F1F5F9;
+      --c-bg-page: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 8.8pt;
+      line-height: 1.44;
+      color: var(--c-body);
+      background-color: var(--c-bg-canvas);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ==========================================================================
+       2. THANH CÔNG CỤ ĐIỀU KHIỂN (ẨN KHI IN)
+       ========================================================================== */
+    .toolbar-container {
+      position: sticky;
+      top: 12px;
+      z-index: 1000;
+      max-width: 210mm;
+      margin: 12px auto 16px auto;
+      padding: 0 8px;
+    }
+
+    .toolbar {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 10px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--c-border);
+      font-size: 13px;
+    }
+
+    .toolbar-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--c-black);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6.5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      user-select: none;
+      border: 1px solid var(--c-border);
+      background: #FFFFFF;
+      color: var(--c-dark);
+    }
+
+    .toolbar-btn:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+      color: var(--c-black);
+    }
+
+    .btn-pdf {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+      font-weight: 600;
+    }
+    .btn-pdf:hover {
+      background: #1E293B;
+      color: #FFFFFF;
+    }
+
+    .btn-edit.active {
+      background: #F0FDF4;
+      border-color: #22C55E;
+      color: #15803D;
+    }
+
+    /* ==========================================================================
+       3. CẤU TRÚC 2 TRANG A4 ĐỘC LẬP (210mm x 297mm) VỪA VẶN, HÀI HOÀ
+       ========================================================================== */
+    .cv-container {
+      max-width: 210mm;
+      margin: 0 auto 40px auto;
+    }
+
+    .cv-page {
+      width: 210mm;
+      height: 297mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      margin: 0 auto 30px auto;
+      background: var(--c-bg-page);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--c-border);
+      border-radius: 4px;
+      padding: 13mm 16mm 10.5mm 16mm;
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .cv-page:last-child {
+      margin-bottom: 0;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    body.is-editing .cv-page {
+      outline: 2px dashed #0284c7;
+    }
+
+    .page-main-content {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10.5pt;
+    }
+
+    /* ==========================================================================
+       4. HEADER DẠNG PHẲNG RÕ RÀNG & THOÁNG ĐÃNG
+       ========================================================================== */
+    .header {
+      border-bottom: 1.5px solid var(--c-black);
+      padding-bottom: 7pt;
+      margin-bottom: 1pt;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3pt;
+    }
+
+    .name {
+      font-size: 22.5pt;
+      font-weight: 800;
+      color: var(--c-black);
+      letter-spacing: -0.4pt;
+      line-height: 1.1;
+    }
+
+    .title-tagline {
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: var(--c-dark);
+      letter-spacing: 0.2pt;
+    }
+
+    .headline {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--c-dark);
+      margin-bottom: 5pt;
+      letter-spacing: -0.1pt;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4pt 10pt;
+      font-size: 8.5pt;
+      color: var(--c-body);
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--c-body);
+      text-decoration: none;
+    }
+
+    .contact-item a {
+      color: var(--c-body);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+      color: var(--c-black);
+    }
+
+    .contact-sep {
+      color: var(--c-muted);
+    }
+
+    /* Mini Header Trang 2 */
+    .mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 4.5pt;
+      margin-bottom: 1pt;
+      border-bottom: 1.5px solid var(--c-black);
+    }
+
+    .mini-header-name {
+      font-size: 9.6pt;
+      font-weight: 800;
+      color: var(--c-black);
+      letter-spacing: 0.3pt;
+    }
+
+    .mini-header-tag {
+      font-size: 8pt;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--c-muted);
+    }
+
+    /* ==========================================================================
+       5. TIÊU ĐỀ SECTION DẠNG PHẲNG RÕ NÉT
+       ========================================================================== */
+    .section {
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 9.6pt;
+      font-weight: 800;
+      color: var(--c-black);
+      letter-spacing: 0.5pt;
+      text-transform: uppercase;
+      padding-bottom: 2.5pt;
+      margin-bottom: 4.5pt;
+      border-bottom: 1px solid var(--c-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title span.sub-tag {
+      font-size: 7.5pt;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--c-muted);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* ==========================================================================
+       6. SUMMARY VÀ LƯỚI CHỈ SỐ VÀNG TRÊN TRANG 1
+       ========================================================================== */
+    .summary-text {
+      text-align: justify;
+      color: var(--c-body);
+      font-size: 8.65pt;
+      line-height: 1.44;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4pt 12pt;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 8.35pt;
+      line-height: 1.38;
+    }
+
+    .highlight-item strong {
+      font-size: 8.55pt;
+      font-weight: 700;
+      color: var(--c-black);
+      white-space: nowrap;
+    }
+
+    .highlight-item span {
+      color: var(--c-body);
+    }
+
+    /* ==========================================================================
+       7. MA TRẬN KỸ NĂNG CHUYÊN MÔN (TECHNICAL SKILLS)
+       ========================================================================== */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.2pt;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      font-size: 8.35pt;
+      line-height: 1.38;
+    }
+
+    .skill-label {
+      width: 178px;
+      min-width: 178px;
+      font-weight: 700;
+      color: var(--c-black);
+    }
+
+    .skill-values {
+      color: var(--c-body);
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       8. DỰ ÁN KỲ HẠM & KINH NGHIỆM LÀM VIỆC (PROJECT LÊN TRÊN, CÔNG VIỆC XUỐNG DƯỚI)
+       ========================================================================== */
+    .job-block {
+      margin-bottom: 5.5pt;
+    }
+
+    .job-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5pt;
+    }
+
+    .job-company {
+      font-size: 9.6pt;
+      font-weight: 800;
+      color: var(--c-black);
+      letter-spacing: 0.1pt;
+    }
+
+    .job-date {
+      font-size: 8.2pt;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--c-muted);
+    }
+
+    .job-sub-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8.5pt;
+      margin-bottom: 2pt;
+    }
+
+    .job-role {
+      font-weight: 700;
+      color: var(--c-dark);
+    }
+
+    .job-domain {
+      color: var(--c-muted);
+      font-size: 8.1pt;
+    }
+
+    .job-tech-line {
+      font-size: 8pt;
+      color: var(--c-muted);
+      margin-bottom: 3pt;
+      line-height: 1.32;
+    }
+
+    .job-tech-line strong {
+      color: var(--c-dark);
+      font-weight: 700;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 2.8pt;
+      font-size: 8.45pt;
+      line-height: 1.4;
+      color: var(--c-body);
+      text-align: left;
+    }
+
+    .bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2pt;
+      top: 0;
+      color: var(--c-dark);
+      font-size: 8.8pt;
+      font-weight: bold;
+    }
+
+    .bullet-list strong {
+      font-weight: 700;
+      color: var(--c-black);
+    }
+
+    /* Học vấn & Nguyên lý kỹ thuật */
+    .edu-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 8.45pt;
+      line-height: 1.38;
+    }
+
+    .edu-school {
+      font-weight: 700;
+      color: var(--c-black);
+    }
+
+    .edu-degree {
+      color: var(--c-body);
+      margin-top: 1pt;
+    }
+
+    .edu-languages {
+      font-size: 8.2pt;
+      color: var(--c-body);
+      text-align: right;
+    }
+
+    .edu-languages strong {
+      color: var(--c-black);
+    }
+
+    .practices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5pt;
+      font-size: 8.2pt;
+      line-height: 1.36;
+      color: var(--c-body);
+    }
+
+    .practices-list div strong {
+      color: var(--c-black);
+    }
+
+    /* ==========================================================================
+       9. CHÂN TRANG MỖI TRANG A4
+       ========================================================================== */
+    .cv-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4pt;
+      border-top: 1px solid var(--c-border);
+      font-size: 7.6pt;
+      font-family: var(--font-mono);
+      color: var(--c-muted);
+      margin-top: auto;
+    }
+
+    .page-indicator {
+      font-weight: 600;
+      color: var(--c-dark);
+    }
+
+    /* ==========================================================================
+       10. CẤU HÌNH IN ẤN CHUẨN A4 (@MEDIA PRINT)
+       ========================================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+
+      html, body {
+        background-color: #FFFFFF !important;
+        background-image: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: auto !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .cv-container {
+        margin: 0 !important;
+        max-width: none !important;
+        width: 210mm !important;
+      }
+
+      .cv-page {
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+        margin: 0 !important;
+        padding: 13mm 16mm 10mm 16mm !important;
+        background-color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        box-sizing: border-box !important;
+      }
+
+      .cv-page:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================================================================
+       THANH CÔNG CỤ ĐIỀU KHIỂN (ẨN KHI IN)
+       ====================================================================== -->
+  <div class="toolbar-container no-print">
+    <header class="toolbar">
+      <div class="toolbar-info">
+        <span class="status-dot"></span>
+        <span>CV Mobile Engineer — Nguyen Duy Trang (Project Cá Nhân Lên Trước)</span>
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- Về Portfolio -->
+        <a href="/" class="toolbar-btn" title="Trở về trang Portfolio">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Portfolio
+        </a>
+
+        <!-- Nút Tải PDF Chính thức -->
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <polyline points="9 15 12 18 15 15"></polyline>
+          </svg>
+          Tải PDF Trắng Đen
+        </a>
+
+        <!-- In / Lưu PDF Trình duyệt -->
+        <button class="toolbar-btn" onclick="window.print()" title="Mở hộp thoại In hoặc Lưu PDF của trình duyệt">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9V2h12v7"></path>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <path d="M6 14h12v8H6z"></path>
+          </svg>
+          In / Lưu PDF
+        </button>
+
+        <!-- Bật/Tắt Sửa trực tiếp -->
+        <button class="toolbar-btn btn-edit" id="editToggleBtn" onclick="toggleEditMode()" title="Bật để sửa trực tiếp text trên trang">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+          Sửa trực tiếp: TẮT
+        </button>
+
+        <!-- Lưu file HTML -->
+        <button class="toolbar-btn" onclick="downloadCurrentHTML()" title="Tải về file HTML đã sửa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Lưu HTML
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- ======================================================================
+       TOÀN BỘ CV: 2 TRANG A4 TRẢI ĐỀU 100%
+       TRANG 1: THÔNG TIN, TỔNG QUAN, CHỈ SỐ, KỸ NĂNG & DỰ ÁN CÁ NHÂN TIÊU BIỂU
+       TRANG 2: KINH NGHIỆM THƯƠNG MẠI (FINVIET & HAHALOLO), HỌC VẤN & KỶ LUẬT
+       ====================================================================== -->
+  <main class="cv-container" id="cvRoot">
+
+    <!-- ====================================================================
+         TRANG 1: THÔNG TIN, TỔNG QUAN, CHỈ SỐ, KỸ NĂNG & DỰ ÁN CÁ NHÂN (ASTROBITE)
+         ==================================================================== -->
+    <article class="cv-page" id="page-1">
+      <div class="page-main-content">
+
+        <!-- 1. HEADER CÁ NHÂN -->
+        <header class="header">
+          <div class="header-top">
+            <h1 class="name">NGUYEN DUY TRANG</h1>
+            <div class="title-tagline">Open to Opportunities</div>
+          </div>
+          <div class="headline">
+            Mobile Engineer | Flutter | Native iOS &amp; Android
+          </div>
+          <div class="contact-row">
+            <span class="contact-item">📍 TP. Hồ Chí Minh, Việt Nam</span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">🎂 2000</span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">📞 <a href="tel:0397308962">0397308962</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">✉️ <a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">🐙 <a href="https://github.com/TrangDuyNguyen" target="_blank" rel="noopener noreferrer">github.com/TrangDuyNguyen</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">💼 <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyễn-duy-tráng</a></span>
+          </div>
+        </header>
+
+        <!-- 2. PROFESSIONAL SUMMARY -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>PROFESSIONAL SUMMARY</span>
+            <span class="sub-tag">OVERVIEW</span>
+          </h2>
+          <div class="summary-text">
+            Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các sản phẩm di động thương mại quy mô lớn trên iOS &amp; Android sử dụng Flutter, Swift, SwiftUI, UIKit và Kotlin. Nắm vững kiến trúc Clean Architecture, mô hình phân tán Offline-first, tối ưu hóa hiệu năng render 60 FPS, và tích hợp sâu phần cứng ngoại vi (POS, máy in nhiệt, máy quét mã vạch). Tiên phong ứng dụng Multimodal Vision AI (Google Gemini) cùng kiến trúc Flutter Generative UI (GenUI). Đóng góp trực tiếp vào các ứng dụng quy mô 1M+ lượt tải với tỷ lệ 99.5%+ crash-free sessions.
+          </div>
+        </section>
+
+        <!-- 3. VERIFIED PRODUCTION HIGHLIGHTS -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>VERIFIED PRODUCTION HIGHLIGHTS</span>
+            <span class="sub-tag">METRICS</span>
+          </h2>
+          <div class="highlights-grid">
+            <div class="highlight-item">
+              <strong>1M+ Downloads:</strong>
+              <span>Mạng xã hội &amp; OTT du lịch quy mô lớn trên cả iOS và Android.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>-30% Tx Time:</strong>
+              <span>Kiosk tự phục vụ &amp; POS thu ngân cho hệ thống F&amp;B bán lẻ.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>99.5%+ Crash-Free:</strong>
+              <span>Ổn định sản xuất, kiểm soát chặt vòng đời RAM và duy trì 60 FPS.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>Offline-First Engine:</strong>
+              <span>Đồng bộ đơn hàng Clean Architecture, BLoC, SQLite không mất đơn.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>Realtime &amp; Hardware:</strong>
+              <span>WebSocket chat/call, máy in nhiệt ESC/POS &amp; scanner ngoại vi.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>198 Tests 100%:</strong>
+              <span>Bộ kiểm thử tự động toàn diện, CI/CD Fastlane &amp; GitHub Actions.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TECHNICAL SKILLS MATRIX -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>TECHNICAL SKILLS MATRIX</span>
+            <span class="sub-tag">COMPETENCIES</span>
+          </h2>
+          <div class="skills-list">
+            <div class="skill-row">
+              <div class="skill-label">Languages &amp; Core:</div>
+              <div class="skill-values">Flutter (Dart), Swift, SwiftUI, UIKit, Kotlin, TypeScript.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Architecture &amp; State:</div>
+              <div class="skill-values">Clean Architecture, Riverpod 2.x, BLoC, Provider, MVVM, SOLID, Modularization, Offline-First.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Real-Time, Media &amp; Data:</div>
+              <div class="skill-values">WebSocket, Socket.IO, RESTful APIs, SQLite, Local Caching &amp; Sync, iOS CallKit.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Firebase &amp; Cloud:</div>
+              <div class="skill-values">Firebase (FCM, Crashlytics, Analytics, Remote Config, Auth, Cloud Firestore), App Check.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Hardware &amp; Native Bridge:</div>
+              <div class="skill-values">Platform Channels, Thermal POS (ESC/POS), Barcode &amp; QR Scanner, Add-to-App, Home Widgets.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">AI Tools, CI/CD &amp; QA:</div>
+              <div class="skill-values">Cursor IDE, Claude Code, Fastlane, GitHub Actions, Bitrise, Git Worktrees, Scrum/Agile.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. DỰ ÁN CÁ NHÂN TIÊU BIỂU (ĐƯỢC ĐẶT LÊN TRÊN THEO YÊU CẦU) -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>FEATURED FLAGSHIP PROJECT</span>
+            <span class="sub-tag">PERSONAL ARCHITECTURE</span>
+          </h2>
+
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">ASTROBITE — AI Food Scanner &amp; GenUI Calorie/Macro Tracker</span>
+              <span class="job-date">2024 – Hiện tại</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Engineer &amp; System Architect</span>
+              <span class="job-domain">Ứng Dụng Quét &amp; Theo Dõi Dinh Dưỡng Thông Minh</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> Flutter 3.x, Dart 3.x, Riverpod 2.6 (Code-Gen, AsyncNotifier), AutoRoute 9.x, Google Gemini 2.0/3.8 Flash (firebase_ai), iOS WidgetKit &amp; Android AppWidget (home_widget), Apple Health &amp; Health Connect, Fastlane, GitHub Actions CI/CD (198 Unit/Widget Tests).
+            </div>
+            <ul class="bullet-list">
+              <li>Chủ trì kiến trúc AstroBite (v2.0.0) theo mô hình <strong>Feature-First Clean Architecture</strong> kết hợp Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.</li>
+              <li>Xây dựng camera scanner <strong>Gemini Multimodal Vision AI (firebase_ai)</strong> nhận diện bữa ăn phức tạp chỉ trong <strong>2–4 giây</strong>, bóc tách calo và macro (Carbs, Fat, Protein) với <strong>0 memory leak</strong>.</li>
+              <li>Tiên phong triển khai <strong>Flutter Generative UI (GenUI) Chat Cockpit</strong> với giao thức A2UI và Gemini 3.8 Flash, tự sinh các widget tương tác thời gian thực (MealQuickLogCard, MacroBudgetGauge) với 1-tap log Firestore.</li>
+              <li>Phát triển <strong>Cross-Platform OS Home Widgets</strong> (iOS WidgetKit &amp; Android AppWidget qua home_widget) hỗ trợ deep-link camera scanner <strong>&lt; 300ms</strong> và đồng bộ dữ liệu phản ứng không hao pin ngầm.</li>
+              <li>Thiết lập bộ <strong>198 automated unit &amp; widget tests (100% pass)</strong> không có flaky test; tự động hóa biên dịch release đa nền tảng và phân phối qua Fastlane &amp; GitHub Actions.</li>
+            </ul>
+          </article>
+        </section>
+
+      </div>
+
+      <!-- CHÂN TRANG 1 -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
+        <div class="page-indicator">Trang 1 / 2</div>
+      </footer>
+    </article>
+
+    <!-- ====================================================================
+         TRANG 2: KINH NGHIỆM THƯƠNG MẠI (FINVIET & HAHALOLO), HỌC VẤN & KỶ LUẬT
+         ==================================================================== -->
+    <article class="cv-page" id="page-2">
+      <div class="page-main-content">
+
+        <!-- MINI HEADER TRANG 2 -->
+        <div class="mini-header">
+          <div class="mini-header-name">NGUYEN DUY TRANG — COMMERCIAL WORK EXPERIENCE &amp; CREDENTIALS</div>
+          <div class="mini-header-tag">5+ NĂM KINH NGHIỆM THỰC CHIẾN</div>
+        </div>
+
+        <!-- 1. WORK EXPERIENCE (TOÀN BỘ KINH NGHIỆM THƯƠNG MẠI NẰM Ở TRANG 2) -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>COMMERCIAL WORK EXPERIENCE</span>
+            <span class="sub-tag">TRACK RECORD</span>
+          </h2>
+
+          <!-- CÔNG TY 1: FINVIET TECHNOLOGY -->
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">FINVIET TECHNOLOGY</span>
+              <span class="job-date">06/2025 – Hiện tại</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Developer</span>
+              <span class="job-domain">Hệ sinh thái F&amp;B POS &amp; Kiosk Tự Phục Vụ</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> Flutter, Android Kotlin, BLoC, SQLite, Platform Channels, ESC/POS Thermal Printer, Barcode Scanner, Fastlane, CI/CD.
+            </div>
+            <ul class="bullet-list">
+              <li>Xây dựng và bàn giao module <strong>Kiosk tự gọi món (Self-Order Kiosk)</strong> và thu ngân cho chuỗi F&amp;B, giúp rút ngắn thời gian giao dịch đặt món <strong>30%</strong>.</li>
+              <li>Thiết kế luồng đồng bộ đơn hàng <strong>Offline-first</strong> sử dụng Clean Architecture, BLoC và SQLite, đảm bảo 100% đơn hàng được ghi nhận và tự đồng bộ khi có mạng.</li>
+              <li>Tự phát triển custom <strong>Android Platform Channels (Kotlin)</strong> kết nối máy in hóa đơn nhiệt ESC/POS và máy quét mã vạch, nâng cao độ phản hồi và độ ổn định thiết bị.</li>
+              <li>Tích hợp Firebase FCM, Crashlytics và Analytics phục vụ push thông báo thời gian thực, theo dõi sự cố và đo lường hành vi người dùng.</li>
+              <li>Thiết lập pipeline tự động hóa build/release bằng <strong>Fastlane &amp; GitHub Actions</strong>; áp dụng quy trình AI-assisted (Cursor, Claude Code, Git Worktrees) đẩy nhanh tiến độ bàn giao tính năng.</li>
+            </ul>
+          </article>
+
+          <!-- CÔNG TY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+              <span class="job-date">05/2020 – 06/2025 (5 năm)</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Developer</span>
+              <span class="job-domain">Mạng Xã Hội Du Lịch Hahalolo &amp; OTT Halome</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> iOS Swift, SwiftUI, UIKit, Flutter Add-to-App, WebSocket, Socket.IO, iOS CallKit, Firebase Crashlytics, Bitrise, Fastlane.
+            </div>
+            <ul class="bullet-list">
+              <li>Phát triển và vận hành hệ thống ứng dụng mạng xã hội &amp; nhắn tin quy mô lớn đạt mốc <strong>1.000.000+ lượt tải (1M+)</strong> trên cả iOS và Android.</li>
+              <li>Xây dựng từ đầu hệ thống nhắn tin thời gian thực <strong>Halome</strong>, hỗ trợ chat, gửi đa phương tiện và cuộc gọi thoại/video độ trễ thấp qua WebSocket và Socket.IO.</li>
+              <li>Phát triển các module native iOS bằng <strong>Swift, SwiftUI, UIKit</strong> và tích hợp mượt mà vào ứng dụng Flutter qua giải pháp <strong>Flutter Add-to-App</strong>.</li>
+              <li>Tích hợp Firebase Cloud Messaging (FCM) với <strong>iOS CallKit</strong> cho cuộc gọi đến màn hình khóa; duy trì tỷ lệ <strong>99.5%+ crash-free sessions</strong> qua Crashlytics.</li>
+              <li>Tối ưu hóa sâu vòng đời RAM, chu kỳ rebuild widget và luồng render đồ họa, duy trì tốc độ khung hình <strong>60 FPS</strong> mượt mà kể cả trên thiết bị cấu hình thấp.</li>
+              <li>Tự động hóa toàn diện quy trình kiểm thử TestFlight và phân phối ứng dụng lên App Store/Google Play bằng Bitrise và Fastlane.</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- 2. HỌC VẤN & NGOẠI NGỮ -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>EDUCATION &amp; CREDENTIALS</span>
+            <span class="sub-tag">ACADEMIC</span>
+          </h2>
+          <div class="edu-block">
+            <div>
+              <div class="edu-school">FPT POLYTECHNIC COLLEGE</div>
+              <div class="edu-degree">Cử nhân Thực hành Công nghệ Thông tin (Chuyên ngành Phát triển Phần mềm)</div>
+            </div>
+            <div class="edu-languages">
+              <strong>English:</strong> Professional Working • <strong>Vietnamese:</strong> Native
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. NGUYÊN LÝ KỸ THUẬT & KỶ LUẬT CHẤT LƯỢNG -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>ENGINEERING DISCIPLINE &amp; METHODOLOGY</span>
+            <span class="sub-tag">PRACTICES</span>
+          </h2>
+          <div class="practices-list">
+            <div><strong>Architecture &amp; Quality:</strong> Feature-First Clean Architecture, Strict SOLID principles, Ponytail Mindset (Zero Bloat, shortest working diff).</div>
+            <div><strong>Testing &amp; Delivery:</strong> 100% Deterministic Testing (Domain, Data, Widget), Automated CI/CD (Fastlane, GitHub Actions, Bitrise).</div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- CHÂN TRANG 2 -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
+        <div class="page-indicator">Trang 2 / 2</div>
+      </footer>
+    </article>
+
+  </main>
+
+  <!-- ======================================================================
+       SCRIPTS: SỬA TRỰC TIẾP & TẢI VỀ FILE HTML
+       ====================================================================== -->
+  <script>
+    let isEditing = false;
+
+    function toggleEditMode() {
+      isEditing = !isEditing;
+      const root = document.getElementById('cvRoot');
+      const btn = document.getElementById('editToggleBtn');
+      document.body.classList.toggle('is-editing', isEditing);
+      btn.classList.toggle('active', isEditing);
+      root.contentEditable = isEditing ? 'true' : 'false';
+
+      if (isEditing) {
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Sửa trực tiếp: BẬT
+        `;
+      } else {
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+          Sửa trực tiếp: TẮT
+        `;
+      }
+    }
+
+    function downloadCurrentHTML() {
+      const prevEditing = isEditing;
+      if (isEditing) toggleEditMode();
+
+      const docClone = document.documentElement.cloneNode(true);
+      const cloneBody = docClone.querySelector('body');
+      if (cloneBody) cloneBody.classList.remove('is-editing');
+      const cloneRoot = docClone.querySelector('#cvRoot');
+      if (cloneRoot) cloneRoot.removeAttribute('contenteditable');
+
+      const htmlContent = "<!DOCTYPE html>\n" + docClone.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Nguyen_Duy_Trang_CV.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      if (prevEditing) toggleEditMode();
+    }
+  </script>
+</body>
+</html>
