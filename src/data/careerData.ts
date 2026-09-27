@@ -2,11 +2,11 @@ import { CareerItem } from '../types';
 
 export const careerData: CareerItem[] = [
   {
-    period: "2024 — Hiện tại",
-    role: "Mobile Engineer",
+    period: "2026 — Hiện tại",
+    role: "Owner & Core Developer",
     company: "AstroBite Ecosystem",
     project: "AI Food Scanner & GenUI Calorie/Macro Tracker (v2.0.0)",
-    type: "Flagship Production",
+    type: "Dự Án Cá Nhân",
     summary: "Chủ trì xây dựng ứng dụng di động phân tích dinh dưỡng đa lượng tức thì bằng trí tuệ nhân tạo Gemini Multimodal Vision AI và giao thức Flutter GenUI A2UI.",
     achievements: [
       "Xây dựng trọn vẹn kiến trúc Clean Architecture Feature-First với Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.",
@@ -21,7 +21,7 @@ export const careerData: CareerItem[] = [
     ],
   },
   {
-    period: "06/2025 — Hiện tại",
+    period: "06/2025 — 08/2025",
     role: "Mobile Developer",
     company: "Finviet Technology",
     project: "Hệ sinh thái F&B POS & Kiosk Tự Phục Vụ",

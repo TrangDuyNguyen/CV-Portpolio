@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Github, Menu, X, Smartphone } from 'lucide-react';
+import { Download, Github, Menu, X } from 'lucide-react';
 import { profileData } from '../../data/profileData';
 import { Button } from '../common/Button';
 
@@ -47,8 +47,12 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <a href="#about" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-[#E8ECF2] shadow-[4px_4px_8px_#c2cee0,-4px_-4px_8px_#ffffff] border border-white/90 flex items-center justify-center text-sky-600 group-hover:text-sky-700 transition-colors">
-            <Smartphone className="w-5 h-5" />
+          <div className="w-10 h-10 rounded-xl overflow-hidden neu-flat-sm border border-white/90 flex items-center justify-center p-0.5 group-hover:scale-105 transition-all">
+            <img
+              src={profileData.avatarUrl}
+              alt={profileData.name}
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
           <div>
             <div className="flex items-center gap-2">

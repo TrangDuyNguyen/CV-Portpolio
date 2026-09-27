@@ -14,7 +14,8 @@ export const profileData = {
   linkedin: "https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/",
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang.pdf",
   cvViewUrl: "/cv-print.html",
-  bio: "Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các ứng dụng iOS & Android đạt mốc triệu lượt tải (1M+) và tỷ lệ ổn định 99.5%+ crash-free. Chuyên sâu về Flutter (Dart), Native iOS (Swift) & Android (Kotlin), kiến trúc Clean Architecture, mô hình phân tán Offline-first và tiên phong tích hợp Multimodal Vision AI (Google Gemini) cùng Flutter Generative UI (GenUI).",
+  avatarUrl: "/avatar.png?v=2",
+  bio: "Lập trình viên Mobile với 5 năm kinh nghiệm thực chiến xây dựng ứng dụng iOS, Android và Cross-platform (Flutter) cho các sản phẩm Mạng xã hội, Chat/OTT, CRM, Delivery và hệ thống máy POS, Kiosk self-order. Thế mạnh chuyên sâu về Clean Architecture / MVVM, tối ưu hiệu năng và chuyển hóa các codebase outsource làm theo tiến độ nhanh thành sản phẩm Product sạch, dễ bảo trì và có thể scale lâu dài. Tích cực ứng dụng AI vào quy trình kỹ thuật và tích hợp Vision AI thế hệ mới.",
 };
 
 export const verifiedStats: StatItem[] = [
