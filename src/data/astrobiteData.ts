@@ -3,9 +3,9 @@ import { AstroPillar, ScreenshotItem } from '../types';
 export const astrobiteOverview = {
   name: "AstroBite",
   version: "v2.0.0",
-  tagline: "AI Food Scanner & GenUI Calorie/Macro Tracker",
+  tagline: "Trợ Lý Dinh Dưỡng Thông Minh & AI Coach Cá Nhân Hóa",
   role: "Mobile Engineer (Core Developer & AI Integration)",
-  description: "Ứng dụng theo dõi dinh dưỡng và quét calo/macro bữa ăn tức thì qua camera với trí tuệ nhân tạo Google Gemini Vision AI kết hợp giao diện Celestial Dark UI độc bản. Được thiết kế theo chuẩn Clean Architecture, Riverpod 2.x code-gen và giao thức Flutter GenUI (A2UI).",
+  description: "AstroBite biến việc ăn uống lành mạnh thành thói quen dễ dàng mỗi ngày: chỉ cần chụp ảnh bữa ăn để hệ thống tự động bóc tách calo và các nhóm chất (Đạm, Tinh bột, Béo), hoặc trò chuyện trực tiếp với Trợ lý AI Coach để ghi nhận món ăn bằng tin nhắn và nhận gợi ý thực đơn tức thì (“Tối nay còn 400 calo thì nên ăn gì?”, “Uống ly trà sữa 50% đường thì tính thế nào?”). Kết hợp cùng bảng quản lý năng lượng trực quan, biểu đồ theo dõi tiến độ sức khỏe và giao diện đất sét 3D vui nhộn, AstroBite đóng vai trò như một chuyên gia dinh dưỡng đồng hành 24/7 giúp bạn đạt mục tiêu vóc dáng bền vững.",
   metrics: [
     { label: "AI Latency", value: "< 2.5s" },
     { label: "Memory Leak", value: "0 bytes" },
@@ -33,7 +33,7 @@ export const astrobitePillars: AstroPillar[] = [
     tag: "AI & Image Pipeline",
     description: "Nhận diện món ăn đa vùng trong 2–4s, phân tích khẩu phần và bóc tách Calories cùng 3 chất đa lượng theo bảng màu chuẩn dinh dưỡng.",
     highlights: [
-      "Carbs (#1A73E8), Fat (#FF69B4), Protein (#FFD700) chuẩn mực quốc tế.",
+      "🌾 Carbs (Xanh dương), 🥩 Protein / Đạm (Vàng), 💧 Fat / Chất béo (Hồng) chuẩn mực quốc tế.",
       "Pipeline giải phóng Camera Frame buffer độc lập, triệt tiêu 100% rò rỉ RAM.",
       "Hỗ trợ các món ăn phức tạp của Việt Nam (Phở, Cơm tấm, Bún chả...) và quốc tế.",
     ],
@@ -97,7 +97,7 @@ export const astrobiteScreenshots: ScreenshotItem[] = [
     image: "/screenshots/Screenshot_1790433762.png",
     tag: "Dashboard UI",
     description: "Màn hình trung tâm hiển thị tiến độ calo trong ngày, vòng tròn dinh dưỡng đa lượng chuyển động mượt mà và danh sách nhật ký bữa ăn.",
-    techSpecs: ["fl_chart Custom Painters", "Riverpod AsyncNotifier", "Celestial Dark Glassmorphism"],
+    techSpecs: ["fl_chart Custom Painters", "Riverpod AsyncNotifier", "Claymorphism UI"],
   },
   {
     id: "screen-3",

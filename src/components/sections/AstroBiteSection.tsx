@@ -1,5 +1,5 @@
 import React from 'react';
-import { Camera, Cpu, LayoutGrid, Layers, ArrowUpRight, Check, Image as ImageIcon } from 'lucide-react';
+import { Camera, Cpu, LayoutGrid, Layers, ArrowUpRight, Check, Image as ImageIcon, Wheat, Beef, Droplet } from 'lucide-react';
 import { astrobiteOverview, astrobitePillars } from '../../data/astrobiteData';
 import { Badge } from '../common/Badge';
 
@@ -34,7 +34,7 @@ export const AstroBiteSection: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-800 tracking-tight mb-4">
-            {astrobiteOverview.name}:{' '}
+            {astrobiteOverview.name} —{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600">
               {astrobiteOverview.tagline}
             </span>
@@ -109,7 +109,30 @@ export const AstroBiteSection: React.FC = () => {
                     {pillar.highlights.map((h, hIdx) => (
                       <li key={hIdx} className="flex items-start gap-2.5 text-xs text-slate-600">
                         <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                        <span>{h}</span>
+                        {pillar.id === 'vision-ai' && hIdx === 0 ? (
+                          <div className="space-y-2">
+                            <span>Bóc tách 3 nhóm chất đa lượng chuẩn quốc tế:</span>
+                            <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] text-sky-700 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] border border-sky-300/70 text-[11px] font-semibold">
+                                <Wheat className="w-3.5 h-3.5 text-sky-600" />
+                                <span>Carbs (Tinh bột)</span>
+                                <span className="w-2 h-2 rounded-full bg-[#1A73E8]" title="Xanh dương (#1A73E8)" />
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] text-amber-700 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] border border-amber-300/70 text-[11px] font-semibold">
+                                <Beef className="w-3.5 h-3.5 text-amber-600" />
+                                <span>Protein (Đạm)</span>
+                                <span className="w-2 h-2 rounded-full bg-[#FFD700] border border-amber-400" title="Vàng (#FFD700)" />
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] text-pink-700 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] border border-pink-300/70 text-[11px] font-semibold">
+                                <Droplet className="w-3.5 h-3.5 text-pink-600 fill-pink-500/20" />
+                                <span>Fat (Chất béo)</span>
+                                <span className="w-2 h-2 rounded-full bg-[#FF69B4]" title="Hồng (#FF69B4)" />
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <span>{h}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -143,7 +166,7 @@ export const AstroBiteSection: React.FC = () => {
                 Bộ sưu tập ảnh chụp màn hình ứng dụng thực tế
               </h4>
               <p className="text-xs text-slate-500">
-                Khám phá giao diện Celestial UI, AR Camera Scanner và trợ lý AstroCoach GenUI.
+                Khám phá giao diện Claymorphism UI, AR Camera Scanner và trợ lý AstroCoach GenUI.
               </p>
             </div>
           </div>

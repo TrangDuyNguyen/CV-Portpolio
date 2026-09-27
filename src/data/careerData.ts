@@ -5,7 +5,7 @@ export const careerData: CareerItem[] = [
     period: "2026 — Hiện tại",
     role: "Owner & Core Developer",
     company: "AstroBite Ecosystem",
-    project: "AI Food Scanner & GenUI Calorie/Macro Tracker (v2.0.0)",
+    project: "Trợ Lý Dinh Dưỡng Thông Minh & AI Coach Cá Nhân Hóa (v2.0.0)",
     type: "Dự Án Cá Nhân",
     summary: "Chủ trì xây dựng ứng dụng di động phân tích dinh dưỡng đa lượng tức thì bằng trí tuệ nhân tạo Gemini Multimodal Vision AI và giao thức Flutter GenUI A2UI.",
     achievements: [
