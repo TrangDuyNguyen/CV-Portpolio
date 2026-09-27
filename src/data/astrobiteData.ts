@@ -1,6 +1,17 @@
 import { AstroPillar, ScreenshotItem } from '../types';
+import { Language } from '../context/LanguageContext';
 
-export const astrobiteOverview = {
+export interface AstrobiteOverview {
+  name: string;
+  version: string;
+  tagline: string;
+  role: string;
+  description: string;
+  metrics: { label: string; value: string }[];
+  stackBadges: string[];
+}
+
+const astrobiteOverviewVi: AstrobiteOverview = {
   name: "AstroBite",
   version: "v2.0.0",
   tagline: "Trợ Lý Dinh Dưỡng Thông Minh & AI Coach Cá Nhân Hóa",
@@ -25,7 +36,32 @@ export const astrobiteOverview = {
   ],
 };
 
-export const astrobitePillars: AstroPillar[] = [
+const astrobiteOverviewEn: AstrobiteOverview = {
+  name: "AstroBite",
+  version: "v2.0.0",
+  tagline: "Intelligent Nutrition Assistant & Personalized AI Coach",
+  role: "Mobile Engineer (Core Developer & AI Integration)",
+  description: "AstroBite makes healthy eating effortless every day: simply snap a meal photo for instant multi-macro decomposition (Protein, Carbs, Fat) and calorie estimation, or chat with the AI Coach for contextual meal logging and real-time suggestions ('I have 400 kcal left for dinner, what should I eat?'). Combining intuitive energy budgets, long-term health trend charts, and a playful 3D claymorphic UI, AstroBite acts as your 24/7 nutrition companion.",
+  metrics: [
+    { label: "AI Latency", value: "< 2.5s" },
+    { label: "Memory Leak", value: "0 bytes" },
+    { label: "Automated Tests", value: "198 Pass" },
+    { label: "Clean Modules", value: "10 Features" },
+  ],
+  stackBadges: [
+    "Flutter 3.x",
+    "Dart 3.x",
+    "Riverpod 2.6",
+    "Google Gemini Vision",
+    "A2UI Protocol",
+    "iOS WidgetKit",
+    "Android AppWidget",
+    "Clean Architecture",
+    "Fastlane CI/CD",
+  ],
+};
+
+const astrobitePillarsVi: AstroPillar[] = [
   {
     id: "vision-ai",
     number: "01",
@@ -80,7 +116,62 @@ export const astrobitePillars: AstroPillar[] = [
   },
 ];
 
-export const astrobiteScreenshots: ScreenshotItem[] = [
+const astrobitePillarsEn: AstroPillar[] = [
+  {
+    id: "vision-ai",
+    number: "01",
+    title: "Gemini Vision AI & Live AR HUD",
+    tag: "AI & Image Pipeline",
+    description: "Multi-region food recognition in 2–4s, estimating portion sizes, Calories, and 3 macronutrients mapped to international color standards.",
+    highlights: [
+      "🌾 Carbs (Blue), 🥩 Protein (Yellow), 💧 Fat (Pink) per international nutrition guidelines.",
+      "Independent camera frame stream buffer disposal pipeline, eliminating 100% of RAM leaks.",
+      "Supports complex multi-dish Asian meals (Pho, Broken Rice, Bun Cha) and international cuisine.",
+    ],
+    metricBadge: "< 2.5s Latency | 0 Leak",
+  },
+  {
+    id: "genui-a2ui",
+    number: "02",
+    title: "Flutter Generative UI (A2UI Protocol)",
+    tag: "Agent-to-User Interface",
+    description: "Pioneered A2UI architecture: Gemini 3.8 Flash returns structured JSON payloads to dynamically render interactive Native Widgets inside the chat flow.",
+    highlights: [
+      "MealQuickLogCard: Interactive food cards with +/-20g Steppers and 1-Tap Log to Firestore.",
+      "MacroBudgetGauge: Real-time gauge comparing consumed calories vs remaining daily budget.",
+      "Context Injection (BMR, TDEE, allergies) strictly optimized to stay under 250 tokens.",
+    ],
+    metricBadge: "ADR-06 | 1-Tap Log",
+  },
+  {
+    id: "os-widgets",
+    number: "03",
+    title: "Cross-Platform Home Widgets & Streak",
+    tag: "Native Integration",
+    description: "Home & lock screen widgets (iOS WidgetKit & Android AppWidget) sharing reactive state via AppGroup UserDefaults & SharedPreferences.",
+    highlights: [
+      "Reactive synchronization immediately upon meal logging with zero background battery drain.",
+      "astrobite://scanner deep-link launching camera scanner in < 300ms.",
+      "Deterministic Streak Engine with Starlight Shield mechanism preserving consecutive logging.",
+    ],
+    metricBadge: "ADR-05 | < 300ms Deep Link",
+  },
+  {
+    id: "clean-arch",
+    number: "04",
+    title: "Clean Architecture & Super-Repo CI/CD",
+    tag: "Engineering Quality",
+    description: "Feature-First design separating 10 decoupled business modules, managing 3 Git Submodules with automated multi-platform compilation & deployment.",
+    highlights: [
+      "Strict layering: Domain (Entities, UseCases) -> Data (Repos, DTOs) -> Presentation.",
+      "Super-repo 3 submodules: docs/ (BA Agile), tests/ (QA BDD), frontend/ (Flutter).",
+      "Automated Fastlane & GitHub Actions pipelines code-signing & deploying to Firebase App Distribution.",
+    ],
+    metricBadge: "198 Tests | 100% Green",
+  },
+];
+
+const astrobiteScreenshotsVi: ScreenshotItem[] = [
   {
     id: "screen-1",
     title: "AR Food Scanner & Live Nutrients Extraction",
@@ -163,3 +254,103 @@ export const astrobiteScreenshots: ScreenshotItem[] = [
     techSpecs: ["Mifflin-St Jeor Algorithm", "Smooth PageView Transitions", "Local Storage Encryption"],
   },
 ];
+
+const astrobiteScreenshotsEn: ScreenshotItem[] = [
+  {
+    id: "screen-1",
+    title: "AR Food Scanner & Live Nutrients Extraction",
+    category: "ai",
+    image: "/screenshots/Screenshot_1790433768.png",
+    tag: "Multimodal Vision AI",
+    description: "Live camera scanner with AR HUD viewfinder, recognizing ingredients and displaying real-time Calories, Carbs, Protein, and Fat breakdown.",
+    techSpecs: ["Camera Frame Stream Buffer", "Gemini 3.8 Flash Vision", "Color Tokens Standardization"],
+  },
+  {
+    id: "screen-2",
+    title: "Daily Nutrition Cockpit & Macro Ring",
+    category: "features",
+    image: "/screenshots/Screenshot_1790433762.png",
+    tag: "Dashboard UI",
+    description: "Central dashboard presenting daily calorie progress, smoothly animated macronutrient rings, and interactive meal history cards.",
+    techSpecs: ["fl_chart Custom Painters", "Riverpod AsyncNotifier", "Claymorphism UI"],
+  },
+  {
+    id: "screen-3",
+    title: "AstroCoach GenUI Chat & Interactive Cards",
+    category: "genui",
+    image: "/screenshots/Screenshot_1790433736.png",
+    tag: "Generative UI (A2UI)",
+    description: "Interactive chat with the nutrition AI assistant, dynamically generating MealQuickLogCard native widgets with steppers and 1-tap logging.",
+    techSpecs: ["A2UI JSON Catalog Parser", "Interactive Steppers", "Context Injection < 250 tokens"],
+  },
+  {
+    id: "screen-4",
+    title: "Meal Details & Custom Portion Scaler",
+    category: "features",
+    image: "/screenshots/Screenshot_1790433744.png",
+    tag: "Portion Scaling",
+    description: "Detailed meal inspector with gram-slider portion scaler, dynamically re-calculating micronutrients (Sodium, Fiber, Sugar) accurately.",
+    techSpecs: ["Reactive Macro Recalculation", "Freezed Immutable Models", "Offline Cache Hive"],
+  },
+  {
+    id: "screen-5",
+    title: "Weekly Analytics & Macronutrient Breakdown",
+    category: "features",
+    image: "/screenshots/Screenshot_1790433755.png",
+    tag: "Data Visualization",
+    description: "Weekly/monthly nutrition analytics charts evaluating macro ratios (Carbs/Fat/Protein) against user body-goal benchmarks.",
+    techSpecs: ["fl_chart Bar & Line Charts", "Date Utility Normalizer", "Export Data Reports"],
+  },
+  {
+    id: "screen-6",
+    title: "Android Home Screen Widget & Quick AI Scanner",
+    category: "widgets",
+    image: "/screenshots/Screenshot_astrobite_widget.png",
+    tag: "OS Native Widgets",
+    description: "Home screen widgets (Android AppWidget / iOS WidgetKit) displaying streak count, remaining calories, live macros, and 1-tap AI scanner deep-link.",
+    techSpecs: ["Android AppWidget (Kotlin)", "iOS WidgetKit (Swift)", "SharedPreferences / UserDefaults Sync", "Deep-link astrobite://scanner < 300ms"],
+  },
+  {
+    id: "screen-9",
+    title: "AI Multi-Item Decomposition & Micro Nutrients",
+    category: "ai",
+    image: "/screenshots/Screenshot_1790433779.png",
+    tag: "AI Food Decomposition",
+    description: "Decomposes complex multi-dish meals with 98% accuracy, calculating micronutrients (Sodium, Fiber, Sugar) and dietary thresholds.",
+    techSpecs: ["Gemini 3.8 Flash Multimodal", "Sub-dish Itemization", "Freezed Nutrition DTOs"],
+  },
+  {
+    id: "screen-7",
+    title: "Custom Recipe Builder & Ingredient Tracker",
+    category: "features",
+    image: "/screenshots/Screenshot_1790433789.png",
+    tag: "Recipe Engine",
+    description: "Custom recipe builder aggregating nutrition from raw ingredients and calculating portion metrics per serving.",
+    techSpecs: ["Ingredient Search Index", "Dynamic Form Validation", "Cloud Firestore Sync"],
+  },
+  {
+    id: "screen-8",
+    title: "Onboarding & Calorie Target Calibration",
+    category: "features",
+    image: "/screenshots/Screenshot_1790433795.png",
+    tag: "User Onboarding",
+    description: "Goal setting flow calculating BMR & TDEE using Mifflin-St Jeor formula and generating personalized macro distributions.",
+    techSpecs: ["Mifflin-St Jeor Algorithm", "Smooth PageView Transitions", "Local Storage Encryption"],
+  },
+];
+
+export const getAstrobiteOverview = (lang: Language = 'vi'): AstrobiteOverview => {
+  return lang === 'en' ? astrobiteOverviewEn : astrobiteOverviewVi;
+};
+
+export const getAstrobitePillars = (lang: Language = 'vi'): AstroPillar[] => {
+  return lang === 'en' ? astrobitePillarsEn : astrobitePillarsVi;
+};
+
+export const getAstrobiteScreenshots = (lang: Language = 'vi'): ScreenshotItem[] => {
+  return lang === 'en' ? astrobiteScreenshotsEn : astrobiteScreenshotsVi;
+};
+
+export const astrobiteOverview = astrobiteOverviewVi;
+export const astrobitePillars = astrobitePillarsVi;
+export const astrobiteScreenshots = astrobiteScreenshotsVi;

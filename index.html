@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Nguyen Duy Trang — Mobile Engineer Portfolio & AstroBite Showcase</title>
     <meta name="description" content="Portfolio của Nguyen Duy Trang - Mobile Engineer với hơn 5 năm kinh nghiệm thực chiến (Flutter, iOS Swift, Android Kotlin), ứng dụng Gemini Vision AI, GenUI và kiến trúc Clean Architecture." />
     <meta name="keywords" content="Nguyen Duy Trang, Mobile Engineer, Flutter Developer, iOS Developer, Android Developer, AstroBite, Gemini Vision AI, GenUI, Clean Architecture" />
     <meta property="og:title" content="Nguyen Duy Trang — Mobile Engineer Portfolio" />
     <meta property="og:description" content="Khám phá các dự án di động triệu lượt tải (1M+) và Flagship AstroBite AI Food Scanner & GenUI Calorie Tracker." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#070A11" />
+    <meta name="theme-color" content="#E8ECF2" />
     <!-- Google Fonts Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Pre-hydration Theme Detection Script to prevent FOUC -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-canvas text-slate-100 antialiased selection:bg-cyan-500/20 selection:text-cyan-300">
+  <body class="bg-[#E8ECF2] dark:bg-[#0B1120] text-slate-800 dark:text-slate-100 antialiased selection:bg-sky-500/20 selection:text-sky-700 dark:selection:text-sky-300">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

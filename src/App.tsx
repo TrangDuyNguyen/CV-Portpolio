@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-[#E8ECF2] text-slate-800 selection:bg-sky-500/20 selection:text-sky-700">
+    <div className="min-h-screen bg-[#E8ECF2] dark:bg-[#0B1120] text-slate-800 dark:text-slate-100 selection:bg-sky-500/20 selection:text-sky-700 dark:selection:text-sky-300 transition-colors duration-250">
       {/* Top Sticky Navigation */}
       <Navbar />
 

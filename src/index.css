@@ -6,15 +6,32 @@
   :root {
     --neu-bg: #E8ECF2;
     --neu-surface: #E8ECF2;
+    --neu-surface-elevated: #E8ECF2;
+    --neu-sunken: #DDE4EE;
     --neu-shadow-dark: #C4D0DE;
     --neu-shadow-light: #FFFFFF;
     --neu-text: #1E293B;
     --neu-muted: #64748B;
   }
 
+  .dark {
+    --neu-bg: #0B1120;
+    --neu-surface: #151F32;
+    --neu-surface-elevated: #1A263D;
+    --neu-sunken: #0D1524;
+    --neu-shadow-dark: #050811;
+    --neu-shadow-light: #1E2D44;
+    --neu-text: #F8FAFC;
+    --neu-muted: #94A3B8;
+  }
+
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
@@ -24,9 +41,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
-  /* Custom subtle light neumorphic scrollbar */
+  /* Custom subtle light/dark neumorphic scrollbar */
   ::-webkit-scrollbar {
     width: 9px;
   }
@@ -41,6 +59,17 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #B0C0D4;
   }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #0B1120;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border: 2px solid #0B1120;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
 }
 
 /* Neumorphic Soft UI Utilities */
@@ -48,35 +77,63 @@
   background: #E8ECF2;
   box-shadow: 7px 7px 15px #c2cee0, -7px -7px 15px #ffffff;
 }
+.dark .neu-flat {
+  background: #151F32;
+  box-shadow: 7px 7px 15px #050811, -7px -7px 15px #1E2D44;
+}
 
 .neu-flat-sm {
   background: #E8ECF2;
   box-shadow: 4px 4px 8px #c5d1e2, -4px -4px 8px #ffffff;
+}
+.dark .neu-flat-sm {
+  background: #151F32;
+  box-shadow: 4px 4px 8px #050811, -4px -4px 8px #1E2D44;
 }
 
 .neu-flat-lg {
   background: #E8ECF2;
   box-shadow: 12px 12px 24px #bed0e2, -12px -12px 24px #ffffff;
 }
+.dark .neu-flat-lg {
+  background: #151F32;
+  box-shadow: 12px 12px 24px #04060d, -12px -12px 24px #1c2b42;
+}
 
 .neu-pressed {
   background: #E8ECF2;
   box-shadow: inset 4px 4px 8px #c2cee0, inset -4px -4px 8px #ffffff;
+}
+.dark .neu-pressed {
+  background: #0D1524;
+  box-shadow: inset 4px 4px 8px #050811, inset -4px -4px 8px #1A283E;
 }
 
 .neu-pressed-sm {
   background: #E8ECF2;
   box-shadow: inset 2px 2px 5px #c5d1e2, inset -2px -2px 5px #ffffff;
 }
+.dark .neu-pressed-sm {
+  background: #0D1524;
+  box-shadow: inset 2px 2px 5px #050811, inset -2px -2px 5px #1A283E;
+}
 
 .neu-convex {
   background: linear-gradient(145deg, #f7fcff, #dce4ef);
   box-shadow: 6px 6px 14px #c2cee0, -6px -6px 14px #ffffff;
 }
+.dark .neu-convex {
+  background: linear-gradient(145deg, #18243a, #111a2c);
+  box-shadow: 6px 6px 14px #050811, -6px -6px 14px #1E2D44;
+}
 
 .neu-concave {
   background: linear-gradient(145deg, #dce4ef, #f7fcff);
   box-shadow: 6px 6px 14px #c2cee0, -6px -6px 14px #ffffff;
+}
+.dark .neu-concave {
+  background: linear-gradient(145deg, #111a2c, #18243a);
+  box-shadow: 6px 6px 14px #050811, -6px -6px 14px #1E2D44;
 }
 
 /* Neumorphic interactive button */
@@ -93,6 +150,16 @@
   box-shadow: inset 4px 4px 8px #c2cee0, inset -4px -4px 8px #ffffff;
   transform: translateY(1px);
 }
+.dark .neu-btn {
+  background: #151F32;
+  box-shadow: 5px 5px 10px #050811, -5px -5px 10px #1E2D44;
+}
+.dark .neu-btn:hover {
+  box-shadow: 7px 7px 14px #04060d, -7px -7px 14px #22344f;
+}
+.dark .neu-btn:active {
+  box-shadow: inset 4px 4px 8px #050811, inset -4px -4px 8px #1A283E;
+}
 
 /* Neumorphic Card */
 .neu-card {
@@ -104,12 +171,23 @@
 .neu-card:hover {
   box-shadow: 10px 10px 22px #bed0e2, -10px -10px 22px #ffffff;
 }
+.dark .neu-card {
+  background: #151F32;
+  box-shadow: 8px 8px 18px #050811, -8px -8px 18px #1E2D44;
+}
+.dark .neu-card:hover {
+  box-shadow: 10px 10px 22px #04060d, -10px -10px 22px #22344f;
+}
 
 /* Subtle Neumorphic Grid Texture */
 .bg-neu-pattern {
   background-size: 32px 32px;
   background-image: 
     radial-gradient(circle at 1px 1px, rgba(163, 177, 198, 0.25) 1px, transparent 0);
+}
+.dark .bg-neu-pattern {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.12) 1px, transparent 0);
 }
 
 /* ========================================================

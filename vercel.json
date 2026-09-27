@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/cv-print.html", "destination": "/cv-print.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

@@ -170,9 +170,13 @@ Tech Stack: Flutter 3.x, Riverpod 2.x, AutoRoute 9.x, Gemini 3.8 Flash (firebase
 #### Section: Work Experience
 ```markdown
 FINVIET TECHNOLOGY | Mobile Developer (Jun 2025 – Present)
-• Shipped Flutter-based Self-Order Kiosks and cashier modules for an F&B POS ecosystem, accelerating ordering transaction speed by 30%.
+• Built multi-industry POS cashier screens and Self-Order Kiosks tailored for F&B (table layout, kitchen tickets), Retail (barcode checkout), and Spa Services (technician booking, treatment packages), accelerating transactions by 30%.
+• Implemented feature-level Role-Based Access Control (RBAC) across cashiers, stockkeepers, spa therapists, store managers, and administrators.
+• Developed Product/Service Catalog Management and Multi-Tier Price List modules (branch-based pricing, combo meals, spa service tiers, and promotional discounts).
+• Built end-to-end Inventory Management: goods receipt & issue notes (phiếu nhập/xuất kho), stock tracking, and real-time inventory reconciliation.
+• Shipped comprehensive Sales & Inventory Reporting modules (shift revenue, multi-model sales analytics for F&B/Retail/Spa, stock balance).
 • Designed and delivered an offline-first order synchronization engine using Clean Architecture, BLoC, and SQLite, ensuring 100% order persistence during network disconnects.
-• Developed custom Android (Kotlin) Platform Channels to interface with hardware thermal POS receipt printers (ESC/POS) and barcode scanners, maximizing peripheral stability.
+• Developed custom Android (Kotlin) Platform Channels to interface with hardware thermal POS receipt printers (ESC/POS) and barcode scanners.
 • Streamlined multi-platform store releases through automated Fastlane and GitHub Actions CI/CD workflows.
 
 HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer (May 2020 – Jun 2025)

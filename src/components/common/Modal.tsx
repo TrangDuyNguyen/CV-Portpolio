@@ -57,16 +57,16 @@ export const Modal: React.FC<ModalProps> = ({
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidthClass} bg-[#E8ECF2] border border-white/90 rounded-3xl shadow-[16px_16px_36px_#b0bfd0,-16px_-16px_36px_#ffffff] overflow-hidden z-10 max-h-[90vh] flex flex-col`}
+        className={`relative w-full ${maxWidthClass} bg-[#E8ECF2] dark:bg-[#151F32] border border-white/90 dark:border-slate-700/80 rounded-3xl shadow-[16px_16px_36px_#b0bfd0,-16px_-16px_36px_#ffffff] dark:shadow-[16px_16px_36px_#04060d,-16px_-16px_36px_#1E2D44] overflow-hidden z-10 max-h-[90vh] flex flex-col`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-300/60 bg-[#E8ECF2]">
-          <h2 className="text-base font-semibold text-slate-800 truncate pr-4">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-300/60 dark:border-slate-800 bg-[#E8ECF2] dark:bg-[#151F32]">
+          <h2 className="text-base font-semibold text-slate-800 dark:text-white truncate pr-4">
             {title || ''}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-[#E8ECF2] text-slate-600 hover:text-slate-900 shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1A283E] border border-white/80 dark:border-slate-700 transition-all cursor-pointer"
             aria-label="Đóng hộp thoại"
           >
             <X className="w-4 h-4" />
@@ -74,7 +74,7 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="overflow-y-auto flex-1 p-6 text-slate-700">
+        <div className="overflow-y-auto flex-1 p-6 text-slate-700 dark:text-slate-200">
           {children}
         </div>
       </div>

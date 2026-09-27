@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Github, Menu, X } from 'lucide-react';
-import { profileData } from '../../data/profileData';
+import { Download, Github, Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { getProfileData } from '../../data/profileData';
+import { translations } from '../../data/translations';
 import { Button } from '../common/Button';
+import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Navbar: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language].navbar;
+  const profile = getProfileData(language);
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
@@ -28,57 +36,57 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Giới thiệu', href: '#about' },
-    { label: 'AstroBite v2.0', href: '#astrobite' },
-    { label: 'Kinh nghiệm', href: '#career' },
-    { label: 'Kỷ luật Kỹ thuật', href: '#engineering' },
-    { label: 'Kỹ năng', href: '#skills' },
-    { label: 'Liên hệ', href: '#contact' },
+    { label: t.navAbout, href: '#about' },
+    { label: t.navAstroBite, href: '#astrobite' },
+    { label: t.navCareer, href: '#career' },
+    { label: t.navEngineering, href: '#engineering' },
+    { label: t.navSkills, href: '#skills' },
+    { label: t.navContact, href: '#contact' },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#E8ECF2]/90 backdrop-blur-md border-b border-white/60 shadow-[0_6px_16px_#cad6e4]'
+          ? 'bg-[#E8ECF2]/90 dark:bg-[#0B1120]/90 backdrop-blur-md border-b border-white/60 dark:border-slate-800 shadow-[0_6px_16px_#cad6e4] dark:shadow-[0_6px_20px_rgba(0,0,0,0.5)]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <a href="#about" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl overflow-hidden neu-flat-sm border border-white/90 flex items-center justify-center p-0.5 group-hover:scale-105 transition-all">
+          <div className="w-10 h-10 rounded-xl overflow-hidden neu-flat-sm border border-white/90 dark:border-slate-700/80 flex items-center justify-center p-0.5 group-hover:scale-105 transition-all">
             <img
-              src={profileData.avatarUrl}
-              alt={profileData.name}
+              src={profile.avatarUrl}
+              alt={profile.name}
               className="w-full h-full object-cover rounded-lg"
             />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-slate-800 tracking-tight group-hover:text-sky-600 transition-colors">
-                {profileData.name}
+              <span className="font-bold text-slate-800 dark:text-white tracking-tight group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                {profile.name}
               </span>
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             </div>
-            <p className="text-[11px] text-slate-500 font-mono hidden sm:block">
-              {profileData.roleTitle} ({profileData.levelTag})
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono hidden sm:block">
+              {profile.roleTitle} ({profile.levelTag})
             </p>
           </div>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-1.5 lg:gap-2">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-xs lg:text-sm font-medium px-3 py-1.5 rounded-xl transition-all ${
+                className={`text-xs lg:text-sm font-medium px-2.5 lg:px-3 py-1.5 rounded-xl transition-all ${
                   isActive
-                    ? 'bg-[#E8ECF2] text-sky-700 shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] border border-sky-300/70 font-semibold'
-                    : 'text-slate-600 hover:text-sky-600 hover:shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff]'
+                    ? 'bg-[#E8ECF2] dark:bg-[#151F32] text-sky-700 dark:text-sky-400 shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-sky-300/70 dark:border-sky-700/60 font-semibold'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff] dark:hover:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44]'
                 }`}
               >
                 {link.label}
@@ -87,13 +95,38 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Right Actions */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right Actions (Desktop) */}
+        <div className="hidden md:flex items-center gap-2">
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold font-mono rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-all cursor-pointer group"
+            aria-label={t.langSwitchTooltip}
+            title={t.langSwitchTooltip}
+          >
+            <Globe className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 group-hover:rotate-45 transition-transform" />
+            <span>{language.toUpperCase()}</span>
+          </button>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 transition-all cursor-pointer group"
+            aria-label={theme === 'dark' ? t.themeDarkTooltip : t.themeLightTooltip}
+            title={theme === 'dark' ? t.themeDarkTooltip : t.themeLightTooltip}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
+            ) : (
+              <Moon className="w-4 h-4 text-slate-600 group-hover:-rotate-12 transition-transform" />
+            )}
+          </button>
+
           <a
-            href={profileData.github}
+            href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 text-slate-600 hover:text-slate-900 rounded-xl bg-[#E8ECF2] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] border border-white/80 transition-all"
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 transition-all"
             aria-label="GitHub Profile"
           >
             <Github className="w-4 h-4" />
@@ -101,57 +134,96 @@ export const Navbar: React.FC = () => {
 
           <Button
             asLink
-            href={profileData.cvPdfUrl}
-            download="Mobile_Engineer_Nguyen_Duy_Trang.pdf"
+            href={profile.cvPdfUrl}
+            download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
             variant="outline"
             size="sm"
-            icon={<Download className="w-3.5 h-3.5 text-sky-600" />}
+            icon={<Download className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />}
           >
-            Tải CV (PDF)
+            {t.downloadCv}
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-slate-700 rounded-xl bg-[#E8ECF2] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] border border-white/80 focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile & Tablet Right Controls */}
+        <div className="flex md:hidden items-center gap-1.5">
+          {/* Mobile Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1 px-2 py-1.5 text-xs font-bold font-mono rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 transition-all cursor-pointer"
+            aria-label={t.langSwitchTooltip}
+          >
+            <Globe className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+            <span>{language.toUpperCase()}</span>
+          </button>
+
+          {/* Mobile Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-slate-600 dark:text-slate-300 rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 transition-all cursor-pointer"
+            aria-label={theme === 'dark' ? t.themeDarkTooltip : t.themeLightTooltip}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-slate-600" />
+            )}
+          </button>
+
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 transition-all"
+            aria-label="GitHub Profile"
+          >
+            <Github className="w-4 h-4" />
+          </a>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-slate-700 dark:text-slate-200 rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[3px_3px_6px_#c2cee0,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] active:shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-white/80 dark:border-slate-700/60 focus:outline-none cursor-pointer"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile & Tablet Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#E8ECF2] border-b border-slate-300/80 shadow-[0_10px_20px_#cad6e4] px-4 pt-3 pb-6 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm text-slate-700 hover:text-sky-600 py-2 font-medium"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-3 border-t border-slate-300/80 flex items-center justify-between">
-            <a
-              href={profileData.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs text-slate-600 hover:text-slate-900 py-1"
-            >
-              <Github className="w-4 h-4" /> GitHub Profile
-            </a>
+        <div className="md:hidden bg-[#E8ECF2]/95 dark:bg-[#0B1120]/95 backdrop-blur-lg border-b border-slate-300/80 dark:border-slate-800 shadow-[0_12px_24px_#c2cee0] dark:shadow-[0_12px_24px_rgba(0,0,0,0.6)] px-4 pt-3 pb-6 space-y-2 animate-fadeInUp">
+          <nav className="space-y-1.5">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    isActive
+                      ? 'bg-[#E8ECF2] dark:bg-[#151F32] text-sky-700 dark:text-sky-400 shadow-[inset_2px_2px_4px_#c2cee0,inset_-2px_-2px_4px_#ffffff] dark:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1E2D44] border border-sky-300/70 dark:border-sky-700/60 font-semibold'
+                      : 'text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 active:bg-slate-200/50 dark:active:bg-slate-800/50'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </nav>
+          <div className="pt-3 border-t border-slate-300/70 dark:border-slate-800 flex items-center justify-between gap-3">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+              Nguyen Duy Trang • Mobile
+            </span>
             <Button
               asLink
-              href={profileData.cvPdfUrl}
-              download="Mobile_Engineer_Nguyen_Duy_Trang.pdf"
-              variant="outline"
+              href={profile.cvPdfUrl}
+              download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
+              variant="primary"
               size="sm"
-              icon={<Download className="w-3.5 h-3.5 text-sky-600" />}
+              icon={<Download className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />}
             >
-              Tải CV (PDF)
+              {t.downloadCvFull}
             </Button>
           </div>
         </div>

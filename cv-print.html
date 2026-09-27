@@ -92,6 +92,36 @@
       flex-wrap: wrap;
     }
 
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: #F1F5F9;
+      padding: 2.5px;
+      border-radius: 8px;
+      border: 1px solid var(--c-border);
+    }
+
+    .lang-btn {
+      padding: 4.5px 9px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--c-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: var(--font-sans);
+    }
+
+    .lang-btn.active {
+      background: #FFFFFF;
+      color: var(--c-black);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+      font-weight: 700;
+    }
+
     .toolbar-btn {
       display: inline-flex;
       align-items: center;
@@ -130,6 +160,14 @@
       background: #F0FDF4;
       border-color: #22C55E;
       color: #15803D;
+    }
+
+    /* Ẩn hiện theo ngôn ngữ */
+    body[data-lang="vi"] #cvRootEN {
+      display: none !important;
+    }
+    body[data-lang="en"] #cvRootVI {
+      display: none !important;
     }
 
     /* ==========================================================================
@@ -367,7 +405,7 @@
     }
 
     /* ==========================================================================
-       8. DỰ ÁN KỲ HẠM & KINH NGHIỆM LÀM VIỆC (PROJECT LÊN TRÊN, CÔNG VIỆC XUỐNG DƯỚI)
+       8. DỰ ÁN KỲ HẠM & KINH NGHIỆM LÀM VIỆC
        ========================================================================== */
     .job-block {
       margin-bottom: 5.5pt;
@@ -581,7 +619,7 @@
     }
   </style>
 </head>
-<body>
+<body data-lang="vi">
 
   <!-- ======================================================================
        THANH CÔNG CỤ ĐIỀU KHIỂN (ẨN KHI IN)
@@ -590,10 +628,16 @@
     <header class="toolbar">
       <div class="toolbar-info">
         <span class="status-dot"></span>
-        <span>CV Mobile Engineer — Nguyen Duy Trang (Project Cá Nhân Lên Trước)</span>
+        <span id="toolbarStatusText">CV Mobile Engineer — Nguyen Duy Trang</span>
       </div>
 
       <div class="toolbar-actions">
+        <!-- Bộ chuyển đổi ngôn ngữ VI / EN -->
+        <div class="lang-switch-group">
+          <button class="lang-btn active" id="btnLangVI" onclick="setLanguage('vi')">🇻🇳 Tiếng Việt</button>
+          <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">🇬🇧 English</button>
+        </div>
+
         <!-- Về Portfolio -->
         <a href="/" class="toolbar-btn" title="Trở về trang Portfolio">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -604,14 +648,14 @@
         </a>
 
         <!-- Nút Tải PDF Chính thức -->
-        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf" id="btnDownloadPdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
             <line x1="12" y1="18" x2="12" y2="12"></line>
             <polyline points="9 15 12 18 15 15"></polyline>
           </svg>
-          Tải PDF Trắng Đen
+          <span id="btnPdfText">Tải PDF Trắng Đen</span>
         </a>
 
         <!-- In / Lưu PDF Trình duyệt -->
@@ -621,7 +665,7 @@
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
             <path d="M6 14h12v8H6z"></path>
           </svg>
-          In / Lưu PDF
+          <span id="btnPrintText">In / Lưu PDF</span>
         </button>
 
         <!-- Bật/Tắt Sửa trực tiếp -->
@@ -630,7 +674,7 @@
             <path d="M12 20h9"></path>
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
           </svg>
-          Sửa trực tiếp: TẮT
+          <span id="btnEditText">Sửa trực tiếp: TẮT</span>
         </button>
 
         <!-- Lưu file HTML -->
@@ -640,23 +684,19 @@
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          Lưu HTML
+          <span id="btnHtmlText">Lưu HTML</span>
         </button>
       </div>
     </header>
   </div>
 
   <!-- ======================================================================
-       TOÀN BỘ CV: 2 TRANG A4 TRẢI ĐỀU 100%
-       TRANG 1: THÔNG TIN, TỔNG QUAN, CHỈ SỐ, KỸ NĂNG & DỰ ÁN CÁ NHÂN TIÊU BIỂU
-       TRANG 2: KINH NGHIỆM THƯƠNG MẠI (FINVIET & HAHALOLO), HỌC VẤN & KỶ LUẬT
+       BẢN TIẾNG VIỆT (VIETNAMESE CV CONTAINER)
        ====================================================================== -->
-  <main class="cv-container" id="cvRoot">
+  <main class="cv-container" id="cvRootVI">
 
-    <!-- ====================================================================
-         TRANG 1: THÔNG TIN, TỔNG QUAN, CHỈ SỐ, KỸ NĂNG & DỰ ÁN CÁ NHÂN (ASTROBITE)
-         ==================================================================== -->
-    <article class="cv-page" id="page-1">
+    <!-- TRANG 1 (VI) -->
+    <article class="cv-page" id="page-1-vi">
       <div class="page-main-content">
 
         <!-- 1. HEADER CÁ NHÂN -->
@@ -690,7 +730,7 @@
             <span class="sub-tag">OVERVIEW</span>
           </h2>
           <div class="summary-text">
-            Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các sản phẩm di động thương mại quy mô lớn trên iOS &amp; Android sử dụng Flutter, Swift, SwiftUI, UIKit và Kotlin. Nắm vững kiến trúc Clean Architecture, mô hình phân tán Offline-first, tối ưu hóa hiệu năng render 60 FPS, và tích hợp sâu phần cứng ngoại vi (POS, máy in nhiệt, máy quét mã vạch). Tiên phong ứng dụng Multimodal Vision AI (Google Gemini) cùng kiến trúc Flutter Generative UI (GenUI). Đóng góp trực tiếp vào các ứng dụng quy mô 1M+ lượt tải với tỷ lệ 99.5%+ crash-free sessions.
+            Kỹ sư di động với 5 năm kinh nghiệm chuyên sâu về Mobile (Flutter / iOS / Android), trực tiếp đóng góp vào hệ thống mạng xã hội 1M+ downloads, giải pháp phần cứng POS/Kiosk đa ngành (F&amp;B, Bán lẻ, Dịch vụ Spa) và sản phẩm Vision AI hiện đại. Nắm vững Feature-First Clean Architecture, giải pháp Offline-first, phân quyền tính năng đa tầng (RBAC), tối ưu hóa hiệu năng render 60 FPS (0 memory leak) và tích hợp sâu phần cứng ngoại vi (máy in nhiệt ESC/POS, máy quét mã vạch). Tiên phong ứng dụng Multimodal Vision AI (Google Gemini) cùng kiến trúc Flutter Generative UI (A2UI Protocol).
           </div>
         </section>
 
@@ -707,15 +747,15 @@
             </div>
             <div class="highlight-item">
               <strong>-30% Tx Time:</strong>
-              <span>Kiosk tự phục vụ &amp; POS thu ngân cho hệ thống F&amp;B bán lẻ.</span>
+              <span>Kiosk tự phục vụ &amp; POS bán hàng đa ngành (F&amp;B, Bán lẻ, Spa).</span>
             </div>
             <div class="highlight-item">
               <strong>99.5%+ Crash-Free:</strong>
               <span>Ổn định sản xuất, kiểm soát chặt vòng đời RAM và duy trì 60 FPS.</span>
             </div>
             <div class="highlight-item">
-              <strong>Offline-First Engine:</strong>
-              <span>Đồng bộ đơn hàng Clean Architecture, BLoC, SQLite không mất đơn.</span>
+              <strong>Offline-First &amp; RBAC:</strong>
+              <span>Đồng bộ đơn hàng SQLite, phân quyền thu ngân, kho, quản lý.</span>
             </div>
             <div class="highlight-item">
               <strong>Realtime &amp; Hardware:</strong>
@@ -741,19 +781,15 @@
             </div>
             <div class="skill-row">
               <div class="skill-label">Architecture &amp; State:</div>
-              <div class="skill-values">Clean Architecture, Riverpod 2.x, BLoC, Provider, MVVM, SOLID, Modularization, Offline-First.</div>
+              <div class="skill-values">Clean Architecture, Riverpod 2.x, BLoC, Provider, MVVM, SOLID, Modularization, Offline-First, RBAC.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Real-Time, Media &amp; Data:</div>
               <div class="skill-values">WebSocket, Socket.IO, RESTful APIs, SQLite, Local Caching &amp; Sync, iOS CallKit.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Firebase &amp; Cloud:</div>
-              <div class="skill-values">Firebase (FCM, Crashlytics, Analytics, Remote Config, Auth, Cloud Firestore), App Check.</div>
-            </div>
-            <div class="skill-row">
-              <div class="skill-label">Hardware &amp; Native Bridge:</div>
-              <div class="skill-values">Platform Channels, Thermal POS (ESC/POS), Barcode &amp; QR Scanner, Add-to-App, Home Widgets.</div>
+              <div class="skill-label">Hardware &amp; POS Modules:</div>
+              <div class="skill-values">Platform Channels, Thermal POS (ESC/POS), Barcode Scanner, Quản lý kho, Bảng giá đa cấp.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">AI Tools, CI/CD &amp; QA:</div>
@@ -762,7 +798,7 @@
           </div>
         </section>
 
-        <!-- 5. DỰ ÁN CÁ NHÂN TIÊU BIỂU (ĐƯỢC ĐẶT LÊN TRÊN THEO YÊU CẦU) -->
+        <!-- 5. DỰ ÁN CÁ NHÂN TIÊU BIỂU -->
         <section class="section">
           <h2 class="section-title">
             <span>FEATURED FLAGSHIP PROJECT</span>
@@ -793,17 +829,15 @@
 
       </div>
 
-      <!-- CHÂN TRANG 1 -->
+      <!-- CHÂN TRANG 1 (VI) -->
       <footer class="cv-footer">
         <div>Nguyen Duy Trang • Mobile Engineer CV</div>
         <div class="page-indicator">Trang 1 / 2</div>
       </footer>
     </article>
 
-    <!-- ====================================================================
-         TRANG 2: KINH NGHIỆM THƯƠNG MẠI (FINVIET & HAHALOLO), HỌC VẤN & KỶ LUẬT
-         ==================================================================== -->
-    <article class="cv-page" id="page-2">
+    <!-- TRANG 2 (VI) -->
+    <article class="cv-page" id="page-2-vi">
       <div class="page-main-content">
 
         <!-- MINI HEADER TRANG 2 -->
@@ -812,7 +846,7 @@
           <div class="mini-header-tag">5+ NĂM KINH NGHIỆM THỰC CHIẾN</div>
         </div>
 
-        <!-- 1. WORK EXPERIENCE (TOÀN BỘ KINH NGHIỆM THƯƠNG MẠI NẰM Ở TRANG 2) -->
+        <!-- 1. WORK EXPERIENCE -->
         <section class="section">
           <h2 class="section-title">
             <span>COMMERCIAL WORK EXPERIENCE</span>
@@ -827,17 +861,19 @@
             </div>
             <div class="job-sub-row">
               <span class="job-role">Mobile Developer</span>
-              <span class="job-domain">Hệ sinh thái F&amp;B POS &amp; Kiosk Tự Phục Vụ</span>
+              <span class="job-domain">Hệ sinh thái POS Kiosk Đa Ngành (F&amp;B, Bán Lẻ &amp; Dịch Vụ Spa)</span>
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Android Kotlin, BLoC, SQLite, Platform Channels, ESC/POS Thermal Printer, Barcode Scanner, Fastlane, CI/CD.
+              <strong>Tech Stack:</strong> Flutter, Android Kotlin, BLoC, SQLite, Platform Channels, ESC/POS Thermal Printer, Barcode Scanner, RBAC, Fastlane.
             </div>
             <ul class="bullet-list">
-              <li>Xây dựng và bàn giao module <strong>Kiosk tự gọi món (Self-Order Kiosk)</strong> và thu ngân cho chuỗi F&amp;B, giúp rút ngắn thời gian giao dịch đặt món <strong>30%</strong>.</li>
-              <li>Thiết kế luồng đồng bộ đơn hàng <strong>Offline-first</strong> sử dụng Clean Architecture, BLoC và SQLite, đảm bảo 100% đơn hàng được ghi nhận và tự đồng bộ khi có mạng.</li>
-              <li>Tự phát triển custom <strong>Android Platform Channels (Kotlin)</strong> kết nối máy in hóa đơn nhiệt ESC/POS và máy quét mã vạch, nâng cao độ phản hồi và độ ổn định thiết bị.</li>
-              <li>Tích hợp Firebase FCM, Crashlytics và Analytics phục vụ push thông báo thời gian thực, theo dõi sự cố và đo lường hành vi người dùng.</li>
-              <li>Thiết lập pipeline tự động hóa build/release bằng <strong>Fastlane &amp; GitHub Actions</strong>; áp dụng quy trình AI-assisted (Cursor, Claude Code, Git Worktrees) đẩy nhanh tiến độ bàn giao tính năng.</li>
+              <li>Xây dựng màn hình <strong>bán hàng POS &amp; Kiosk</strong> tối ưu theo 3 mô hình: <strong>F&amp;B</strong> (order bàn, in bếp), <strong>Bán lẻ</strong> (quét barcode) và <strong>Dịch vụ Spa</strong> (gói liệu trình, đặt lịch, chọn KTV), rút ngắn <strong>30%</strong> thời gian giao dịch.</li>
+              <li>Thiết kế hệ thống <strong>phân quyền tính năng (RBAC)</strong> chặt chẽ theo vai trò (Thu ngân, Thủ kho, Kỹ thuật viên Spa, Quản lý cửa hàng, Admin).</li>
+              <li>Phát triển module <strong>Quản lý Hàng hóa &amp; Bảng giá đa cấp</strong>: cấu hình giá dịch vụ spa, combo F&amp;B, giá sỉ/lẻ theo chi nhánh và khuyến mãi.</li>
+              <li>Triển khai phân hệ <strong>Quản lý Kho vận</strong>: tạo phiếu nhập/xuất kho, theo dõi luân chuyển và kiểm soát tồn kho tức thời (real-time).</li>
+              <li>Xây dựng hệ thống <strong>Báo cáo &amp; Thống kê</strong>: doanh thu theo ca làm việc, báo cáo bán hàng đa mô hình (F&amp;B, Bán lẻ, Spa) và đối soát tồn kho.</li>
+              <li>Thiết kế luồng đồng bộ đơn hàng <strong>Offline-first</strong> (BLoC, SQLite) và custom <strong>Platform Channels (Kotlin)</strong> kết nối máy in hóa đơn nhiệt ESC/POS, máy quét mã vạch.</li>
+              <li>Thiết lập pipeline tự động hóa build/release bằng <strong>Fastlane &amp; GitHub Actions</strong>.</li>
             </ul>
           </article>
 
@@ -873,7 +909,7 @@
           </h2>
           <div class="edu-block">
             <div>
-              <div class="edu-school">FPT POLYTECHNIC COLLEGE</div>
+              <div class="edu-school">CAO ĐẲNG FPT POLYTECHNIC</div>
               <div class="edu-degree">Cử nhân Thực hành Công nghệ Thông tin (Chuyên ngành Phát triển Phần mềm)</div>
             </div>
             <div class="edu-languages">
@@ -896,7 +932,7 @@
 
       </div>
 
-      <!-- CHÂN TRANG 2 -->
+      <!-- CHÂN TRANG 2 (VI) -->
       <footer class="cv-footer">
         <div>Nguyen Duy Trang • Mobile Engineer CV</div>
         <div class="page-indicator">Trang 2 / 2</div>
@@ -906,34 +942,344 @@
   </main>
 
   <!-- ======================================================================
-       SCRIPTS: SỬA TRỰC TIẾP & TẢI VỀ FILE HTML
+       BẢN TIẾNG ANH (ENGLISH CV CONTAINER)
+       ====================================================================== -->
+  <main class="cv-container" id="cvRootEN">
+
+    <!-- PAGE 1 (EN) -->
+    <article class="cv-page" id="page-1-en">
+      <div class="page-main-content">
+
+        <!-- 1. PERSONAL HEADER -->
+        <header class="header">
+          <div class="header-top">
+            <h1 class="name">NGUYEN DUY TRANG</h1>
+            <div class="title-tagline">Open to Opportunities</div>
+          </div>
+          <div class="headline">
+            Mobile Engineer | Flutter | Native iOS &amp; Android
+          </div>
+          <div class="contact-row">
+            <span class="contact-item">📍 Ho Chi Minh City, Vietnam</span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">🎂 2000</span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">📞 <a href="tel:0397308962">(+84) 397 308 962</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">✉️ <a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">🐙 <a href="https://github.com/TrangDuyNguyen" target="_blank" rel="noopener noreferrer">github.com/TrangDuyNguyen</a></span>
+            <span class="contact-sep">•</span>
+            <span class="contact-item">💼 <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyen-duy-trang</a></span>
+          </div>
+        </header>
+
+        <!-- 2. PROFESSIONAL SUMMARY -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>PROFESSIONAL SUMMARY</span>
+            <span class="sub-tag">OVERVIEW</span>
+          </h2>
+          <div class="summary-text">
+            Mobile Engineer with 5 years of production experience across Flutter, iOS, and Android, directly contributing to 1M+ download social network ecosystems, multi-vertical POS/Kiosk hardware systems (F&amp;B, Retail, Spa Services), and cutting-edge Vision AI products. Strong command of Feature-First Clean Architecture, offline-first architectures, granular Role-Based Access Control (RBAC), 60 FPS rendering optimization with zero memory leaks, and deep peripheral hardware integration (ESC/POS thermal printers, barcode scanners). Pioneered Google Gemini Multimodal Vision AI and Flutter Generative UI (A2UI Protocol).
+          </div>
+        </section>
+
+        <!-- 3. VERIFIED PRODUCTION HIGHLIGHTS -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>VERIFIED PRODUCTION HIGHLIGHTS</span>
+            <span class="sub-tag">METRICS</span>
+          </h2>
+          <div class="highlights-grid">
+            <div class="highlight-item">
+              <strong>1M+ Downloads:</strong>
+              <span>Operating large-scale social travel network &amp; real-time OTT on iOS &amp; Android.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>-30% Tx Time:</strong>
+              <span>Optimized ordering, billing &amp; checkout on multi-vertical POS &amp; self-order Kiosks.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>99.5%+ Crash-Free:</strong>
+              <span>Production reliability, strict RAM lifecycle management, and locked 60 FPS.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>Offline-First &amp; RBAC:</strong>
+              <span>SQLite order sync; permission boundaries for Cashier, Warehouse, Manager.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>Realtime &amp; Hardware:</strong>
+              <span>Low-latency WebSocket chat/calls, ESC/POS thermal printers &amp; barcode scanners.</span>
+            </div>
+            <div class="highlight-item">
+              <strong>198 Tests 100%:</strong>
+              <span>Comprehensive automated test suite, Fastlane &amp; GitHub Actions CI/CD pipelines.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TECHNICAL SKILLS MATRIX -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>TECHNICAL SKILLS MATRIX</span>
+            <span class="sub-tag">COMPETENCIES</span>
+          </h2>
+          <div class="skills-list">
+            <div class="skill-row">
+              <div class="skill-label">Languages &amp; Core:</div>
+              <div class="skill-values">Flutter (Dart), Swift, SwiftUI, UIKit, Kotlin, TypeScript.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Architecture &amp; State:</div>
+              <div class="skill-values">Clean Architecture, Riverpod 2.x, BLoC, Provider, MVVM, SOLID, Modularization, Offline-First, RBAC.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Real-Time, Media &amp; Data:</div>
+              <div class="skill-values">WebSocket, Socket.IO, RESTful APIs, SQLite, Local Caching &amp; Sync, iOS CallKit.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">Hardware &amp; POS Modules:</div>
+              <div class="skill-values">Platform Channels, Thermal POS (ESC/POS), Barcode Scanner, Warehouse Management, Multi-tier Pricing.</div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label">AI Tools, CI/CD &amp; QA:</div>
+              <div class="skill-values">Cursor IDE, Claude Code, Fastlane, GitHub Actions, Bitrise, Git Worktrees, Scrum/Agile.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. FEATURED FLAGSHIP PROJECT -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>FEATURED FLAGSHIP PROJECT</span>
+            <span class="sub-tag">PERSONAL ARCHITECTURE</span>
+          </h2>
+
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">ASTROBITE — AI Food Scanner &amp; GenUI Calorie/Macro Tracker / AI Coach</span>
+              <span class="job-date">2026 – Present</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Engineer &amp; System Architect</span>
+              <span class="job-domain">Intelligent Nutrition &amp; Dietary Vision Assistant</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> Flutter 3.x, Dart 3.x, Riverpod 2.6 (Code-Gen, AsyncNotifier), AutoRoute 9.x, Google Gemini 2.0/3.8 Flash (firebase_ai), iOS WidgetKit &amp; Android AppWidget (home_widget), Apple Health &amp; Health Connect, Fastlane, GitHub Actions CI/CD (198 Unit/Widget Tests).
+            </div>
+            <ul class="bullet-list">
+              <li>Architected AstroBite (v2.0.0) based on <strong>Feature-First Clean Architecture</strong> with Riverpod 2.x code-gen across 10 decoupled business modules.</li>
+              <li>Engineered camera scanner utilizing <strong>Gemini Multimodal Vision AI (firebase_ai)</strong> recognizing complex meals in <strong>2–4 seconds</strong>, estimating calories and macros (Carbs, Fat, Protein) with <strong>0 memory leaks</strong>.</li>
+              <li>Pioneered <strong>Flutter Generative UI (GenUI) Chat Cockpit</strong> via A2UI protocol and Gemini 3.8 Flash, dynamically rendering interactive widgets (MealQuickLogCard, MacroBudgetGauge) with 1-tap Firestore logging.</li>
+              <li>Developed <strong>Cross-Platform OS Home Widgets</strong> (iOS WidgetKit &amp; Android AppWidget via home_widget) supporting instant camera scanner deep-link <strong>&lt; 300ms</strong> and reactive data sync with zero background battery drain.</li>
+              <li>Established a suite of <strong>198 automated unit &amp; widget tests (100% passing)</strong> with zero flaky tests; automated multi-platform release builds and deployment using Fastlane &amp; GitHub Actions.</li>
+            </ul>
+          </article>
+        </section>
+
+      </div>
+
+      <!-- FOOTER PAGE 1 (EN) -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
+        <div class="page-indicator">Page 1 / 2</div>
+      </footer>
+    </article>
+
+    <!-- PAGE 2 (EN) -->
+    <article class="cv-page" id="page-2-en">
+      <div class="page-main-content">
+
+        <!-- MINI HEADER PAGE 2 -->
+        <div class="mini-header">
+          <div class="mini-header-name">NGUYEN DUY TRANG — COMMERCIAL WORK EXPERIENCE &amp; CREDENTIALS</div>
+          <div class="mini-header-tag">5+ YEARS HANDS-ON EXPERIENCE</div>
+        </div>
+
+        <!-- 1. COMMERCIAL WORK EXPERIENCE -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>COMMERCIAL WORK EXPERIENCE</span>
+            <span class="sub-tag">TRACK RECORD</span>
+          </h2>
+
+          <!-- COMPANY 1: FINVIET TECHNOLOGY -->
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">FINVIET TECHNOLOGY</span>
+              <span class="job-date">06/2025 – Present</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Developer</span>
+              <span class="job-domain">Multi-Industry POS Kiosk Ecosystem (F&amp;B, Retail &amp; Spa Services)</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> Flutter, Android Kotlin, BLoC, SQLite, Platform Channels, ESC/POS Thermal Printer, Barcode Scanner, RBAC, Fastlane.
+            </div>
+            <ul class="bullet-list">
+              <li>Architected <strong>POS &amp; self-order Kiosk</strong> checkouts tailored for 3 business verticals: <strong>F&amp;B</strong> (table layout, kitchen ticket printing), <strong>Retail</strong> (barcode scanning, rapid cart), and <strong>Spa Services</strong> (technician booking, treatment packages), cutting <strong>30%</strong> transaction time.</li>
+              <li>Designed granular <strong>Role-Based Access Control (RBAC)</strong> across distinct operational roles (Cashier, Warehouse Keeper, Spa Technician, Store Manager, Admin).</li>
+              <li>Developed <strong>Goods &amp; Multi-tier Pricing</strong> module: custom pricing per branch, spa treatment packages, F&amp;B food combos, and automatic promotional rules.</li>
+              <li>Engineered <strong>Warehouse Management</strong> subsystem: stock-in/stock-out receipts, inter-branch transfers, and real-time inventory tracking.</li>
+              <li>Built comprehensive <strong>Reporting &amp; Analytics</strong>: shift revenue breakdown, multi-model sales statistics (F&amp;B, Retail, Spa), and stock movement reconciliation.</li>
+              <li>Architected <strong>Offline-first</strong> order sync (BLoC, SQLite) and developed custom <strong>Platform Channels (Kotlin)</strong> interfacing with ESC/POS thermal receipt printers and hardware barcode scanners.</li>
+              <li>Configured automated build and release pipelines using <strong>Fastlane &amp; GitHub Actions</strong>.</li>
+            </ul>
+          </article>
+
+          <!-- COMPANY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
+          <article class="job-block">
+            <div class="job-header-row">
+              <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+              <span class="job-date">05/2020 – 06/2025 (5 years)</span>
+            </div>
+            <div class="job-sub-row">
+              <span class="job-role">Mobile Developer</span>
+              <span class="job-domain">Hahalolo Social Travel Network &amp; Halome OTT App</span>
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> iOS Swift, SwiftUI, UIKit, Flutter Add-to-App, WebSocket, Socket.IO, iOS CallKit, Firebase Crashlytics, Bitrise, Fastlane.
+            </div>
+            <ul class="bullet-list">
+              <li>Scalably operated and maintained flagship social mobile application surpassing <strong>1,000,000+ production downloads (1M+)</strong> across iOS and Android.</li>
+              <li>Engineered <strong>Halome</strong> real-time messaging subsystem from scratch, supporting chat, media sharing, and low-latency audio/video calls via WebSocket &amp; Socket.IO.</li>
+              <li>Developed native iOS modules with <strong>Swift, SwiftUI, UIKit</strong> and seamlessly integrated them into Flutter via <strong>Flutter Add-to-App</strong>.</li>
+              <li>Integrated Firebase FCM with <strong>iOS CallKit</strong> for lock-screen incoming calls; sustained a <strong>99.5%+ crash-free session rate</strong> via Crashlytics.</li>
+              <li>Optimized memory lifecycles, widget rebuilds, and render cascades, locking smooth <strong>60 FPS</strong> performance even on low-end hardware.</li>
+              <li>Automated end-to-end TestFlight testing and App Store/Google Play distribution pipelines using Bitrise and Fastlane.</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- 2. EDUCATION & CREDENTIALS -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>EDUCATION &amp; CREDENTIALS</span>
+            <span class="sub-tag">ACADEMIC</span>
+          </h2>
+          <div class="edu-block">
+            <div>
+              <div class="edu-school">FPT POLYTECHNIC COLLEGE</div>
+              <div class="edu-degree">Associate Degree in Information Technology (Software Development Major)</div>
+            </div>
+            <div class="edu-languages">
+              <strong>English:</strong> Professional Working • <strong>Vietnamese:</strong> Native
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. ENGINEERING DISCIPLINE & METHODOLOGY -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>ENGINEERING DISCIPLINE &amp; METHODOLOGY</span>
+            <span class="sub-tag">PRACTICES</span>
+          </h2>
+          <div class="practices-list">
+            <div><strong>Architecture &amp; Quality:</strong> Feature-First Clean Architecture, Strict SOLID principles, Ponytail Mindset (Zero Bloat, shortest working diff).</div>
+            <div><strong>Testing &amp; Delivery:</strong> 100% Deterministic Testing (Domain, Data, Widget), Automated CI/CD (Fastlane, GitHub Actions, Bitrise).</div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- FOOTER PAGE 2 (EN) -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
+        <div class="page-indicator">Page 2 / 2</div>
+      </footer>
+    </article>
+
+  </main>
+
+  <!-- ======================================================================
+       SCRIPTS: ĐỔI NGÔN NGỮ, SỬA TRỰC TIẾP & TẢI VỀ FILE HTML
        ====================================================================== -->
   <script>
     let isEditing = false;
+    let currentLang = 'vi';
+
+    // Khởi tạo ngôn ngữ từ URL query param (?lang=en) hoặc localStorage
+    (function initLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramLang = urlParams.get('lang');
+      const savedLang = localStorage.getItem('portfolio_lang');
+
+      if (paramLang === 'en' || paramLang === 'vi') {
+        currentLang = paramLang;
+      } else if (savedLang === 'en' || savedLang === 'vi') {
+        currentLang = savedLang;
+      }
+
+      setLanguage(currentLang, false);
+    })();
+
+    function setLanguage(lang, syncStorage = true) {
+      currentLang = lang;
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+
+      if (syncStorage) {
+        localStorage.setItem('portfolio_lang', lang);
+      }
+
+      // Cập nhật URL mà không reload trang
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url.toString());
+
+      // Cập nhật nút toolbar
+      const btnVI = document.getElementById('btnLangVI');
+      const btnEN = document.getElementById('btnLangEN');
+      const statusText = document.getElementById('toolbarStatusText');
+      const btnPdf = document.getElementById('btnDownloadPdf');
+      const btnPdfText = document.getElementById('btnPdfText');
+      const btnPrintText = document.getElementById('btnPrintText');
+      const btnEditText = document.getElementById('btnEditText');
+      const btnHtmlText = document.getElementById('btnHtmlText');
+
+      if (lang === 'en') {
+        btnVI.classList.remove('active');
+        btnEN.classList.add('active');
+        statusText.textContent = "Mobile Engineer Resume — Nguyen Duy Trang";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf";
+        btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf";
+        btnPdfText.textContent = "Download B&W PDF";
+        btnPrintText.textContent = "Print / Save PDF";
+        btnEditText.textContent = isEditing ? "Direct Edit: ON" : "Direct Edit: OFF";
+        btnHtmlText.textContent = "Save HTML";
+        document.title = "Nguyen Duy Trang - Mobile Engineer CV (EN)";
+      } else {
+        btnEN.classList.remove('active');
+        btnVI.classList.add('active');
+        statusText.textContent = "CV Mobile Engineer — Nguyen Duy Trang";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang.pdf";
+        btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang.pdf";
+        btnPdfText.textContent = "Tải PDF Trắng Đen";
+        btnPrintText.textContent = "In / Lưu PDF";
+        btnEditText.textContent = isEditing ? "Sửa trực tiếp: BẬT" : "Sửa trực tiếp: TẮT";
+        btnHtmlText.textContent = "Lưu HTML";
+        document.title = "Nguyen Duy Trang - Mobile Engineer CV";
+      }
+    }
 
     function toggleEditMode() {
       isEditing = !isEditing;
-      const root = document.getElementById('cvRoot');
+      const rootVI = document.getElementById('cvRootVI');
+      const rootEN = document.getElementById('cvRootEN');
       const btn = document.getElementById('editToggleBtn');
+      const btnEditText = document.getElementById('btnEditText');
+
       document.body.classList.toggle('is-editing', isEditing);
       btn.classList.toggle('active', isEditing);
-      root.contentEditable = isEditing ? 'true' : 'false';
 
-      if (isEditing) {
-        btn.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          Sửa trực tiếp: BẬT
-        `;
+      rootVI.contentEditable = isEditing ? 'true' : 'false';
+      rootEN.contentEditable = isEditing ? 'true' : 'false';
+
+      if (currentLang === 'en') {
+        btnEditText.textContent = isEditing ? "Direct Edit: ON" : "Direct Edit: OFF";
       } else {
-        btn.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"></path>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-          </svg>
-          Sửa trực tiếp: TẮT
-        `;
+        btnEditText.textContent = isEditing ? "Sửa trực tiếp: BẬT" : "Sửa trực tiếp: TẮT";
       }
     }
 
@@ -944,15 +1290,17 @@
       const docClone = document.documentElement.cloneNode(true);
       const cloneBody = docClone.querySelector('body');
       if (cloneBody) cloneBody.classList.remove('is-editing');
-      const cloneRoot = docClone.querySelector('#cvRoot');
-      if (cloneRoot) cloneRoot.removeAttribute('contenteditable');
+      const cloneRootVI = docClone.querySelector('#cvRootVI');
+      const cloneRootEN = docClone.querySelector('#cvRootEN');
+      if (cloneRootVI) cloneRootVI.removeAttribute('contenteditable');
+      if (cloneRootEN) cloneRootEN.removeAttribute('contenteditable');
 
       const htmlContent = "<!DOCTYPE html>\n" + docClone.outerHTML;
       const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'Nguyen_Duy_Trang_CV.html';
+      a.download = currentLang === 'en' ? 'Nguyen_Duy_Trang_Resume_EN.html' : 'Nguyen_Duy_Trang_CV_VI.html';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
