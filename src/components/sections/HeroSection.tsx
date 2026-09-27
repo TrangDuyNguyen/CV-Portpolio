@@ -113,34 +113,23 @@ export const HeroSection: React.FC = () => {
               </p>
             </div>
 
-            {/* Bio — 3 bullet points */}
+            {/* Bio — 3 bullet points with Morphing Icons */}
             <div className="mb-6 animate-fadeInUp" style={{ animationDelay: '160ms' }}>
               <ul className="space-y-3">
                 {heroBullets.map((b, i) => (
-                  <li
+                  <HeroBulletCard
                     key={i}
-                    className="flex items-start gap-3.5 p-4 neu-flat-sm rounded-xl hover:shadow-lg transition-all duration-300"
-                  >
-                    <span className="text-2xl leading-none mt-0.5 flex-shrink-0">{b.icon}</span>
-                    <div>
-                      <span className="text-slate-900 font-bold block text-sm sm:text-base mb-0.5">
-                        {b.title}
-                      </span>
-                      <span className="text-slate-600 text-xs sm:text-sm leading-relaxed block">
-                        {b.text}
-                      </span>
-                    </div>
-                  </li>
+                    iconA={b.iconA}
+                    iconB={b.iconB}
+                    title={b.title}
+                    text={b.text}
+                  />
                 ))}
               </ul>
             </div>
 
-            {/* Mission / Value Proposition */}
-            <div className="mb-8 p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-sky-500/10 via-blue-500/5 to-transparent border-l-4 border-sky-500 text-slate-700 text-xs sm:text-sm leading-relaxed animate-fadeInUp" style={{ animationDelay: '200ms' }}>
-              <p>
-                <strong className="text-slate-900 font-bold">Mục tiêu đồng hành:</strong> Xây dựng những sản phẩm mobile chất lượng cao, có khả năng scale mở rộng và cam kết đồng hành lâu dài cùng doanh nghiệp.
-              </p>
-            </div>
+            {/* Mission / Value Proposition with Morphing Icon */}
+            <MissionCallout />
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 animate-fadeInUp" style={{ animationDelay: '240ms' }}>
@@ -243,9 +232,9 @@ export const HeroSection: React.FC = () => {
               Proven Commercial Track Record
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             {verifiedStats.map((stat, idx) => (
-              <div key={stat.label} className={`reveal stagger-${idx + 1}`}>
+              <div key={stat.label} className={`reveal stagger-${idx + 1} h-full`}>
                 <StatCard stat={stat} />
               </div>
             ))}

@@ -2,7 +2,7 @@ export interface StatItem {
   value: string;
   label: string;
   desc: string;
-  iconName: 'download' | 'shield' | 'check-circle' | 'zap';
+  iconName: 'download' | 'zap' | 'boxes' | 'bot' | 'shield' | 'check-circle';
 }
 
 export interface AstroPillar {
