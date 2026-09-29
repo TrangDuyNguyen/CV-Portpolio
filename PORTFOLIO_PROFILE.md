@@ -135,7 +135,7 @@ AstroBite transforms healthy eating from a tedious clinical chore into an engagi
 ## 💼 4. KINH NGHIỆM LÀM VIỆC THƯƠNG MẠI (WORK EXPERIENCE)
 
 ### 🏢 1. FINVIET TECHNOLOGY
-* **Thời gian**: Tháng 06/2025 – Hiện tại
+* **Thời gian**: Tháng 08/2025 – Tháng 08/2026
 * **Vị trí**: **Mobile Developer**
 * **Dự án**: Hệ sinh thái F&B POS & Kiosk tự phục vụ
 * **Đóng góp & Thành tựu nổi bật**:
@@ -202,7 +202,7 @@ Tech Stack: Flutter 3.x, Riverpod 2.x, AutoRoute 9.x, Gemini 3.8 Flash (firebase
 
 #### Section: Work Experience
 ```markdown
-FINVIET TECHNOLOGY | Mobile Developer (Jun 2025 – Present)
+FINVIET TECHNOLOGY | Mobile Developer (Aug 2025 – Aug 2026)
 • Built multi-industry POS cashier screens and Self-Order Kiosks tailored for F&B (table layout, kitchen tickets), Retail (barcode checkout), and Spa Services (technician booking, treatment packages), accelerating transactions by 30%.
 • Implemented feature-level Role-Based Access Control (RBAC) across cashiers, stockkeepers, spa therapists, store managers, and administrators.
 • Developed Product/Service Catalog Management and Multi-Tier Price List modules (branch-based pricing, combo meals, spa service tiers, and promotional discounts).

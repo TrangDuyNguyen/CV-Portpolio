@@ -23,7 +23,7 @@ const careerDataVi: CareerItem[] = [
     ],
   },
   {
-    period: "06/2025 — 08/2025",
+    period: "08/2025 — 08/2026",
     role: "Mobile Developer",
     company: "Finviet Technology",
     project: "Hệ sinh thái POS Kiosk Đa Ngành (F&B, Bán Lẻ & Dịch Vụ Spa)",
@@ -87,7 +87,7 @@ const careerDataEn: CareerItem[] = [
     ],
   },
   {
-    period: "06/2025 — 08/2025",
+    period: "08/2025 — 08/2026",
     role: "Mobile Developer",
     company: "Finviet Technology",
     project: "Multi-Industry POS Kiosk Ecosystem (F&B, Retail & Spa Services)",
