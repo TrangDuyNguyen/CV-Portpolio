@@ -1,5 +1,4 @@
-import React from 'react';
-import { Camera, Cpu, LayoutGrid, Layers, ArrowUpRight, Check, Image as ImageIcon, Wheat, Beef, Droplet } from 'lucide-react';
+import { Camera, Cpu, LayoutGrid, Layers, ArrowUpRight, Check, Image as ImageIcon, Wheat, Beef, Droplet, Sparkles } from 'lucide-react';
 import { getAstrobiteOverview, getAstrobitePillars } from '../../data/astrobiteData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -14,15 +13,15 @@ export const AstroBiteSection: React.FC = () => {
   const getPillarIcon = (id: string) => {
     switch (id) {
       case 'vision-ai':
-        return <Camera className="w-5 h-5 text-sky-600" />;
-      case 'genui-a2ui':
-        return <Cpu className="w-5 h-5 text-emerald-600" />;
-      case 'os-widgets':
-        return <LayoutGrid className="w-5 h-5 text-purple-600" />;
-      case 'clean-arch':
-        return <Layers className="w-5 h-5 text-amber-600" />;
+        return <Camera className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
+      case 'claymorphic-ui':
+        return <Sparkles className="w-5 h-5 text-amber-500 dark:text-amber-400" />;
+      case 'genui-coach':
+        return <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
+      case 'widgets-quality':
+        return <LayoutGrid className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
       default:
-        return <Layers className="w-5 h-5 text-sky-600" />;
+        return <Layers className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
     }
   };
 
@@ -123,17 +122,17 @@ export const AstroBiteSection: React.FC = () => {
                               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#0D1829] text-sky-700 dark:text-sky-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#182a44] border border-sky-300/70 dark:border-sky-800/60 text-[11px] font-semibold">
                                 <Wheat className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
                                 <span>{t.macroCarbs}</span>
-                                <span className="w-2 h-2 rounded-full bg-[#1A73E8]" title="Blue (#1A73E8)" />
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#1CB0F6] shadow-sm" title="Carbs (#1CB0F6 Xanh)" />
                               </span>
                               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#21170A] text-amber-700 dark:text-amber-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#382810] border border-amber-300/70 dark:border-amber-800/60 text-[11px] font-semibold">
                                 <Beef className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                                 <span>{t.macroProtein}</span>
-                                <span className="w-2 h-2 rounded-full bg-[#FFD700] border border-amber-400" title="Yellow (#FFD700)" />
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#FF9600] shadow-sm" title="Protein (#FF9600 Cam)" />
                               </span>
                               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#260E18] text-pink-700 dark:text-pink-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#441228] border border-pink-300/70 dark:border-pink-800/60 text-[11px] font-semibold">
                                 <Droplet className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400 fill-pink-500/20" />
                                 <span>{t.macroFat}</span>
-                                <span className="w-2 h-2 rounded-full bg-[#FF69B4]" title="Pink (#FF69B4)" />
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#FF5C8D] shadow-sm" title="Fat (#FF5C8D Hồng)" />
                               </span>
                             </div>
                           </div>

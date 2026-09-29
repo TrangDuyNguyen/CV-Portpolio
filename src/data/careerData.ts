@@ -4,21 +4,22 @@ import { Language } from '../context/LanguageContext';
 const careerDataVi: CareerItem[] = [
   {
     period: "2026 — Hiện tại",
-    role: "Owner & Core Developer",
+    role: "Mobile Engineer & System Architect",
     company: "AstroBite Ecosystem",
-    project: "Trợ Lý Dinh Dưỡng Thông Minh & AI Coach Cá Nhân Hóa (v2.0.0)",
-    type: "Dự Án Cá Nhân",
-    summary: "Chủ trì xây dựng ứng dụng di động phân tích dinh dưỡng đa lượng tức thì bằng trí tuệ nhân tạo Gemini Multimodal Vision AI và giao thức Flutter GenUI A2UI.",
+    project: "AstroBite — Smart AI Food Scanner (v2.5.1)",
+    type: "Personal Flagship Project",
+    summary: "Chủ trì kiến trúc và phát triển toàn diện hệ sinh thái AstroBite v2.5.1: nhận diện món ăn trong < 2.5s bằng Google Gemini Multimodal Vision AI, ngôn ngữ thiết kế Đất nặn 3D Solar Fresh và giao thức GenUI A2UI.",
     achievements: [
-      "Xây dựng trọn vẹn kiến trúc Clean Architecture Feature-First với Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.",
-      "Tối ưu pipeline giải phóng camera frame buffer, đảm bảo độ trễ AI dưới 2.5 giây và triệt tiêu 100% rò rỉ RAM (0 memory leak).",
-      "Tiên phong triển khai giao thức A2UI biến JSON từ Gemini thành Native Widgets tương tác trực tiếp trong chat (1-Tap Log).",
-      "Xây dựng tiện ích màn hình chính / màn hình khóa (iOS WidgetKit & Android AppWidget) phản ứng không hao pin ngầm.",
-      "Đạt tỷ lệ 198/198 automated unit & widget tests pass 100% và tự động hóa release với Fastlane & GitHub Actions.",
+      "Thiết kế trọn vẹn kiến trúc Feature-First Clean Architecture kết hợp Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.",
+      "Tối ưu pipeline giải phóng Camera buffer độc lập, đạt độ trễ AI dưới 2.5s và triệt tiêu 100% rò rỉ RAM (0 memory leak).",
+      "Tiên phong triển khai giao thức A2UI biến phản hồi JSON từ Gemini thành Native Widgets tương tác trực tiếp trong chat (1-Tap Log).",
+      "Nghiên cứu và phát triển Design System Claymorphic 3D độc bản bằng Flutter native primitives với hiệu ứng tactile squash 0.98, đạt chuẩn 60 FPS.",
+      "Xây dựng tiện ích màn hình khóa (iOS WidgetKit & Android AppWidget) phản ứng không hao pin ngầm và cơ chế Khiên Sao (Starlight Streak Shield).",
+      "Đạt tỷ lệ 226/226 automated unit & widget tests pass 100%, 0 lint warnings; tự động hóa release với Fastlane & GitHub Actions.",
     ],
     technologies: [
-      "Flutter", "Dart", "Riverpod 2.6", "Google Gemini 3.8", "GenUI (A2UI)",
-      "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "CI/CD"
+      "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
+      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "226 Tests"
     ],
   },
   {
@@ -67,21 +68,22 @@ const careerDataVi: CareerItem[] = [
 const careerDataEn: CareerItem[] = [
   {
     period: "2026 — Present",
-    role: "Owner & Core Developer",
+    role: "Mobile Engineer & System Architect",
     company: "AstroBite Ecosystem",
-    project: "Intelligent Nutrition Assistant & Personalized AI Coach (v2.0.0)",
+    project: "AstroBite — Smart AI Food Scanner (v2.5.1)",
     type: "Personal Flagship Project",
-    summary: "Architected and engineered an AI-powered mobile nutrition ecosystem featuring instant macronutrient breakdown via Google Gemini Multimodal Vision AI and Flutter Generative UI (A2UI protocol).",
+    summary: "Architected and engineered the AstroBite v2.5.1 ecosystem: instant food recognition in < 2.5s via Google Gemini Multimodal Vision AI, 3D Claymorphic UI, and Flutter GenUI (A2UI protocol).",
     achievements: [
       "Constructed a complete Feature-First Clean Architecture utilizing Riverpod 2.x code-generation across 10 modularized business features.",
       "Engineered an efficient camera frame streaming buffer pipeline, achieving AI response latency < 2.5s with zero memory leaks (0 bytes leak).",
       "Pioneered Flutter GenUI (A2UI protocol) dynamically converting Gemini JSON payloads into interactive native chat widgets with 1-tap Firestore logging.",
-      "Developed reactive cross-platform home screen widgets (iOS WidgetKit & Android AppWidget) with zero background battery drain.",
-      "Achieved 100% passing rate across 198/198 automated unit & widget tests; fully automated release pipelines via Fastlane & GitHub Actions.",
+      "Architected a custom tactile 3D Claymorphic Design System natively in Flutter without external third-party dependencies, delivering smooth 60 FPS.",
+      "Developed reactive cross-platform home screen widgets (iOS WidgetKit & Android AppWidget) with zero battery drain and Starlight Streak Shield gamification.",
+      "Achieved 100% passing rate across 226/226 automated unit & widget tests; zero lint warnings; automated CI/CD via Fastlane & GitHub Actions.",
     ],
     technologies: [
-      "Flutter", "Dart", "Riverpod 2.6", "Google Gemini 3.8", "GenUI (A2UI)",
-      "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "CI/CD"
+      "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
+      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "226 Tests"
     ],
   },
   {

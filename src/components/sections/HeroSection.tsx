@@ -242,7 +242,7 @@ export const HeroSection: React.FC = () => {
               {t.metricsSub}
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 items-stretch">
             {stats.map((stat, idx) => (
               <div key={stat.label} className={`reveal stagger-${idx + 1} h-full`}>
                 <StatCard stat={stat} />

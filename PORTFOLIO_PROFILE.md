@@ -9,14 +9,14 @@
 
 * **Họ và tên**: **NGUYEN DUY TRANG**
 * **Năm sinh**: **2000**
-* **Vị trí mục tiêu**: **Mobile Tech Lead | Senior Mobile Engineer (Flutter & Native iOS/Android)**
+* **Vị trí mục tiêu**: **Mid Mobile Engineer (Flutter & Native iOS/Android)**
 * **Kinh nghiệm**: 5+ năm phát triển ứng dụng di động thương mại quy mô lớn (Production).
 * **Địa điểm**: TP. Hồ Chí Minh, Việt Nam
 * **Số điện thoại**: [0397308962](tel:0397308962)
 * **Email**: [trangndps10349@gmail.com](mailto:trangndps10349@gmail.com)
 * **GitHub**: [github.com/TrangDuyNguyen](https://github.com/TrangDuyNguyen)
 * **LinkedIn**: [linkedin.com/in/nguyễn-duy-tráng-132567224](https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/)
-* **Trạng thái**: 🟢 Sẵn sàng cho các cơ hội Mobile Tech Lead & Senior Mobile Engineer.
+* **Trạng thái**: 🟢 Sẵn sàng cho các cơ hội Mid Mobile Engineer.
 
 ### 🌟 Elevator Pitch (Tóm tắt giá trị cốt lõi)
 > Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các hệ thống ứng dụng di động iOS & Android đạt mốc **triệu lượt tải (1M+)** và độ ổn định **99.5%+ crash-free**. Làm chủ kiến trúc Clean Architecture, mô hình phân tán Offline-first, giao tiếp thời gian thực (WebSocket/Socket.IO) và tích hợp phần cứng ngoại vi (POS, máy in nhiệt, máy quét mã vạch). Tiên phong ứng dụng **Multimodal Vision AI** (Google Gemini) và kiến trúc **Flutter Generative UI (GenUI)** tương tác thời gian thực trên thiết bị di động.
@@ -30,72 +30,105 @@
 | **1M+ Downloads** | Hahalolo & Halome Social Travel | Xây dựng và duy trì ứng dụng mạng xã hội & nhắn tin quy mô lớn trên cả iOS và Android. |
 | **99.5%+ Crash-Free** | Production Monitoring (Crashlytics) | Quản lý vòng đời bộ nhớ chặt chẽ, bắt ngoại lệ an toàn và tối ưu hóa hiệu năng render 60 FPS. |
 | **-30% Thời gian đặt món** | Finviet Technology F&B POS Kiosk | Tối ưu hóa UI/UX flow và xử lý bất đồng bộ trong hệ thống Kiosk tự phục vụ. |
-| **198 Tests Pass 100%** | AstroBite Test Suite (`flutter test`) | Bộ kiểm thử tự động toàn diện từ Domain, Repositories, Notifiers đến Widget UI không có flaky test. |
-| **< 2.5s Latency & 0 Leak** | AstroBite Multimodal AI Scanner | Xử lý ảnh và stream kết quả dinh dưỡng từ Gemini AI với vòng đời giải phóng camera buffer triệt để. |
+| **226 Tests Pass 100%** | AstroBite Test Suite (`flutter test`) | Toàn bộ kiểm thử tự động từ Domain, Repositories, Notifiers đến Widget UI đạt 100% Pass, 0 lỗi cảnh báo. |
+| **< 2.5s Latency & 60 FPS** | AstroBite AI Scanner & Claymorphic UI | Nhận diện món ăn Gemini AI siêu tốc và hiển thị mượt mà 60 FPS trên mọi thiết bị di động (0 memory leak). |
 
 ---
 
-## 🌌 3. DỰ ÁN TIÊU BIỂU: ASTROBITE (v2.0.0)
+## 🌌 3. DỰ ÁN TIÊU BIỂU: ASTROBITE (v2.5.1)
 
-> **Tên dự án**: **AstroBite — AI Food Scanner & GenUI Calorie/Macro Tracker**  
-> **Vai trò**: **Mobile Tech Lead & System Architect**  
-> **Kiến trúc**: Enterprise Super-Repo (3 Git Submodules), Feature-First Clean Architecture, Riverpod 2.x, Flutter GenUI (A2UI Protocol).
+> **Tên dự án**: **AstroBite — Smart AI Food Scanner**  
+> **Vai trò**: **Mobile Engineer & System Architect**  
+> **Nền tảng**: Flutter 3.x, iOS & Android | **Backend & AI**: Google Gemini Multimodal Vision AI, Firebase  
+> **Kiến trúc**: Feature-First Clean Architecture, Riverpod 2.x, Flutter Generative UI (GenUI), Ponytail Mindset  
+> **Phiên bản mới nhất**: `v2.5.1` (Chiến dịch lột xác toàn diện giao diện Đất nặn 3D Solar Fresh & Hệ thống kiểm thử tự động 226 Tests).
 
-### 3.1. Tổng quan Dự án
-AstroBite là ứng dụng theo dõi dinh dưỡng và quét calo/macro bữa ăn tức thì thông qua camera sử dụng trí tuệ nhân tạo **Google Gemini Multimodal Vision AI** (`firebase_ai`) kết hợp giao diện **Celestial Dark UI** độc bản. Dự án được xây dựng với kỷ luật kiến trúc nghiêm ngặt (Ponytail mindset, Clean Architecture, 8-Gate Quality SOP).
+---
 
-### 3.2. Cấu trúc Công nghệ (Tech Stack)
-* **Framework**: Flutter 3.x / Dart 3.x
-* **State Management**: `flutter_riverpod: ^2.6.1` (Code Generation với `@riverpod`, `AsyncNotifier`)
-* **Routing**: `auto_route: ^9.2.2` (Type-safe routing, Route Guards)
-* **Data Modeling**: `freezed: ^3.0.2`, `json_serializable: ^6.9.4`
-* **Trí tuệ nhân tạo (AI)**: Google Gemini 2.0 / 3.8 Flash (`firebase_ai`, `google_generative_ai`)
-* **Cloud Backend**: Firebase (Auth, Cloud Firestore, Cloud Storage, App Check)
-* **Hệ điều hành & Native**: iOS WidgetKit & Android AppWidget (`home_widget`), Apple Health & Android Health Connect, Platform Channels
-* **UI/UX & Charts**: Material 3, Celestial Dark Theme, Glassmorphism (`BackdropFilter`), `fl_chart: ^0.70.2`
-* **DevOps & QA**: Fastlane, GitHub Actions CI/CD, Firebase App Distribution, 198 Unit/Widget Tests
+### 🥑 3.1. Góc Nhìn Sản Phẩm & Trải Nghiệm Người Dùng (Product Story & Value Proposition)
 
-### 3.3. Các Đột Phá Kỹ Thuật Trọng Yếu (Key Engineering Innovations)
+#### 🎯 Bài toán thị trường & Nỗi đau người dùng (The Problem)
+* **Thói quen đứt gánh sau 2 tuần**: Hơn 90% người ăn kiêng hoặc tập luyện bỏ cuộc vì việc tra cứu cơ sở dữ liệu và cân đo thủ công từng gam thức ăn quá phức tạp và mất thời gian.
+* **Giao diện khô khan, thiếu cảm xúc**: Hầu hết các ứng dụng đếm calo hiện tại mang màu sắc y tế lạnh lùng, tạo cảm giác áp lực và kiểm soát thay vì mang lại niềm vui ăn uống lành mạnh.
+* **Không hiểu ẩm thực Việt**: Cơ sở dữ liệu quốc tế gặp bế tắc khi nhận diện các món ăn hỗn hợp quen thuộc của người Việt (Phở, Cơm tấm sườn bì chả, Bún bò, Bánh mì...).
 
-#### 1. Gemini Multimodal Vision AI & Live AR HUD Camera
-* Nhận diện bữa ăn đa vùng chỉ trong **2–4 giây**, phân tích chính xác các món ăn phức tạp của Việt Nam (Phở, Cơm tấm, Bún chả...) và quốc tế.
-* Bóc tách năng lượng (Calories) và 3 chất đa lượng theo chuẩn màu dinh dưỡng bất biến: **Carbs (`#1A73E8` - Xanh dương)**, **Fat (`#FF69B4` - Hồng)**, **Protein (`#FFD700` - Vàng)** cùng các vi chất (Sodium, Fiber, Sugar).
-* Quản lý bộ đệm Camera Frame bằng pipeline độc lập, triệt tiêu hoàn toàn hiện tượng rò rỉ RAM (0 memory leak).
+#### 💡 Đột phá AstroBite — Biến Ăn Uống Lành Mạnh Thành Thói Quen Vui Vẻ (The Solution)
+AstroBite tái định nghĩa trải nghiệm theo dõi dinh dưỡng bằng cách kết hợp **Trí tuệ nhân tạo thị giác Gemini** và **Ngôn ngữ thiết kế Đất nặn Claymorphic 3D**:
 
-#### 2. Flutter Generative UI (GenUI) Chat Cockpit & Giao thức A2UI (ADR-06)
-* Tiên phong triển khai kiến trúc **Agent-to-User Interface (A2UI)** dựa trên đặc tả Google Flutter GenUI SDK.
-* Thay vì chỉ trả về text Markdown đơn thuần, Gemini 3.8 Flash trả về cấu trúc A2UI JSON payload có định dạng chuẩn, ứng dụng đối soát với `Catalog` nội bộ để sinh ra các **Interactive Native Widgets** trực tiếp trong khung chat:
-  * `MealQuickLogCard`: Thẻ món ăn có bộ điều chỉnh khẩu phần (Steppers +/-20g) và nút **[1-Tap Log]** lưu trực tiếp vào Firestore.
-  * `MacroBudgetGauge`: Đồng hồ so sánh calo nạp dự kiến vs ngân sách calo còn lại trong ngày.
-  * `QuickChoiceChips`: Dải chip lựa chọn ngữ cảnh tương tác 2 chiều với AI.
-* Tối ưu hóa System Prompt với cơ chế Context Injection (BMR, TDEE, dị ứng, mục tiêu) duy trì dưới 250 tokens.
+1. 📸 **"Chụp 1 giây — Thấu hiểu trọn bữa ăn" (Instant AI Food Scanner)**:
+   * Chỉ cần 1 bức ảnh chụp bàn ăn, AI phân tích trong **dưới 2.5 giây**, bóc tách từng món và tính toán chính xác tổng Calo cùng 3 chất đa lượng theo chuẩn màu trực quan: **🌾 Tinh bột (Carbs - Xanh dương `#1CB0F6`)**, **🥩 Chất đạm (Protein - Cam `#FF9600`)**, **💧 Chất béo (Fat - Hồng `#FF5C8D`)**.
+   * Am hiểu sâu sắc các món ăn Việt Nam phức tạp và ẩm thực thế giới.
+2. 🧸 **"Giao diện Đất nặn 3D Solar Fresh" (Solar Fresh Claymorphic UI)**:
+   * Toàn bộ nút bấm, thanh tiến độ và thẻ món ăn được thiết kế phồng xốp mềm mại với hiệu ứng đàn hồi tactile 3D trên nền kem sữa dịu mắt (`#FAF8F5`).
+   * Biến việc ghi chép mỗi bữa ăn thành tương tác xả stress vui nhộn, kích thích cảm giác ăn ngon và tạo động lực mở app mỗi ngày.
+3. 💬 **"Trợ lý AI Coach trò chuyện như chuyên gia dinh dưỡng riêng" (Interactive GenUI Chat)**:
+   * Người dùng trò chuyện tự nhiên bằng tiếng Việt (*"Tối nay mình còn 450 calo thì nên ăn gì?", "Ly trà sữa trân châu 50% đường này bao nhiêu calo?"*).
+   * AI không chỉ trả lời bằng chữ mà sinh ra trực tiếp **Thẻ món ăn tương tác sống động ngay trong chat**, cho phép bấm nút tăng giảm khẩu phần (+/-20g) và bấm **[1-Chạm Lưu]** vào nhật ký tức thì.
+4. 🛡️ **"Cơ chế Khiên Sao giữ chuỗi thói quen" (Starlight Streak Shield)**:
+   * Thay vì trừ điểm hay xóa chuỗi gây áp lực, cơ chế Khiên Sao thông minh tự động bảo vệ chuỗi ngày lành mạnh khi người dùng lỡ quên 1 bữa, duy trì tỷ lệ gắn bó D30 Retention dài hạn.
+5. 📱 **"Tiện ích Màn hình khóa (Home Screen & Lock Screen Widgets)"**:
+   * Theo dõi nhanh lượng calo còn lại trong ngày và mở máy ảnh quét món ăn ngay trên màn hình chính iOS & Android chỉ với 1 chạm (< 300ms) mà không cần tìm mở app.
 
-#### 3. Cross-Platform OS Home Widgets & Streak Engine (ADR-05)
-* Xây dựng tiện ích màn hình chính / màn hình khóa (iOS WidgetKit & Android AppWidget) qua `home_widget` chia sẻ dữ liệu qua AppGroup UserDefaults (iOS) và SharedPreferences (Android).
-* Đồng bộ dữ liệu phản ứng (Reactive Sync): Cập nhật calo còn lại và chuỗi ngày ngay khi có meal log mới mà **không chạy background service liên tục gây hao pin**.
+---
+
+### 🚀 3.2. Góc Nhìn Công Nghệ & Đột Phá Kỹ Thuật (Engineering Highlights & Tech Stack)
+
+> *"Sử dụng nền tảng kỹ thuật phức tạp nhất để mang đến trải nghiệm đơn giản, mượt mà và nhẹ nhàng nhất cho người dùng."*
+
+#### 🛠️ Tech Stack Tổng Thể
+* **Mobile Framework**: Flutter 3.x (Dart 3.x) — Multi-platform iOS & Android
+* **Kiến trúc phần mềm**: Feature-First Clean Architecture (10 phân hệ nghiệp vụ độc lập)
+* **Quản trị State**: `flutter_riverpod: ^2.6.1` (Code generation `@riverpod`, `AsyncNotifier`)
+* **Điều hướng**: `auto_route: ^9.2.2` (Type-safe routing, Route Guards)
+* **Trí tuệ nhân tạo (AI)**: Google Gemini 2.0 Flash / 3.1 Pro via `firebase_ai`
+* **Hạ tầng Cloud**: Firebase (Authentication, Cloud Firestore, Cloud Storage, App Check)
+* **Hệ thống Native**: iOS WidgetKit (Swift), Android AppWidget (RemoteViews/Kotlin), Apple Health & Health Connect
+* **Kiểm thử & QA**: 226 Automated Tests (`flutter test` 100% Pass), `flutter analyze` 0 lỗi 0 cảnh báo
+* **DevOps**: Fastlane tự động ký số, GitHub Actions CI/CD phân phối tự động lên Firebase App Distribution.
+
+#### ⚡ 5 Đột Phá Kỹ Thuật Trọng Yếu (v2.5.1 Innovations)
+
+##### 1. Pipeline Thị Giác Gemini Multimodal AI Siêu Tốc & Tối Ưu Bộ Nhớ
+* Tích hợp Google Gemini Multimodal Vision API bóc tách dữ liệu dinh dưỡng chỉ trong **< 2.5s**.
+* Ép chặt kết quả trả về theo chuẩn JSON Schema nghiêm ngặt, hỗ trợ cơ chế hoạt động offline thông minh khi kết nối mạng chập chờn.
+* Xây dựng luồng xử lý khung hình camera độc lập, giải phóng tài nguyên triệt để sau khi chụp — cam kết **0 rò rỉ bộ nhớ (0 Memory Leak)**.
+
+##### 2. Hệ Thống Design System Claymorphic 2D/3D Độc Bản (Zero Third-Party Bloat)
+* Tự nghiên cứu và xây dựng toàn bộ Design System Claymorphic thuần túy bằng Flutter native primitives (không phụ thuộc bất kỳ package bên thứ ba nào), bảo đảm kích thước app gọn nhẹ.
+* Mô phỏng hiệu ứng vật lý tactile squash đàn hồi (thu nhỏ 0.98 scale khi nhấn giữ), bo góc phồng 20pt và đổ bóng nổi 2 lớp.
+* Tối ưu hóa biểu đồ phân tích xu hướng FL Chart với kỹ thuật bọc phân tách render (`RepaintBoundary`), đảm bảo tốc độ cuộn trang đạt **chuẩn mượt mà 60 FPS** trên mọi dòng điện thoại.
+
+##### 3. Kiến Trúc Generative UI (GenUI) & Giao Thức A2UI Tương Tác 2 Chiều
+* Tiên phong đưa kiến trúc Agent-to-User Interface (A2UI) của Google vào Flutter di động: AI không chỉ phản hồi văn bản thông thường mà trực tiếp sinh ra các **Native Widgets sống động** trong khung chat.
+* Bộ Widget thông minh gồm thẻ món ăn `MealQuickLogCard`, thước đo ngân sách calo `MacroBudgetGauge` và các chip gợi ý ngữ cảnh phản hồi 2 chiều.
+* Tối ưu hóa System Prompt với cơ chế Context Injection (BMR, TDEE, dị ứng, mục tiêu) giữ dưới 250 tokens, tiết kiệm chi phí gọi AI và tối ưu tốc độ phản hồi.
+
+##### 4. Tiện Ích Màn Hình Khóa Đa Nền Tảng (Cross-Platform OS Home Widgets)
+* Xây dựng tiện ích màn hình chính cho cả iOS (Swift WidgetKit) và Android (RemoteViews AppWidget) chia sẻ dữ liệu qua AppGroup UserDefaults và SharedPreferences.
+* Cơ chế đồng bộ phản ứng tức thì (Reactive Sync) ngay khi người dùng ghi nhận món ăn mà **hoàn toàn không chạy background service ngầm gây hao pin thiết bị**.
 * Hỗ trợ deep-link `astrobite://scanner` mở thẳng camera trong **< 300ms**.
-* **Thuật toán tính Streak tất định (Deterministic Streak Engine)**: Chuẩn hóa ngày theo chuỗi ISO địa phương (`yyyy-MM-dd`), tích hợp cơ chế bảo vệ "Khiên Sao" (Starlight Shield) cho phép bỏ lỡ 1 ngày không bị đứt chuỗi, tối ưu tỷ lệ D30 Retention.
 
-#### 4. Clean Architecture & Enterprise Super-Repo
-* Phân tách 10 phân hệ nghiệp vụ độc lập theo Feature-First: `scanner`, `tracker`, `analytics`, `coach`, `health`, `gamification`, `widgets`, `recipes`, `profile`, `auth`.
-* Tổ chức mã nguồn chuẩn Super-Repo quản lý 3 Git Submodules:
-  * `docs/`: Đặc tả yêu cầu nghiệp vụ BABOK/Agile (`astrobite-ba-docs`)
-  * `tests/`: Chiến lược QA, Test Plan & BDD Gherkin (`astrobite-testcases`)
-  * `frontend/`: Toàn bộ Flutter Clean Architecture (`astrobite-frontend`)
-* Tự động hóa toàn diện bằng `Makefile`: `make setup`, `make update`, `make test-fe`, `make build-android`, `make build-ios`, `make release`.
+##### 5. Độ Ổn Định Tuyệt Đối: 226 Automated Tests & Kiểm Toán An Ninh Zero-Trust
+* Xây dựng bộ kiểm thử tự động toàn diện đạt mốc **226 / 226 tests pass 100%** bao phủ từ tầng Domain, Repositories, Notifiers cho đến giao diện Widget.
+* Vận hành quy trình kiểm toán an ninh nguồn mã đa tầng theo tiêu chuẩn Cloudflare và OWASP MASVS, kiểm soát chặt chẽ quyền truy cập Firestore Rules và bảo đảm không rò rỉ bất kỳ API key / secret nào ra môi trường client.
 
-#### 5. Pipeline CI/CD Fastlane & Tự Động Phân Phối
-* File cấu hình GitHub Actions (`.github/workflows/release.yml`) tự động hóa 100% quy trình:
-  * Biên dịch Android Release (APK & AAB) và iOS Release (IPA).
-  * Ký số ứng dụng (Code Signing & Keystore management).
-  * Phân phối tự động lên **Firebase App Distribution** cho nhóm testers nội bộ mỗi khi push git tag release (`v*`).
+---
 
-### 3.4. Tài nguyên Hình ảnh Thực tế trong Repository
-* **AR Food Scanner Live View**: `portfolio/assets/images/astrobite_ar_scanner.jpg`
-* **Floating Navigation Cockpit & Macro Ring**: `docs/02-design-system/stitch_screens/floating_nav_cockpit.png`
-* **AstroCoach GenUI Chat Cockpit**: `docs/03-prd-features/16-astrocoach-intelligence-v2/astrocoach_v2_mockup.png`
-* **Recipe Builder & Meal Planning**: `docs/03-prd-features/17-custom-recipes-meal-plan/recipe_builder_mockup.png`
-* **App Icon & Mascot**: `assets/icons/app_icon.png`, `assets/images/astrobot_mascot.png`
+### 🌐 3.3. English Executive Project Summary (Ready for International CV & Portfolio)
+
+> **Role**: **Mobile Engineer & System Architect**  
+> **Project**: **AstroBite — Smart AI Food Scanner** (`v2.5.1`)  
+> **Core Stack**: Flutter 3.x, Dart, Riverpod 2.x, Google Gemini Multimodal Vision AI, Firebase, iOS WidgetKit (Swift), Android AppWidget (Kotlin).
+
+#### Executive Overview
+AstroBite transforms healthy eating from a tedious clinical chore into an engaging, dopamine-rich daily habit. By fusing **Google Gemini Multimodal Vision AI** with a delightful **3D Claymorphic UI**, users simply snap a photo of any meal (with deep localization for complex Asian dishes like Pho and Broken Rice) to receive a full nutritional breakdown within **2.5 seconds**. 
+
+#### Key Achievements & Engineering Impact (STAR Format)
+* **Instant Multimodal AI Food Scanner**: Engineered an end-to-end image processing pipeline streaming camera buffers to Gemini Vision AI, delivering calorie and macronutrient estimates in **< 2.5s** with an independent buffer disposal architecture that eradicated 100% of memory leaks.
+* **Proprietary Claymorphic 2D/3D Design System**: Architected a custom tactile design language natively in Flutter without external third-party dependencies, featuring squishy elastic button physics (`0.98` tap scale), a 4pt layout grid, and strict nutrient color semantics while maintaining butter-smooth **60 FPS** rendering.
+* **Flutter Generative UI (GenUI) Chat Cockpit**: Pioneered Google's Agent-to-User Interface (A2UI) protocol, transforming raw AI output into rich, interactive native widgets inside the chat stream (such as interactive food cards with portion steppers and 1-tap logging).
+* **Native OS Widgets & Zero Battery Drain**: Built reactive lock-screen and home-screen widgets for iOS (Swift WidgetKit) and Android (Kotlin AppWidget) with sub-300ms deep-linking into the camera scanner, synchronized via reactive state without background battery drain.
+* **Enterprise Stability & Quality Gates**: Established an automated CI/CD pipeline and comprehensive test suite reaching **226/226 automated tests passed (100%)**, zero lint warnings, and zero secret leaks under a Cloudflare-inspired Zero-Trust security audit.
 
 ---
 
@@ -147,7 +180,7 @@ AstroBite là ứng dụng theo dõi dinh dưỡng và quét calo/macro bữa ă
 | **Dữ liệu & Thời gian thực** | WebSocket, Socket.IO, RESTful API, SQLite, Cloud Firestore, Local Caching & Background Sync |
 | **AI & Điện toán Đám mây** | **Google Gemini Multimodal AI (Vision & Flash)**, **Flutter GenUI (A2UI Protocol)**, Firebase (Auth, Firestore, Storage, App Check, Crashlytics, FCM, Remote Config) |
 | **Hệ thống & Tích hợp Phần cứng** | **iOS WidgetKit, Android AppWidget**, Platform Channels (MethodChannel), Máy in nhiệt POS (ESC/POS), Máy quét mã vạch/QR, **Apple HealthKit, Android Health Connect, iOS CallKit** |
-| **DevOps, CI/CD & Testing** | **Fastlane, GitHub Actions, Bitrise**, 198 Unit/Widget Tests (`flutter test`), App Store Connect, Google Play Console, Git Submodules, Makefile automation |
+| **DevOps, CI/CD & Testing** | **Fastlane, GitHub Actions, Bitrise**, 226 Unit/Widget Tests (`flutter test`), App Store Connect, Google Play Console, Git Submodules, Makefile automation |
 | **Công cụ & Phương pháp luận** | Git, Git Worktrees, Jira, Agile/Scrum, Cursor IDE, Claude Code, Antigravity |
 
 ---
@@ -158,13 +191,13 @@ AstroBite là ứng dụng theo dõi dinh dưỡng và quét calo/macro bữa ă
 
 #### Section: Personal Projects
 ```markdown
-ASTROBITE — AI Food Scanner & GenUI Calorie/Macro Tracker | Mobile Tech Lead
-Tech Stack: Flutter 3.x, Riverpod 2.x, AutoRoute 9.x, Gemini 3.8 Flash (firebase_ai), GenUI (A2UI), Firebase, iOS WidgetKit, Android AppWidget, Fastlane, GitHub Actions CI/CD (198 Tests).
-• Architected and delivered AstroBite (v2.0.0), a nutrition tracking ecosystem featuring a Celestial Dark UI, implementing Feature-First Clean Architecture with Riverpod 2.x code-gen across 10 independent domain modules.
+ASTROBITE — AI Food Scanner & GenUI Calorie/Macro Tracker | Mid Mobile Engineer
+Tech Stack: Flutter 3.x, Riverpod 2.x, AutoRoute 9.x, Gemini 3.8 Flash (firebase_ai), GenUI (A2UI), Firebase, iOS WidgetKit, Android AppWidget, Fastlane, GitHub Actions CI/CD (226 Tests).
+• Architected and delivered AstroBite (v2.5.1 Solar Fresh 3D Clay), a nutrition tracking ecosystem featuring a Solar Fresh Claymorphic UI, implementing Feature-First Clean Architecture with Riverpod 2.x code-gen across 10 independent domain modules.
 • Engineered an end-to-end Gemini Multimodal Vision AI scanner (firebase_ai), identifying complex dishes within 2–4 seconds and extracting macronutrients (Calories, Carbs, Protein, Fat) with 0 memory leaks.
 • Pioneered a Generative UI (GenUI) Chat Cockpit (ADR-06) using the A2UI Protocol with Gemini 3.8 Flash, generating native interactive widgets (MealQuickLogCard, MacroBudgetGauge) with 1-tap Firestore diary logging.
 • Implemented cross-platform Home Screen Widgets (home_widget) for iOS WidgetKit and Android AppWidget via AppGroup UserDefaults & SharedPreferences, providing sub-300ms camera scanner deep-linking and reactive offline sync.
-• Automated multi-platform release pipelines (APK/AAB/IPA) using Fastlane and GitHub Actions, delivering builds to Firebase App Distribution with 198 automated unit and widget tests (100% pass rate).
+• Automated multi-platform release pipelines (APK/AAB/IPA) using Fastlane and GitHub Actions, delivering builds to Firebase App Distribution with 226 automated unit and widget tests (100% pass rate).
 ```
 
 #### Section: Work Experience
@@ -193,12 +226,12 @@ HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer (May 2020 – Jun 2025)
 
 ```markdown
 DỰ ÁN TIÊU BIỂU: ASTROBITE (AI Food Scanner & GenUI Macro Tracker)
-Vai trò: Mobile Tech Lead | Công nghệ: Flutter, Riverpod 2.x, AutoRoute, Gemini Flash AI, GenUI A2UI, Firebase, Fastlane.
+Vai trò: Mid Mobile Engineer | Công nghệ: Flutter, Riverpod 2.x, AutoRoute, Gemini Flash AI, GenUI A2UI, Firebase, Fastlane.
 - Chủ trì thiết kế kiến trúc toàn diện dự án AstroBite theo mô hình Feature-First Clean Architecture, phân tách 10 phân hệ nghiệp vụ, quản lý state bất đồng bộ an toàn qua Riverpod 2.x code-gen.
 - Tích hợp Google Gemini Multimodal Vision AI nhận diện bữa ăn phức tạp trong 2–4s, trích xuất chính xác calo/macro với 0 rò rỉ bộ nhớ.
 - Thiết kế giao thức A2UI Protocol (ADR-06) biến hội thoại AI thành buồng lái tương tác (Chat Cockpit), sinh trực tiếp các widget động có thể tương tác 2 chiều và lưu dữ liệu 1 chạm vào Firestore.
 - Xây dựng tiện ích màn hình chính iOS WidgetKit & Android AppWidget chia sẻ qua AppGroup/SharedPreferences, hỗ trợ deep-link mở camera <300ms và cơ chế Streak Engine bảo vệ chuỗi ngày.
-- Thiết lập pipeline CI/CD với Fastlane & GitHub Actions tự động build APK/IPA lên Firebase App Distribution, bảo chứng bởi 198 bài kiểm thử tự động pass 100%.
+- Thiết lập pipeline CI/CD với Fastlane & GitHub Actions tự động build APK/IPA lên Firebase App Distribution, bảo chứng bởi 226 bài kiểm thử tự động pass 100%.
 ```
 
 ---
@@ -218,7 +251,7 @@ Vai trò: Mobile Tech Lead | Công nghệ: Flutter, Riverpod 2.x, AutoRoute, Gem
 > **Trả lời**: *"Lỗi phổ biến nhất của các ứng dụng tracking là so sánh timestamp thô (`DateTime.now().difference`) hoặc dùng UTC thuần túy, dẫn đến việc người dùng bay qua múi giờ khác hoặc log ăn khuya bị mất chuỗi. Trong ADR-05, tôi chuẩn hóa toàn bộ ngày ghi nhận thành chuỗi ISO cục bộ `yyyy-MM-dd` dựa trên Local Timezone của người dùng. Chuỗi ngày được tính toán tất định theo khoảng cách số ngày nguyên vẹn so với `lastActiveDate`. Ngoài ra, tôi thiết kế cơ chế 'Starlight Shield' (khiên sao) cho phép bỏ lỡ 1 ngày (`Gap == 1`) mà vẫn bảo toàn chuỗi, giúp tối ưu D30 Retention của sản phẩm."*
 
 ### Q5: Bạn kiểm soát chất lượng và phát hành phần mềm như thế nào trong dự án này?
-> **Trả lời**: *"Tôi thiết lập quy trình 8 Cổng Chất Lượng (8-Gate SOP) kết hợp văn hóa Ponytail: từ Gate 0 nghiên cứu kiến trúc (ADR), Gate 3 thiết kế kịch bản test BDD Gherkin, Gate 5 Review code triệt tiêu bloat, đến Gate 6 xác minh 198 automated unit & widget tests đạt tỷ lệ 100% pass thực chất. Cuối cùng tại Gate 7, tôi làm chủ pipeline CI/CD bằng Fastlane và GitHub Actions: tự động biên dịch Android APK/AAB và iOS IPA, kiểm tra giới hạn kích thước binary, và đẩy trực tiếp lên Firebase App Distribution cho nhóm internal testers."*
+> **Trả lời**: *"Tôi thiết lập quy trình 8 Cổng Chất Lượng (8-Gate SOP) kết hợp văn hóa Ponytail: từ Gate 0 nghiên cứu kiến trúc (ADR), Gate 3 thiết kế kịch bản test BDD Gherkin, Gate 5 Review code triệt tiêu bloat, đến Gate 6 xác minh 226 automated unit & widget tests đạt tỷ lệ 100% pass thực chất. Cuối cùng tại Gate 7, tôi làm chủ pipeline CI/CD bằng Fastlane và GitHub Actions: tự động biên dịch Android APK/AAB và iOS IPA, kiểm tra giới hạn kích thước binary, và đẩy trực tiếp lên Firebase App Distribution cho nhóm internal testers."*
 
 ---
 

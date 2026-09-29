@@ -15,10 +15,12 @@ export interface AstroPillar {
   metricBadge: string;
 }
 
+export type ScreenshotCategory = 'all' | 'ai' | 'genui' | 'cockpit' | 'features' | 'widgets';
+
 export interface ScreenshotItem {
   id: string;
   title: string;
-  category: 'all' | 'ai' | 'genui' | 'features' | 'widgets';
+  category: ScreenshotCategory;
   image: string;
   tag: string;
   description: string;

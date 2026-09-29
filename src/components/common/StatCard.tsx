@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MorphIcon } from 'morphicons/react';
-import { Download, Users, Zap, Clock, Boxes, CheckCircle2, Bot, Sparkles } from 'lucide';
+import { Download, Users, Zap, Clock, Boxes, CheckCircle2, Bot, Sparkles, Shield, ShieldCheck } from 'lucide';
 import { StatItem } from '../../types';
 
 interface StatCardProps {
@@ -18,11 +18,23 @@ export const StatCard: React.FC<StatCardProps> = ({ stat }) => {
           iconB: Users,
           textColor: 'text-sky-600',
         };
+      case 'shield':
+        return {
+          iconA: Shield,
+          iconB: ShieldCheck,
+          textColor: 'text-emerald-600',
+        };
       case 'zap':
         return {
           iconA: Zap,
           iconB: Clock,
           textColor: 'text-amber-600',
+        };
+      case 'check-circle':
+        return {
+          iconA: CheckCircle2,
+          iconB: Sparkles,
+          textColor: 'text-purple-600',
         };
       case 'boxes':
         return {
