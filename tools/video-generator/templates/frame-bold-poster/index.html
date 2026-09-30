@@ -146,6 +146,7 @@
     // register an empty paused timeline so the runtime finds the composition.
     window.__timelines = window.__timelines || {};
     window.__timelines["main"] = { pause: function () {}, seek: function () {}, paused: function () { return true; } };
-  </script>
+  window.__hf = { duration: 5, seek: window.__timelines["main"].seek };
+        </script>
 </body>
 </html>

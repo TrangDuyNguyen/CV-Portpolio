@@ -104,19 +104,21 @@ export const HeroSection: React.FC = () => {
                 </div>
               </div>
 
+              {/* Greeting */}
+              <div className="mb-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500 dark:from-sky-400 dark:via-blue-500 dark:to-indigo-400 animate-fadeInUp pb-1">
+                {language === 'en' ? 'Hello, I am Nguyen Duy Trang 👋' : 'Xin chào, Tôi là Nguyễn Duy Tráng 👋'}
+              </div>
+
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] lg:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6 animate-fadeInUp">
+              <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] lg:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6 animate-fadeInUp"
+                style={{ animationDelay: '50ms' }}>
                 {language === 'en' ? (
                   <>
-                    Build Smarter <br className="hidden sm:block" />
-                    <span className="text-slate-400 dark:text-slate-500 font-medium">Mobile Apps</span> with<br />
-                    Precision
+                    Mobile App <span className="text-slate-400 dark:text-slate-500 font-medium">Developer</span>
                   </>
                 ) : (
                   <>
-                    Xây Dựng <br className="hidden sm:block" />
-                    <span className="text-slate-400 dark:text-slate-500 font-medium">Ứng Dụng Di Động</span><br />
-                    Hiệu Suất Cao
+                    Lập trình <span className="text-slate-400 dark:text-slate-500 font-medium">Mobile App</span>
                   </>
                 )}
               </h1>
@@ -128,7 +130,7 @@ export const HeroSection: React.FC = () => {
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeInUp"
+              <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 animate-fadeInUp"
                 style={{ animationDelay: '200ms' }}>
                 
                 {/* Primary Button */}
@@ -153,6 +155,19 @@ export const HeroSection: React.FC = () => {
                     hover:bg-slate-800 dark:hover:bg-sky-400 shadow-lg transition-colors duration-200"
                 >
                   {t.ctaExploreAstroBite}
+                </a>
+
+                {/* Tertiary Button - Download APK */}
+                <a
+                  href="https://github.com/TrangDuyNguyen/AstroBite/releases/latest/download/app-release.apk"
+                  download="AstroBite_Demo.apk"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+                    bg-emerald-600 dark:bg-emerald-500
+                    text-white font-bold text-sm
+                    hover:bg-emerald-700 dark:hover:bg-emerald-400 shadow-lg transition-colors duration-200"
+                >
+                  {language === 'en' ? 'Download AstroBite' : 'Tải về AstroBite'}
+                  <Download className="w-4 h-4" />
                 </a>
               </div>
 

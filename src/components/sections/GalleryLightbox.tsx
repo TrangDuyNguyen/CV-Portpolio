@@ -117,6 +117,25 @@ export const GalleryLightbox: React.FC = () => {
           </div>
         </div>
 
+        {/* Featured Demo Video */}
+        {activeCategory === 'all' && (
+          <div className="mb-14 reveal">
+            <div className="p-2 sm:p-3 rounded-2xl sm:rounded-3xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[8px_8px_18px_#c2cee0,-8px_-8px_18px_#ffffff] dark:shadow-[8px_8px_18px_#050811,-8px_-8px_18px_#1E2D44] border border-white/90 dark:border-slate-800">
+              <div className="relative w-full aspect-[9/16] sm:aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
+                <video
+                  src="/astrobite-demo.mp4"
+                  controls
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-contain"
+                  poster="/screenshots/clay/cockpit_dashboard.png"
+                >
+                  Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Screenshots Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredScreenshots.map((item, index) => (

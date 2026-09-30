@@ -2,3 +2,5 @@ node_modules
 .vercel
 *.log
 .DS_Store
+AstroBite_v2.5.2_Demo.apk
+public/*.apk
