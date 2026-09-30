@@ -187,7 +187,7 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Floating Curved Text Badge (overlapping the left edge of the image on large screens) */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 lg:-left-12 z-20">
+              <div className="absolute bottom-4 right-4 sm:bottom-auto sm:right-auto sm:top-1/2 sm:-translate-y-1/2 sm:left-2 lg:-left-12 z-20 scale-75 sm:scale-100 origin-bottom-right sm:origin-center">
                 <CurvedTextBadge />
               </div>
 
