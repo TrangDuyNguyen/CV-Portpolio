@@ -154,17 +154,19 @@ AstroBite transforms healthy eating from a tedious clinical chore into an engagi
 * **Dự án & Sản phẩm**: Phát triển hệ sinh thái 6 ứng dụng (Mạng xã hội, OTT, Du lịch, Fintech & Outsource)
 * **Các ứng dụng trong hệ sinh thái & Đóng góp chi tiết**:
 
-  1. **Hahalolo — Mạng xã hội Du lịch** *(Native iOS & Flutter, Team Mobile: 4 người)*
-     * Phát triển ứng dụng mạng xã hội du lịch đạt **1M+ lượt tải** trên App Store & Google Play.
-     * Xây dựng module Native iOS bằng **Swift, UIKit** theo kiến trúc **VIPER**.
+  1. **Hahalolo — Mạng xã hội Du lịch** *(Native iOS & Flutter, Team Mobile: 20 người)*
+     * Phát triển ứng dụng mạng xã hội du lịch đạt **1M+ lượt tải** với các phân hệ chính: Tour, Flight, Hotel, Community Site, Handnotes và Profile View.
+     * Xây dựng module Native iOS bằng **Swift, Autolayout** theo kiến trúc **VIPER**, quản lý dependency qua Cocoapods.
      * Tích hợp các module Flutter qua cơ chế **Add-to-App**, đảm bảo trải nghiệm xuyên suốt giữa native và Flutter.
+     * Tích hợp Google Maps, Push Notification, Deep Linking/Universal Link, và xử lý Autoplay Video.
+     * Giám sát crash với Firebase Crashlytics và phân phối qua Firebase Distribution.
 
-  2. **Halome — Nhắn tin OTT Realtime** *(Native iOS Swift, Team Mobile iOS: 2 người)*
-     * Xây dựng từ đầu ứng dụng nhắn tin tức thời bằng **Native iOS Swift** theo kiến trúc **MVVM**.
-     * Tích hợp **Socket.IO** cho giao tiếp realtime, **RxSwift** cho reactive data binding.
+  2. **Halome — Nhắn tin OTT Realtime** *(Native iOS Swift, Team Mobile iOS: 5 người)*
+     * Xây dựng ứng dụng nhắn tin hỗ trợ đăng nhập ẩn danh và SSO Hahalolo bằng **Native iOS Swift** theo kiến trúc **MVVM**.
+     * Tích hợp **Starscream (WebSocket)** cho giao tiếp realtime, **Alamofire** để fetch API, **RxSwift** cho reactive data binding và **IG List** để hiển thị mượt mà các cuộc trò chuyện.
      * Lưu trữ tin nhắn offline bằng **SQLite**, đảm bảo trải nghiệm liền mạch khi mất kết nối.
-     * Triển khai **CallKit SDK** cho cuộc gọi VoIP trên màn hình khóa iOS.
-     * Phát triển các tính năng nâng cao: tin nhắn tự xóa (auto-delete messages), gọi video, lịch hẹn, chế độ ẩn danh (incognito mode).
+     * Triển khai **CallKit SDK** cho cuộc gọi VoIP âm thanh và video.
+     * Tích hợp **DeepLink** mở luồng chat trực tiếp từ web, cùng các tính năng: chia sẻ đa phương tiện, chia sẻ vị trí, đặt lời nhắc.
 
   3. **Haloki — Fintech: Chuyển tiền Đa quốc gia** *(Flutter)*
      * Bảo trì và sửa lỗi ứng dụng chuyển tiền quốc tế (hỗ trợ **192 quốc gia**) trên Flutter.
@@ -239,8 +241,8 @@ FINVIET TECHNOLOGY | Mobile Developer (Aug 2025 – Aug 2026)
 HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer — iOS & Flutter (May 2020 – Jun 2025)
 Ecosystem of 6 Apps: Social Network, OTT Messaging, Travel, Fintech & Outsource
 
-• [Hahalolo — Travel Social Network] Developed the flagship travel social app (1M+ downloads). Built native iOS modules (Swift, UIKit) with VIPER architecture, integrated Flutter via Add-to-App. Mobile team: 4.
-• [Halome — OTT Realtime Messaging] Engineered real-time messaging app from scratch using Native iOS Swift (MVVM). Socket.IO for realtime, RxSwift for reactive binding, SQLite for offline storage. Implemented CallKit SDK for VoIP, auto-delete messages, video calls, calendar, incognito mode. iOS team: 2.
+• [Hahalolo — Travel Social Network] Developed the flagship travel social app (1M+ downloads) focusing on Tour, Flight, Hotel booking, Community Site, and Handnotes. Built native iOS modules (Swift, Autolayout) with VIPER architecture and Cocoapods. Integrated Google Maps, Push Notifications, Deep Linking, and Autoplay Video. Added Flutter modules via Add-to-App. Monitored via Firebase Crashlytics. Mobile team: 20.
+• [Halome — OTT Realtime Messaging] Engineered real-time messaging app (SSO, Anonymous) from scratch using Native iOS Swift (MVVM). Integrated Starscream (WebSocket) for realtime, Alamofire for API, IG List for chat rendering, RxSwift, and SQLite for offline storage. Implemented CallKit SDK for audio/video calls, multimedia sharing, location sharing, and DeepLink for web-to-app chats. iOS team: 5.
 • [Haloki — Fintech: International Money Transfer] Maintained and bug-fixed international money transfer app (192 countries) in Flutter. Ensured stable financial transaction flows, KYC verification and user data security.
 • [Hahalolo Invest — Fintech: Stock Trading] Maintained and bug-fixed stock trading app in Flutter. Real-time chart rendering, portfolio management and buy/sell order workflows.
 • [Aquannets — Outsource for Galactic Holdings] Developed aquaculture farm management app (outsourced for Galactic Holdings Group) in Flutter. Clean Architecture + Riverpod, SQLite offline-first at farming ponds. Mobile team: 2.

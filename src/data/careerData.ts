@@ -52,17 +52,17 @@ const careerDataVi: CareerItem[] = [
     type: "Enterprise Scale 1M+",
     summary: "Phát triển, bảo trì và vận hành hệ sinh thái đa sản phẩm gồm 6 ứng dụng trên iOS và Android, bao phủ các lĩnh vực Mạng xã hội Du lịch, Nhắn tin OTT, Fintech và Outsource Nông nghiệp thủy sản.",
     achievements: [
-      "[Hahalolo — Mạng xã hội Du lịch] Phát triển ứng dụng mạng xã hội du lịch đạt 1M+ lượt tải. Xây dựng module Native iOS (Swift, UIKit) theo kiến trúc VIPER, tích hợp với các module Flutter qua cơ chế Add-to-App. Team Mobile: 4 người.",
-      "[Halome — Nhắn tin OTT Realtime] Xây dựng từ đầu ứng dụng nhắn tin tức thời bằng Native iOS Swift theo kiến trúc MVVM. Tích hợp Socket.IO cho giao tiếp realtime, RxSwift cho reactive data binding, SQLite lưu trữ tin nhắn offline. Triển khai CallKit SDK cho cuộc gọi VoIP trên màn hình khóa, tin nhắn tự xóa (auto-delete messages), gọi video, lịch, chế độ ẩn danh (incognito mode). Team Mobile iOS: 2 người.",
+      "[Hahalolo — Mạng xã hội Du lịch] Phát triển ứng dụng mạng xã hội du lịch đạt 1M+ lượt tải với các phân hệ Tour, Flight, Hotel, Community Site, Handnotes. Xây dựng module Native iOS (Swift, Autolayout) theo kiến trúc VIPER. Tích hợp Google Maps, Deep Linking, Autoplay Video. Quản lý dependency qua Cocoapods. Tích hợp các module Flutter qua cơ chế Add-to-App. Giám sát bằng Firebase Crashlytics. Team Mobile: 20 người.",
+      "[Halome — Nhắn tin OTT Realtime] Xây dựng ứng dụng nhắn tin (hỗ trợ đăng nhập ẩn danh & SSO Hahalolo) bằng Native iOS Swift theo kiến trúc MVVM. Tích hợp Starscream (WebSocket) cho giao tiếp realtime, Alamofire gọi API, IG List hiển thị mượt mà cuộc trò chuyện, RxSwift cho reactive data binding, SQLite lưu trữ tin nhắn offline. Triển khai CallKit SDK cho cuộc gọi âm thanh và video, DeepLink mở luồng chat từ web, chia sẻ đa phương tiện & vị trí. Team Mobile iOS: 5 người.",
       "[Haloki — Fintech: Chuyển tiền Đa quốc gia] Bảo trì và sửa lỗi ứng dụng chuyển tiền quốc tế (hỗ trợ 192 quốc gia) trên Flutter. Đảm bảo tính ổn định luồng giao dịch tài chính, xác thực KYC và bảo mật dữ liệu người dùng.",
       "[Hahalolo Invest — Fintech: Giao dịch Cổ phiếu] Bảo trì và sửa lỗi ứng dụng giao dịch cổ phiếu nội bộ công ty trên Flutter. Xử lý các nghiệp vụ hiển thị biểu đồ realtime, danh mục đầu tư và lệnh mua/bán.",
       "[Aquannets — Outsource cho Galactic Holdings] Phát triển ứng dụng quản lý nuôi trồng thủy sản (outsource cho Tập đoàn Galactic Holdings) bằng Flutter. Áp dụng Clean Architecture kết hợp Riverpod, lưu trữ dữ liệu local bằng SQLite cho chế độ offline-first tại ao nuôi. Team Mobile: 2 người.",
       "[SocTrip — QC & Kiểm thử] Đảm nhận vai trò QC (Quality Control) cho ứng dụng mạng xã hội du lịch SocTrip: kiểm thử đầu cuối (end-to-end testing), viết test cases, regression testing và xác nhận chất lượng trước mỗi lần release lên Store.",
     ],
     technologies: [
-      "iOS Swift", "UIKit", "VIPER", "MVVM", "RxSwift", "Socket.IO", "SQLite",
+      "iOS Swift", "Autolayout", "VIPER", "MVVM", "RxSwift", "Starscream", "Alamofire", "IG List", "SQLite",
       "CallKit", "Flutter", "Add-to-App", "Clean Architecture", "Riverpod",
-      "Firebase Crashlytics", "KYC", "Bitrise"
+      "Firebase", "KYC", "Bitrise"
     ],
   },
 ];
@@ -118,17 +118,17 @@ const careerDataEn: CareerItem[] = [
     type: "Enterprise Scale (1M+ Downloads)",
     summary: "Developed, maintained and operated a multi-product ecosystem of 6 applications across iOS and Android, spanning Travel Social Networking, OTT Messaging, Fintech and Aquaculture Outsource.",
     achievements: [
-      "[Hahalolo — Travel Social Network] Developed the flagship travel social network app achieving 1M+ downloads. Built native iOS modules (Swift, UIKit) following VIPER architecture, integrated with Flutter modules via Add-to-App mechanism. Mobile team size: 4.",
-      "[Halome — OTT Realtime Messaging] Engineered the real-time messaging app from scratch using Native iOS Swift with MVVM architecture. Integrated Socket.IO for real-time communication, RxSwift for reactive data binding, SQLite for offline message storage. Implemented CallKit SDK for VoIP lock-screen calls, auto-delete messages, video calls, calendar integration, incognito mode. Mobile iOS team size: 2.",
+      "[Hahalolo — Travel Social Network] Developed flagship travel social app (Tour, Flight, Hotel, Handnotes) achieving 1M+ downloads. Built native iOS modules (Swift, Autolayout) following VIPER architecture and Cocoapods. Integrated Maps, Deep Linking, Autoplay Video, Firebase Crashlytics. Added Flutter modules via Add-to-App mechanism. Mobile team size: 20.",
+      "[Halome — OTT Realtime Messaging] Engineered real-time messaging app (SSO, Anonymous login) using Native iOS Swift with MVVM architecture. Integrated Starscream (WebSocket) for real-time communication, Alamofire for API, IG List for chat rendering, RxSwift for reactive data binding, SQLite for offline message storage. Implemented CallKit SDK for audio/video calls, multimedia/location sharing, and DeepLink for web-to-app chats. Mobile iOS team size: 5.",
       "[Haloki — Fintech: International Money Transfer] Maintained and fixed bugs for the international money transfer app (supporting 192 countries) built with Flutter. Ensured stability of financial transaction flows, KYC verification and user data security.",
       "[Hahalolo Invest — Fintech: Stock Trading] Maintained and fixed bugs for the company's stock trading application built with Flutter. Handled real-time chart rendering, portfolio management and buy/sell order workflows.",
       "[Aquannets — Outsource for Galactic Holdings] Developed an aquaculture farm management application (outsourced for Galactic Holdings Group) using Flutter. Applied Clean Architecture with Riverpod state management, SQLite for offline-first local data storage at farming ponds. Mobile team size: 2.",
       "[SocTrip — QC & Testing] Served as QC (Quality Control) for the SocTrip travel social network app: end-to-end testing, writing test cases, regression testing and quality sign-off before each Store release.",
     ],
     technologies: [
-      "iOS Swift", "UIKit", "VIPER", "MVVM", "RxSwift", "Socket.IO", "SQLite",
+      "iOS Swift", "Autolayout", "VIPER", "MVVM", "RxSwift", "Starscream", "Alamofire", "IG List", "SQLite",
       "CallKit", "Flutter", "Add-to-App", "Clean Architecture", "Riverpod",
-      "Firebase Crashlytics", "KYC", "Bitrise"
+      "Firebase", "KYC", "Bitrise"
     ],
   },
 ];
