@@ -34,7 +34,7 @@ const profileDataVi: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang.pdf",
   cvViewUrl: "/cv-print.html?lang=vi",
   avatarUrl: "/avatar.png?v=2",
-  bio: "Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các hệ thống ứng dụng di động iOS & Android đạt mốc triệu lượt tải (1M+) và độ ổn định 99.5%+ crash-free. Làm chủ kiến trúc Clean Architecture, mô hình phân tán Offline-first, giao tiếp thời gian thực (WebSocket/Socket.IO) và tích hợp phần cứng ngoại vi (POS, máy in nhiệt, máy quét mã vạch). Tiên phong ứng dụng Multimodal Vision AI (Google Gemini) và kiến trúc Flutter Generative UI (GenUI) tương tác thời gian thực trên thiết bị di động.",
+  bio: "Mobile Engineer với 5 năm kinh nghiệm thực chiến trên nền tảng Flutter, iOS và Android. Mình từng trực tiếp xây dựng hệ thống mạng xã hội quy mô lớn (1M+ downloads), các giải pháp POS/Kiosk bán hàng đa ngành (F&B, Bán lẻ, Spa), cùng với các ứng dụng Fintech (chuyển tiền quốc tế, giao dịch) và phần mềm quản lý nuôi trồng thủy sản mang tính ứng dụng cao vào đời sống. Điểm mạnh của mình là tư duy thiết kế kiến trúc rành mạch (Clean Architecture), giải quyết tốt bài toán dữ liệu offline và giao tiếp mượt mà với phần cứng (máy in nhiệt, máy quét). Mình đặc biệt khắt khe về hiệu năng, luôn đảm bảo ứng dụng chạy mượt 60 FPS và không bị rò rỉ bộ nhớ (memory leak). Hiện tại, mình đang tập trung ứng dụng Trí tuệ nhân tạo (Google Gemini Vision AI) kết hợp cùng Generative UI trên Flutter để tạo ra các trải nghiệm tương tác thông minh và đột phá hơn.",
 };
 
 const profileDataEn: ProfileInfo = {
@@ -52,7 +52,7 @@ const profileDataEn: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf",
   cvViewUrl: "/cv-print.html?lang=en",
   avatarUrl: "/avatar.png?v=2",
-  bio: "Mobile Engineer with 5+ years of production experience developing high-scale iOS & Android applications reaching 1M+ downloads and 99.5%+ crash-free sessions. Master of Clean Architecture, Offline-first sync, real-time networking (WebSocket/Socket.IO), and POS hardware integration. Pioneer in Multimodal Vision AI (Google Gemini) and Flutter Generative UI (GenUI / A2UI protocol).",
+  bio: "Mobile Engineer with 5+ years of hands-on experience across Flutter, iOS, and Android. I have directly built and scaled social network platforms with over 1 million downloads, robust POS/Kiosk solutions across multiple industries (F&B, Retail, Spa), as well as Fintech applications (international money transfer, stock trading) and real-world aquaculture management systems. My core strengths lie in designing clean architectures, handling seamless offline data sync, and integrating peripheral hardware like thermal printers and barcode scanners. I am deeply focused on performance, ensuring butter-smooth 60 FPS rendering and zero memory leaks. Recently, I have been pioneering the integration of Multimodal Vision AI (Google Gemini) and Generative UI architectures in Flutter to craft smarter, highly interactive user experiences.",
 };
 
 export const getProfileData = (lang: Language = 'vi'): ProfileInfo => {

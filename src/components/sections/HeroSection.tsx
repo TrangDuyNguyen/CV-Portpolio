@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Download, Sparkles, Clock } from 'lucide-react';
+import { ArrowUpRight, Download, Sparkles, Clock, FileText } from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -144,6 +144,20 @@ export const HeroSection: React.FC = () => {
                 >
                   {language === 'en' ? 'Download CV' : 'Tải CV PDF'}
                   <Download className="w-4 h-4" />
+                </a>
+
+                {/* View CV Button */}
+                <a
+                  href={profile.cvViewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+                    border-2 border-sky-300 dark:border-sky-600
+                    text-sky-700 dark:text-sky-300 font-bold text-sm
+                    hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors duration-200"
+                >
+                  {language === 'en' ? 'View CV' : 'Xem CV'}
+                  <FileText className="w-4 h-4" />
                 </a>
 
                 {/* Secondary Button */}

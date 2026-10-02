@@ -19,7 +19,7 @@
 * **Trạng thái**: 🟢 Sẵn sàng cho các cơ hội Mid Mobile Engineer.
 
 ### 🌟 Elevator Pitch (Tóm tắt giá trị cốt lõi)
-> Kỹ sư di động với hơn 5 năm kinh nghiệm thực chiến phát triển và vận hành các hệ thống ứng dụng di động iOS & Android đạt mốc **triệu lượt tải (1M+)** và độ ổn định **99.5%+ crash-free**. Làm chủ kiến trúc Clean Architecture, mô hình phân tán Offline-first, giao tiếp thời gian thực (WebSocket/Socket.IO) và tích hợp phần cứng ngoại vi (POS, máy in nhiệt, máy quét mã vạch). Tiên phong ứng dụng **Multimodal Vision AI** (Google Gemini) và kiến trúc **Flutter Generative UI (GenUI)** tương tác thời gian thực trên thiết bị di động.
+> Mobile Engineer với 5 năm kinh nghiệm thực chiến trên nền tảng Flutter, iOS và Android. Mình từng trực tiếp xây dựng hệ thống mạng xã hội quy mô lớn (1M+ downloads), các giải pháp POS/Kiosk bán hàng đa ngành (F&B, Bán lẻ, Spa), cùng với các ứng dụng Fintech (chuyển tiền quốc tế, giao dịch) và phần mềm quản lý nuôi trồng thủy sản mang tính ứng dụng cao vào đời sống. Điểm mạnh của mình là tư duy thiết kế kiến trúc rành mạch (Clean Architecture), giải quyết tốt bài toán dữ liệu offline và giao tiếp mượt mà với phần cứng (máy in nhiệt, máy quét). Mình đặc biệt khắt khe về hiệu năng, luôn đảm bảo ứng dụng chạy mượt 60 FPS và không bị rò rỉ bộ nhớ (memory leak). Hiện tại, mình đang tập trung ứng dụng Trí tuệ nhân tạo (Google Gemini Vision AI) kết hợp cùng Generative UI trên Flutter để tạo ra các trải nghiệm tương tác thông minh và đột phá hơn.
 
 ---
 
@@ -150,15 +150,39 @@ AstroBite transforms healthy eating from a tedious clinical chore into an engagi
 
 ### 🏢 2. HAHALOLO SOCIAL TRAVEL NETWORK
 * **Thời gian**: Tháng 05/2020 – Tháng 06/2025 (5 năm)
-* **Vị trí**: **Mobile Developer**
-* **Dự án**: Mạng xã hội du lịch Hahalolo & Ứng dụng nhắn tin Halome
-* **Đóng góp & Thành tựu nổi bật**:
-  * Phát triển và duy trì ứng dụng mạng xã hội du lịch và nhắn tin OTT với quy mô **hơn 1.000.000 lượt tải (1M+)** trên iOS App Store và Google Play Store.
-  * Xây dựng từ đầu hệ thống nhắn tin tức thời **Halome**, hỗ trợ chat, truyền file đa phương tiện và cuộc gọi thoại/video độ trễ thấp thông qua **WebSocket** và **Socket.IO**.
-  * Phát triển các module native iOS bằng **Swift, SwiftUI và UIKit**, đồng thời tích hợp mượt mà các module Flutter thông qua giải pháp **Flutter Add-to-App**.
-  * Tích hợp Firebase Cloud Messaging (FCM) với **iOS CallKit** để xử lý cuộc gọi đến ở màn hình khóa native, duy trì chỉ số ổn định **99.5%+ crash-free sessions** qua Crashlytics.
-  * Tối ưu hóa chu kỳ rebuild của Widget, cấu trúc bộ nhớ và render UI, duy trì tốc độ khung hình ổn định **60 FPS** kể cả trên các dòng máy cấu hình thấp.
-  * Tự động hóa phân phối bản build TestFlight và store releases thông qua **Bitrise** và **Fastlane**.
+* **Vị trí**: **Mobile Developer (iOS & Flutter)**
+* **Dự án & Sản phẩm**: Phát triển hệ sinh thái 6 ứng dụng (Mạng xã hội, OTT, Du lịch, Fintech & Outsource)
+* **Các ứng dụng trong hệ sinh thái & Đóng góp chi tiết**:
+
+  1. **Hahalolo — Mạng xã hội Du lịch** *(Native iOS & Flutter, Team Mobile: 4 người)*
+     * Phát triển ứng dụng mạng xã hội du lịch đạt **1M+ lượt tải** trên App Store & Google Play.
+     * Xây dựng module Native iOS bằng **Swift, UIKit** theo kiến trúc **VIPER**.
+     * Tích hợp các module Flutter qua cơ chế **Add-to-App**, đảm bảo trải nghiệm xuyên suốt giữa native và Flutter.
+
+  2. **Halome — Nhắn tin OTT Realtime** *(Native iOS Swift, Team Mobile iOS: 2 người)*
+     * Xây dựng từ đầu ứng dụng nhắn tin tức thời bằng **Native iOS Swift** theo kiến trúc **MVVM**.
+     * Tích hợp **Socket.IO** cho giao tiếp realtime, **RxSwift** cho reactive data binding.
+     * Lưu trữ tin nhắn offline bằng **SQLite**, đảm bảo trải nghiệm liền mạch khi mất kết nối.
+     * Triển khai **CallKit SDK** cho cuộc gọi VoIP trên màn hình khóa iOS.
+     * Phát triển các tính năng nâng cao: tin nhắn tự xóa (auto-delete messages), gọi video, lịch hẹn, chế độ ẩn danh (incognito mode).
+
+  3. **Haloki — Fintech: Chuyển tiền Đa quốc gia** *(Flutter)*
+     * Bảo trì và sửa lỗi ứng dụng chuyển tiền quốc tế (hỗ trợ **192 quốc gia**) trên Flutter.
+     * Đảm bảo tính ổn định luồng giao dịch tài chính, xác thực **KYC** và bảo mật dữ liệu người dùng.
+
+  4. **Hahalolo Invest — Fintech: Giao dịch Cổ phiếu** *(Flutter)*
+     * Bảo trì và sửa lỗi ứng dụng giao dịch cổ phiếu nội bộ công ty trên Flutter.
+     * Xử lý các nghiệp vụ hiển thị biểu đồ realtime, danh mục đầu tư và lệnh mua/bán.
+
+  5. **Aquannets — Outsource cho Galactic Holdings** *(Flutter, Team Mobile: 2 người)*
+     * Phát triển ứng dụng quản lý nuôi trồng thủy sản (outsource cho **Tập đoàn Galactic Holdings**).
+     * Áp dụng **Clean Architecture** kết hợp **Riverpod**, lưu trữ dữ liệu local bằng **SQLite** cho chế độ offline-first tại ao nuôi.
+
+  6. **SocTrip — QC & Kiểm thử**
+     * Đảm nhận vai trò **QC (Quality Control)** cho ứng dụng mạng xã hội du lịch SocTrip.
+     * Kiểm thử đầu cuối (end-to-end testing), viết test cases, regression testing và xác nhận chất lượng trước mỗi lần release lên Store.
+
+* **Công nghệ sử dụng**: iOS Swift, UIKit, VIPER, MVVM, RxSwift, Socket.IO, SQLite, CallKit, Flutter, Add-to-App, Clean Architecture, Riverpod, Firebase Crashlytics, KYC, Bitrise
 
 ---
 
@@ -176,7 +200,7 @@ AstroBite transforms healthy eating from a tedious clinical chore into an engagi
 | Nhóm kỹ năng | Chi tiết công nghệ |
 | :--- | :--- |
 | **Ngôn ngữ & Framework** | **Flutter, Dart, Swift, SwiftUI, UIKit, Kotlin**, HTML5, CSS3, JavaScript |
-| **Kiến trúc & Quản lý State** | **Clean Architecture (Feature-First)**, **Riverpod 2.x (Code-Gen)**, **BLoC**, AutoRoute, Freezed, MVVM, SOLID, Modularization, Offline-First Architecture |
+| **Kiến trúc & Quản lý State** | **Clean Architecture (Feature-First)**, **VIPER**, **Riverpod 2.x (Code-Gen)**, **BLoC**, **RxSwift**, AutoRoute, Freezed, MVVM, SOLID, Modularization, Offline-First Architecture |
 | **Dữ liệu & Thời gian thực** | WebSocket, Socket.IO, RESTful API, SQLite, Cloud Firestore, Local Caching & Background Sync |
 | **AI & Điện toán Đám mây** | **Google Gemini Multimodal AI (Vision & Flash)**, **Flutter GenUI (A2UI Protocol)**, Firebase (Auth, Firestore, Storage, App Check, Crashlytics, FCM, Remote Config) |
 | **Hệ thống & Tích hợp Phần cứng** | **iOS WidgetKit, Android AppWidget**, Platform Channels (MethodChannel), Máy in nhiệt POS (ESC/POS), Máy quét mã vạch/QR, **Apple HealthKit, Android Health Connect, iOS CallKit** |
@@ -212,12 +236,16 @@ FINVIET TECHNOLOGY | Mobile Developer (Aug 2025 – Aug 2026)
 • Developed custom Android (Kotlin) Platform Channels to interface with hardware thermal POS receipt printers (ESC/POS) and barcode scanners.
 • Streamlined multi-platform store releases through automated Fastlane and GitHub Actions CI/CD workflows.
 
-HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer (May 2020 – Jun 2025)
-• Maintained and scaled social travel and messaging production apps with 1M+ downloads across iOS and Android.
-• Built the Halome real-time messaging architecture from scratch, supporting chat, media sharing, and low-latency audio/video calling using WebSocket and Socket.IO.
-• Implemented native iOS modules with Swift, SwiftUI, and UIKit, integrating Flutter modules via Flutter Add-to-App.
-• Integrated Firebase Cloud Messaging (FCM) with iOS CallKit for native lock-screen incoming calls, sustaining 99.5%+ crash-free sessions via Firebase Crashlytics.
-• Optimized widget rebuilds, image memory caching, and rendering pipelines to sustain smooth 60 FPS on low-end hardware.
+HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer — iOS & Flutter (May 2020 – Jun 2025)
+Ecosystem of 6 Apps: Social Network, OTT Messaging, Travel, Fintech & Outsource
+
+• [Hahalolo — Travel Social Network] Developed the flagship travel social app (1M+ downloads). Built native iOS modules (Swift, UIKit) with VIPER architecture, integrated Flutter via Add-to-App. Mobile team: 4.
+• [Halome — OTT Realtime Messaging] Engineered real-time messaging app from scratch using Native iOS Swift (MVVM). Socket.IO for realtime, RxSwift for reactive binding, SQLite for offline storage. Implemented CallKit SDK for VoIP, auto-delete messages, video calls, calendar, incognito mode. iOS team: 2.
+• [Haloki — Fintech: International Money Transfer] Maintained and bug-fixed international money transfer app (192 countries) in Flutter. Ensured stable financial transaction flows, KYC verification and user data security.
+• [Hahalolo Invest — Fintech: Stock Trading] Maintained and bug-fixed stock trading app in Flutter. Real-time chart rendering, portfolio management and buy/sell order workflows.
+• [Aquannets — Outsource for Galactic Holdings] Developed aquaculture farm management app (outsourced for Galactic Holdings Group) in Flutter. Clean Architecture + Riverpod, SQLite offline-first at farming ponds. Mobile team: 2.
+• [SocTrip — QC & Testing] Served as QC for the SocTrip travel social app: end-to-end testing, test cases, regression testing and quality sign-off before each Store release.
+Tech: iOS Swift, UIKit, VIPER, MVVM, RxSwift, Socket.IO, SQLite, CallKit, Flutter, Add-to-App, Clean Architecture, Riverpod, KYC, Bitrise
 ```
 
 ---
