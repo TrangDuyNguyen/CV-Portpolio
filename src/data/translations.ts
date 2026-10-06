@@ -213,7 +213,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       description: "Tôi tiếp cận công việc lập trình với tinh thần tôn trọng sự tối giản, triệt tiêu bloat không cần thiết và bảo vệ chất lượng sản phẩm bằng hệ thống kiểm thử tự động nghiêm ngặt.",
       quote: "\"Boring code over clever code. Fewest files possible.\"",
       subquote: "Mã nguồn tốt nhất là mã nguồn dễ hiểu, dễ sửa, chịu tải cao và không gây bất ngờ trong môi trường production.",
-      testsPassingBadge: "226/226 Tests Passing (100%)",
+      testsPassingBadge: "277/277 Tests Passing (100%)",
       zeroLeakBadge: "0 Memory Leak",
       ruleTags: ["Rule #1", "Rule #2", "Rule #3", "Rule #4"],
       principles: [
@@ -231,7 +231,7 @@ export const translations: Record<Language, TranslationDictionary> = {
         },
         {
           title: "Zero-Tolerance Quality (8-Gate SOP)",
-          description: "Không chấp nhận 'du di' chất lượng. 100% test pass thực chất (226/226 tests trong AstroBite), 0 memory leak và 60 FPS ổn định.",
+          description: "Không chấp nhận 'du di' chất lượng. 100% test pass thực chất (277/277 tests trong AstroBite), 0 memory leak và 60 FPS ổn định.",
         },
       ],
     },
@@ -291,7 +291,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       bullet1Title: "5+ Years Engineering Large-Scale Apps (1M+ Downloads)",
       bullet1Text: "Engineered and scaled iOS, Android & Flutter applications reaching 1M+ downloads (99.5%+ crash-free), multi-industry F&B POS Kiosks (-30% transaction time), and native OS widgets.",
       bullet2Title: "Feature-First Clean Architecture & High Resilience",
-      bullet2Text: "Deep mastery in Clean Architecture, Offline-first synchronization, Riverpod 2.x state management, guaranteeing 0 memory leaks and butter-smooth 60 FPS rendering.",
+      bullet2Text: "Deep mastery in Clean Architecture, Offline-first synchronization, Riverpod 2.x state management, guaranteeing 0 memory leaks and consistent 60 FPS rendering.",
       bullet3Title: "Pioneering Multimodal Vision AI & Flutter GenUI",
       bullet3Text: "Integrated Google Gemini Vision AI extracting nutrients in < 2.5s and GenUI A2UI protocol dynamically generating interactive 2-way native chat widgets.",
       missionTitle: "Mission & Commitment:",
@@ -311,7 +311,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       badgeFlagship: "FEATURED FLAGSHIP PROJECT — v2.5.1",
       roleTag: "Mobile Engineer & System Architect",
       tagline: "Smart AI Food Scanner",
-      description: "AstroBite transforms healthy eating from a tedious chore into an engaging, dopamine-rich daily habit. Fusing Google Gemini Multimodal Vision AI with a delightful 3D Claymorphic UI, users snap a photo of any meal to receive a full nutritional breakdown within < 2.5s. Features an interactive GenUI Chat Cockpit, Starlight Streak Shield gamification, cross-platform OS Lock-Screen Widgets, and 226 automated tests passing 100%.",
+      description: "AstroBite cuts the friction of daily calorie tracking by combining Google Gemini 3.8 Flash Multimodal Vision & NLU AI with a custom 3D Claymorphic design system. Users snap photos or speak natural Vietnamese sentences to receive nutritional breakdowns in 1.1–2.5s. Features hands-free AstroVoice AI, broth/topping separation for Asian cuisine, an interactive GenUI Chat Cockpit, Starlight Streak Shield gamification, cross-platform OS Widgets, and 277 automated tests passing 100%.",
       pillarsHeader: "4 Key Architectural Breakthroughs",
       pillarsSub: "Deep Engineering Breakdown (v2.5.1 Innovations)",
       macroIntro: "Decomposes 3 essential macronutrients per standardized color tokens:",
@@ -353,7 +353,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       description: "I approach software engineering with ruthless simplicity, zero tolerance for unnecessary complexity (bloat), and protect system reliability through disciplined automated testing.",
       quote: "\"Boring code over clever code. Fewest files possible.\"",
       subquote: "The best code is simple to read, easy to debug, highly resilient under load, and never produces surprises in production.",
-      testsPassingBadge: "226/226 Tests Passing (100%)",
+      testsPassingBadge: "277/277 Tests Passing (100%)",
       zeroLeakBadge: "0 Memory Leak",
       ruleTags: ["Rule #1", "Rule #2", "Rule #3", "Rule #4"],
       principles: [
@@ -371,7 +371,7 @@ export const translations: Record<Language, TranslationDictionary> = {
         },
         {
           title: "Zero-Tolerance Quality (8-Gate SOP)",
-          description: "Zero compromises on product health. 100% genuine automated test passes (226/226 in AstroBite), 0 memory leak, and locked 60 FPS.",
+          description: "Zero compromises on product health. 100% genuine automated test passes (277/277 in AstroBite), 0 memory leak, and locked 60 FPS.",
         },
       ],
     },

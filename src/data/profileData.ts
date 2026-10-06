@@ -52,7 +52,7 @@ const profileDataEn: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf",
   cvViewUrl: "/cv-print.html?lang=en",
   avatarUrl: "/avatar.png?v=2",
-  bio: "Mobile Engineer with 5+ years of hands-on experience across Flutter, iOS, and Android. I have directly built and scaled social network platforms with over 1 million downloads, robust POS/Kiosk solutions across multiple industries (F&B, Retail, Spa), as well as Fintech applications (international money transfer, stock trading) and real-world aquaculture management systems. My core strengths lie in designing clean architectures, handling seamless offline data sync, and integrating peripheral hardware like thermal printers and barcode scanners. I am deeply focused on performance, ensuring butter-smooth 60 FPS rendering and zero memory leaks. Recently, I have been pioneering the integration of Multimodal Vision AI (Google Gemini) and Generative UI architectures in Flutter to craft smarter, highly interactive user experiences.",
+  bio: "Mobile Engineer with 5+ years of hands-on experience across Flutter, iOS, and Android. I have directly built and scaled social network platforms with over 1 million downloads, robust POS/Kiosk solutions across multiple industries (F&B, Retail, Spa), as well as Fintech applications (international money transfer, stock trading) and real-world aquaculture management systems. My core strengths lie in designing clean architectures, handling seamless offline data sync, and integrating peripheral hardware like thermal printers and barcode scanners. I am deeply focused on performance, maintaining consistent 60 FPS rendering and zero memory leaks. Recently, my focus is applying Multimodal Vision AI (Google Gemini 3.8 Flash) and Generative UI architectures in Flutter to build reactive, AI-driven mobile experiences.",
 };
 
 export const getProfileData = (lang: Language = 'vi'): ProfileInfo => {
@@ -84,7 +84,7 @@ export const getVerifiedStats = (lang: Language = 'vi'): StatItem[] => {
         iconName: "zap",
       },
       {
-        value: "226 Tests",
+        value: "277 Tests",
         label: "Automated Tests Pass",
         desc: "100% Pass rate across Domain, Repositories, Notifiers, and Widget UI (0 warnings).",
         iconName: "check-circle",
@@ -118,7 +118,7 @@ export const getVerifiedStats = (lang: Language = 'vi'): StatItem[] => {
       iconName: "zap",
     },
     {
-      value: "226 Tests",
+      value: "277 Tests",
       label: "Kiểm Thử Tự Động",
       desc: "100% Pass toàn bộ test suite từ Domain, Repositories, Notifiers đến Widget UI (0 cảnh báo).",
       iconName: "check-circle",

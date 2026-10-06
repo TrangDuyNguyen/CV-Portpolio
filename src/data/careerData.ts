@@ -15,11 +15,11 @@ const careerDataVi: CareerItem[] = [
       "Tiên phong triển khai giao thức A2UI biến phản hồi JSON từ Gemini thành Native Widgets tương tác trực tiếp trong chat (1-Tap Log).",
       "Nghiên cứu và phát triển Design System Claymorphic 3D độc bản bằng Flutter native primitives với hiệu ứng tactile squash 0.98, đạt chuẩn 60 FPS.",
       "Xây dựng tiện ích màn hình khóa (iOS WidgetKit & Android AppWidget) phản ứng không hao pin ngầm và cơ chế Khiên Sao (Starlight Streak Shield).",
-      "Đạt tỷ lệ 226/226 automated unit & widget tests pass 100%, 0 lint warnings; tự động hóa release với Fastlane & GitHub Actions.",
+      "Đạt tỷ lệ 277/277 automated unit & widget tests pass 100%, 0 lint warnings; tự động hóa release với Fastlane & GitHub Actions.",
     ],
     technologies: [
       "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
-      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "226 Tests"
+      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "277 Tests"
     ],
   },
   {
@@ -81,11 +81,11 @@ const careerDataEn: CareerItem[] = [
       "Pioneered Flutter GenUI (A2UI protocol) dynamically converting Gemini JSON payloads into interactive native chat widgets with 1-tap Firestore logging.",
       "Architected a custom tactile 3D Claymorphic Design System natively in Flutter without external third-party dependencies, delivering smooth 60 FPS.",
       "Developed reactive cross-platform home screen widgets (iOS WidgetKit & Android AppWidget) with zero battery drain and Starlight Streak Shield gamification.",
-      "Achieved 100% passing rate across 226/226 automated unit & widget tests; zero lint warnings; automated CI/CD via Fastlane & GitHub Actions.",
+      "Achieved 100% passing rate across 277/277 automated unit & widget tests; zero lint warnings; automated CI/CD via Fastlane & GitHub Actions.",
     ],
     technologies: [
       "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
-      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "226 Tests"
+      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "277 Tests"
     ],
   },
   {

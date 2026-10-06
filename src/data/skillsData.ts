@@ -44,7 +44,7 @@ const skillsDataVi: SkillGroup[] = [
     description: "Tự động hóa pipeline phân phối, tích hợp ngoại vi và kiểm thử nghiêm ngặt",
     skills: [
       { name: "Fastlane & GitHub Actions CI/CD", level: "Advanced", isKey: true },
-      { name: "Unit & Widget Testing (226 Tests 100%)", level: "Expert", isKey: true },
+      { name: "Unit & Widget Testing (277 Tests 100%)", level: "Expert", isKey: true },
       { name: "iOS WidgetKit & Android AppWidget", level: "Advanced", isKey: true },
       { name: "Hardware Integration (ESC/POS Thermal & Barcode)", level: "Proficient" },
       { name: "Apple HealthKit & iOS CallKit", level: "Proficient" },
@@ -96,7 +96,7 @@ const skillsDataEn: SkillGroup[] = [
     description: "Automated distribution pipelines, peripheral hardware & zero-tolerance testing",
     skills: [
       { name: "Fastlane & GitHub Actions CI/CD", level: "Advanced", isKey: true },
-      { name: "Unit & Widget Testing (226 Tests 100%)", level: "Expert", isKey: true },
+      { name: "Unit & Widget Testing (277 Tests 100%)", level: "Expert", isKey: true },
       { name: "iOS WidgetKit & Android AppWidget", level: "Advanced", isKey: true },
       { name: "Hardware Integration (ESC/POS Thermal & Barcode)", level: "Proficient" },
       { name: "Apple HealthKit & iOS CallKit", level: "Proficient" },
