@@ -47,3 +47,14 @@ export interface SkillGroup {
     isKey?: boolean;
   }[];
 }
+
+
+export interface AstroFeature {
+  id: string;
+  number: string;
+  iconName: string;
+  title: string;
+  tag: string;
+  naturalDescription: string;
+  badge?: string;
+}

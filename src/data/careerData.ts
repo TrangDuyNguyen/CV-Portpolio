@@ -6,9 +6,9 @@ const careerDataVi: CareerItem[] = [
     period: "2026 — Hiện tại",
     role: "Mobile Engineer & System Architect",
     company: "AstroBite Ecosystem",
-    project: "AstroBite — Smart AI Food Scanner (v2.5.1)",
+    project: "AstroBite — Smart AI Food Scanner (v3.0.0)",
     type: "Personal Flagship Project",
-    summary: "Chủ trì kiến trúc và phát triển toàn diện hệ sinh thái AstroBite v2.5.1: nhận diện món ăn trong < 2.5s bằng Google Gemini Multimodal Vision AI, ngôn ngữ thiết kế Đất nặn 3D Solar Fresh và giao thức GenUI A2UI.",
+    summary: "Chủ trì kiến trúc và phát triển toàn diện hệ sinh thái AstroBite v3.0.0: nhận diện món ăn trong < 2.5s bằng Google Gemini Multimodal Vision AI, ngôn ngữ thiết kế Đất nặn 3D Solar Fresh và giao thức GenUI A2UI.",
     achievements: [
       "Thiết kế trọn vẹn kiến trúc Feature-First Clean Architecture kết hợp Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.",
       "Tối ưu pipeline giải phóng Camera buffer độc lập, đạt độ trễ AI dưới 2.5s và triệt tiêu 100% rò rỉ RAM (0 memory leak).",
@@ -72,9 +72,9 @@ const careerDataEn: CareerItem[] = [
     period: "2026 — Present",
     role: "Mobile Engineer & System Architect",
     company: "AstroBite Ecosystem",
-    project: "AstroBite — Smart AI Food Scanner (v2.5.1)",
+    project: "AstroBite — Smart AI Food Scanner (v3.0.0)",
     type: "Personal Flagship Project",
-    summary: "Architected and engineered the AstroBite v2.5.1 ecosystem: instant food recognition in < 2.5s via Google Gemini Multimodal Vision AI, 3D Claymorphic UI, and Flutter GenUI (A2UI protocol).",
+    summary: "Architected and engineered the AstroBite v3.0.0 ecosystem: instant food recognition in < 2.5s via Google Gemini Multimodal Vision AI, 3D Claymorphic UI, and Flutter GenUI (A2UI protocol).",
     achievements: [
       "Constructed a complete Feature-First Clean Architecture utilizing Riverpod 2.x code-generation across 10 modularized business features.",
       "Engineered an efficient camera frame streaming buffer pipeline, achieving AI response latency < 2.5s with zero memory leaks (0 bytes leak).",

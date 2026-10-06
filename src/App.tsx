@@ -23,7 +23,7 @@ export const App: React.FC = () => {
         {/* 1. Hero & Verified Stats */}
         <HeroSection />
 
-        {/* 2. Flagship Project: AstroBite v2.5.1 */}
+        {/* 2. Flagship Project: AstroBite v3.0.0 */}
         <AstroBiteSection />
 
         {/* 3. Showcase Gallery & Lightbox Walkthrough */}

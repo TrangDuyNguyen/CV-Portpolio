@@ -293,7 +293,7 @@ export const GalleryLightbox: React.FC = () => {
                 </div>
 
                 <div className="pt-4 border-t border-slate-300/60 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-mono">
-                  <span>AstroBite v2.5.1 (Solar Fresh 3D)</span>
+                  <span>AstroBite v3.0.0 (Solar Fresh 3D)</span>
                   <span>Flutter 3.x + Riverpod 2.6</span>
                 </div>
               </div>

@@ -1,5 +1,28 @@
-import { Camera, Cpu, LayoutGrid, Layers, ArrowUpRight, Check, Image as ImageIcon, Wheat, Beef, Droplet, Sparkles } from 'lucide-react';
-import { getAstrobiteOverview, getAstrobitePillars } from '../../data/astrobiteData';
+import React from 'react';
+import {
+  Camera,
+  Mic,
+  Utensils,
+  Bot,
+  Sparkles,
+  Gauge,
+  Shield,
+  Trophy,
+  Smartphone,
+  TrendingUp,
+  BookOpen,
+  Activity,
+  Cpu,
+  LayoutGrid,
+  Layers,
+  ArrowUpRight,
+  Check,
+  Image as ImageIcon,
+  Wheat,
+  Beef,
+  Droplet
+} from 'lucide-react';
+import { getAstrobiteOverview, getAstrobitePillars, getAstrobiteFeatures } from '../../data/astrobiteData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
 import { Badge } from '../common/Badge';
@@ -9,9 +32,12 @@ export const AstroBiteSection: React.FC = () => {
   const t = translations[language].astrobite;
   const overview = getAstrobiteOverview(language);
   const pillars = getAstrobitePillars(language);
+  const features = getAstrobiteFeatures(language);
 
   const getPillarIcon = (id: string) => {
     switch (id) {
+      case 'voice-ai':
+        return <Mic className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
       case 'vision-ai':
         return <Camera className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
       case 'claymorphic-ui':
@@ -19,7 +45,39 @@ export const AstroBiteSection: React.FC = () => {
       case 'genui-coach':
         return <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
       case 'widgets-quality':
+      case 'social-widgets':
         return <LayoutGrid className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
+      default:
+        return <Layers className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
+    }
+  };
+
+  const getFeatureIcon = (name: string) => {
+    switch (name) {
+      case 'camera':
+        return <Camera className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
+      case 'mic':
+        return <Mic className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
+      case 'utensils':
+        return <Utensils className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+      case 'bot':
+        return <Bot className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
+      case 'sparkles':
+        return <Sparkles className="w-5 h-5 text-pink-600 dark:text-pink-400" />;
+      case 'gauge':
+        return <Gauge className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
+      case 'shield':
+        return <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+      case 'trophy':
+        return <Trophy className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />;
+      case 'smartphone':
+        return <Smartphone className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
+      case 'trending-up':
+        return <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
+      case 'book-open':
+        return <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />;
+      case 'activity':
+        return <Activity className="w-5 h-5 text-rose-600 dark:text-rose-400" />;
       default:
         return <Layers className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
     }
@@ -53,19 +111,26 @@ export const AstroBiteSection: React.FC = () => {
           {/* Quick Metrics Bar - Inset Neumorphic Cells */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mb-6">
             {overview.metrics.map((m, idx) => (
-              <div key={m.label} className={`p-3 sm:p-3.5 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c5d1e2,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800 reveal stagger-${idx + 1}`}>
-                <span className="block text-lg sm:text-xl font-bold text-slate-800 dark:text-white font-mono">{m.value}</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">{m.label}</span>
+              <div
+                key={idx}
+                className="p-3 sm:p-4 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c5d1e2,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800/80"
+              >
+                <div className="text-xs font-mono text-slate-500 dark:text-slate-400 mb-1">
+                  {m.label}
+                </div>
+                <div className="text-sm sm:text-base font-bold text-sky-700 dark:text-sky-400">
+                  {m.value}
+                </div>
               </div>
             ))}
           </div>
 
           {/* Tech Badges */}
-          <div className="flex flex-wrap gap-2 sm:gap-2.5 mt-6">
-            {overview.stackBadges.map((badge) => (
+          <div className="flex flex-wrap gap-2">
+            {overview.stackBadges.map((badge, idx) => (
               <span
-                key={badge}
-                className="px-2.5 sm:px-3 py-1 text-xs rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] text-slate-700 dark:text-slate-300 shadow-[3px_3px_6px_#c5d1e2,-3px_-3px_6px_#ffffff] dark:shadow-[3px_3px_6px_#050811,-3px_-3px_6px_#1E2D44] border border-white/80 dark:border-slate-700/60 font-mono"
+                key={idx}
+                className="px-3 py-1 text-xs font-medium rounded-lg bg-[#E8ECF2] dark:bg-[#151F32] text-slate-700 dark:text-slate-300 shadow-[2px_2px_4px_#c5d1e2,-2px_-2px_4px_#ffffff] dark:shadow-[2px_2px_4px_#050811,-2px_-2px_4px_#1E2D44] border border-white/70 dark:border-slate-700/60"
               >
                 {badge}
               </span>
@@ -73,10 +138,10 @@ export const AstroBiteSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 4 Architectural Pillars Bento Grid */}
-        <div className="mb-14">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-6 reveal">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white tracking-tight">
+        {/* 5 Architectural Pillars */}
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-8 border-b border-slate-300/60 dark:border-slate-800 pb-4 reveal">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">
               {t.pillarsHeader}
             </h3>
             <span className="text-xs font-mono text-sky-700 dark:text-sky-400 font-semibold">
@@ -84,11 +149,11 @@ export const AstroBiteSection: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {pillars.map((pillar, idx) => (
               <div
                 key={pillar.id}
-                className={`bg-[#E8ECF2] dark:bg-[#151F32] rounded-2xl p-5 sm:p-7 relative group shadow-[7px_7px_15px_#c2cee0,-7px_-7px_15px_#ffffff] dark:shadow-[7px_7px_15px_#050811,-7px_-7px_15px_#1E2D44] hover:shadow-[10px_10px_20px_#bed0e2,-10px_-10px_20px_#ffffff] dark:hover:shadow-[10px_10px_20px_#04060d,-10px_-10px_20px_#22344f] border border-white/80 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between reveal stagger-${(idx % 2) + 1}`}
+                className={`bg-[#E8ECF2] dark:bg-[#151F32] rounded-2xl p-5 sm:p-7 relative group shadow-[7px_7px_15px_#c2cee0,-7px_-7px_15px_#ffffff] dark:shadow-[7px_7px_15px_#050811,-7px_-7px_15px_#1E2D44] hover:shadow-[10px_10px_20px_#bed0e2,-10px_-10px_20px_#ffffff] dark:hover:shadow-[10px_10px_20px_#04060d,-10px_-10px_20px_#22344f] border border-white/80 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between reveal stagger-${(idx % 3) + 1}`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -97,10 +162,10 @@ export const AstroBiteSection: React.FC = () => {
                         {getPillarIcon(pillar.id)}
                       </div>
                       <div>
-                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 block">
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 block font-semibold">
                           Pillar {pillar.number} • {pillar.tag}
                         </span>
-                        <h4 className="text-lg font-bold text-slate-800 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                           {pillar.title}
                         </h4>
                       </div>
@@ -145,7 +210,7 @@ export const AstroBiteSection: React.FC = () => {
                 </div>
 
                 <div className="pt-4 border-t border-slate-300/60 dark:border-slate-800 flex items-center justify-between">
-                  <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#0D1524] text-sky-700 dark:text-sky-400 shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff] dark:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1A283E] border border-sky-300/60 dark:border-sky-800/60">
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#0D1524] text-sky-700 dark:text-sky-400 shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff] dark:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1A283E] border border-sky-300/60 dark:border-sky-800/60 font-semibold">
                     {pillar.metricBadge}
                   </span>
                   <a
@@ -156,6 +221,69 @@ export const AstroBiteSection: React.FC = () => {
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 12 Core Features Section */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3 border-b border-slate-300/60 dark:border-slate-800 pb-4 reveal">
+            <div>
+              <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-300/60 dark:border-sky-800/60 font-semibold mb-2 inline-block">
+                {t.featuresBadge}
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">
+                {t.featuresHeader}
+              </h3>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl">
+              {t.featuresSub}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {features.map((feat, idx) => (
+              <div
+                key={feat.id}
+                className={`bg-[#E8ECF2] dark:bg-[#151F32] rounded-2xl p-5 sm:p-6 relative group shadow-[6px_6px_14px_#c2cee0,-6px_-6px_14px_#ffffff] dark:shadow-[6px_6px_14px_#050811,-6px_-6px_14px_#1E2D44] hover:shadow-[9px_9px_18px_#bed0e2,-9px_-9px_18px_#ffffff] dark:hover:shadow-[9px_9px_18px_#04060d,-9px_-9px_18px_#22344f] border border-white/80 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between reveal stagger-${(idx % 3) + 1}`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3.5">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c4d0de,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800">
+                        {getFeatureIcon(feat.iconName)}
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block font-semibold">
+                          #{feat.number} • {feat.tag}
+                        </span>
+                        <h4 className="text-base font-bold text-slate-800 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                          {feat.title}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    {feat.naturalDescription}
+                  </p>
+                </div>
+
+                {feat.badge && (
+                  <div className="pt-3 border-t border-slate-300/50 dark:border-slate-800/80 flex items-center justify-between">
+                    <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-[#E8ECF2] dark:bg-[#0D1524] text-sky-700 dark:text-sky-400 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#1A283E] border border-sky-300/50 dark:border-sky-800/50">
+                      {feat.badge}
+                    </span>
+                    <a
+                      href="#gallery"
+                      className="inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 font-medium transition-colors"
+                    >
+                      <span>UI Mockup</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>

@@ -55,6 +55,9 @@ export interface TranslationDictionary {
     galleryBannerTitle: string;
     galleryBannerDesc: string;
     galleryBannerBtn: string;
+    featuresHeader: string;
+    featuresSub: string;
+    featuresBadge: string;
   };
   gallery: {
     badge: string;
@@ -131,7 +134,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     navbar: {
       brandRole: "Mid Mobile Engineer",
       navAbout: "Giới thiệu",
-      navAstroBite: "AstroBite v2.5.1",
+      navAstroBite: "AstroBite v3.0.0",
       navCareer: "Kinh nghiệm",
       navEngineering: "Kỷ luật Kỹ thuật",
       navSkills: "Kỹ năng",
@@ -156,7 +159,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       bullet3Text: "Tích hợp Google Gemini Vision AI bóc tách dinh dưỡng trong < 2.5s và kiến trúc GenUI A2UI tự động sinh Native Widgets tương tác 2 chiều trong chat.",
       missionTitle: "Mục tiêu & Định vị:",
       missionText: "Sẵn sàng đảm nhận vai trò Mid Mobile Engineer, mang lại giá trị thực chiến và kiến tạo sản phẩm di động chất lượng cao cho doanh nghiệp.",
-      ctaExploreAstroBite: "Khám phá AstroBite v2.5.1",
+      ctaExploreAstroBite: "Khám phá AstroBite v3.0.0",
       ctaDownloadCv: "Tải CV PDF (2 Trang)",
       ctaViewWebCv: "Xem Bản In Web A4",
       avatarExpYears: "5+ Năm Kinh Nghiệm",
@@ -168,12 +171,12 @@ export const translations: Record<Language, TranslationDictionary> = {
       metricsSub: "Chỉ Số Vàng Bảo Chứng Năng Lực",
     },
     astrobite: {
-      badgeFlagship: "DỰ ÁN TIÊU BIỂU (FLAGSHIP) — v2.5.1",
+      badgeFlagship: "DỰ ÁN TIÊU BIỂU (FLAGSHIP) — v3.0.0",
       roleTag: "Mobile Engineer & System Architect",
       tagline: "Trợ Lý Dinh Dưỡng Thông Minh & Quét Bữa Ăn AI",
       description: "AstroBite tái định nghĩa trải nghiệm theo dõi dinh dưỡng bằng cách kết hợp Trí tuệ nhân tạo thị giác Google Gemini và Ngôn ngữ thiết kế Đất nặn Claymorphic 3D: chụp 1 bức ảnh bóc tách trọn bữa ăn trong < 2.5s, trò chuyện với Trợ lý AI Coach tự sinh thẻ món ăn tương tác GenUI 2 chiều (giao thức A2UI), bảo vệ chuỗi ngày với Cơ chế Khiên Sao (Starlight Streak Shield), và tiện ích màn hình khóa iOS & Android mở máy ảnh siêu tốc < 300ms với 0 rò rỉ RAM.",
-      pillarsHeader: "4 Đột Phá Kiến Trúc Trọng Yếu",
-      pillarsSub: "Deep Engineering Breakdown (v2.5.1 Innovations)",
+      pillarsHeader: "5 Đột Phá Kiến Trúc Trọng Yếu",
+      pillarsSub: "Deep Engineering Breakdown (v3.0.0 Innovations)",
       macroIntro: "Bóc tách 3 nhóm chất đa lượng chuẩn màu trực quan quốc tế:",
       macroCarbs: "🌾 Carbs (#1CB0F6 Xanh)",
       macroProtein: "🥩 Đạm (#FF9600 Cam)",
@@ -182,11 +185,14 @@ export const translations: Record<Language, TranslationDictionary> = {
       galleryBannerTitle: "Bộ Sưu Tập 12 Màn Hình Thực Tế Claymorphic 3D",
       galleryBannerDesc: "Khám phá giao diện Đất nặn Solar Fresh, AR Camera Scanner, AstroCoach GenUI và Tiện ích màn hình khóa.",
       galleryBannerBtn: "Khám phá Gallery 12 màn hình bên dưới ↓",
+      featuresHeader: "12 Tính Năng Cốt Lõi Bằng Ngôn Ngữ Tự Nhiên",
+      featuresSub: "Góc nhìn sản phẩm: Giải quyết bài toán ăn uống lành mạnh rảnh tay, bản địa hóa ẩm thực Á Đông và tạo thói quen bền vững.",
+      featuresBadge: "TRẢI NGHIỆM NGƯỜI DÙNG (v3.0.0)",
     },
     gallery: {
       badge: "Visual Experience",
-      title: "Showcase Gallery & UI Walkthrough (v2.5.1)",
-      subtitle: "Bộ sưu tập 12 ảnh chụp màn hình thực tế AstroBite v2.5.1 với phong cách Đất nặn 3D Solar Fresh. Nhấp vào bất kỳ ảnh nào để xem kích thước lớn kèm thông số kỹ thuật chi tiết.",
+      title: "Showcase Gallery & UI Walkthrough (v3.0.0)",
+      subtitle: "Bộ sưu tập 12 ảnh chụp màn hình thực tế AstroBite v3.0.0 với phong cách Đất nặn 3D Solar Fresh. Nhấp vào bất kỳ ảnh nào để xem kích thước lớn kèm thông số kỹ thuật chi tiết.",
       catAll: "Tất cả (12)",
       catAi: "AI Vision Scanner",
       catGenui: "GenUI & Chat",
@@ -271,7 +277,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     navbar: {
       brandRole: "Mid Mobile Engineer",
       navAbout: "About",
-      navAstroBite: "AstroBite v2.5.1",
+      navAstroBite: "AstroBite v3.0.0",
       navCareer: "Experience",
       navEngineering: "Engineering",
       navSkills: "Skills",
@@ -296,7 +302,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       bullet3Text: "Integrated Google Gemini Vision AI extracting nutrients in < 2.5s and GenUI A2UI protocol dynamically generating interactive 2-way native chat widgets.",
       missionTitle: "Mission & Commitment:",
       missionText: "Ready for Mid Mobile Engineer roles, bringing hands-on engineering excellence and high-impact product delivery for your organization.",
-      ctaExploreAstroBite: "Explore AstroBite v2.5.1",
+      ctaExploreAstroBite: "Explore AstroBite v3.0.0",
       ctaDownloadCv: "Download CV (2-Page PDF)",
       ctaViewWebCv: "View Web Print A4",
       avatarExpYears: "5+ Years Experience",
@@ -308,12 +314,12 @@ export const translations: Record<Language, TranslationDictionary> = {
       metricsSub: "Proven Commercial Track Record",
     },
     astrobite: {
-      badgeFlagship: "FEATURED FLAGSHIP PROJECT — v2.5.1",
+      badgeFlagship: "FEATURED FLAGSHIP PROJECT — v3.0.0",
       roleTag: "Mobile Engineer & System Architect",
       tagline: "Smart AI Food Scanner",
       description: "AstroBite cuts the friction of daily calorie tracking by combining Google Gemini 3.8 Flash Multimodal Vision & NLU AI with a custom 3D Claymorphic design system. Users snap photos or speak natural Vietnamese sentences to receive nutritional breakdowns in 1.1–2.5s. Features hands-free AstroVoice AI, broth/topping separation for Asian cuisine, an interactive GenUI Chat Cockpit, Starlight Streak Shield gamification, cross-platform OS Widgets, and 277 automated tests passing 100%.",
-      pillarsHeader: "4 Key Architectural Breakthroughs",
-      pillarsSub: "Deep Engineering Breakdown (v2.5.1 Innovations)",
+      pillarsHeader: "5 Key Architectural Breakthroughs",
+      pillarsSub: "Deep Engineering Breakdown (v3.0.0 Innovations)",
       macroIntro: "Decomposes 3 essential macronutrients per standardized color tokens:",
       macroCarbs: "🌾 Carbs (#1CB0F6 Blue)",
       macroProtein: "🥩 Protein (#FF9600 Orange)",
@@ -322,11 +328,14 @@ export const translations: Record<Language, TranslationDictionary> = {
       galleryBannerTitle: "Live 12-Screen Claymorphic 3D Showcase Collection",
       galleryBannerDesc: "Explore Solar Fresh Claymorphic UI, AR Camera Scanner, AstroCoach GenUI, and Lock-Screen Widgets.",
       galleryBannerBtn: "Explore 12-Screen Gallery Below ↓",
+      featuresHeader: "12 Core Features in Natural Language",
+      featuresSub: "Product Perspective: Solving healthy eating with hands-free voice, Asian cuisine intelligence & dopamine-rich habits.",
+      featuresBadge: "USER EXPERIENCE (v3.0.0)",
     },
     gallery: {
       badge: "Visual Experience",
-      title: "Showcase Gallery & UI Walkthrough (v2.5.1)",
-      subtitle: "High-fidelity production screenshots of AstroBite v2.5.1 featuring Solar Fresh 3D Claymorphism. Click any screenshot to inspect full resolution with technical architecture specs.",
+      title: "Showcase Gallery & UI Walkthrough (v3.0.0)",
+      subtitle: "High-fidelity production screenshots of AstroBite v3.0.0 featuring Solar Fresh 3D Claymorphism. Click any screenshot to inspect full resolution with technical architecture specs.",
       catAll: "All (12)",
       catAi: "AI Vision Scanner",
       catGenui: "GenUI & Chat",
