@@ -8,18 +8,18 @@
 ## 👤 1. THÔNG TIN CÁ NHÂN & ĐỊNH VỊ NGHỀ NGHIỆP
 
 * **Họ và tên**: **NGUYEN DUY TRANG**
-* **Năm sinh**: **2000**
-* **Vị trí mục tiêu**: **Mid Mobile Engineer (Flutter & Native iOS/Android)**
-* **Kinh nghiệm**: 5+ năm phát triển ứng dụng di động thương mại quy mô lớn (Production).
+* **Ngày sinh**: **10/04/2000**
+* **Vị trí mục tiêu**: **Mobile Engineer (Flutter, iOS, Android • Clean Architecture)**
+* **Kinh nghiệm**: 5+ năm phát triển ứng dụng di động & frontend thương mại quy mô lớn (Production).
 * **Địa điểm**: TP. Hồ Chí Minh, Việt Nam
 * **Số điện thoại**: [0397308962](tel:0397308962)
 * **Email**: [trangndps10349@gmail.com](mailto:trangndps10349@gmail.com)
 * **GitHub**: [github.com/TrangDuyNguyen](https://github.com/TrangDuyNguyen)
 * **LinkedIn**: [linkedin.com/in/nguyễn-duy-tráng-132567224](https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/)
-* **Trạng thái**: 🟢 Sẵn sàng cho các cơ hội Mid Mobile Engineer.
+* **Trạng thái**: 🟢 Sẵn sàng cho các cơ hội Mobile Engineer.
 
 ### 🌟 Elevator Pitch (Tóm tắt giá trị cốt lõi)
-> Mobile Engineer với 5 năm kinh nghiệm thực chiến trên nền tảng Flutter, iOS và Android. Mình từng trực tiếp xây dựng hệ thống mạng xã hội quy mô lớn (1M+ downloads), các giải pháp POS/Kiosk bán hàng đa ngành (F&B, Bán lẻ, Spa), cùng với các ứng dụng Fintech (chuyển tiền quốc tế, giao dịch) và phần mềm quản lý nuôi trồng thủy sản mang tính ứng dụng cao vào đời sống. Điểm mạnh của mình là tư duy thiết kế kiến trúc rành mạch (Clean Architecture), giải quyết tốt bài toán dữ liệu offline và giao tiếp mượt mà với phần cứng (máy in nhiệt, máy quét). Mình đặc biệt khắt khe về hiệu năng, luôn đảm bảo ứng dụng chạy mượt 60 FPS và không bị rò rỉ bộ nhớ (memory leak). Hiện tại, mình đang tập trung ứng dụng Trí tuệ nhân tạo (Google Gemini Vision AI) kết hợp cùng Generative UI trên Flutter để tạo ra các trải nghiệm tương tác thông minh và đột phá hơn.
+> Mobile Engineer với hơn 5 năm kinh nghiệm thực chiến phát triển ứng dụng di động & đa nền tảng (Flutter, iOS, Android, Web/Kiosk). Sở trường xây dựng hệ thống kiến trúc chuẩn hóa (Clean Architecture, MVVM, Modular/Package-based), làm chủ cả BLoC (flutter_bloc) và Riverpod với Unidirectional Data Flow, đóng gói Core Design System & Base Components (Custom Widgets, dynamic Theme Engine, Responsive Multi-screen, Localization, Base Dio Client với Interceptors/Auto-Refresh Token/Retry, Global Error Handling). Am hiểu tường tận vòng đời Widget và Render Tree (Widget/Element/RenderObject), làm chủ Flutter DevTools (Profiler, Memory, Network) để duy trì 60 FPS mượt mà, triệt tiêu drop frames và rò rỉ RAM (0 memory leak). Tối ưu hóa chuyên sâu Flutter Web (GoRouter/AutoRoute nested routes, query params, CanvasKit/WASM, asset caching). Từng vận hành sản phẩm 1M+ downloads, thiết lập pipeline CI/CD (Fastlane, GitHub Actions, GitLab CI/CD, Docker) và văn hóa code review, mentoring cho đội ngũ.
 
 ---
 
@@ -38,7 +38,7 @@
 ## 🌌 3. DỰ ÁN TIÊU BIỂU: ASTROBITE (v3.0.0 — MAJOR MILESTONE)
 
 > **Tên dự án**: **AstroBite — Smart AI Food Scanner & Voice Calorie Tracker**  
-> **Vai trò**: **Senior Mobile Engineer & System Architect**  
+> **Vai trò**: **Mobile Engineer & System Architect**  
 > **Nền tảng**: Flutter 3.x, iOS & Android | **Backend & AI**: Google Gemini 3.8 Flash Vision & NLU, Firebase  
 > **Kiến trúc**: Feature-First Clean Architecture (12 Modules độc lập), Riverpod 2.x, Flutter Generative UI (GenUI), Ponytail Mindset  
 > **Phiên bản mới nhất**: `v3.0.0` (Major Milestone: Ghi chép rảnh tay AstroVoice AI, Bóc tách ẩm thực Á Đông, Social Leaderboard & 277 Tests Pass 100%).
@@ -64,10 +64,12 @@ AstroBite kết hợp **Trí tuệ nhân tạo Gemini (Vision & NLU)** và **Ng�
 3. 🍜 **Trí Tuệ Ẩm Thực Á Đông — Tách Nước Dùng & Topping Tự Động (v2.9.0)**:
    * AI tự động tách riêng đâu là "Cái" (thịt bò, bánh phở) và đâu là "Nước dùng béo". Cung cấp công tắc 1 chạm: **[Ăn cả nước / Chỉ ăn cái]** để tự động trừ bớt calo và cắt giảm hơn 65% lượng muối Natri tương ứng.
    * Với món combo như Cơm tấm sườn bì chả hay Bánh mì, danh sách checklist topping cho phép tích/bỏ từng món (bỏ miếng chả trứng, bỏ chén nước mắm đường) với số calo điều chỉnh tự động theo thời gian thực.
-4. 💬 **Trợ Lý AI Coach Trò Chuyện Tương Tác Sống Động (Interactive GenUI Chat)**:
-   * Người dùng trò chuyện tự nhiên bằng tiếng Việt (*"Tối nay mình còn 350 calo thì nên ăn gì nhẹ bụng mà no lâu?"*).
+4. 💬 **Trợ Lý AI Coach Trò Chuyện Tương Tác Sống Động (Interactive GenUI Chat & Voice Input)**:
+   * Người dùng trò chuyện tự nhiên bằng tiếng Việt qua bàn phím hoặc **nói trực tiếp bằng giọng nói tiếng Việt**:
+     - *Chạm 1 lần vào Mic trong ô chat*: Kích hoạt Live Speech-to-Text tiếng Việt, tự động điền câu nói vào ô chat để gửi đi trong tích tắc.
+     - *Nhấn giữ nút Mic*: Mở ngay modal AstroVoice Sheet bóc tách món ăn và ghi nhật ký bữa ăn 1-chạm mà không cần chuyển màn hình.
    * AI không chỉ trả lời bằng chữ mà sinh ra trực tiếp **Thẻ món ăn tương tác sống động ngay trong chat**, cho phép bấm nút tăng giảm khẩu phần (+/-20g) và bấm **[1-Chạm Lưu]** vào nhật ký tức thì.
-5. 🧸 **Giao Diện Đất Nặn 3D Solar Fresh Đàn Hồi Vui Vẻ (Claymorphic UI)**:
+. 🧸 **Giao Diện Đất Nặn 3D Solar Fresh Đàn Hồi Vui Vẻ (Claymorphic UI)**:
    * Toàn bộ nút bấm, thanh tiến độ và thẻ món ăn được thiết kế phồng xốp mềm mại với hiệu ứng đàn hồi tactile 3D (thu nhỏ 0.98 scale khi nhấn giữ) trên nền kem sữa dịu mắt (`#FAF8F5`).
    * Biến việc ghi chép mỗi bữa ăn thành tương tác xả stress vui nhộn, kích thích cảm giác ăn ngon và tạo động lực mở app mỗi ngày.
 6. 📊 **Bảng Điều Khiển Dinh Dưỡng 1 Giây & Nhật Ký 4 Bữa (Celestial Cockpit & Diary)**:
@@ -138,7 +140,7 @@ AstroBite kết hợp **Trí tuệ nhân tạo Gemini (Vision & NLU)** và **Ng�
 
 ### 🌐 3.3. English Executive Project Summary (Ready for International CV & Portfolio)
 
-> **Role**: **Senior Mobile Engineer & System Architect**  
+> **Role**: **Mobile Engineer & System Architect**  
 > **Project**: **AstroBite — Smart AI Food Scanner & Voice Calorie Tracker** (`v3.0.0`)  
 > **Core Stack**: Flutter 3.x, Dart 3.x, Riverpod 2.6, Google Gemini 3.8 Flash Vision & NLU, Firebase, iOS WidgetKit (Swift), Android AppWidget (Kotlin).
 
@@ -224,13 +226,13 @@ AstroBite cuts the friction of daily calorie tracking by combining **Google Gemi
 
 | Nhóm kỹ năng | Chi tiết công nghệ |
 | :--- | :--- |
-| **Ngôn ngữ & Framework** | **Flutter, Dart, Swift, SwiftUI, UIKit, Kotlin**, HTML5, CSS3, JavaScript |
-| **Kiến trúc & Quản lý State** | **Clean Architecture (Feature-First)**, **VIPER**, **Riverpod 2.x (Code-Gen)**, **BLoC**, **RxSwift**, AutoRoute, Freezed, MVVM, SOLID, Modularization, Offline-First Architecture |
-| **Dữ liệu & Thời gian thực** | WebSocket, Socket.IO, RESTful API, SQLite, Cloud Firestore, Local Caching & Background Sync |
-| **AI & Điện toán Đám mây** | **Google Gemini Multimodal AI (Vision & Flash)**, **Flutter GenUI (A2UI Protocol)**, Firebase (Auth, Firestore, Storage, App Check, Crashlytics, FCM, Remote Config) |
-| **Hệ thống & Tích hợp Phần cứng** | **iOS WidgetKit, Android AppWidget**, Platform Channels (MethodChannel), Máy in nhiệt POS (ESC/POS), Máy quét mã vạch/QR, **Apple HealthKit, Android Health Connect, iOS CallKit** |
-| **DevOps, CI/CD & Testing** | **Fastlane, GitHub Actions, Bitrise**, 277 Unit/Widget Tests (`flutter test`), App Store Connect, Google Play Console, Git Submodules, Makefile automation |
-| **Công cụ & Phương pháp luận** | Git, Git Worktrees, Jira, Agile/Scrum, Cursor IDE, Claude Code, Antigravity |
+| **Ngôn ngữ & Nền tảng** | **Flutter & Dart (5+ năm Expert), Swift, SwiftUI, UIKit, Kotlin**, HTML5, CSS3, TypeScript |
+| **Kiến trúc & Quản lý State** | **Clean Architecture (Package-based / Feature-First)**, **BLoC (flutter_bloc)**, **Riverpod 2.x (AsyncNotifier, Code-Gen)**, **MVVM**, **Unidirectional Data Flow**, SOLID, Modularization, Offline-First Architecture |
+| **Design System & Base UI** | **Core UI Library**, Custom Widgets, Theme Engine (Dark/Light), Responsive Layout đa màn hình (Mobile/Tablet/Web), Localization (`intl`), Exception/Error Handler |
+| **Networking & Dữ liệu Local** | **Base Dio Client (Interceptors: Bearer Token, Auto Refresh Token khi 401, Exponential Retry Policy, Client Cache)**, WebSocket/Socket.IO, Cloud Firestore Stream, SQLite/Drift, Hive, Isar/SharedPreferences |
+| **Hiệu năng & Flutter Web** | **Widget Lifecycle & Render Tree Optimization (Widget/Element/RenderObject, RepaintBoundary, const)**, **Flutter DevTools (Profiler, Memory, Network - 60 FPS, 0 memory leak)**, **GoRouter & AutoRoute (Nested Routes, URL Query Params)**, CanvasKit/WASM, Asset Caching |
+| **DevOps, CI/CD & Testing** | **Fastlane, GitHub Actions, GitLab CI/CD, Docker**, **277 Automated Unit & Widget Tests (100% Pass)**, Static Analysis & Lint Rules (`analysis_options.yaml`) |
+| **Quy trình & Đội ngũ** | **Code Review, Mentoring Junior developers**, Coding Conventions, Gitflow (Rebase, Cherry-pick), Scrum/Agile, Ponytail Mindset (Zero Bloat) |
 
 ---
 
@@ -238,41 +240,38 @@ AstroBite cuts the friction of daily calorie tracking by combining **Google Gemi
 
 ### 🇬🇧 Bản Tiếng Anh chuẩn Quốc Tế (Chuẩn STAR / Google XYZ: Accomplished [X], measured by [Y], by doing [Z])
 
-#### Section: Personal Projects
+#### Section: Professional Projects
 ```markdown
-ASTROBITE — AI Food Scanner & Voice Calorie Tracker (v3.0.0) | Senior Mobile Engineer & Architect
-Tech Stack: Flutter 3.x, Riverpod 2.6 (AsyncNotifier), AutoRoute 9.x, Gemini 3.8 Flash Vision & NLU, GenUI (A2UI), Firebase, iOS WidgetKit (Swift), Android AppWidget (Kotlin), Fastlane, GitHub Actions CI/CD (277 Tests).
-• Architected AstroBite (v3.0.0) using Feature-First Clean Architecture across 12 decoupled business modules, maintaining 100% test pass rate across 277 automated unit and widget tests with zero static analysis issues.
-• Pioneered AstroVoice AI: a hands-free Vietnamese voice logging engine combining on-device speech recognition with Gemini 3.8 Flash NLU, parsing colloquial Asian units (bowls, glasses, pieces) and rendering GenUI 1-tap logging cards in ~45ms with ~1.1s AI latency.
-• Engineered a multi-modal Gemini Vision pipeline recognizing complex dishes in <2.5s and pioneering Multi-Region Asian Cuisine Intelligence with automatic broth & topping separation, slashing manual logging friction by 68%.
-• Designed a proprietary Claymorphic 2D/3D Design System natively in Flutter without third-party bloat, delivering tactile squash physics (0.98 scale) and locked nutrient color semantics at a consistent 60 FPS.
-• Implemented Flutter Generative UI (GenUI) via the A2UI protocol, rendering rich, bidirectional interactive widgets directly inside chat streams for instant Firestore mutations.
-• Built cross-platform lock-screen and home-screen widgets (iOS WidgetKit & Android AppWidget) supporting sub-300ms camera scanner deep-linking with reactive zero-background-drain sync.
-• Automated multi-platform release pipelines (APK/AAB/IPA) using Fastlane and GitHub Actions, delivering builds to Firebase App Distribution under a Zero-Trust security audit.
+ASTROBITE — AI Food Scanner & Hands-Free Calorie Tracker (v3.0.0) | Mobile Engineer & Architect
+Tech Stack: Flutter 3.x, Dart 3.x, Clean Architecture (12 Modular Packages), Riverpod 2.6 (AsyncNotifier), AutoRoute & GoRouter (Deep Linking, Web Query Params), Gemini 3.8 Flash Vision & NLU, Base Dio Client, Custom Design System, Flutter DevTools (60 FPS, 0 memory leak), Fastlane, GitHub Actions & GitLab CI/CD (277 Tests 100% Pass).
+• Architected AstroBite (v3.0.0) based on Modular Package-based Clean Architecture across 12 decoupled business modules, maintaining a 100% pass rate across 277 automated unit and widget tests with zero static analysis issues.
+• Packaged a proprietary 2D/3D Design System & Base Components natively in Flutter without external third-party bloat (Custom Widgets, dynamic Theme Engine, Responsive Breakpoints), locking consistent 60 FPS rendering.
+• Constructed Base Network Client & Local Persistence: Dio Interceptors (automatic bearer token injection, 401 token refresh cycle, exponential backoff retry), WebSocket & Firestore stream real-time sync, and Hive/SQLite offline caching.
+• Optimized Render Tree & Memory via Flutter DevTools: isolated painting with RepaintBoundary, const constructors, eliminating unnecessary rebuilds and camera buffer disposal yielding sub-2.5s AI latency and 0 memory leaks.
+• Advanced Web & Routing Optimization: configured GoRouter & AutoRoute supporting nested routes, URL navigation, query params, CanvasKit/WASM rendering, and static asset caching.
+• Automated multi-platform release pipelines (Web bundle, Android APK/AAB, iOS IPA) using Fastlane, GitHub Actions & GitLab CI/CD with Docker runners under a Zero-Trust security audit.
 ```
 
 #### Section: Work Experience
 ```markdown
-FINVIET TECHNOLOGY | Mobile Developer (Aug 2025 – Aug 2026)
-• Built multi-industry POS cashier screens and Self-Order Kiosks tailored for F&B (table layout, kitchen tickets), Retail (barcode checkout), and Spa Services (technician booking, treatment packages), accelerating transactions by 30%.
-• Implemented feature-level Role-Based Access Control (RBAC) across cashiers, stockkeepers, spa therapists, store managers, and administrators.
-• Developed Product/Service Catalog Management and Multi-Tier Price List modules (branch-based pricing, combo meals, spa service tiers, and promotional discounts).
-• Built end-to-end Inventory Management: goods receipt & issue notes (phiếu nhập/xuất kho), stock tracking, and real-time inventory reconciliation.
-• Shipped comprehensive Sales & Inventory Reporting modules (shift revenue, multi-model sales analytics for F&B/Retail/Spa, stock balance).
-• Designed and delivered an offline-first order synchronization engine using Clean Architecture, BLoC, and SQLite, ensuring 100% order persistence during network disconnects.
-• Developed custom Android (Kotlin) Platform Channels to interface with hardware thermal POS receipt printers (ESC/POS) and barcode scanners.
-• Streamlined multi-platform store releases through automated Fastlane and GitHub Actions CI/CD workflows.
+FINVIET TECHNOLOGY | Mobile Developer — Flutter, Web & Kiosk (Aug 2025 – Aug 2026)
+• Architected modular Clean Architecture / MVVM applying BLoC (flutter_bloc) with Unidirectional Data Flow for multi-vertical POS & self-order Kiosks (F&B, Retail, Spa), slashing transaction time by 30%.
+• Packaged Base UI Library & Responsive Layout dynamically adapting across screen form-factors (Mobile, Tablet, Kiosk/Web) with shared Custom Widgets and dynamic Theme Engine.
+• Built Base Network Client with Dio: configured Interceptors for automatic bearer token injection, 401 token refresh cycle, exponential backoff retry policy, and client-side offline cache.
+• Designed robust Offline-first data pipeline (BLoC, SQLite/Drift), ensuring 100% order persistence during network disconnects and automatic synchronization upon reconnection.
+• Utilized Flutter DevTools (Profiler, Memory) to inspect Render Tree, eliminating drop frames/jank and avoiding RAM leaks when driving ESC/POS thermal printers and hardware barcode scanners via Kotlin Platform Channels.
+• Established Coding conventions, strict lint rules (analysis_options.yaml), led PR code reviews, and mentored Junior developers across the engineering team.
+• Configured automated CI/CD build & release pipelines (Android APK/AAB, Web bundle) via Fastlane, GitHub Actions & GitLab CI/CD.
 
-HAHALOLO SOCIAL TRAVEL NETWORK | Mobile Developer — iOS & Flutter (May 2020 – Jun 2025)
+HAHALOLO SOCIAL TRAVEL NETWORK | Mobile & Frontend Developer — iOS & Flutter (May 2020 – Jun 2025)
 Ecosystem of 6 Apps: Social Network, OTT Messaging, Travel, Fintech & Outsource
 
-• [Hahalolo — Travel Social Network] Developed the flagship travel social app (1M+ downloads) focusing on Tour, Flight, Hotel booking, Community Site, and Handnotes. Built native iOS modules (Swift, Autolayout) with VIPER architecture and Cocoapods. Integrated Google Maps, Push Notifications, Deep Linking, and Autoplay Video. Added Flutter modules via Add-to-App. Monitored via Firebase Crashlytics. Mobile team: 20.
-• [Halome — OTT Realtime Messaging] Engineered real-time messaging app (SSO, Anonymous) from scratch using Native iOS Swift (MVVM). Integrated Starscream (WebSocket) for realtime, Alamofire for API, IG List for chat rendering, RxSwift, and SQLite for offline storage. Implemented CallKit SDK for audio/video calls, multimedia sharing, location sharing, and DeepLink for web-to-app chats. iOS team: 5.
-• [Haloki — Fintech: International Money Transfer] Maintained and bug-fixed international money transfer app (192 countries) in Flutter. Ensured stable financial transaction flows, KYC verification and user data security.
-• [Hahalolo Invest — Fintech: Stock Trading] Maintained and bug-fixed stock trading app in Flutter. Real-time chart rendering, portfolio management and buy/sell order workflows.
-• [Aquannets — Outsource for Galactic Holdings] Developed aquaculture farm management app (outsourced for Galactic Holdings Group) in Flutter. Clean Architecture + Riverpod, SQLite offline-first at farming ponds. Mobile team: 2.
-• [SocTrip — QC & Testing] Served as QC for the SocTrip travel social app: end-to-end testing, test cases, regression testing and quality sign-off before each Store release.
-Tech: iOS Swift, UIKit, VIPER, MVVM, RxSwift, Socket.IO, SQLite, CallKit, Flutter, Add-to-App, Clean Architecture, Riverpod, KYC, Bitrise
+• [Hahalolo — Travel Social Network (1M+ downloads)] Developed Tour, Flight, Hotel, and Community modules; built Native iOS (Swift, VIPER) and integrated Flutter via Add-to-App; handled Responsive UI, Deep Linking, and Firebase Crashlytics (<0.5% crash rate). Mobile team: 20.
+• [Halome — OTT Realtime Messaging] Engineered real-time chat app from scratch using Native iOS Swift (MVVM); integrated WebSocket real-time, SQLite offline storage, RxSwift, and CallKit VoIP; optimized for locked 60 FPS list scrolling. Team: 5.
+• [Haloki & Hahalolo Invest — Fintech] Maintained & optimized international money transfer app (192 countries) and stock trading platform in Flutter; ensured transaction integrity, KYC, real-time charts, and Dio interceptors.
+• [Aquannets — Outsource for Galactic Holdings] Developed aquaculture farm management app in Flutter applying Clean Architecture + Riverpod, SQLite offline-first at ponds. Team: 2.
+• [SocTrip — QC & Testing Lead] Led end-to-end (E2E) testing lifecycle, designed comprehensive test matrices, and provided quality gate sign-off for App Store & Google Play releases.
+Tech: Flutter, Dart, Add-to-App, Clean Architecture, Riverpod, BLoC, iOS Swift, VIPER, MVVM, WebSocket, SQLite, CallKit, Firebase Crashlytics, GitLab CI/CD.
 ```
 
 ---
@@ -281,14 +280,13 @@ Tech: iOS Swift, UIKit, VIPER, MVVM, RxSwift, Socket.IO, SQLite, CallKit, Flutte
 
 ```markdown
 DỰ ÁN: ASTROBITE — AI Food Scanner & Hands-Free Calorie Tracker (v3.0.0)
-Vai trò: Senior Mobile Engineer & System Architect | Công nghệ: Flutter 3.x, Riverpod 2.6, AutoRoute, Gemini 3.8 Flash (Vision & NLU), GenUI (A2UI), Firebase, iOS WidgetKit, Android AppWidget, Fastlane, GitHub Actions.
-- Chủ trì kiến trúc hệ sinh thái AstroBite theo Feature-First Clean Architecture với 12 phân hệ nghiệp vụ độc lập (`scanner`, `voice`, `tracker`, `coach`, `social`...), bảo đảm độ ổn định tuyệt đối với 277 automated tests pass 100% và 0 lỗi linter.
-- Tiên phong triển khai AstroVoice AI — ghi chép dinh dưỡng rảnh tay bằng giọng nói tiếng Việt tự nhiên (`vi-VN`) kết hợp Gemini NLU bóc tách đơn vị dân dã (bát, tô, quả, cái, ly) và GenUI 1-Tap Log lưu dữ liệu chỉ trong ~45ms (độ trễ AI ~1.1s).
-- Phát triển pipeline thị giác Gemini Multimodal AI nhận diện món ăn trong <2.5s và công nghệ bóc tách ẩm thực Á Đông tự động phân chia nước dùng/topping (Phở, Bún bò, Cơm tấm), giảm 68% thao tác sửa số liệu thủ công.
-- Sáng tạo hệ thống thiết kế Đất nặn Claymorphic 2D/3D thuần Flutter Primitives với vật lý đàn hồi tactile squash (0.98 scale) và bộ màu dinh dưỡng chuẩn mực, duy trì tốc độ cuộn 60 FPS ổn định.
-- Triển khai Flutter Generative UI (GenUI) qua giao thức A2UI biến hội thoại AI thành bảng điều khiển tương tác trực tiếp 2 chiều trong khung chat.
-- Xây dựng Cross-Platform OS Home Widgets cho iOS & Android với tính năng deep-link mở camera scanner <300ms và đồng bộ phản ứng tức thì không tiêu tốn pin ngầm.
-- Tự động hóa toàn diện quy trình kiểm thử và phát hành (CI/CD) qua Fastlane & GitHub Actions, phân phối trực tiếp lên Firebase App Distribution.
+Vai trò: Mobile Engineer & System Architect | Công nghệ: Flutter 3.x, Dart 3.x, Clean Architecture (12 Modular Packages), Riverpod 2.6, AutoRoute & GoRouter, Gemini 3.8 Flash (Vision & NLU), Base Dio Client, Custom Design System, Flutter DevTools (60 FPS, 0 memory leak), Fastlane, GitHub Actions & GitLab CI/CD (277 Tests 100% Pass).
+- Chủ trì kiến trúc AstroBite (v3.0.0) theo chuẩn Clean Architecture / Modular Package-based kết hợp Riverpod 2.x code-gen trên 12 phân hệ nghiệp vụ độc lập, duy trì tỷ lệ 277 automated unit & widget tests pass 100% và 0 lỗi linter.
+- Đóng gói Design System 2D/3D & Base Components thuần Flutter Primitives (Custom Widgets, Theme Engine, Responsive Breakpoints) duy trì tốc độ cuộn 60 FPS mượt mà.
+- Xây dựng Base Network Client & Offline Storage: Dio Interceptor (auto-refresh token, retry policy), tích hợp WebSocket & Firestore stream real-time, Hive/SQLite offline cache.
+- Tối ưu hóa Render Tree & Bộ nhớ qua Flutter DevTools: phân tách render với RepaintBoundary, const constructors, giải phóng camera buffer đạt độ trễ AI < 2.5s và 0 memory leak.
+- Tối ưu hóa Web & Routing nâng cao: GoRouter & AutoRoute hỗ trợ nested routes, URL navigation, query params, CanvasKit/WASM rendering và asset caching.
+- Thiết lập bộ 277 automated unit & widget tests (100% pass); chuẩn hóa CI/CD tự động hóa build/release đa nền tảng (Web/Android/iOS) qua Fastlane, GitHub Actions & GitLab CI/CD.
 ```
 
 ---

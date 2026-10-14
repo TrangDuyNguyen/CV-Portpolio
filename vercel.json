@@ -1,6 +1,21 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)\\.pdf",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Type", "value": "application/pdf" }
+      ]
+    },
+    {
+      "source": "/cv-print.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/cv-print.html", "destination": "/cv-print.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|.*\\.pdf$|.*\\.png$|.*\\.jpg$|.*\\.ico$|.*\\.svg$|.*\\.webp$).*)", "destination": "/index.html" }
   ]
 }

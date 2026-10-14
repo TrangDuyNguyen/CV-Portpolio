@@ -15,7 +15,7 @@ const astrobiteOverviewVi: AstrobiteOverview = {
   name: "AstroBite",
   version: "v3.0.0",
   tagline: "Trợ Lý Dinh Dưỡng Thông Minh & Quét Bữa Ăn AI / Ghi Âm Giọng Nói",
-  role: "Senior Mobile Engineer & System Architect",
+  role: "Mobile Engineer & System Architect",
   description: "AstroBite tái định nghĩa trải nghiệm theo dõi dinh dưỡng bằng cách kết hợp Trí tuệ nhân tạo Gemini 3.8 Flash (Vision & NLU) và Thiết kế Đất nặn Claymorphic 3D: ghi chép rảnh tay bằng giọng nói tiếng Việt tự nhiên (AstroVoice AI), bóc tách nước dùng & topping ẩm thực Á Đông, trò chuyện AI Coach sinh thẻ GenUI tương tác 2 chiều, bảo vệ chuỗi ngày với Khiên Sao (Starlight Streak Shield), bảng xếp hạng Astro Leaderboard và tiện ích màn hình khóa iOS & Android mở máy ảnh siêu tốc < 300ms với 0 rò rỉ RAM.",
   metrics: [
     { label: "Voice AI Latency", value: "~1.1s (SLA <=1.5s)" },
@@ -44,7 +44,7 @@ const astrobiteOverviewEn: AstrobiteOverview = {
   name: "AstroBite",
   version: "v3.0.0",
   tagline: "Smart AI Food Scanner & Voice Calorie Tracker",
-  role: "Senior Mobile Engineer & System Architect",
+  role: "Mobile Engineer & System Architect",
   description: "AstroBite cuts the friction of daily calorie tracking by combining Google Gemini 3.8 Flash Multimodal Vision & NLU AI with a custom 3D Claymorphic design system. Users can snap food photos or speak natural Vietnamese sentences to receive instant nutritional breakdowns in 1.1–2.5s. Key features include hands-free AstroVoice AI, broth/topping separation for Asian cuisine, an interactive GenUI Chat Cockpit, Starlight Streak Shield, Social Leaderboard, OS Home Widgets, and 277 automated tests passing 100%.",
   metrics: [
     { label: "Voice AI Latency", value: "~1.1s (Fast)" },
@@ -477,7 +477,7 @@ export const astrobiteFeaturesVi: AstroFeature[] = [
     iconName: "bot",
     title: "Trợ Lý AI Coach Trò Chuyện Tương Tác Sống Động",
     tag: "Generative UI (Giao thức A2UI)",
-    naturalDescription: "Trò chuyện tự nhiên với trợ lý AI ('Tối nay còn 350 calo nên ăn gì nhẹ bụng?'). AI không chỉ trả lời chữ thô mà sinh trực tiếp thẻ món ăn tương tác sống động ngay trong chat, cho phép tăng giảm khẩu phần (+/-20g) và bấm 1-chạm lưu vào nhật ký.",
+    naturalDescription: "Trò chuyện tự nhiên với trợ lý AI qua bàn phím hoặc nút Micro thông minh ngay trong ô chat (chạm để nói tiếng Việt điền thẳng vào chat, nhấn giữ mở AstroVoice Sheet). AI sinh trực tiếp thẻ món ăn tương tác sống động với nút chỉnh khẩu phần (+/-20g) và 1-chạm lưu vào nhật ký.",
     badge: "A2UI Protocol",
   },
   {
@@ -588,7 +588,7 @@ export const astrobiteFeaturesEn: AstroFeature[] = [
     iconName: "bot",
     title: "Interactive AI Nutrition Coach (GenUI / A2UI)",
     tag: "Generative UI (A2UI Protocol)",
-    naturalDescription: "Engage in natural conversations with AI ('I have 350 kcal left tonight, what should I eat?'). Instead of static markdown text, the AI generates interactive native widgets directly in the chat with portion steppers (+/-20g) and 1-tap Firestore logging.",
+    naturalDescription: "Chat with AI via keyboard or direct voice mic in the chatbox (tap for live Vietnamese speech-to-text, long-press for AstroVoice Sheet). Instead of plain text, AI renders interactive native food cards with portion steppers (+/-20g) and 1-tap logging.",
     badge: "A2UI Protocol",
   },
   {
