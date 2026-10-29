@@ -35,8 +35,8 @@
 
     body {
       font-family: var(--font-sans);
-      font-size: 8.8pt;
-      line-height: 1.44;
+      font-size: 9.1pt;
+      line-height: 1.46;
       color: var(--c-body);
       background-color: var(--c-bg-canvas);
       -webkit-font-smoothing: antialiased;
@@ -188,7 +188,7 @@
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
       border: 1px solid var(--c-border);
       border-radius: 4px;
-      padding: 13mm 16mm 10.5mm 16mm;
+      padding: 8.5mm 13mm 7.5mm 13mm;
       position: relative;
       box-sizing: border-box;
       display: flex;
@@ -214,7 +214,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 10.5pt;
+      gap: 9.5pt;
     }
 
     /* ==========================================================================
@@ -222,23 +222,23 @@
        ========================================================================== */
     .header {
       border-bottom: 1.5px solid var(--c-black);
-      padding-bottom: 7pt;
-      margin-bottom: 1pt;
+      padding-bottom: 3.5pt;
+      margin-bottom: 0;
     }
 
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 3pt;
+      margin-bottom: 1.5pt;
     }
 
     .name {
-      font-size: 22.5pt;
+      font-size: 20pt;
       font-weight: 800;
       color: var(--c-black);
-      letter-spacing: -0.4pt;
-      line-height: 1.1;
+      letter-spacing: -0.3pt;
+      line-height: 1.0;
     }
 
     .title-tagline {
@@ -249,19 +249,20 @@
     }
 
     .headline {
-      font-size: 10.5pt;
+      font-size: 9.8pt;
       font-weight: 700;
       color: var(--c-dark);
-      margin-bottom: 5pt;
-      letter-spacing: -0.1pt;
+      margin-bottom: 2.5pt;
+      letter-spacing: 0.2pt;
     }
 
     .contact-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 4pt 10pt;
-      font-size: 8.5pt;
+      gap: 2pt 7.5pt;
+      font-size: 8.35pt;
+      line-height: 1.35;
       color: var(--c-body);
     }
 
@@ -292,20 +293,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 4.5pt;
-      margin-bottom: 1pt;
+      padding-bottom: 3.5pt;
+      margin-bottom: 0;
       border-bottom: 1.5px solid var(--c-black);
     }
 
     .mini-header-name {
-      font-size: 9.6pt;
+      font-size: 9.8pt;
       font-weight: 800;
       color: var(--c-black);
       letter-spacing: 0.3pt;
     }
 
     .mini-header-tag {
-      font-size: 8pt;
+      font-size: 8.2pt;
       font-family: var(--font-mono);
       font-weight: 600;
       color: var(--c-muted);
@@ -319,13 +320,13 @@
     }
 
     .section-title {
-      font-size: 9.6pt;
+      font-size: 9.8pt;
       font-weight: 800;
       color: var(--c-black);
       letter-spacing: 0.5pt;
       text-transform: uppercase;
-      padding-bottom: 2.5pt;
-      margin-bottom: 4.5pt;
+      padding-bottom: 1.8pt;
+      margin-bottom: 3.2pt;
       border-bottom: 1px solid var(--c-border);
       display: flex;
       justify-content: space-between;
@@ -351,25 +352,63 @@
       line-height: 1.44;
     }
 
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4pt 12pt;
+    .summary-points {
+      display: flex;
+      flex-direction: column;
+      gap: 3.8pt;
+      font-size: 9.1pt;
+      line-height: 1.46;
+      color: var(--c-body);
+    }
+
+    .summary-points div {
+      position: relative;
+      padding-left: 10pt;
+      text-align: left;
+    }
+
+    .summary-points div::before {
+      content: "▪";
+      position: absolute;
+      left: 1pt;
+      top: 0;
+      color: var(--c-dark);
+      font-size: 7.5pt;
+    }
+
+    .summary-points strong {
+      color: var(--c-black);
+      font-weight: 700;
+    }
+
+    .highlights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.8pt;
     }
 
     .highlight-item {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      font-size: 8.35pt;
-      line-height: 1.38;
+      position: relative;
+      padding-left: 10pt;
+      font-size: 9.05pt;
+      line-height: 1.46;
+      color: var(--c-body);
+      text-align: left;
+    }
+
+    .highlight-item::before {
+      content: "▪";
+      position: absolute;
+      left: 1pt;
+      top: 0;
+      color: var(--c-dark);
+      font-size: 7.5pt;
     }
 
     .highlight-item strong {
-      font-size: 8.55pt;
+      font-size: 9.15pt;
       font-weight: 700;
       color: var(--c-black);
-      white-space: nowrap;
     }
 
     .highlight-item span {
@@ -382,19 +421,19 @@
     .skills-list {
       display: flex;
       flex-direction: column;
-      gap: 3.2pt;
+      gap: 3.0pt;
     }
 
     .skill-row {
       display: flex;
       align-items: baseline;
-      font-size: 8.35pt;
-      line-height: 1.38;
+      font-size: 8.8pt;
+      line-height: 1.36;
     }
 
     .skill-label {
-      width: 178px;
-      min-width: 178px;
+      width: 168px;
+      min-width: 168px;
       font-weight: 700;
       color: var(--c-black);
     }
@@ -408,7 +447,7 @@
        8. DỰ ÁN KỲ HẠM & KINH NGHIỆM LÀM VIỆC
        ========================================================================== */
     .job-block {
-      margin-bottom: 5.5pt;
+      margin-bottom: 7.0pt;
     }
 
     .job-block:last-child {
@@ -422,6 +461,13 @@
       margin-bottom: 1.5pt;
     }
 
+    .job-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 5pt;
+      flex-wrap: wrap;
+    }
+
     .job-company {
       font-size: 9.6pt;
       font-weight: 800;
@@ -429,36 +475,36 @@
       letter-spacing: 0.1pt;
     }
 
-    .job-date {
-      font-size: 8.2pt;
-      font-family: var(--font-mono);
-      font-weight: 600;
+    .job-role-sep {
       color: var(--c-muted);
-    }
-
-    .job-sub-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 8.5pt;
-      margin-bottom: 2pt;
+      font-size: 8pt;
     }
 
     .job-role {
+      font-size: 8.9pt;
       font-weight: 700;
       color: var(--c-dark);
     }
 
-    .job-domain {
+    .job-role-tag {
+      font-size: 8.2pt;
       color: var(--c-muted);
-      font-size: 8.1pt;
+      font-weight: 500;
+    }
+
+    .job-date {
+      font-size: 8.4pt;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--c-muted);
+      white-space: nowrap;
     }
 
     .job-tech-line {
-      font-size: 8pt;
+      font-size: 8.3pt;
       color: var(--c-muted);
-      margin-bottom: 3pt;
-      line-height: 1.32;
+      margin-bottom: 2.8pt;
+      line-height: 1.36;
     }
 
     .job-tech-line strong {
@@ -474,9 +520,9 @@
     .bullet-list li {
       position: relative;
       padding-left: 11pt;
-      margin-bottom: 2.8pt;
-      font-size: 8.45pt;
-      line-height: 1.4;
+      margin-bottom: 3.2pt;
+      font-size: 9.05pt;
+      line-height: 1.46;
       color: var(--c-body);
       text-align: left;
     }
@@ -500,42 +546,29 @@
       color: var(--c-black);
     }
 
-    /* Học vấn & Nguyên lý kỹ thuật */
+    /* Học vấn & Ngoại ngữ */
     .edu-block {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      font-size: 8.45pt;
-      line-height: 1.38;
+      align-items: baseline;
+      font-size: 9.1pt;
+      line-height: 1.40;
     }
 
     .edu-school {
       font-weight: 700;
+      font-size: 9.2pt;
       color: var(--c-black);
+      letter-spacing: 0.2pt;
     }
 
-    .edu-degree {
+    .lang-item {
+      font-size: 9.0pt;
+      line-height: 1.44;
       color: var(--c-body);
-      margin-top: 1pt;
     }
 
-    .edu-languages {
-      font-size: 8.2pt;
-      color: var(--c-body);
-      text-align: right;
-    }
-
-    .edu-languages strong {
+    .lang-item strong {
       color: var(--c-black);
-    }
-
-    .practices-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5pt;
-      font-size: 8.2pt;
-      line-height: 1.36;
-      color: var(--c-body);
     }
 
     .practices-list div strong {
@@ -602,7 +635,7 @@
         min-height: 297mm !important;
         max-height: 297mm !important;
         margin: 0 !important;
-        padding: 13mm 16mm 10mm 16mm !important;
+        padding: 8.5mm 13mm 7.5mm 13mm !important;
         background-color: #FFFFFF !important;
         border: none !important;
         border-radius: 0 !important;
@@ -634,8 +667,8 @@
       <div class="toolbar-actions">
         <!-- Bộ chuyển đổi ngôn ngữ VI / EN -->
         <div class="lang-switch-group">
-          <button class="lang-btn active" id="btnLangVI" onclick="setLanguage('vi')">🇻🇳 Tiếng Việt</button>
-          <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button class="lang-btn active" id="btnLangVI" onclick="setLanguage('vi')">Tiếng Việt</button>
+          <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">English</button>
         </div>
 
         <!-- Về Portfolio -->
@@ -648,7 +681,7 @@
         </a>
 
         <!-- Nút Tải PDF Chính thức -->
-        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261014" id="btnDownloadPdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030" id="btnDownloadPdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -703,23 +736,22 @@
         <header class="header">
           <div class="header-top">
             <h1 class="name">NGUYEN DUY TRANG</h1>
-            <div class="title-tagline">5+ Years Exp • Open to Opportunities</div>
           </div>
           <div class="headline">
-            Mobile Engineer (Flutter, iOS, Android • Clean Architecture)
+            MOBILE ENGINEER
           </div>
           <div class="contact-row">
-            <span class="contact-item">📍 TP. Hồ Chí Minh, Việt Nam</span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">🎂 10/04/2000</span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">📞 <a href="tel:0397308962">0397308962</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">✉️ <a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">🐙 <a href="https://github.com/TrangDuyNguyen" target="_blank" rel="noopener noreferrer">github.com/TrangDuyNguyen</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">💼 <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyễn-duy-tráng</a></span>
+            <span class="contact-item">Ho Chi Minh city, Viet Nam</span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item">2000</span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="tel:0397308962">0397308962</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyễn-duy-tráng</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="https://cv-portfolio-omega-seven.vercel.app" target="_blank" rel="noopener noreferrer">cv-portfolio-omega-seven.vercel.app</a></span>
           </div>
         </header>
 
@@ -729,41 +761,35 @@
             <span>PROFESSIONAL SUMMARY</span>
             <span class="sub-tag">OVERVIEW</span>
           </h2>
-          <div class="summary-text">
-            Mobile Engineer với 5+ năm kinh nghiệm thực chiến phát triển ứng dụng di động &amp; đa nền tảng (Flutter, iOS, Android, Web/Kiosk). Chuyên sâu thiết kế kiến trúc chuẩn hóa (Clean Architecture, MVVM, Modular/Package-based), làm chủ cả BLoC (flutter_bloc) và Riverpod với Unidirectional Data Flow, đóng gói Core Design System &amp; Base Components (Custom Widgets, Theme Engine, Responsive Multi-screen, Localization, Base Dio Client với Interceptors/Token Refresh/Retry, Global Error Handling). Am hiểu tường tận vòng đời Widget và Render Tree (Widget/Element/RenderObject), làm chủ Flutter DevTools (Profiler, Memory, Network) để duy trì 60 FPS mượt mà, triệt tiêu drop frames và rò rỉ RAM (0 memory leak). Tối ưu hóa chuyên sâu Flutter Web (GoRouter/AutoRoute nested routes, query params, CanvasKit/WASM, asset caching). Từng vận hành sản phẩm 1M+ downloads, thiết lập pipeline CI/CD (Fastlane, GitHub Actions, GitLab CI/CD, Docker) và văn hóa code review, mentoring cho đội ngũ.
+          <div class="summary-points">
+            <div><strong>Core Mobile Engineering:</strong> Hơn 5 năm kinh nghiệm phát triển và vận hành ứng dụng di động thực tế (production) trên Flutter, Swift (iOS) và Kotlin (Android), với thế mạnh tích hợp sâu hệ thống native.</div>
+            <div><strong>Adaptability &amp; Problem Solving:</strong> Kinh nghiệm thực chiến qua các mảng: MXH OTT, Fintech, phần mềm POS bán hàng, Kiosk tự phục vụ và tích hợp AI vào ứng dụng. Linh hoạt kết hợp sức mạnh Native (iOS/Android) với Flutter để tối ưu hiệu năng, rút ngắn thời gian phát triển và đáp ứng đúng mục tiêu sản phẩm.</div>
+            <div><strong>Team Collaboration &amp; Ownership:</strong> Chủ động trong công việc và phối hợp nhịp nhàng với các bộ phận (Product, UI/UX, Backend, QA). Tích cực đóng góp ý kiến kỹ thuật để tháo gỡ các vấn đề phát sinh và luôn sẵn sàng hỗ trợ đồng đội để cùng đưa sản phẩm về đích đúng tiến độ.</div>
           </div>
         </section>
 
-        <!-- 3. VERIFIED PRODUCTION HIGHLIGHTS -->
+        <!-- 3. KEY HIGHLIGHTS & ACHIEVEMENTS -->
         <section class="section">
           <h2 class="section-title">
-            <span>VERIFIED PRODUCTION HIGHLIGHTS</span>
+            <span>KEY HIGHLIGHTS &amp; ACHIEVEMENTS</span>
             <span class="sub-tag">METRICS</span>
           </h2>
-          <div class="highlights-grid">
+          <div class="highlights-list">
             <div class="highlight-item">
-              <strong>1M+ Downloads:</strong>
-              <span>Mạng xã hội &amp; OTT du lịch quy mô lớn trên cả iOS, Android &amp; Flutter.</span>
+              <strong>Measured Performance Optimization:</strong>
+              <span>Rút ngắn 30% thời gian giao dịch tại hệ thống Kiosk tự phục vụ F&amp;B; tối ưu pipeline camera buffer đạt độ trễ phân tích AI &lt; 2.5s và duy trì tốc độ render mượt mà 60 FPS (0 memory leak).</span>
             </div>
             <div class="highlight-item">
-              <strong>Mobile &amp; Web:</strong>
-              <span>Kiến trúc Clean Architecture module hóa, GoRouter/AutoRoute responsive.</span>
+              <strong>Offline-First — Local Database:</strong>
+              <span>Nhúng Rust core vào Flutter qua Dart FFI để trực tiếp quản trị Local Database (SQLite) và xử lý logic nghiệp vụ cục bộ, đảm bảo tốc độ phản hồi tức thì và vận hành 100% ngoại tuyến không phụ thuộc mạng.</span>
             </div>
             <div class="highlight-item">
-              <strong>99.5%+ Crash-Free:</strong>
-              <span>Tối ưu Render Tree &amp; DevTools Profiler, khóa cứng 60 FPS, 0 memory leak.</span>
+              <strong>Automated Unit Testing &amp; Self-Testing:</strong>
+              <span>Đề cao kỷ luật tự kiểm thử (Self-testing ownership): tự thiết kế và viết trọn vẹn bộ 277 automated unit &amp; widget tests (100% Pass) bao phủ toàn bộ logic nghiệp vụ và state, tích hợp CI/CD ngăn ngừa hồi quy lỗi.</span>
             </div>
             <div class="highlight-item">
-              <strong>Design System &amp; Base:</strong>
-              <span>Đóng gói Core UI Library, Theme Engine, Base Dio Client &amp; Token Refresh.</span>
-            </div>
-            <div class="highlight-item">
-              <strong>BLoC &amp; Offline-First:</strong>
-              <span>Unidirectional Data Flow, WebSocket realtime, SQLite/Drift &amp; Hive caching.</span>
-            </div>
-            <div class="highlight-item">
-              <strong>277 Tests &amp; CI/CD:</strong>
-              <span>100% tests pass (Unit/Widget/E2E), Fastlane, GitHub Actions, GitLab CI/CD.</span>
+              <strong>1M+ Production Scale &amp; Reliability:</strong>
+              <span>Kinh nghiệm vận hành hệ sinh thái ứng dụng di động quy mô lớn đạt mốc 1M+ downloads trên cả iOS và Android, duy trì tỷ lệ hoạt động ổn định không phát sinh crash &gt; 99.5% trên production.</span>
             </div>
           </div>
         </section>
@@ -776,28 +802,28 @@
           </h2>
           <div class="skills-list">
             <div class="skill-row">
-              <div class="skill-label">Languages &amp; Core:</div>
-              <div class="skill-values">Flutter &amp; Dart (Expert), Swift, SwiftUI, UIKit, Kotlin, HTML5/CSS3, TypeScript.</div>
+              <div class="skill-label">Languages &amp; Platforms:</div>
+              <div class="skill-values">Flutter &amp; Dart, Swift (iOS), Kotlin (Android), Rust, TypeScript.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Architecture &amp; State:</div>
-              <div class="skill-values">Clean Architecture (Package-based), BLoC (flutter_bloc), Riverpod 2.x, MVVM, Unidirectional Data Flow, SOLID, Modularization.</div>
+              <div class="skill-values">Clean Architecture, Riverpod, BLoC, MVVM, VIPER, Modularization.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Design System &amp; UI:</div>
-              <div class="skill-values">Core UI Library, Custom Widgets, Theme Engine (Dark/Light), Responsive Layout (Mobile/Web), Localization (intl).</div>
+              <div class="skill-label">Networking &amp; Data:</div>
+              <div class="skill-values">Offline-First, SQLite, Realm, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Networking &amp; Local DB:</div>
-              <div class="skill-values">Base Dio Client (Interceptors, Auto Refresh Token, Retry Policy), WebSocket/Socket.IO, SQLite/Drift, Hive, SharedPreferences/Isar.</div>
+              <div class="skill-label">Performance &amp; Advanced:</div>
+              <div class="skill-values">Flutter DevTools, Render Tree Optimization, AutoRoute, Gemini AI, GenUI (A2UI).</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Performance &amp; Web:</div>
-              <div class="skill-values">Render Tree Optimization (RepaintBoundary, const), Flutter DevTools, GoRouter &amp; AutoRoute (Nested Routes, URL Query Params), CanvasKit/WASM.</div>
+              <div class="skill-label">Testing &amp; CI/CD:</div>
+              <div class="skill-values">Unit &amp; Widget Testing (277 Tests), GitHub Actions, GitLab CI/CD, Fastlane.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">DevOps, QA &amp; Mentoring:</div>
-              <div class="skill-values">Fastlane, GitHub Actions, GitLab CI/CD, Docker, 277 Automated Tests (100% Pass), PR Review, Coding Conventions &amp; Mentoring.</div>
+              <div class="skill-label">Delivery &amp; Monitoring:</div>
+              <div class="skill-values">App Store Connect, Google Play Console, Firebase App Distribution, Sentry, Crashlytics, GA4.</div>
             </div>
           </div>
         </section>
@@ -811,22 +837,23 @@
 
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">ASTROBITE — AI Food Scanner &amp; Voice Calorie Tracker / AstroVoice AI</span>
+              <div class="job-title-group">
+                <span class="job-company">ASTROBITE</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile Engineer &amp; System Architect</span>
+                <span class="job-role-tag">(AI Calorie Tracker &amp; Food Scanner)</span>
+              </div>
               <span class="job-date">2026 – Hiện tại</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile Engineer &amp; System Architect</span>
-              <span class="job-domain">Hệ Sinh Thái AI Dinh Dưỡng Đa Nền Tảng (Mobile &amp; Web)</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter 3.x, Dart 3.x, Clean Architecture (12 Modular Packages), Riverpod 2.6 (AsyncNotifier, code-gen), AutoRoute &amp; GoRouter (Deep Linking, Web Query Params), Gemini 3.8 Flash (Vision &amp; NLU), Base Dio Client, Custom Design System, Flutter DevTools (60 FPS, 0 memory leak), Fastlane, GitHub Actions &amp; GitLab CI/CD (277 Tests 100% Pass).
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, Riverpod 2.x, AutoRoute, Gemini AI, Dio, SQLite, Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
               <li>Chủ trì kiến trúc AstroBite (v3.0.0) theo chuẩn <strong>Clean Architecture / Modular Package-based</strong> kết hợp Riverpod 2.x code-gen trên 12 phân hệ nghiệp vụ độc lập.</li>
               <li>Đóng gói <strong>Design System 2D/3D &amp; Base Components</strong> thuần Flutter Primitives (Custom Widgets, Theme Engine, Responsive Breakpoints) duy trì tốc độ cuộn <strong>60 FPS</strong>.</li>
               <li>Xây dựng <strong>Base Network Client &amp; Offline Storage</strong>: Dio Interceptor (auto-refresh token, retry policy), tích hợp WebSocket &amp; Firestore stream real-time, Hive/SQLite offline cache.</li>
               <li>Tối ưu hóa <strong>Render Tree &amp; Bộ nhớ qua Flutter DevTools</strong>: phân tách render với <code>RepaintBoundary</code>, <code>const</code> constructors, giải phóng camera buffer đạt độ trễ AI &lt; 2.5s và <strong>0 memory leak</strong>.</li>
-              <li>Tối ưu hóa <strong>Web &amp; Routing nâng cao</strong>: GoRouter &amp; AutoRoute hỗ trợ nested routes, URL navigation, query params, CanvasKit/WASM rendering và asset caching.</li>
+              <li>Thiết kế kiến trúc điều hướng và tối ưu Web bằng <strong>AutoRoute</strong>: quản lý nested routes, route guards, URL query params, CanvasKit/WASM rendering và asset caching.</li>
               <li>Thiết lập bộ <strong>277 automated unit &amp; widget tests (100% pass)</strong>; chuẩn hóa CI/CD tự động hóa build/release đa nền tảng (Web/Android/iOS) qua Fastlane, GitHub Actions &amp; GitLab CI/CD.</li>
             </ul>
           </article>
@@ -861,22 +888,22 @@
           <!-- CÔNG TY 1: FINVIET TECHNOLOGY -->
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">FINVIET TECHNOLOGY</span>
+              <div class="job-title-group">
+                <span class="job-company">FINVIET TECHNOLOGY</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile Developer (Flutter, POS &amp; Kiosk)</span>
+              </div>
               <span class="job-date">08/2025 – 08/2026</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile Developer (Flutter, Web &amp; Kiosk)</span>
-              <span class="job-domain">Hệ sinh thái POS Kiosk Đa Ngành (F&amp;B, Bán Lẻ &amp; Dịch Vụ Spa)</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter (Mobile, Web &amp; Tablet), Dart, Clean Architecture, BLoC (flutter_bloc), Base Dio Client, SQLite/Drift, Platform Channels (Kotlin), ESC/POS Thermal, Fastlane, GitHub Actions.
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
               <li>Thiết kế kiến trúc <strong>Clean Architecture / MVVM</strong> module hóa, áp dụng <strong>BLoC (flutter_bloc)</strong> với Unidirectional Data Flow cho hệ sinh thái POS &amp; Kiosk bán hàng đa ngành (F&amp;B, Bán lẻ, Spa), rút ngắn <strong>30%</strong> thời gian giao dịch.</li>
               <li>Đóng gói <strong>Base UI Library &amp; Layout Responsive</strong> tương thích linh hoạt trên đa kích thước màn hình (Mobile, Tablet, Kiosk/Web) với Custom Widgets và Theme Engine dùng chung.</li>
               <li>Xây dựng <strong>Base Network Client với Dio</strong>: cài đặt Interceptors tự động đính kèm token, xử lý refresh token khi hết hạn (401), exponential retry policy và offline cache.</li>
               <li>Thiết kế luồng dữ liệu <strong>Offline-first</strong> (BLoC, SQLite/Drift), cam kết 100% đơn hàng không bị mất khi mất kết nối mạng và tự động đồng bộ khi có kết nối trở lại.</li>
-              <li>Sử dụng <strong>Flutter DevTools</strong> (Profiler, Memory) phân tích Render Tree, triệt tiêu drop frames/jank và kiểm soát rò rỉ RAM khi tích hợp máy in nhiệt ESC/POS và máy quét mã vạch qua Platform Channels.</li>
+              <li>Phân tích Render Tree và triệt tiêu drop frames/jank bằng <strong>Flutter DevTools</strong> (Profiler, Memory), kiểm soát rò rỉ RAM khi tích hợp máy in nhiệt ESC/POS và máy quét mã vạch qua Platform Channels (Kotlin).</li>
               <li>Thiết lập <strong>Coding conventions</strong>, strict lint rules (<code>analysis_options.yaml</code>), chủ trì review PR và <strong>mentoring các thành viên Junior</strong> trong nhóm.</li>
               <li>Thiết lập pipeline tự động hóa CI/CD build &amp; release (Android APK/AAB, Web bundle) bằng <strong>Fastlane &amp; GitHub Actions / GitLab CI/CD</strong>.</li>
             </ul>
@@ -885,52 +912,45 @@
           <!-- CÔNG TY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+              <div class="job-title-group">
+                <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
+              </div>
               <span class="job-date">05/2020 – 06/2025 (5 năm)</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
-              <span class="job-domain">Hệ sinh thái 6 ứng dụng: MXH, OTT, Du lịch, Fintech &amp; Outsource</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Add-to-App, Clean Architecture, Riverpod, BLoC, iOS Swift, VIPER, MVVM, WebSocket (Starscream/Socket.IO), SQLite, CallKit, Firebase Crashlytics, GitLab CI/CD.
+              <strong>Tech Stack:</strong> Flutter, iOS Swift, VIPER, MVVM, Riverpod, BLoC, WebSocket, SQLite, CallKit, Crashlytics, CI/CD.
             </div>
             <ul class="bullet-list">
               <li><strong>[Hahalolo — MXH Du lịch (1M+ downloads)]</strong>: Phát triển các phân hệ Tour, Flight, Hotel, Community; xây dựng Native iOS (Swift, VIPER) và tích hợp các module <strong>Flutter qua Add-to-App</strong>; xử lý Responsive UI, Deep Linking, Crashlytics &lt;0.5% crash. Team 20 người.</li>
               <li><strong>[Halome — Nhắn tin OTT Realtime]</strong>: Xây dựng app chat OTT từ đầu (Native iOS Swift MVVM); tích hợp <strong>WebSocket realtime</strong>, SQLite offline storage, RxSwift, CallKit VoIP; xử lý tối ưu cuộn danh sách mượt mà 60 FPS. Team 5 người.</li>
-              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Bảo trì &amp; tối ưu ứng dụng chuyển tiền quốc tế (192 quốc gia) và giao dịch cổ phiếu bằng Flutter; đảm bảo an toàn giao dịch tài chính, KYC, xử lý biểu đồ realtime và Dio network interceptors.</li>
+              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Phát triển và tối ưu ứng dụng chuyển tiền quốc tế (192 quốc gia) và giao dịch cổ phiếu bằng Flutter; thiết kế luồng xác thực KYC, mã hóa bảo mật lưu trữ cục bộ (SQLite/Keychain) và tối ưu hóa biểu đồ nến realtime không drop frames.</li>
               <li><strong>[Aquannets — Outsource Galactic Holdings]</strong>: Phát triển ứng dụng quản lý nuôi trồng thủy sản bằng Flutter theo chuẩn <strong>Clean Architecture + Riverpod</strong>, SQLite offline-first tại ao nuôi. Team 2 người.</li>
               <li><strong>[SocTrip — QC &amp; Testing Lead]</strong>: Chủ trì quy trình kiểm thử đầu cuối (E2E), thiết kế kịch bản test case và đảm bảo chất lượng phát hành trên App Store &amp; Google Play.</li>
             </ul>
           </article>
         </section>
 
-        <!-- 2. HỌC VẤN & NGOẠI NGỮ -->
+        <!-- 2. HỌC VẤN (EDUCATION) -->
         <section class="section">
           <h2 class="section-title">
-            <span>EDUCATION &amp; CREDENTIALS</span>
+            <span>EDUCATION</span>
             <span class="sub-tag">ACADEMIC</span>
           </h2>
           <div class="edu-block">
-            <div>
-              <div class="edu-school">CAO ĐẲNG FPT POLYTECHNIC</div>
-              <div class="edu-degree">Cử nhân Thực hành Công nghệ Thông tin (Chuyên ngành Phát triển Phần mềm) • Năng lực thực chiến tương đương qua các hệ thống phức tạp 1M+ users</div>
-            </div>
-            <div class="edu-languages">
-              <strong>English:</strong> Professional Working (Đọc hiểu tài liệu kỹ thuật &amp; giao tiếp tốt) • <strong>Vietnamese:</strong> Native
-            </div>
+            <div class="edu-school">FPT POLYTECHNIC</div>
           </div>
         </section>
 
-        <!-- 3. NGUYÊN LÝ KỸ THUẬT & KỶ LUẬT CHẤT LƯỢNG -->
+        <!-- 3. NGOẠI NGỮ (LANGUAGES) -->
         <section class="section">
           <h2 class="section-title">
-            <span>ENGINEERING DISCIPLINE &amp; METHODOLOGY</span>
-            <span class="sub-tag">PRACTICES</span>
+            <span>LANGUAGES</span>
+            <span class="sub-tag">PROFICIENCY</span>
           </h2>
-          <div class="practices-list">
-            <div><strong>Architecture &amp; Performance:</strong> Clean Architecture (Package-based), Strict SOLID, Ponytail Mindset (Zero Bloat), Widget Lifecycle &amp; Render Tree Optimization (DevTools 60 FPS, 0 leak).</div>
-            <div><strong>Quality, Testing &amp; Mentoring:</strong> 100% Deterministic Testing (Unit/Widget/Integration), Automated CI/CD (Fastlane, GitHub Actions, GitLab CI/CD, Docker), PR Code Review &amp; Junior Mentoring.</div>
+          <div class="lang-item">
+            <strong>English:</strong> Reads and understands technical documentation
           </div>
         </section>
 
@@ -958,23 +978,22 @@
         <header class="header">
           <div class="header-top">
             <h1 class="name">NGUYEN DUY TRANG</h1>
-            <div class="title-tagline">5+ Years Exp • Open to Opportunities</div>
           </div>
           <div class="headline">
-            Mobile Engineer (Flutter, iOS, Android • Clean Architecture)
+            MOBILE ENGINEER
           </div>
           <div class="contact-row">
-            <span class="contact-item">📍 Ho Chi Minh City, Vietnam</span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">🎂 10/04/2000</span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">📞 <a href="tel:0397308962">(+84) 397 308 962</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">✉️ <a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">🐙 <a href="https://github.com/TrangDuyNguyen" target="_blank" rel="noopener noreferrer">github.com/TrangDuyNguyen</a></span>
-            <span class="contact-sep">•</span>
-            <span class="contact-item">💼 <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyen-duy-trang</a></span>
+            <span class="contact-item">Ho Chi Minh city, Viet Nam</span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item">2000</span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="tel:0397308962">0397308962</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="mailto:trangndps10349@gmail.com">trangndps10349@gmail.com</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyễn-duy-tráng</a></span>
+            <span class="contact-sep">|</span>
+            <span class="contact-item"><a href="https://cv-portfolio-omega-seven.vercel.app" target="_blank" rel="noopener noreferrer">cv-portfolio-omega-seven.vercel.app</a></span>
           </div>
         </header>
 
@@ -984,41 +1003,35 @@
             <span>PROFESSIONAL SUMMARY</span>
             <span class="sub-tag">OVERVIEW</span>
           </h2>
-          <div class="summary-text">
-            Mobile Engineer with 5+ years of hands-on experience developing multi-platform and native applications (Flutter, iOS, Android, Web/Kiosk). Expert in standardized architecture (Clean Architecture, MVVM, Modular/Package-based), mastering both BLoC (flutter_bloc) and Riverpod with Unidirectional Data Flow, packaging Core Design Systems &amp; Base Components (Custom Widgets, dynamic Theme Engine, Responsive Multi-screen Layout, Localization, Base Dio Client with Interceptors/Auto-Refresh Token/Retry Policy, Global Exception Handling). Deep understanding of Widget lifecycle and the Render Tree (Widget/Element/RenderObject), utilizing Flutter DevTools (Profiler, Memory, Network) to ensure smooth 60 FPS, zero jank/drop frames, and zero memory leaks. Specialized in Flutter Web optimization (GoRouter/AutoRoute nested routes, query params, CanvasKit/WASM, asset caching). Proven track record operating 1M+ download apps, establishing automated CI/CD pipelines (Fastlane, GitHub Actions, GitLab CI/CD, Docker), code review standards, and junior developer mentoring.
+          <div class="summary-points">
+            <div><strong>Core Mobile Engineering:</strong> 5+ years of experience building and delivering production mobile applications across Flutter, Swift (iOS), and Kotlin (Android), with deep native platform integrations.</div>
+            <div><strong>Adaptability &amp; Problem Solving:</strong> Demonstrated versatility across Social OTT, Fintech, POS checkout software, self-order Kiosks, and on-device AI integration. Pragmatically blends Native (iOS/Android) and Flutter capabilities to maximize performance, delivery speed, and business goals.</div>
+            <div><strong>Team Collaboration &amp; Ownership:</strong> Proactive and highly collaborative across Product, UI/UX, Backend, and QA teams. Actively contributes practical technical ideas to resolve blockers and supports teammates to ensure smooth, on-time delivery.</div>
           </div>
         </section>
 
-        <!-- 3. VERIFIED PRODUCTION HIGHLIGHTS -->
+        <!-- 3. KEY HIGHLIGHTS & ACHIEVEMENTS -->
         <section class="section">
           <h2 class="section-title">
-            <span>VERIFIED PRODUCTION HIGHLIGHTS</span>
+            <span>KEY HIGHLIGHTS &amp; ACHIEVEMENTS</span>
             <span class="sub-tag">METRICS</span>
           </h2>
-          <div class="highlights-grid">
+          <div class="highlights-list">
             <div class="highlight-item">
-              <strong>1M+ Downloads:</strong>
-              <span>Operating large-scale social travel network &amp; real-time OTT on iOS, Android &amp; Flutter.</span>
+              <strong>Measured Performance Optimization:</strong>
+              <span>Reduced self-order Kiosk checkout time by 30%; optimized camera buffer streaming to achieve sub-2.5s AI inference latency with locked 60 FPS rendering (0 memory leaks).</span>
             </div>
             <div class="highlight-item">
-              <strong>Mobile &amp; Web:</strong>
-              <span>Modular Clean Architecture, responsive multi-screen layouts with GoRouter/AutoRoute.</span>
+              <strong>Offline-First — Local Database:</strong>
+              <span>Embedded a high-performance Rust core into Flutter via Dart FFI to directly manage the Local Database (SQLite) and execute transactional business logic, guaranteeing zero-latency response and 100% offline persistence.</span>
             </div>
             <div class="highlight-item">
-              <strong>99.5%+ Crash-Free:</strong>
-              <span>Render Tree &amp; DevTools Profiler optimization, locked 60 FPS &amp; 0 memory leaks.</span>
+              <strong>Automated Unit Testing &amp; Self-Testing:</strong>
+              <span>Champions a rigorous self-testing culture: personally authored and maintained 277 automated unit and widget tests (100% pass) covering business logic and UI states, integrated into automated CI/CD pipelines to guarantee zero regressions.</span>
             </div>
             <div class="highlight-item">
-              <strong>Design System &amp; Base:</strong>
-              <span>Packaged Core UI Library, Theme Engine, Base Dio Client &amp; Token Refresh.</span>
-            </div>
-            <div class="highlight-item">
-              <strong>BLoC &amp; Offline-First:</strong>
-              <span>Unidirectional Data Flow, WebSocket real-time, SQLite/Drift &amp; Hive caching.</span>
-            </div>
-            <div class="highlight-item">
-              <strong>277 Tests &amp; CI/CD:</strong>
-              <span>100% pass rate (Unit/Widget/E2E), Fastlane, GitHub Actions &amp; GitLab CI/CD.</span>
+              <strong>1M+ Production Scale &amp; Reliability:</strong>
+              <span>Proven track record operating large-scale multi-app mobile systems reaching 1M+ downloads across iOS and Android, consistently maintaining a 99.5%+ crash-free session rate in production.</span>
             </div>
           </div>
         </section>
@@ -1031,28 +1044,28 @@
           </h2>
           <div class="skills-list">
             <div class="skill-row">
-              <div class="skill-label">Languages &amp; Core:</div>
-              <div class="skill-values">Flutter &amp; Dart (Expert), Swift, SwiftUI, UIKit, Kotlin, HTML5/CSS3, TypeScript.</div>
+              <div class="skill-label">Languages &amp; Platforms:</div>
+              <div class="skill-values">Flutter &amp; Dart, Swift (iOS), Kotlin (Android), Rust, TypeScript.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Architecture &amp; State:</div>
-              <div class="skill-values">Clean Architecture (Package-based), BLoC (flutter_bloc), Riverpod 2.x, MVVM, Unidirectional Data Flow, SOLID, Modularization.</div>
+              <div class="skill-values">Clean Architecture, Riverpod, BLoC, MVVM, VIPER, Modularization.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Design System &amp; UI:</div>
-              <div class="skill-values">Core UI Library, Custom Widgets, Theme Engine (Dark/Light), Responsive Layout (Mobile/Web), Localization (intl).</div>
+              <div class="skill-label">Networking &amp; Data:</div>
+              <div class="skill-values">Offline-First, SQLite, Realm, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Networking &amp; Local DB:</div>
-              <div class="skill-values">Base Dio Client (Interceptors, Auto Refresh Token, Retry Policy), WebSocket/Socket.IO, SQLite/Drift, Hive, SharedPreferences/Isar.</div>
+              <div class="skill-label">Performance &amp; Advanced:</div>
+              <div class="skill-values">Flutter DevTools, Render Tree Optimization, AutoRoute, Gemini AI, GenUI (A2UI).</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">Performance &amp; Web:</div>
-              <div class="skill-values">Render Tree Optimization (RepaintBoundary, const), Flutter DevTools, GoRouter &amp; AutoRoute (Nested Routes, URL Query Params), CanvasKit/WASM.</div>
+              <div class="skill-label">Testing &amp; CI/CD:</div>
+              <div class="skill-values">Unit &amp; Widget Testing (277 Tests), GitHub Actions, GitLab CI/CD, Fastlane.</div>
             </div>
             <div class="skill-row">
-              <div class="skill-label">DevOps, QA &amp; Mentoring:</div>
-              <div class="skill-values">Fastlane, GitHub Actions, GitLab CI/CD, Docker, 277 Automated Tests (100% Pass), PR Review, Coding Conventions &amp; Mentoring.</div>
+              <div class="skill-label">Delivery &amp; Monitoring:</div>
+              <div class="skill-values">App Store Connect, Google Play Console, Firebase App Distribution, Sentry, Crashlytics, GA4.</div>
             </div>
           </div>
         </section>
@@ -1066,22 +1079,23 @@
 
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">ASTROBITE — AI Food Scanner &amp; Voice Calorie Tracker / AstroVoice AI</span>
+              <div class="job-title-group">
+                <span class="job-company">ASTROBITE</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile Engineer &amp; System Architect</span>
+                <span class="job-role-tag">(AI Calorie Tracker &amp; Food Scanner)</span>
+              </div>
               <span class="job-date">2026 – Present</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile Engineer &amp; System Architect</span>
-              <span class="job-domain">Cross-Platform AI Mobile &amp; Web Ecosystem</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter 3.x, Dart 3.x, Clean Architecture (12 Modular Packages), Riverpod 2.6 (AsyncNotifier, code-gen), AutoRoute &amp; GoRouter (Deep Linking, Web Query Params), Gemini 3.8 Flash (Vision &amp; NLU), Base Dio Client, Custom Design System, Flutter DevTools (60 FPS, 0 memory leak), Fastlane, GitHub Actions &amp; GitLab CI/CD (277 Tests 100% Pass).
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, Riverpod 2.x, AutoRoute, Gemini AI, Dio, SQLite, Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
               <li>Architected AstroBite (v3.0.0) based on <strong>Clean Architecture / Modular Package-based</strong> structure with Riverpod 2.x code-gen across 12 decoupled business modules.</li>
               <li>Packaged proprietary <strong>2D/3D Design System &amp; Base Components</strong> natively in Flutter (Custom Widgets, Theme Engine, Responsive Breakpoints), locking consistent <strong>60 FPS</strong>.</li>
               <li>Constructed <strong>Base Network Client &amp; Local Persistence</strong>: Dio Interceptors (token refresh, retry policy), WebSocket &amp; Firestore stream real-time, Hive/SQLite offline caching.</li>
               <li>Optimized <strong>Render Tree &amp; Memory via Flutter DevTools</strong>: isolated painting via <code>RepaintBoundary</code>, <code>const</code> constructors, camera buffer disposal yielding sub-2.5s AI latency and <strong>0 memory leaks</strong>.</li>
-              <li>Advanced <strong>Web &amp; Routing Optimization</strong>: GoRouter &amp; AutoRoute supporting nested routes, URL navigation, query params, CanvasKit/WASM rendering, and asset caching.</li>
+              <li>Engineered deep-linking and web navigation architecture using <strong>AutoRoute</strong>: supporting nested routes, route guards, URL query params, CanvasKit/WASM rendering, and asset caching.</li>
               <li>Established a suite of <strong>277 automated unit &amp; widget tests (100% pass)</strong>; standardized CI/CD pipelines (Web/Android/iOS) via Fastlane, GitHub Actions &amp; GitLab CI/CD.</li>
             </ul>
           </article>
@@ -1116,22 +1130,22 @@
           <!-- COMPANY 1: FINVIET TECHNOLOGY -->
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">FINVIET TECHNOLOGY</span>
+              <div class="job-title-group">
+                <span class="job-company">FINVIET TECHNOLOGY</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile Developer (Flutter, POS &amp; Kiosk)</span>
+              </div>
               <span class="job-date">08/2025 – 08/2026</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile Developer (Flutter, Web &amp; Kiosk)</span>
-              <span class="job-domain">Multi-Industry POS Kiosk Ecosystem (F&amp;B, Retail &amp; Spa Services)</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter (Mobile, Web &amp; Tablet), Dart, Clean Architecture, BLoC (flutter_bloc), Base Dio Client, SQLite/Drift, Platform Channels (Kotlin), ESC/POS Thermal, Fastlane, GitHub Actions.
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
               <li>Architected modular <strong>Clean Architecture / MVVM</strong> applying <strong>BLoC (flutter_bloc)</strong> with Unidirectional Data Flow for multi-vertical POS &amp; Kiosk checkouts (F&amp;B, Retail, Spa), slashing transaction time by <strong>30%</strong>.</li>
               <li>Packaged <strong>Base UI Library &amp; Responsive Layout</strong> dynamically adapting across screen form-factors (Mobile, Tablet, Kiosk/Web) with reusable Custom Widgets and dynamic Theme Engine.</li>
               <li>Built <strong>Base Network Client with Dio</strong>: configured Interceptors for automatic bearer token injection, 401 token refresh cycle, exponential backoff retry policy, and offline cache.</li>
               <li>Designed robust <strong>Offline-first</strong> data pipeline (BLoC, SQLite/Drift), ensuring 100% order persistence during network disconnects and auto-sync upon reconnection.</li>
-              <li>Utilized <strong>Flutter DevTools</strong> (Profiler, Memory) to inspect Render Tree, eliminating drop frames/jank and avoiding RAM leaks when driving ESC/POS thermal printers and barcode scanners.</li>
+              <li>Profiled Render Tree and eliminated frame drops/jank using <strong>Flutter DevTools</strong> (Profiler, Memory), preventing RAM leaks while driving ESC/POS thermal printers and barcode scanners via Kotlin Platform Channels.</li>
               <li>Established <strong>Coding conventions</strong>, strict lint rules (<code>analysis_options.yaml</code>), led PR code reviews, and <strong>mentored Junior developers</strong> across the engineering team.</li>
               <li>Configured automated CI/CD build &amp; release pipelines (Android APK/AAB, Web bundle) via <strong>Fastlane &amp; GitHub Actions / GitLab CI/CD</strong>.</li>
             </ul>
@@ -1140,52 +1154,45 @@
           <!-- COMPANY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
           <article class="job-block">
             <div class="job-header-row">
-              <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+              <div class="job-title-group">
+                <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+                <span class="job-role-sep">•</span>
+                <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
+              </div>
               <span class="job-date">05/2020 – 06/2025 (5 years)</span>
             </div>
-            <div class="job-sub-row">
-              <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
-              <span class="job-domain">Ecosystem of 6 Apps: Social, OTT, Travel, Fintech &amp; Outsource</span>
-            </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Add-to-App, Clean Architecture, Riverpod, BLoC, iOS Swift, VIPER, MVVM, WebSocket (Starscream/Socket.IO), SQLite, CallKit, Firebase Crashlytics, GitLab CI/CD.
+              <strong>Tech Stack:</strong> Flutter, iOS Swift, VIPER, MVVM, Riverpod, BLoC, WebSocket, SQLite, CallKit, Crashlytics, CI/CD.
             </div>
             <ul class="bullet-list">
               <li><strong>[Hahalolo — Travel Social Network (1M+ downloads)]</strong>: Developed Tour, Flight, Hotel, Community modules; built Native iOS (Swift, VIPER) and integrated <strong>Flutter via Add-to-App</strong>; handled Responsive UI, Deep Linking, Crashlytics &lt;0.5% crash rate. Mobile team: 20.</li>
               <li><strong>[Halome — OTT Realtime Messaging]</strong>: Engineered real-time chat app from scratch using Native iOS Swift (MVVM); integrated <strong>WebSocket real-time</strong>, SQLite offline storage, RxSwift, CallKit VoIP; optimized for locked 60 FPS list scrolling. Team: 5.</li>
-              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Maintained &amp; optimized international money transfer app (192 countries) and stock trading platform in Flutter; ensured transaction integrity, KYC, real-time charts, and Dio interceptors.</li>
+              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Engineered and optimized international remittance app (192 countries) and stock trading platform in Flutter; implemented secure KYC verification, local encrypted persistence (SQLite/Keychain), and smooth real-time financial charting.</li>
               <li><strong>[Aquannets — Outsource for Galactic Holdings]</strong>: Developed aquaculture farm management app in Flutter applying <strong>Clean Architecture + Riverpod</strong>, SQLite offline-first at ponds. Team: 2.</li>
               <li><strong>[SocTrip — QC &amp; Testing Lead]</strong>: Led end-to-end (E2E) testing lifecycle, designed comprehensive test matrices, and provided quality gate sign-off for App Store &amp; Google Play releases.</li>
             </ul>
           </article>
         </section>
 
-        <!-- 2. EDUCATION & CREDENTIALS -->
+        <!-- 2. EDUCATION -->
         <section class="section">
           <h2 class="section-title">
-            <span>EDUCATION &amp; CREDENTIALS</span>
+            <span>EDUCATION</span>
             <span class="sub-tag">ACADEMIC</span>
           </h2>
           <div class="edu-block">
-            <div>
-              <div class="edu-school">FPT POLYTECHNIC COLLEGE</div>
-              <div class="edu-degree">Associate Degree in Information Technology (Software Development Major) • Proven practical competence across large-scale 1M+ user ecosystems</div>
-            </div>
-            <div class="edu-languages">
-              <strong>English:</strong> Professional Working (Technical documentation, architecture &amp; collaboration) • <strong>Vietnamese:</strong> Native
-            </div>
+            <div class="edu-school">FPT POLYTECHNIC</div>
           </div>
         </section>
 
-        <!-- 3. ENGINEERING DISCIPLINE & METHODOLOGY -->
+        <!-- 3. LANGUAGES -->
         <section class="section">
           <h2 class="section-title">
-            <span>ENGINEERING DISCIPLINE &amp; METHODOLOGY</span>
-            <span class="sub-tag">PRACTICES</span>
+            <span>LANGUAGES</span>
+            <span class="sub-tag">PROFICIENCY</span>
           </h2>
-          <div class="practices-list">
-            <div><strong>Architecture &amp; Performance:</strong> Clean Architecture (Package-based), Strict SOLID principles, Ponytail Mindset (Zero Bloat), Widget Lifecycle &amp; Render Tree Optimization (DevTools 60 FPS, 0 memory leak).</div>
-            <div><strong>Quality, Testing &amp; Mentoring:</strong> 100% Deterministic Testing (Unit/Widget/Integration), Automated CI/CD (Fastlane, GitHub Actions, GitLab CI/CD, Docker), PR Code Review &amp; Junior Mentoring.</div>
+          <div class="lang-item">
+            <strong>English:</strong> Reads and understands technical documentation
           </div>
         </section>
 
@@ -1250,7 +1257,7 @@
         btnVI.classList.remove('active');
         btnEN.classList.add('active');
         statusText.textContent = "Mobile Engineer Resume — Nguyen Duy Trang";
-        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261014";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030";
         btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf";
         btnPdfText.textContent = "Download B&W PDF";
         btnPrintText.textContent = "Print / Save PDF";
@@ -1261,7 +1268,7 @@
         btnEN.classList.remove('active');
         btnVI.classList.add('active');
         statusText.textContent = "CV Mobile Engineer — Nguyen Duy Trang";
-        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261014";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030";
         btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang.pdf";
         btnPdfText.textContent = "Tải PDF Trắng Đen";
         btnPrintText.textContent = "In / Lưu PDF";

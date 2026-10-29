@@ -11,7 +11,7 @@ const skillsDataVi: SkillGroup[] = [
       { name: "Android Native (Kotlin)", level: "Proficient", isKey: true },
       { name: "Platform Channels (MethodChannel)", level: "Advanced" },
       { name: "Flutter Add-to-App", level: "Proficient" },
-      { name: "HTML5 / CSS3 / JavaScript", level: "Working" },
+      { name: "Flutter Web (CanvasKit / WASM)", level: "Advanced", isKey: true },
     ],
   },
   {
@@ -63,7 +63,7 @@ const skillsDataEn: SkillGroup[] = [
       { name: "Android Native (Kotlin)", level: "Proficient", isKey: true },
       { name: "Platform Channels (MethodChannel)", level: "Advanced" },
       { name: "Flutter Add-to-App", level: "Proficient" },
-      { name: "HTML5 / CSS3 / JavaScript", level: "Working" },
+      { name: "Flutter Web (CanvasKit / WASM)", level: "Advanced", isKey: true },
     ],
   },
   {
