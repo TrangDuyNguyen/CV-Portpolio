@@ -881,16 +881,19 @@
               <strong>Sản phẩm chính:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Ứng dụng quản lý bán hàng thông minh, thu ngân và phát hành hóa đơn điện tử cho chuỗi bán lẻ, tạp hóa, nhà thuốc &amp; F&amp;B.
             </div>
             <div class="job-tech-line">
+              <strong>Nghiệp vụ đảm nhiệm:</strong> Phân quyền tính năng hệ thống (RBAC) • Luồng bán hàng tạp hóa &amp; thanh toán đa kênh (VietQR, thẻ POS, tiền mặt) • Quản lý sản phẩm &amp; kho hàng (nhập/xuất/tồn) • Kê khai thuế &amp; hóa đơn điện tử (NĐ 123) • Báo cáo doanh thu &amp; dòng tiền.
+            </div>
+            <div class="job-tech-line">
               <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), VietQR Pay, ESC/POS Printer, Barcode Scanner, Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
-              <li>Phát triển ứng dụng ECO POS và Self-Order Kiosk trong hệ sinh thái Finviet, hỗ trợ tạo đơn hàng nhanh bằng quét mã vạch và tính tiền tức thì, rút ngắn 30% thời gian giao dịch tại điểm bán.</li>
-              <li>Tích hợp cổng thanh toán VietQR Pay động của Finviet, tự động cập nhật và đối soát trạng thái giao dịch ngân hàng theo thời gian thực ngay khi khách chuyển khoản thành công.</li>
-              <li>Tích hợp giải pháp Hóa đơn điện tử &amp; Chữ ký số chuẩn Tổng cục Thuế (Nghị định 123) trực tiếp từ máy POS di động mà không cần trang bị phần cứng cồng kềnh.</li>
-              <li>Thiết kế luồng dữ liệu Offline-first với BLoC và SQLite/Drift, cam kết 100% đơn hàng không bị mất khi mất kết nối mạng và tự động đồng bộ khi có kết nối trở lại.</li>
-              <li>Phân tích Render Tree và triệt tiêu drop frames/jank bằng Flutter DevTools (Profiler, Memory), kiểm soát rò rỉ RAM khi tích hợp máy in nhiệt ESC/POS (Bluetooth/USB) và máy quét mã vạch qua Platform Channels (Kotlin).</li>
-              <li>Tối ưu hóa UI Render và memory footprint cho phần cứng POS và Kiosk cấu hình thấp (máy POS cầm tay Sunmi, iMin, màn hình phụ), duy trì tốc độ khung hình 60 FPS.</li>
-              <li>Thiết lập pipeline tự động hóa CI/CD build và release cho Android &amp; iOS bằng Fastlane và GitHub Actions.</li>
+              <li><strong>Phân quyền tính năng toàn hệ thống:</strong> Thiết lập ma trận phân quyền chi tiết (RBAC) theo vai trò (chủ cửa hàng, quản lý, thu ngân, thủ kho), bảo mật dữ liệu và cấu hình chi nhánh.</li>
+              <li><strong>Luồng bán hàng tạp hóa &amp; thanh toán:</strong> Tối ưu luồng quét barcode tính tiền siêu tốc (giảm 30% thời gian giao dịch); tích hợp thanh toán linh hoạt qua VietQR Pay động, quẹt thẻ máy POS và tiền mặt.</li>
+              <li><strong>Quản lý sản phẩm &amp; nhập xuất kho:</strong> Xây dựng module quản lý danh mục hàng hóa đa biến thể, kiểm kê kho định kỳ, tạo phiếu nhập/xuất kho và cảnh báo tồn kho tự động.</li>
+              <li><strong>Kê khai thuế &amp; hóa đơn điện tử:</strong> Tích hợp luồng kê khai thuế và phát hành hóa đơn điện tử có mã của cơ quan thuế theo Nghị định 123 kèm chữ ký số trực tiếp trên thiết bị POS di động.</li>
+              <li><strong>Báo cáo doanh thu &amp; dòng tiền:</strong> Xây dựng dashboard báo cáo doanh số, lợi nhuận, biểu đồ bán hàng theo thời gian thực và tự động đối soát ca làm việc, đối soát giao dịch ngân hàng.</li>
+              <li><strong>Offline-first &amp; Tích hợp phần cứng:</strong> Thiết kế cơ sở dữ liệu SQLite/Drift offline-first đảm bảo không mất đơn khi mất mạng; giao tiếp máy in nhiệt ESC/POS và máy quét barcode qua Kotlin Platform Channels.</li>
+              <li><strong>Tối ưu hiệu năng &amp; CI/CD:</strong> Triệt tiêu drop frames, duy trì 60 FPS ổn định trên thiết bị POS cấu hình thấp (Sunmi, iMin, màn hình phụ); tự động hóa build/release bằng Fastlane và GitHub Actions.</li>
             </ul>
           </article>
           <!-- CÔNG TY 2: HAHALOLO -->
@@ -1137,16 +1140,19 @@
               <strong>Core Product:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Smart Retail POS, Cashier &amp; E-Invoice Issuance system for grocery stores, retail chains, pharmacies &amp; F&amp;B.
             </div>
             <div class="job-tech-line">
+              <strong>Core Business Scope:</strong> Granular RBAC Permissions • Retail Sales &amp; Multi-modal Payments (VietQR, Cards, Cash) • Product &amp; Inventory Management (Stock-in/out) • Tax &amp; E-Invoicing (Decree 123) • Real-time Revenue Analytics.
+            </div>
+            <div class="job-tech-line">
               <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), VietQR Pay, ESC/POS Printer, Barcode Scanner, Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
-              <li>Engineered ECO POS and Self-Order Kiosk applications within Finviet's fintech ecosystem, supporting high-speed barcode checkout and automatic calculation, reducing transaction duration by 30%.</li>
-              <li>Integrated Dynamic VietQR Pay gateway, enabling automated banking payment reconciliation and real-time transaction status updates at point-of-sale.</li>
-              <li>Integrated E-Invoice &amp; Digital Signature issuance directly on mobile/Android POS terminals compliant with General Department of Taxation regulations (Decree 123) without external hardware.</li>
-              <li>Architected an Offline-first data pipeline (BLoC, SQLite/Drift), guaranteeing 100% order capture resilience during network outages with seamless background synchronization upon reconnection.</li>
-              <li>Profiled render tree execution and eradicated drop frames/jank using Flutter DevTools (Profiler, Memory), eliminating memory leaks across ESC/POS thermal printers and hardware barcode scanner integrations.</li>
-              <li>Optimized UI rendering and memory footprint for low-spec Android POS hardware (Sunmi, iMin POS terminals, dual customer displays), locking a steady 60 FPS.</li>
-              <li>Established automated CI/CD build and delivery pipelines for Android and iOS using Fastlane and GitHub Actions.</li>
+              <li><strong>Granular System RBAC:</strong> Engineered Role-Based Access Control matrix across all store operations (owner, manager, cashier, warehouse), securing feature access and multi-branch data.</li>
+              <li><strong>Retail Checkout &amp; Multi-Modal Payments:</strong> Built high-speed barcode checkout (cutting transaction time by 30%); integrated dynamic VietQR Pay reconciliation, POS card terminals, and cash payments.</li>
+              <li><strong>Product &amp; Inventory Management:</strong> Developed product catalog management with variants, barcode inventory tracking, stock-in/stock-out logging, and automated low-stock threshold alerts.</li>
+              <li><strong>Tax Declaration &amp; E-Invoice Issuance:</strong> Integrated tax reporting and certified electronic invoice (E-Invoice) issuance compliant with Decree 123 regulations and digital signatures on mobile POS terminals.</li>
+              <li><strong>Revenue &amp; Cash Flow Analytics:</strong> Built real-time revenue dashboards, sales analytics, cashier shift reconciliation, and automated banking transaction matching.</li>
+              <li><strong>Offline-First &amp; Hardware Integration:</strong> Architected an Offline-first pipeline (BLoC, SQLite/Drift) guaranteeing zero order loss during outages; integrated ESC/POS thermal printers and barcode scanners via Kotlin Platform Channels.</li>
+              <li><strong>Performance &amp; CI/CD Delivery:</strong> Locked 60 FPS rendering on low-spec Android POS hardware (Sunmi, iMin, dual customer displays); automated Android/iOS build and deployment pipelines via Fastlane and GitHub Actions.</li>
             </ul>
           </article>
           <!-- COMPANY 2: HAHALOLO -->
