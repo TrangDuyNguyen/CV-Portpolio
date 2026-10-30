@@ -54,12 +54,8 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <a href="#about" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl overflow-hidden border border-white/90 dark:border-slate-700/80 shadow-sm flex items-center justify-center p-0.5 group-hover:scale-105 transition-all">
-            <img
-              src={profile.avatarUrl}
-              alt={profile.name}
-              className="w-full h-full object-cover rounded-lg"
-            />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-sm flex items-center justify-center shadow-sm group-hover:scale-105 transition-all font-mono">
+            DT
           </div>
           <div>
             <div className="flex items-center gap-2">

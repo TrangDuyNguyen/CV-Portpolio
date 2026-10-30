@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Clock, FolderGit2, Mail, ExternalLink } from 'lucide-react';
+import { Download, Clock, FolderGit2, Mail, ExternalLink, MapPin } from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -90,22 +90,63 @@ export const HeroSection: React.FC = () => {
 
             </div>
 
-            {/* Right Column: Profile Avatar & Details (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[360px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
-                <img
-                  src={profile.avatarUrl}
-                  alt={profile.name}
-                  className="w-full h-full object-cover object-top"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
-                  <div className="text-lg font-bold">{profile.name}</div>
-                  <div className="text-xs text-slate-200 font-mono flex items-center justify-between">
-                    <span>{profile.roleTitle}</span>
-                    <span>{t.avatarLocation}</span>
+            {/* Right Column: Technical Overview Console (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="w-full rounded-2xl bg-slate-900 text-slate-100 p-5 sm:p-6 shadow-xl border border-slate-800">
+                
+                {/* Console Title Bar */}
+                <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-800 text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                    <span className="text-slate-400 ml-1">profile.mobile.dart</span>
+                  </div>
+                  <span className="text-emerald-400 flex items-center gap-1.5 font-semibold text-[11px]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    ready
+                  </span>
+                </div>
+
+                {/* Profile Key-Value Technical Summary */}
+                <div className="space-y-3 font-mono text-xs">
+                  <div>
+                    <span className="text-slate-500">// Core Platform Focus</span>
+                    <div className="text-sky-400 font-semibold mt-0.5">
+                      Flutter (Dart) • Native iOS (Swift) • Android (Kotlin)
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-slate-500">// Architecture & State</span>
+                    <div className="text-emerald-400 mt-0.5">
+                      Clean Architecture • Riverpod 2.x • BLoC • VIPER/MVVM
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-slate-500">// Commercial Production Apps</span>
+                    <div className="text-slate-200 mt-0.5">
+                      Hahalolo (1M+ dl) • Halome OTT • Finviet POS/Kiosk
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-slate-500">// Platform Channels & Hardware</span>
+                    <div className="text-purple-300 mt-0.5">
+                      Kotlin Platform Channels • ESC/POS • Barcode • CallKit
+                    </div>
+                  </div>
+
+                  <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-slate-400 text-[11px]">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-sky-400" />
+                      {profile.location}
+                    </span>
+                    <span className="text-sky-300 font-semibold">Mid-Level Mobile Engineer</span>
                   </div>
                 </div>
+
               </div>
 
               {/* View Online CV link */}
