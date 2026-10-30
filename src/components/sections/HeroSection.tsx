@@ -98,10 +98,13 @@ export const HeroSection: React.FC = () => {
               {profile.name}
             </h1>
 
-            <p className="mt-3 text-[11px] sm:text-xs font-mono text-[#8E96A4] tracking-wide">
-              {language === 'vi'
-                ? '✦ Di chuyển để khuấy động ánh sáng lò rèn. Chạm để tạo tia lửa.'
-                : '✦ Move to stir the forge light. Click or tap to strike it.'}
+            <p className="mt-3 text-[11px] sm:text-xs font-mono text-[#8E96A4] tracking-wide flex items-center gap-1.5 flex-wrap">
+              <span className="text-[#FFB648]">✦</span>
+              <span>
+                {language === 'vi'
+                  ? 'Ngôn ngữ hay framework không còn là rào cản — trọng tâm là kiến trúc bền bỉ và giá trị thực tế của sản phẩm.'
+                  : 'Languages and frameworks are never the barrier — the focus is resilient architecture and real product impact.'}
+              </span>
             </p>
           </div>
 
