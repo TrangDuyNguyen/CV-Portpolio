@@ -117,7 +117,7 @@ export const Navbar: React.FC = () => {
 
           {/* View CV Primary Action */}
           <a
-            href={profile.cvPdfUrl}
+            href={profile.cvViewUrl}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="pointer"
@@ -175,7 +175,7 @@ export const Navbar: React.FC = () => {
 
             <div className="pt-3 flex items-center justify-between">
               <a
-                href={profile.cvPdfUrl}
+                href={profile.cvViewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] text-xs font-medium shadow-sm transition-colors"

@@ -121,7 +121,7 @@ export const ContactSection: React.FC = () => {
               </span>
               <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href={profile.cvPdfUrl}
+                  href={profile.cvViewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="pointer"

@@ -123,7 +123,7 @@ export const HeroSection: React.FC = () => {
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             {/* Primary CTA: Xem CV (Mở tab mới xem trực tiếp) */}
             <a
-              href={profile.cvPdfUrl}
+              href={profile.cvViewUrl}
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="pointer"
