@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lenis": "^1.3.27",
     "lucide": "^1.48.0",
     "lucide-react": "^0.475.0",
     "morphicons": "^1.7.1",

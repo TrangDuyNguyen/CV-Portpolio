@@ -14,6 +14,7 @@ export const CustomCursor: React.FC = () => {
 
   const [mode, setMode] = useState<CursorMode>('default');
   const [customLabel, setCustomLabel] = useState<string>('');
+  const [isClicking, setIsClicking] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isPointerFine || isReducedMotion) return;
@@ -64,6 +65,14 @@ export const CustomCursor: React.FC = () => {
       }
     };
 
+    const onMouseDown = () => {
+      setIsClicking(true);
+    };
+
+    const onMouseUp = () => {
+      setIsClicking(false);
+    };
+
     const onMouseLeave = () => {
       if (containerRef.current) {
         containerRef.current.style.opacity = '0';
@@ -78,7 +87,7 @@ export const CustomCursor: React.FC = () => {
 
     const render = () => {
       // Soft lerp following
-      const ease = 0.16;
+      const ease = 0.18;
       ringX += (targetX - ringX) * ease;
       ringY += (targetY - ringY) * ease;
 
@@ -90,6 +99,8 @@ export const CustomCursor: React.FC = () => {
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mousedown', onMouseDown, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
     document.documentElement.addEventListener('mouseleave', onMouseLeave);
     document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
@@ -97,6 +108,8 @@ export const CustomCursor: React.FC = () => {
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
       document.documentElement.removeEventListener('mouseleave', onMouseLeave);
       document.documentElement.removeEventListener('mouseenter', onMouseEnter);
       cancelAnimationFrame(animId);
@@ -122,7 +135,7 @@ export const CustomCursor: React.FC = () => {
       <div
         ref={dotRef}
         className={`fixed top-0 left-0 -ml-1 -mt-1 w-2 h-2 rounded-full pointer-events-none transition-opacity duration-200 ${
-          isView ? 'opacity-0' : 'bg-[#f4f2ea] mix-blend-difference'
+          isView ? 'opacity-0' : 'bg-[#F4F2EA] mix-blend-difference'
         }`}
         style={{ willChange: 'transform' }}
       />
@@ -131,13 +144,15 @@ export const CustomCursor: React.FC = () => {
       <div
         ref={ringRef}
         className={`fixed top-0 left-0 pointer-events-none rounded-full flex items-center justify-center transition-all duration-200 ${
+          isClicking ? 'scale-75' : 'scale-100'
+        } ${
           isView
-            ? '-ml-7 -mt-7 w-14 h-14 bg-[#ff6417] text-[#08090a] shadow-[0_0_24px_rgba(255,100,23,0.5)] border-transparent mix-blend-normal'
+            ? '-ml-7 -mt-7 w-14 h-14 bg-[#FF6417] text-[#08090A] shadow-[0_0_24px_rgba(255,100,23,0.5)] border-transparent mix-blend-normal'
             : isLens
-            ? '-ml-2 -mt-2 w-4 h-4 border border-[#ffb648] bg-[#ffb648]/20 mix-blend-difference'
+            ? '-ml-3 -mt-3 w-6 h-6 border border-[#FFB648] bg-[#FFB648]/20 mix-blend-difference'
             : isInteractive
-            ? '-ml-6 -mt-6 w-12 h-12 border border-[#f4f2ea]/80 bg-[#f4f2ea]/10 mix-blend-difference'
-            : '-ml-4 -mt-4 w-8 h-8 border border-[#f4f2ea]/60 bg-transparent mix-blend-difference'
+            ? '-ml-6 -mt-6 w-12 h-12 border border-[#F4F2EA]/80 bg-[#F4F2EA]/10 mix-blend-difference'
+            : '-ml-4 -mt-4 w-8 h-8 border border-[#F4F2EA]/60 bg-transparent mix-blend-difference'
         }`}
         style={{ willChange: 'transform' }}
       >

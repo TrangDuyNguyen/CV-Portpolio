@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Copy, Check, Download, Github, Linkedin, ExternalLink, FileText } from 'lucide-react';
+import { Copy, Check, Download, Github, Linkedin } from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
-import { Badge } from '../common/Badge';
 
 export const ContactSection: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language].contact;
   const profile = getProfileData(language);
+  const isVi = language === 'vi';
+
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -18,169 +19,139 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+    <section id="contact" className="py-24 md:py-36 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Large Editorial Lead */}
+        <div className="max-w-4xl mb-16 md:mb-20 reveal">
+          <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-3">
+            {isVi ? '// Khởi Đầu Hợp Tác' : '// Get In Touch'}
+          </p>
+
+          <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-6">
+            {isVi ? 'Liên hệ với tôi.' : 'Write to me.'}
+          </h2>
+
+          <p className="text-base sm:text-xl text-[#8E96A4] font-light leading-relaxed max-w-2xl" data-cursor="lens">
+            {isVi
+              ? 'Sẵn sàng thảo luận về các cơ hội Mobile Engineer mới. Đóng góp vào các sản phẩm yêu cầu kiến trúc vững chắc, tích hợp phần cứng và trải nghiệm người dùng mượt mà.'
+              : 'Open to new Mobile Engineer opportunities. Excited to contribute to products demanding clean architecture, native performance, and crafted user experiences.'}
+          </p>
+        </div>
+
+        {/* Minimalist Contact Grid (Zero Fake Terminal Window) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-10 border-t border-[rgba(244,242,234,0.08)] reveal">
           
-          {/* Header */}
-          <div className="text-center mb-12 reveal">
-            <Badge variant="emerald" size="md" className="mb-3">
-              {profile.status}
-            </Badge>
-            <h2 className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-[#F4F2EA] tracking-tight mb-4">
-              {t.title}
-            </h2>
-            <p className="text-sm sm:text-base text-[#8E96A4] max-w-2xl mx-auto leading-relaxed">
-              {t.description}
-            </p>
-          </div>
-
-          {/* Contact Console Card */}
-          <div className="bg-[#0E131F]/90 rounded-3xl p-6 sm:p-8 md:p-10 border border-[rgba(244,242,234,0.08)] shadow-2xl reveal">
-            
-            {/* Top Bar */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-5 mb-8 border-b border-slate-200 dark:border-slate-800 gap-2">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block shadow-sm" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block shadow-sm" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block shadow-sm" />
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 ml-2">
-                  {t.terminalChannel}
-                </span>
-              </div>
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                {t.statusActive}
+          {/* Email & Phone Direct Row */}
+          <div className="md:col-span-7 space-y-8">
+            <div>
+              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-2">
+                {t.emailLabel}
               </span>
-            </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`mailto:${profile.email}`}
+                  data-cursor="pointer"
+                  className="font-display italic text-2xl sm:text-3xl text-[#F4F2EA] hover:text-[#FF6417] transition-colors break-all"
+                >
+                  {profile.email}
+                </a>
 
-            {/* Contact Rows */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
-              {/* Email */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 block font-mono">{t.emailLabel}</span>
-                    <a
-                      href={`mailto:${profile.email}`}
-                      className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors break-all"
-                    >
-                      {profile.email}
-                    </a>
-                  </div>
-                </div>
                 <button
                   onClick={handleCopyEmail}
-                  className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer shrink-0"
+                  data-cursor="pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-xs font-mono text-[#8E96A4] hover:text-[#FFF4DE] hover:border-[#FF6417] transition-all cursor-pointer"
                   title={t.copyTooltip}
-                  aria-label={t.copyTooltip}
                 >
                   {copied ? (
-                    <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{t.copiedText}</span>
+                    </>
                   ) : (
-                    <Copy className="w-4 h-4" />
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>{isVi ? 'Sao chép email' : 'Copy address'}</span>
+                    </>
                   )}
                 </button>
               </div>
+            </div>
 
-              {/* Phone */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 block font-mono">{t.phoneLabel}</span>
-                    <a
-                      href={`tel:${profile.phone}`}
-                      className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-                    >
-                      {profile.phone}
-                    </a>
-                  </div>
-                </div>
-                <span className="text-xs font-mono px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                  VN (+84)
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[rgba(244,242,234,0.06)]">
+              <div>
+                <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-1">
+                  {t.phoneLabel}
+                </span>
+                <a
+                  href={`tel:${profile.phone}`}
+                  data-cursor="pointer"
+                  className="text-base sm:text-lg font-mono text-[#F4F2EA] hover:text-[#FF6417] transition-colors"
+                >
+                  {profile.phone}
+                </a>
+              </div>
+
+              <div>
+                <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-1">
+                  {isVi ? 'Địa điểm làm việc' : 'Location'}
+                </span>
+                <span className="text-base sm:text-lg font-mono text-[#F4F2EA]">
+                  {profile.location}
                 </span>
               </div>
+            </div>
+          </div>
 
-              {/* Location */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800 shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs text-slate-500 dark:text-slate-400 block font-mono">{t.locationLabel}</span>
-                  <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                    {t.locationValue}
-                  </span>
-                </div>
-              </div>
+          {/* Direct Actions & Resume */}
+          <div className="md:col-span-5 md:pl-8 md:border-l md:border-[rgba(244,242,234,0.08)] space-y-6">
+            <div>
+              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
+                {isVi ? 'Hồ Sơ Bản In (PDF)' : 'Official Resume (PDF)'}
+              </span>
+              <a
+                href={profile.cvPdfUrl}
+                download={isVi ? 'Mobile_Engineer_Nguyen_Duy_Trang.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'}
+                data-cursor="pointer"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+              >
+                <Download className="w-4 h-4" />
+                <span>{t.downloadPdfBtn}</span>
+              </a>
+            </div>
 
-              {/* Profiles */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 flex items-center justify-around">
+            <div className="pt-6 border-t border-[rgba(244,242,234,0.06)]">
+              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
+                {isVi ? 'Kênh Chuyên Môn' : 'Professional Channels'}
+              </span>
+              <div className="flex items-center gap-3">
                 <a
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+                  data-cursor="pointer"
+                  className="p-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-[#F4F2EA] hover:text-[#FF6417] hover:border-[#FF6417] transition-all"
+                  aria-label="GitHub"
                 >
                   <Github className="w-4 h-4" />
-                  <span>GitHub</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400" />
                 </a>
-                <div className="w-px h-6 bg-slate-200 dark:bg-slate-700" />
+
                 <a
                   href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+                  data-cursor="pointer"
+                  className="p-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-[#F4F2EA] hover:text-[#FF6417] hover:border-[#FF6417] transition-all"
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-                  <span>LinkedIn</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                  <Linkedin className="w-4 h-4" />
                 </a>
               </div>
             </div>
-
-            {/* Bottom Actions */}
-            <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                  {t.downloadTitle}
-                </h4>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  {t.downloadDesc}
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <a
-                  href={profile.cvPdfUrl}
-                  download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs shadow-sm transition-all text-center"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>{t.downloadPdfBtn}</span>
-                </a>
-
-                <a
-                  href={profile.cvViewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 font-semibold text-xs transition-all text-center"
-                >
-                  <FileText className="w-4 h-4" />
-                  <span>{t.viewWebBtn}</span>
-                </a>
-              </div>
-            </div>
-
           </div>
+
         </div>
+
       </div>
     </section>
   );

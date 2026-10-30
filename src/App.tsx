@@ -1,7 +1,9 @@
 import React from 'react';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { Navbar } from './components/layout/Navbar';
 import { HeroSection } from './components/sections/HeroSection';
+import { EditorialStatement } from './components/sections/EditorialStatement';
 import { CareerSection } from './components/sections/CareerSection';
 import { AstroBiteSection } from './components/sections/AstroBiteSection';
 import { GalleryLightbox } from './components/sections/GalleryLightbox';
@@ -14,47 +16,53 @@ import { CustomCursor } from './components/common/CustomCursor';
 import { SparksCanvas } from './components/common/SparksCanvas';
 
 export const App: React.FC = () => {
+  // Lenis smooth inertial scrolling
+  useSmoothScroll();
+  // Scroll reveal trigger
   useScrollReveal();
 
   return (
     <div className="u-grain min-h-screen bg-[#08090A] text-[#F4F2EA] selection:bg-[#FF6417]/30 selection:text-[#FFF4DE] transition-colors duration-250 relative">
-      {/* 2px Scroll Progress Bar at very top */}
+      {/* Minimal Scroll Progress Bar */}
       <ScrollProgress />
 
-      {/* Full-screen Physics Sparks Engine on click */}
+      {/* Physics Sparks Engine on Click */}
       <SparksCanvas />
 
-      {/* Interactive Cursor for Desktop */}
+      {/* Contextual Precision Cursor for Desktop */}
       <CustomCursor />
 
-      {/* Top Sticky Navigation */}
+      {/* Top Floating Glass Navigation */}
       <Navbar />
 
-      {/* Main Content Sections */}
+      {/* Main Editorial Content */}
       <main>
-        {/* 1. Hero / Cinematic Editorial Showcase */}
+        {/* 1. Cinematic Forge Hero (Shader + Scroll-driven reverse) */}
         <HeroSection />
 
-        {/* 2. Professional Commercial Experience (Finviet & Hahalolo) */}
+        {/* 2. Editorial Statement (One engineer from architecture to release) */}
+        <EditorialStatement />
+
+        {/* 3. Professional Commercial Experience (Finviet & Hahalolo) */}
         <CareerSection />
 
-        {/* 3. Selected Projects: AstroBite Case Study & Architecture */}
+        {/* 4. Selected Work: AstroBite Case Study & Architecture */}
         <AstroBiteSection />
 
-        {/* 4. AstroBite Production UI Screenshots & Lightbox */}
+        {/* 5. Production UI Screenshots & Lightbox */}
         <GalleryLightbox />
 
-        {/* 5. Technical Skills & Architecture Competencies */}
+        {/* 6. Technical Competencies & Capabilities */}
         <SkillsSection />
 
-        {/* 6. Engineering Approach & Principles */}
+        {/* 7. Engineering Approach & Concrete Principles */}
         <EngineeringSection />
 
-        {/* 7. Contact & Resume Download */}
+        {/* 8. Contact & Resume Action */}
         <ContactSection />
       </main>
 
-      {/* Footer */}
+      {/* Editorial Footer */}
       <Footer />
     </div>
   );

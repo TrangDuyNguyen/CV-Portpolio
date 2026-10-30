@@ -27,38 +27,36 @@
     --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .light {
-    --bg-void: #F5F2EB;
-    --text-bone: #10141E;
-    --text-muted: #566173;
-    --flare: #D9480F;
-    --amber-glow: #E8590C;
-    --white-hot: #FFF4DE;
-    --ember: #A61E4D;
-    --border-subtle: rgba(16, 20, 30, 0.08);
-
-    --bg: #F5F2EB;
-    --surface: #FFFFFF;
-    --surface-raised: #EAE6DC;
-    --text-primary: #10141E;
-    --border: rgba(16, 20, 30, 0.08);
-    --accent: #D9480F;
-  }
-
   html {
-    scroll-behavior: smooth;
-    background-color: var(--bg-void);
-    color: var(--text-bone);
+    background-color: #08090A;
+    color: #F4F2EA;
+    color-scheme: dark;
   }
 
   body {
-    background-color: var(--bg-void);
-    color: var(--text-bone);
+    background-color: #08090A;
+    color: #F4F2EA;
     font-family: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Lenis smooth scrolling rules */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 
   /* Custom scrollbar */
@@ -69,7 +67,7 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(244, 242, 234, 0.2);
+    background: rgba(244, 242, 234, 0.15);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -102,53 +100,31 @@
   height: 100%;
   pointer-events: none;
   z-index: 60;
-  opacity: 0.038;
+  opacity: 0.034;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Subtle background grid pattern */
 .bg-grid-subtle {
-  background-size: 48px 48px;
+  background-size: 64px 64px;
   background-image: 
-    linear-gradient(to right, rgba(244, 242, 234, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(244, 242, 234, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(244, 242, 234, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 242, 234, 0.015) 1px, transparent 1px);
 }
 
-/* Thermal text glow & quenching */
-@keyframes quench {
-  0% {
-    color: #FFF4DE;
-    text-shadow: 0 0 45px rgba(255, 182, 72, 0.95), 0 0 95px rgba(255, 100, 23, 0.8);
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    color: #F4F2EA;
-    text-shadow: 0 0 35px rgba(255, 182, 72, 0.7), 0 0 80px rgba(255, 100, 23, 0.4);
-    transform: translateY(0);
-  }
-}
-
-.animate-quench {
-  animation: quench 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Hammer strike pulse when name is clicked */
+/* Hammer strike pulse when name or anvil is clicked */
 @keyframes hammerPulse {
   0% {
     transform: scale(1);
     filter: brightness(1);
   }
-  25% {
-    transform: scale(0.97) rotate(-0.4deg);
-    filter: brightness(1.7);
-    text-shadow: 0 0 60px #FFF4DE, 0 0 110px #FF6417;
+  20% {
+    transform: scale(0.975) rotate(-0.3deg);
+    filter: brightness(1.6);
+    text-shadow: 0 0 50px #FFF4DE, 0 0 100px #FF6417;
   }
-  55% {
-    transform: scale(1.025) rotate(0.2deg);
+  50% {
+    transform: scale(1.02) rotate(0.15deg);
   }
   100% {
     transform: scale(1) rotate(0);
@@ -157,13 +133,13 @@
 }
 
 .hammer-strike {
-  animation: hammerPulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: hammerPulse 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Scroll-triggered reveal classes */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
@@ -182,11 +158,12 @@
 
 /* Thermal hover words */
 .thermal-word {
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+  cursor: text;
 }
 .thermal-word:hover {
-  color: #FFF4DE;
-  text-shadow: 0 0 16px rgba(255, 182, 72, 0.8), 0 0 32px rgba(255, 100, 23, 0.5);
+  color: #FFF4DE !important;
+  text-shadow: 0 0 16px rgba(255, 182, 72, 0.85), 0 0 32px rgba(255, 100, 23, 0.6);
 }
 
 /* Reduced Motion Override */

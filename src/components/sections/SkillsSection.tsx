@@ -1,95 +1,97 @@
 import React from 'react';
-import { Smartphone, Layers, Database, Cpu, Wrench, CheckCircle2 } from 'lucide-react';
 import { getSkillsData } from '../../data/skillsData';
-import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
-import { Badge } from '../common/Badge';
 
 export const SkillsSection: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language].skills;
   const skillsGroups = getSkillsData(language);
-
-  const getCategoryIcon = (category: string) => {
-    if (category.includes('Mobile')) {
-      return <Smartphone className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
-    }
-    if (category.includes('Architecture')) {
-      return <Layers className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
-    }
-    if (category.includes('Data')) {
-      return <Database className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
-    }
-    if (category.includes('Native')) {
-      return <Cpu className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
-    }
-    return <Wrench className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
-  };
+  const isVi = language === 'vi';
 
   return (
-    <section id="skills" className="py-24 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-24 md:py-32 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="mb-14 reveal">
-          <Badge variant="cyan" size="md" className="mb-3">
-            {t.badge}
-          </Badge>
-          <h2 className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-[#F4F2EA] tracking-tight mb-4">
-            {t.title}
+        {/* Section Header */}
+        <div className="mb-16 md:mb-20 reveal">
+          <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-3">
+            {isVi ? '// Năng Lực Cốt Lõi' : '// Technical Capabilities'}
+          </p>
+          <h2 className="font-display italic text-3xl sm:text-5xl lg:text-6xl text-[#F4F2EA] tracking-tight mb-4">
+            {isVi ? 'Năng Lực Kỹ Thuật' : 'Engineering Capabilities'}
           </h2>
-          <p className="text-base text-[#8E96A4] max-w-3xl leading-relaxed">
-            {t.description}
+          <p className="text-sm sm:text-base text-[#8E96A4] max-w-2xl leading-relaxed">
+            {isVi
+              ? 'Tập trung vào năng lực thực chiến đã kiểm chứng qua sản phẩm thương mại, loại bỏ danh mục công nghệ hình thức.'
+              : 'Focused on verified practical competencies honed through commercial production, omitting decorative keyword padding.'}
           </p>
         </div>
 
-        {/* 5 Skill Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillsGroups.map((group) => (
-            <div
-              key={group.category}
-              className="bg-[#0E131F]/90 rounded-3xl p-6 border border-[rgba(244,242,234,0.08)] shadow-sm flex flex-col justify-between hover:border-[#FF6417]/40 transition-all reveal"
-            >
+        {/* 3 Editorial Capability Columns (Typographic, Clean, No Card Bloat) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 pt-6 border-t border-[rgba(244,242,234,0.08)] reveal">
+          {skillsGroups.slice(0, 3).map((group, idx) => (
+            <div key={group.category} className="space-y-6">
               <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 rounded-2xl bg-[#141C2E] border border-[rgba(244,242,234,0.1)]">
-                    {getCategoryIcon(group.category)}
-                  </div>
-                  <h3 className="text-base font-bold text-[#F4F2EA]">
-                    {group.category}
-                  </h3>
-                </div>
-
-                <p className="text-xs text-[#8E96A4] mb-5 leading-relaxed">
+                <span className="text-xs font-mono text-[#FFB648] block mb-1">
+                  0{idx + 1} / CAPABILITY
+                </span>
+                <h3 className="text-xl font-normal text-[#F4F2EA]">
+                  {group.category}
+                </h3>
+                <p className="text-xs text-[#8E96A4] mt-1.5 leading-relaxed">
                   {group.description}
                 </p>
-
-                {/* Skills Tag Chips */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {group.skills.map((s) => (
-                    <div
-                      key={s.name}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-mono flex items-center gap-1.5 transition-all ${
-                        s.isKey
-                          ? 'bg-[#141C2E] text-[#FFB648] font-semibold border border-[#FF6417]/40 shadow-[0_0_12px_rgba(255,100,23,0.15)]'
-                          : 'bg-[#141C2E]/60 text-[#8E96A4] border border-[rgba(244,242,234,0.08)]'
-                      }`}
-                    >
-                      {s.isKey && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
-                      )}
-                      <span>{s.name}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-                <span className="flex items-center gap-1 text-sky-600 dark:text-sky-400 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  {t.coreStrength}
+              {/* Editorial Skill List */}
+              <ul className="space-y-3 border-t border-[rgba(244,242,234,0.06)] pt-4">
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill.name}
+                    className="flex items-center justify-between text-xs sm:text-sm py-1 border-b border-[rgba(244,242,234,0.04)]"
+                  >
+                    <span className={skill.isKey ? 'text-[#F4F2EA] font-medium' : 'text-[#8E96A4]'}>
+                      {skill.name}
+                    </span>
+                    {skill.isKey && (
+                      <span className="text-[10px] font-mono uppercase text-[#FFB648] tracking-wider">
+                        Core
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Secondary Capabilities (Hardware & Release Engineering) */}
+        <div className="mt-14 pt-10 border-t border-[rgba(244,242,234,0.08)] grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+          {skillsGroups.slice(3, 5).map((group, idx) => (
+            <div key={group.category} className="space-y-4">
+              <div className="flex items-baseline justify-between">
+                <h4 className="text-sm font-mono uppercase tracking-wider text-[#F4F2EA]">
+                  {group.category}
+                </h4>
+                <span className="text-xs font-mono text-[#8E96A4]/70">
+                  0{idx + 4}
                 </span>
-                <span>{t.productionReady}</span>
+              </div>
+              <p className="text-xs text-[#8E96A4] leading-relaxed">
+                {group.description}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className={`text-xs font-mono px-3 py-1 rounded-md transition-colors ${
+                      skill.isKey
+                        ? 'bg-[#141C2E] text-[#FFF4DE] border border-[rgba(244,242,234,0.12)]'
+                        : 'bg-[#0E131F] text-[#8E96A4] border border-[rgba(244,242,234,0.04)]'
+                    }`}
+                  >
+                    {skill.name}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
