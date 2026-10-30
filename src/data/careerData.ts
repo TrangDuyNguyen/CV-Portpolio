@@ -4,22 +4,22 @@ import { Language } from '../context/LanguageContext';
 const careerDataVi: CareerItem[] = [
   {
     period: "2026 — Hiện tại",
-    role: "Mobile Engineer & System Architect",
-    company: "AstroBite Ecosystem",
-    project: "AstroBite — Smart AI Food Scanner (v3.0.0)",
-    type: "Personal Flagship Project",
-    summary: "Chủ trì kiến trúc và phát triển toàn diện hệ sinh thái AstroBite v3.0.0: nhận diện món ăn trong < 2.5s bằng Google Gemini Multimodal Vision AI, ngôn ngữ thiết kế Đất nặn 3D Solar Fresh và giao thức GenUI A2UI.",
+    role: "Ứng dụng quét thực phẩm bằng AI và theo dõi dinh dưỡng",
+    company: "ASTROBITE",
+    project: "ASTROBITE — AI Food Scanner & Nutrition Tracker",
+    type: "Dự án cá nhân | Flutter, Dart, Riverpod, Firebase, Google Gemini AI",
+    summary: "Ứng dụng quét thực phẩm bằng AI và theo dõi dinh dưỡng đa nền tảng kết hợp Feature-First Architecture, Riverpod, Gemini Multimodal Vision, offline-first Firestore và voice logging tiếng Việt.",
     achievements: [
-      "Thiết kế trọn vẹn kiến trúc Feature-First Clean Architecture kết hợp Riverpod 2.x code-gen trên 10 phân hệ nghiệp vụ độc lập.",
-      "Tối ưu pipeline giải phóng Camera buffer độc lập, đạt độ trễ AI dưới 2.5s và triệt tiêu 100% rò rỉ RAM (0 memory leak).",
-      "Tiên phong triển khai giao thức A2UI biến phản hồi JSON từ Gemini thành Native Widgets tương tác trực tiếp trong chat (1-Tap Log).",
-      "Nghiên cứu và phát triển Design System Claymorphic 3D độc bản bằng Flutter native primitives với hiệu ứng tactile squash 0.98, đạt chuẩn 60 FPS.",
-      "Xây dựng tiện ích màn hình khóa (iOS WidgetKit & Android AppWidget) phản ứng không hao pin ngầm và cơ chế Khiên Sao (Starlight Streak Shield).",
-      "Đạt tỷ lệ 277/277 automated unit & widget tests pass 100%, 0 lint warnings; tự động hóa release với Fastlane & GitHub Actions.",
+      "Thiết kế và phát triển ứng dụng Flutter đa nền tảng theo kiến trúc Feature-First Architecture, sử dụng Riverpod để quản lý trạng thái. Các chức năng chính bao gồm xác thực người dùng, ghi nhận thực phẩm, theo dõi calories và các chất dinh dưỡng đa lượng (macronutrients), phân tích dữ liệu dinh dưỡng, quản lý công thức nấu ăn và lập kế hoạch bữa ăn.",
+      "Tích hợp Gemini Vision để phân tích hình ảnh món ăn bằng AI, nhận diện và phân tách nhiều món trong cùng một hình ảnh, đồng thời ước tính giá trị dinh dưỡng có cấu trúc, bao gồm calories, macronutrients, nước dùng và các thành phần đi kèm. Ngoài ra, tích hợp Open Food Facts API để tra cứu sản phẩm bằng mã vạch và sử dụng AI để trích xuất thông tin từ nhãn dinh dưỡng.",
+      "Triển khai cơ chế ghi nhận thực phẩm có hỗ trợ offline, kết hợp local cache, hàng đợi dữ liệu chờ đồng bộ (pending-sync queue), cơ chế xử lý bản ghi trùng lặp và lưu trữ dữ liệu trên Cloud Firestore. Ứng dụng sử dụng các luồng dữ liệu thời gian thực để cập nhật thông tin, cùng với Firestore Security Rules nhằm giới hạn quyền truy cập dữ liệu theo từng người dùng.",
+      "Phát triển AI Nutrition Coach có khả năng duy trì ngữ cảnh hội thoại, sử dụng Gemini multi-turn conversation và lưu lại lịch sử trò chuyện. Xây dựng các thành phần giao diện Flutter tương tác ngay trong cuộc hội thoại, cho phép người dùng thao tác và ghi nhận bữa ăn trực tiếp từ nội dung tư vấn.",
+      "Xây dựng tính năng ghi nhận bữa ăn bằng giọng nói tiếng Việt, kết hợp Speech-to-Text để chuyển đổi lời nói thành văn bản và Gemini NLU để phân tích ý định, trích xuất thông tin món ăn từ ngôn ngữ tự nhiên, sau đó chuyển đổi thành dữ liệu dinh dưỡng có cấu trúc.",
+      "Tự động hóa quy trình build và release cho Android và iOS bằng Fastlane và GitHub Actions. Thiết lập pipeline CI để thực hiện các bước build, đóng gói và quản lý artifact phục vụ quá trình phát hành ứng dụng.",
     ],
     technologies: [
-      "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
-      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "277 Tests"
+      "Flutter", "Dart", "Riverpod", "AutoRoute", "Firebase Authentication", "Cloud Firestore",
+      "Firebase App Check", "Google Generative AI SDK", "SharedPreferences", "Open Food Facts API", "Fastlane", "GitHub Actions"
     ],
   },
   {
@@ -69,22 +69,22 @@ const careerDataVi: CareerItem[] = [
 const careerDataEn: CareerItem[] = [
   {
     period: "2026 — Present",
-    role: "Mobile Engineer & System Architect",
-    company: "AstroBite Ecosystem",
-    project: "AstroBite — Smart AI Food Scanner (v3.0.0)",
-    type: "Personal Flagship Project",
-    summary: "Architected and engineered the AstroBite v3.0.0 ecosystem: instant food recognition in < 2.5s via Google Gemini Multimodal Vision AI, 3D Claymorphic UI, and Flutter GenUI (A2UI protocol).",
+    role: "AI Food Scanner & Nutrition Tracker",
+    company: "ASTROBITE",
+    project: "ASTROBITE — AI Food Scanner & Nutrition Tracker",
+    type: "Personal Project | Flutter, Dart, Riverpod, Firebase, Google Gemini AI",
+    summary: "Cross-platform AI food scanner and nutrition tracker built with Feature-First Architecture, Riverpod, Gemini Multimodal Vision, offline-first Firestore, and Vietnamese voice meal logging.",
     achievements: [
-      "Constructed a complete Feature-First Clean Architecture utilizing Riverpod 2.x code-generation across 10 modularized business features.",
-      "Engineered an efficient camera frame streaming buffer pipeline, achieving AI response latency < 2.5s with zero memory leaks (0 bytes leak).",
-      "Pioneered Flutter GenUI (A2UI protocol) dynamically converting Gemini JSON payloads into interactive native chat widgets with 1-tap Firestore logging.",
-      "Architected a custom tactile 3D Claymorphic Design System natively in Flutter without external third-party dependencies, delivering smooth 60 FPS.",
-      "Developed reactive cross-platform home screen widgets (iOS WidgetKit & Android AppWidget) with zero battery drain and Starlight Streak Shield gamification.",
-      "Achieved 100% passing rate across 277/277 automated unit & widget tests; zero lint warnings; automated CI/CD via Fastlane & GitHub Actions.",
+      "Designed and developed a cross-platform Flutter application using Feature-First Architecture and Riverpod, implementing user authentication, food tracking, calorie and macronutrient dashboards, nutrition analytics, custom recipes, and meal planning.",
+      "Integrated Gemini multimodal Vision to analyze meal images and extract structured nutritional data, including multi-dish decomposition, broth and topping estimation; added barcode lookup through Open Food Facts and AI-powered nutrition label parsing.",
+      "Implemented offline-capable food logging with local caching, a pending-sync queue, duplicate handling, and Firestore-backed persistence and real-time data streams, supported by user-scoped Firestore security rules.",
+      "Built a context-aware AI Nutrition Coach using Gemini multi-turn conversations, persisted chat history, and custom interactive Flutter components for in-chat meal logging.",
+      "Developed Vietnamese voice-based meal logging by combining speech-to-text recognition with Gemini NLU to transform natural-language transcripts into structured nutrition records.",
+      "Automated Android and iOS release build workflows using Fastlane and GitHub Actions, with successful release build jobs and artifact generation for both platforms.",
     ],
     technologies: [
-      "Flutter 3.x", "Dart 3.x", "Riverpod 2.6", "Google Gemini AI", "GenUI (A2UI)",
-      "Claymorphic 3D", "iOS WidgetKit", "Android AppWidget", "Firebase", "Fastlane", "277 Tests"
+      "Flutter", "Dart", "Riverpod", "AutoRoute", "Firebase Authentication", "Cloud Firestore",
+      "Firebase App Check", "Google Generative AI SDK", "SharedPreferences", "Open Food Facts API", "Fastlane", "GitHub Actions"
     ],
   },
   {

@@ -14,11 +14,11 @@
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       
-      /* Bảng màu Trắng - Đen - Xám than tối giản chuẩn ATS */
-      --c-black: #0F172A;
-      --c-dark: #1E293B;
-      --c-body: #334155;
-      --c-muted: #64748B;
+      /* Bảng màu Trắng - Đen - Xám than tối giản chuẩn ATS (Đậm nét, tương phản cao) */
+      --c-black: #0A0F1D;
+      --c-dark: #0F172A;
+      --c-body: #1E293B;
+      --c-muted: #334155;
       --c-border: #CBD5E1;
       --c-border-light: #E2E8F0;
       --c-bg-canvas: #F1F5F9;
@@ -36,7 +36,7 @@
     body {
       font-family: var(--font-sans);
       font-size: 9.1pt;
-      line-height: 1.46;
+      line-height: 1.48;
       color: var(--c-body);
       background-color: var(--c-bg-canvas);
       -webkit-font-smoothing: antialiased;
@@ -102,93 +102,111 @@
       border: 1px solid var(--c-border);
     }
 
-    .lang-btn {
-      padding: 4.5px 9px;
-      font-size: 11.5px;
-      font-weight: 600;
-      border-radius: 6px;
+    .btn-lang {
       border: none;
       background: transparent;
-      color: var(--c-muted);
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748B;
       cursor: pointer;
       transition: all 0.15s ease;
-      font-family: var(--font-sans);
     }
 
-    .lang-btn.active {
-      background: #FFFFFF;
-      color: var(--c-black);
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
-      font-weight: 700;
+    .btn-lang.active {
+      background: #0A0F1D;
+      color: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
     }
 
-    .toolbar-btn {
+    .btn-tb {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6.5px 14px;
-      font-size: 12px;
-      font-weight: 600;
+      padding: 6px 13px;
       border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
       cursor: pointer;
       transition: all 0.15s ease;
-      text-decoration: none;
-      user-select: none;
-      border: 1px solid var(--c-border);
+      border: 1px solid transparent;
       background: #FFFFFF;
       color: var(--c-dark);
     }
 
-    .toolbar-btn:hover {
+    .btn-tb-secondary {
+      border-color: var(--c-border);
+      color: var(--c-dark);
+    }
+
+    .btn-tb-secondary:hover {
       background: #F8FAFC;
       border-color: #94A3B8;
-      color: var(--c-black);
     }
 
-    .btn-pdf {
-      background: #0F172A;
+    .btn-tb-primary {
+      background: #0A0F1D;
       color: #FFFFFF;
-      border-color: #0F172A;
-      font-weight: 600;
+      border-color: #0A0F1D;
     }
-    .btn-pdf:hover {
+
+    .btn-tb-primary:hover {
       background: #1E293B;
-      color: #FFFFFF;
+      border-color: #1E293B;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
     }
 
-    .btn-edit.active {
-      background: #F0FDF4;
-      border-color: #22C55E;
-      color: #15803D;
+    .btn-tb.active {
+      background: #FEF3C7;
+      color: #92400E;
+      border-color: #F59E0B;
     }
 
-    /* Ẩn hiện theo ngôn ngữ */
+    /* Ẩn hiện bản dịch song ngữ */
     body[data-lang="vi"] #cvRootEN {
       display: none !important;
     }
+
+    body[data-lang="vi"] #cvRootVI {
+      display: block !important;
+    }
+
     body[data-lang="en"] #cvRootVI {
       display: none !important;
     }
 
+    body[data-lang="en"] #cvRootEN {
+      display: block !important;
+    }
+
+    /* Chế độ Sửa trực tiếp (Inline Edit) */
+    body.is-editing [contenteditable="true"] {
+      outline: 1.5px dashed #F59E0B !important;
+      outline-offset: 2px;
+      background-color: rgba(254, 243, 199, 0.15);
+      cursor: text;
+    }
+
     /* ==========================================================================
-       3. CẤU TRÚC 2 TRANG A4 ĐỘC LẬP (210mm x 297mm) VỪA VẶN, HÀI HOÀ
+       3. BỐ CỤC KHUNG TRANG A4 CHUẨN
        ========================================================================== */
     .cv-container {
       max-width: 210mm;
-      margin: 0 auto 40px auto;
+      margin: 0 auto 32px auto;
     }
 
     .cv-page {
       width: 210mm;
       height: 297mm;
-      min-height: 297mm;
       max-height: 297mm;
-      margin: 0 auto 30px auto;
+      margin: 0 auto 20px auto;
       background: var(--c-bg-page);
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
       border: 1px solid var(--c-border);
       border-radius: 4px;
-      padding: 8.5mm 13mm 7.5mm 13mm;
+      padding: 9.0mm 13mm 8.0mm 13mm;
       position: relative;
       box-sizing: border-box;
       display: flex;
@@ -201,12 +219,8 @@
 
     .cv-page:last-child {
       margin-bottom: 0;
-      page-break-after: avoid;
-      break-after: avoid;
-    }
-
-    body.is-editing .cv-page {
-      outline: 2px dashed #0284c7;
+      page-break-after: auto;
+      break-after: auto;
     }
 
     .page-main-content {
@@ -214,184 +228,166 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 9.5pt;
+      gap: 13.0pt;
     }
 
     /* ==========================================================================
-       4. HEADER DẠNG PHẲNG RÕ RÀNG & THOÁNG ĐÃNG
+       4. HEADER CÁ NHÂN (TRANG 1)
        ========================================================================== */
     .header {
-      border-bottom: 1.5px solid var(--c-black);
-      padding-bottom: 3.5pt;
-      margin-bottom: 0;
+      padding-bottom: 6.0pt;
+      border-bottom: 2px solid var(--c-black);
     }
 
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 1.5pt;
+      margin-bottom: 2.0pt;
     }
 
     .name {
-      font-size: 20pt;
+      font-size: 19.0pt;
       font-weight: 800;
-      color: var(--c-black);
       letter-spacing: -0.3pt;
-      line-height: 1.0;
-    }
-
-    .title-tagline {
-      font-size: 8.8pt;
-      font-weight: 700;
-      color: var(--c-dark);
-      letter-spacing: 0.2pt;
+      color: var(--c-black);
+      line-height: 1.1;
+      text-transform: uppercase;
     }
 
     .headline {
-      font-size: 9.8pt;
+      font-size: 10.4pt;
       font-weight: 700;
-      color: var(--c-dark);
-      margin-bottom: 2.5pt;
-      letter-spacing: 0.2pt;
+      color: #0F172A;
+      letter-spacing: 0.8pt;
+      text-transform: uppercase;
+      margin-bottom: 4.5pt;
     }
 
     .contact-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 2pt 7.5pt;
-      font-size: 8.35pt;
-      line-height: 1.35;
-      color: var(--c-body);
+      row-gap: 2.0pt;
+      column-gap: 5.5pt;
+      font-size: 8.6pt;
+      color: #334155;
     }
 
     .contact-item {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      color: var(--c-body);
-      text-decoration: none;
+      white-space: nowrap;
     }
 
     .contact-item a {
-      color: var(--c-body);
+      color: #0F172A;
       text-decoration: none;
-    }
-
-    .contact-item a:hover {
-      text-decoration: underline;
-      color: var(--c-black);
+      font-weight: 600;
     }
 
     .contact-sep {
-      color: var(--c-muted);
-    }
-
-    /* Mini Header Trang 2 */
-    .mini-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 3.5pt;
-      margin-bottom: 0;
-      border-bottom: 1.5px solid var(--c-black);
-    }
-
-    .mini-header-name {
-      font-size: 9.8pt;
-      font-weight: 800;
-      color: var(--c-black);
-      letter-spacing: 0.3pt;
-    }
-
-    .mini-header-tag {
-      font-size: 8.2pt;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--c-muted);
+      color: #94A3B8;
+      font-size: 8.0pt;
     }
 
     /* ==========================================================================
-       5. TIÊU ĐỀ SECTION DẠNG PHẲNG RÕ NÉT
+       5. MINI HEADER TRANG 2 & 3 (CONTINUATION HEADERS)
        ========================================================================== */
-    .section {
-      position: relative;
+    .mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 3.5pt;
+      border-bottom: 1.5px solid var(--c-black);
+      margin-bottom: 2.0pt;
     }
 
+    .mini-header-name {
+      font-size: 8.9pt;
+      font-weight: 800;
+      color: var(--c-black);
+      letter-spacing: 0.4pt;
+      text-transform: uppercase;
+    }
+
+    .mini-header-tag {
+      font-size: 7.8pt;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: 0.3pt;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       6. TIÊU ĐỀ SECTION
+       ========================================================================== */
     .section-title {
       font-size: 9.8pt;
       font-weight: 800;
       color: var(--c-black);
-      letter-spacing: 0.5pt;
+      letter-spacing: 0.6pt;
       text-transform: uppercase;
-      padding-bottom: 1.8pt;
-      margin-bottom: 3.2pt;
-      border-bottom: 1px solid var(--c-border);
+      padding-bottom: 3.0pt;
+      margin-bottom: 7.0pt;
+      border-bottom: 1.5px solid var(--c-black);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
     }
 
     .section-title span.sub-tag {
-      font-size: 7.5pt;
+      font-size: 7.6pt;
+      font-weight: 700;
+      color: #475569;
+      letter-spacing: 0.5pt;
       font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--c-muted);
-      letter-spacing: 0;
-      text-transform: none;
     }
 
     /* ==========================================================================
-       6. SUMMARY VÀ LƯỚI CHỈ SỐ VÀNG TRÊN TRANG 1
+       7. CÁC KHỐI NỘI DUNG (SUMMARY, HIGHLIGHTS, SKILLS)
        ========================================================================== */
-    .summary-text {
-      text-align: justify;
-      color: var(--c-body);
-      font-size: 8.65pt;
-      line-height: 1.44;
-    }
-
     .summary-points {
       display: flex;
       flex-direction: column;
-      gap: 3.8pt;
-      font-size: 9.1pt;
-      line-height: 1.46;
+      gap: 5.5pt;
+      font-size: 9.2pt;
+      line-height: 1.54;
       color: var(--c-body);
+      text-align: left;
     }
 
     .summary-points div {
       position: relative;
       padding-left: 10pt;
-      text-align: left;
     }
 
     .summary-points div::before {
       content: "▪";
       position: absolute;
-      left: 1pt;
-      top: 0;
-      color: var(--c-dark);
-      font-size: 7.5pt;
+      left: 0;
+      top: -1.0pt;
+      font-size: 9.5pt;
+      color: #0A0F1D;
     }
 
     .summary-points strong {
-      color: var(--c-black);
+      color: var(--c-dark);
       font-weight: 700;
     }
 
     .highlights-list {
       display: flex;
       flex-direction: column;
-      gap: 3.8pt;
+      gap: 5.5pt;
     }
 
     .highlight-item {
       position: relative;
       padding-left: 10pt;
-      font-size: 9.05pt;
-      line-height: 1.46;
+      font-size: 9.15pt;
+      line-height: 1.52;
       color: var(--c-body);
       text-align: left;
     }
@@ -399,43 +395,35 @@
     .highlight-item::before {
       content: "▪";
       position: absolute;
-      left: 1pt;
-      top: 0;
-      color: var(--c-dark);
-      font-size: 7.5pt;
+      left: 0;
+      top: -1.0pt;
+      font-size: 9.5pt;
+      color: #0A0F1D;
     }
 
     .highlight-item strong {
-      font-size: 9.15pt;
+      color: var(--c-dark);
       font-weight: 700;
-      color: var(--c-black);
     }
 
-    .highlight-item span {
-      color: var(--c-body);
-    }
-
-    /* ==========================================================================
-       7. MA TRẬN KỸ NĂNG CHUYÊN MÔN (TECHNICAL SKILLS)
-       ========================================================================== */
     .skills-list {
       display: flex;
       flex-direction: column;
-      gap: 3.0pt;
+      gap: 5.0pt;
     }
 
     .skill-row {
       display: flex;
       align-items: baseline;
-      font-size: 8.8pt;
-      line-height: 1.36;
+      font-size: 8.95pt;
+      line-height: 1.48;
     }
 
     .skill-label {
-      width: 168px;
-      min-width: 168px;
+      width: 148pt;
+      flex-shrink: 0;
       font-weight: 700;
-      color: var(--c-black);
+      color: var(--c-dark);
     }
 
     .skill-values {
@@ -447,7 +435,7 @@
        8. DỰ ÁN KỲ HẠM & KINH NGHIỆM LÀM VIỆC
        ========================================================================== */
     .job-block {
-      margin-bottom: 7.0pt;
+      margin-bottom: 11.0pt;
     }
 
     .job-block:last-child {
@@ -458,57 +446,69 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 1.5pt;
+      margin-bottom: 3.5pt;
     }
 
     .job-title-group {
       display: flex;
       align-items: baseline;
-      gap: 5pt;
+      gap: 5.5pt;
       flex-wrap: wrap;
     }
 
     .job-company {
-      font-size: 9.6pt;
+      font-size: 10.0pt;
       font-weight: 800;
       color: var(--c-black);
       letter-spacing: 0.1pt;
     }
 
     .job-role-sep {
-      color: var(--c-muted);
-      font-size: 8pt;
+      color: #94A3B8;
+      font-weight: 600;
     }
 
     .job-role {
-      font-size: 8.9pt;
+      font-size: 9.2pt;
       font-weight: 700;
       color: var(--c-dark);
     }
 
     .job-role-tag {
-      font-size: 8.2pt;
-      color: var(--c-muted);
-      font-weight: 500;
+      font-size: 8.5pt;
+      color: #475569;
+      font-weight: 600;
     }
 
     .job-date {
-      font-size: 8.4pt;
+      font-size: 8.6pt;
       font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--c-muted);
+      font-weight: 700;
+      color: #334155;
       white-space: nowrap;
     }
 
+    .job-sub-line {
+      font-size: 8.6pt;
+      color: #334155;
+      margin-bottom: 2.5pt;
+      line-height: 1.45;
+    }
+
+    .job-sub-line strong {
+      color: var(--c-dark);
+      font-weight: 700;
+    }
+
     .job-tech-line {
-      font-size: 8.3pt;
-      color: var(--c-muted);
-      margin-bottom: 2.8pt;
-      line-height: 1.36;
+      font-size: 8.6pt;
+      color: #334155;
+      margin-bottom: 5.5pt;
+      line-height: 1.45;
     }
 
     .job-tech-line strong {
-      color: var(--c-dark);
+      color: #0A0F1D;
       font-weight: 700;
     }
 
@@ -520,9 +520,9 @@
     .bullet-list li {
       position: relative;
       padding-left: 11pt;
-      margin-bottom: 3.2pt;
+      margin-bottom: 4.5pt;
       font-size: 9.05pt;
-      line-height: 1.46;
+      line-height: 1.54;
       color: var(--c-body);
       text-align: left;
     }
@@ -532,47 +532,68 @@
     }
 
     .bullet-list li::before {
-      content: "•";
+      content: "▪";
       position: absolute;
-      left: 2pt;
-      top: 0;
-      color: var(--c-dark);
-      font-size: 8.8pt;
-      font-weight: bold;
+      left: 1pt;
+      top: -0.5pt;
+      font-size: 10pt;
+      color: #0A0F1D;
+      line-height: 1.4;
     }
 
     .bullet-list strong {
       font-weight: 700;
-      color: var(--c-black);
+      color: #0A0F1D;
     }
 
     /* Học vấn & Ngoại ngữ */
-    .edu-block {
+    .edu-card {
+      padding: 0;
+    }
+
+    .edu-top {
       display: flex;
+      justify-content: space-between;
       align-items: baseline;
-      font-size: 9.1pt;
-      line-height: 1.40;
+      margin-bottom: 2pt;
     }
 
     .edu-school {
-      font-weight: 700;
-      font-size: 9.2pt;
+      font-weight: 800;
+      font-size: 9.4pt;
       color: var(--c-black);
       letter-spacing: 0.2pt;
     }
 
-    .lang-item {
+    .edu-date {
+      font-size: 8.6pt;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #334155;
+      white-space: nowrap;
+    }
+
+    .edu-desc {
       font-size: 9.0pt;
-      line-height: 1.44;
+      line-height: 1.46;
+      color: var(--c-body);
+    }
+
+    .lang-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3.0pt;
+    }
+
+    .lang-item {
+      font-size: 9.05pt;
+      line-height: 1.48;
       color: var(--c-body);
     }
 
     .lang-item strong {
       color: var(--c-black);
-    }
-
-    .practices-list div strong {
-      color: var(--c-black);
+      font-weight: 700;
     }
 
     /* ==========================================================================
@@ -582,17 +603,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 4pt;
-      border-top: 1px solid var(--c-border);
-      font-size: 7.6pt;
+      padding-top: 4.5pt;
+      border-top: 1.5px solid var(--c-border);
+      font-size: 7.8pt;
       font-family: var(--font-mono);
-      color: var(--c-muted);
+      color: #475569;
       margin-top: auto;
     }
 
     .page-indicator {
-      font-weight: 600;
-      color: var(--c-dark);
+      font-weight: 700;
+      color: #0A0F1D;
     }
 
     /* ==========================================================================
@@ -630,24 +651,26 @@
       }
 
       .cv-page {
-        width: 210mm !important;
-        height: 297mm !important;
-        min-height: 297mm !important;
-        max-height: 297mm !important;
         margin: 0 !important;
-        padding: 8.5mm 13mm 7.5mm 13mm !important;
-        background-color: #FFFFFF !important;
+        padding: 9.0mm 13mm 8.0mm 13mm !important;
         border: none !important;
-        border-radius: 0 !important;
         box-shadow: none !important;
+        border-radius: 0 !important;
         page-break-after: always !important;
         break-after: page !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        overflow: hidden !important;
       }
 
       .cv-page:last-child {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
+        page-break-after: auto !important;
+        break-after: auto !important;
       }
     }
   </style>
@@ -655,54 +678,52 @@
 <body data-lang="vi">
 
   <!-- ======================================================================
-       THANH CÔNG CỤ ĐIỀU KHIỂN (ẨN KHI IN)
+       THANH CÔNG CỤ (TOOLBAR CỐ ĐỊNH, KHÔNG IN RA)
        ====================================================================== -->
   <div class="toolbar-container no-print">
-    <header class="toolbar">
+    <header class="toolbar" aria-label="CV Controls">
       <div class="toolbar-info">
         <span class="status-dot"></span>
         <span id="toolbarStatusText">CV Mobile Engineer — Nguyen Duy Trang</span>
       </div>
-
       <div class="toolbar-actions">
-        <!-- Bộ chuyển đổi ngôn ngữ VI / EN -->
-        <div class="lang-switch-group">
-          <button class="lang-btn active" id="btnLangVI" onclick="setLanguage('vi')">Tiếng Việt</button>
-          <button class="lang-btn" id="btnLangEN" onclick="setLanguage('en')">English</button>
+        <!-- Chuyển đổi ngôn ngữ VI / EN -->
+        <div class="lang-switch-group" role="group" aria-label="Language selector">
+          <button type="button" class="btn-lang active" id="btnLangVI" onclick="setLanguage('vi')">Tiếng Việt</button>
+          <button type="button" class="btn-lang" id="btnLangEN" onclick="setLanguage('en')">English</button>
         </div>
 
-        <!-- Về Portfolio -->
-        <a href="/" class="toolbar-btn" title="Trở về trang Portfolio">
+        <!-- Trở về trang Portfolio -->
+        <a href="/" class="btn-tb btn-tb-secondary" title="Quay lại trang Portfolio">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
-          Portfolio
+          <span>Portfolio</span>
         </a>
 
-        <!-- Nút Tải PDF Chính thức -->
-        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030" id="btnDownloadPdf" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="toolbar-btn btn-pdf" title="Tải file PDF chuẩn in ấn A4">
+        <!-- Nút Tải PDF Trắng Đen Trực tiếp -->
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="btn-tb btn-tb-primary" id="btnDownloadPdf" title="Tải trực tiếp bản PDF Trắng Đen 3 trang">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="12" y1="18" x2="12" y2="12"></line>
-            <polyline points="9 15 12 18 15 15"></polyline>
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
           <span id="btnPdfText">Tải PDF Trắng Đen</span>
         </a>
 
-        <!-- In / Lưu PDF Trình duyệt -->
-        <button class="toolbar-btn" onclick="window.print()" title="Mở hộp thoại In hoặc Lưu PDF của trình duyệt">
+        <!-- Nút Mở hộp thoại In / Lưu PDF trình duyệt -->
+        <button type="button" class="btn-tb btn-tb-secondary" onclick="window.print()" title="Mở hộp thoại In / Lưu PDF trình duyệt">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9V2h12v7"></path>
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <path d="M6 14h12v8H6z"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
           </svg>
           <span id="btnPrintText">In / Lưu PDF</span>
         </button>
 
-        <!-- Bật/Tắt Sửa trực tiếp -->
-        <button class="toolbar-btn btn-edit" id="editToggleBtn" onclick="toggleEditMode()" title="Bật để sửa trực tiếp text trên trang">
+        <!-- Nút Bật/Tắt chế độ sửa trực tiếp (Inline Edit) -->
+        <button type="button" class="btn-tb btn-tb-secondary" id="editToggleBtn" onclick="toggleEditMode()" title="Chỉnh sửa văn bản trực tiếp trên trang">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 20h9"></path>
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -710,8 +731,8 @@
           <span id="btnEditText">Sửa trực tiếp: TẮT</span>
         </button>
 
-        <!-- Lưu file HTML -->
-        <button class="toolbar-btn" onclick="downloadCurrentHTML()" title="Tải về file HTML đã sửa">
+        <!-- Nút Lưu file HTML đã chỉnh sửa -->
+        <button type="button" class="btn-tb btn-tb-secondary" onclick="downloadCurrentHTML()" title="Lưu lại file HTML sau khi đã chỉnh sửa">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -727,11 +748,9 @@
        BẢN TIẾNG VIỆT (VIETNAMESE CV CONTAINER)
        ====================================================================== -->
   <main class="cv-container" id="cvRootVI">
-
     <!-- TRANG 1 (VI) -->
     <article class="cv-page" id="page-1-vi">
       <div class="page-main-content">
-
         <!-- 1. HEADER CÁ NHÂN -->
         <header class="header">
           <div class="header-top">
@@ -754,7 +773,6 @@
             <span class="contact-item"><a href="https://cv-portfolio-omega-seven.vercel.app" target="_blank" rel="noopener noreferrer">cv-portfolio-omega-seven.vercel.app</a></span>
           </div>
         </header>
-
         <!-- 2. PROFESSIONAL SUMMARY -->
         <section class="section">
           <h2 class="section-title">
@@ -767,7 +785,6 @@
             <div><strong>Team Collaboration &amp; Ownership:</strong> Chủ động trong công việc và phối hợp nhịp nhàng với các bộ phận (Product, UI/UX, Backend, QA). Tích cực đóng góp ý kiến kỹ thuật để tháo gỡ các vấn đề phát sinh và luôn sẵn sàng hỗ trợ đồng đội để cùng đưa sản phẩm về đích đúng tiến độ.</div>
           </div>
         </section>
-
         <!-- 3. KEY HIGHLIGHTS & ACHIEVEMENTS -->
         <section class="section">
           <h2 class="section-title">
@@ -793,7 +810,6 @@
             </div>
           </div>
         </section>
-
         <!-- 4. TECHNICAL SKILLS MATRIX -->
         <section class="section">
           <h2 class="section-title">
@@ -827,64 +843,27 @@
             </div>
           </div>
         </section>
-
-        <!-- 5. DỰ ÁN CÁ NHÂN TIÊU BIỂU -->
-        <section class="section">
-          <h2 class="section-title">
-            <span>FEATURED FLAGSHIP PROJECT</span>
-            <span class="sub-tag">PERSONAL ARCHITECTURE</span>
-          </h2>
-
-          <article class="job-block">
-            <div class="job-header-row">
-              <div class="job-title-group">
-                <span class="job-company">ASTROBITE</span>
-                <span class="job-role-sep">•</span>
-                <span class="job-role">Mobile Engineer &amp; System Architect</span>
-                <span class="job-role-tag">(AI Calorie Tracker &amp; Food Scanner)</span>
-              </div>
-              <span class="job-date">2026 – Hiện tại</span>
-            </div>
-            <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, Riverpod 2.x, AutoRoute, Gemini AI, Dio, SQLite, Fastlane, CI/CD.
-            </div>
-            <ul class="bullet-list">
-              <li>Chủ trì kiến trúc AstroBite (v3.0.0) theo chuẩn <strong>Clean Architecture / Modular Package-based</strong> kết hợp Riverpod 2.x code-gen trên 12 phân hệ nghiệp vụ độc lập.</li>
-              <li>Đóng gói <strong>Design System 2D/3D &amp; Base Components</strong> thuần Flutter Primitives (Custom Widgets, Theme Engine, Responsive Breakpoints) duy trì tốc độ cuộn <strong>60 FPS</strong>.</li>
-              <li>Xây dựng <strong>Base Network Client &amp; Offline Storage</strong>: Dio Interceptor (auto-refresh token, retry policy), tích hợp WebSocket &amp; Firestore stream real-time, Hive/SQLite offline cache.</li>
-              <li>Tối ưu hóa <strong>Render Tree &amp; Bộ nhớ qua Flutter DevTools</strong>: phân tách render với <code>RepaintBoundary</code>, <code>const</code> constructors, giải phóng camera buffer đạt độ trễ AI &lt; 2.5s và <strong>0 memory leak</strong>.</li>
-              <li>Thiết kế kiến trúc điều hướng và tối ưu Web bằng <strong>AutoRoute</strong>: quản lý nested routes, route guards, URL query params, CanvasKit/WASM rendering và asset caching.</li>
-              <li>Thiết lập bộ <strong>277 automated unit &amp; widget tests (100% pass)</strong>; chuẩn hóa CI/CD tự động hóa build/release đa nền tảng (Web/Android/iOS) qua Fastlane, GitHub Actions &amp; GitLab CI/CD.</li>
-            </ul>
-          </article>
-        </section>
-
       </div>
-
       <!-- CHÂN TRANG 1 (VI) -->
       <footer class="cv-footer">
         <div>Nguyen Duy Trang • Mobile Engineer CV</div>
-        <div class="page-indicator">Trang 1 / 2</div>
+        <div class="page-indicator">Trang 1 / 3</div>
       </footer>
     </article>
 
     <!-- TRANG 2 (VI) -->
     <article class="cv-page" id="page-2-vi">
       <div class="page-main-content">
-
-        <!-- MINI HEADER TRANG 2 -->
         <div class="mini-header">
-          <div class="mini-header-name">NGUYEN DUY TRANG — COMMERCIAL WORK EXPERIENCE &amp; CREDENTIALS</div>
-          <div class="mini-header-tag">5+ NĂM KINH NGHIỆM THỰC CHIẾN • CLEAN ARCHITECTURE &amp; MULTI-PLATFORM</div>
+          <div class="mini-header-name">NGUYEN DUY TRANG — KINH NGHIỆM THỰC CHIẾN</div>
+          <div class="mini-header-tag">5+ NĂM KINH NGHIỆM • PRODUCTION TRACK RECORD</div>
         </div>
-
-        <!-- 1. WORK EXPERIENCE -->
+        <!-- 1. KINH NGHIỆM LÀM VIỆC THỰC CHIẾN (2 CÔNG TY) -->
         <section class="section">
           <h2 class="section-title">
-            <span>COMMERCIAL WORK EXPERIENCE</span>
-            <span class="sub-tag">TRACK RECORD</span>
+            <span>KINH NGHIỆM LÀM VIỆC THỰC CHIẾN</span>
+            <span class="sub-tag">COMMERCIAL TRACK RECORD</span>
           </h2>
-
           <!-- CÔNG TY 1: FINVIET TECHNOLOGY -->
           <article class="job-block">
             <div class="job-header-row">
@@ -904,76 +883,124 @@
               <li>Xây dựng <strong>Base Network Client với Dio</strong>: cài đặt Interceptors tự động đính kèm token, xử lý refresh token khi hết hạn (401), exponential retry policy và offline cache.</li>
               <li>Thiết kế luồng dữ liệu <strong>Offline-first</strong> (BLoC, SQLite/Drift), cam kết 100% đơn hàng không bị mất khi mất kết nối mạng và tự động đồng bộ khi có kết nối trở lại.</li>
               <li>Phân tích Render Tree và triệt tiêu drop frames/jank bằng <strong>Flutter DevTools</strong> (Profiler, Memory), kiểm soát rò rỉ RAM khi tích hợp máy in nhiệt ESC/POS và máy quét mã vạch qua Platform Channels (Kotlin).</li>
-              <li>Thiết lập <strong>Coding conventions</strong>, strict lint rules (<code>analysis_options.yaml</code>), chủ trì review PR và <strong>mentoring các thành viên Junior</strong> trong nhóm.</li>
-              <li>Thiết lập pipeline tự động hóa CI/CD build &amp; release (Android APK/AAB, Web bundle) bằng <strong>Fastlane &amp; GitHub Actions / GitLab CI/CD</strong>.</li>
+              <li>Tối ưu hóa UI Render và memory footprint cho phần cứng Kiosk cấu hình thấp (Android POS box, màn hình phụ 10.1 inch), duy trì tốc độ khung hình <strong>60 FPS</strong>.</li>
+              <li>Phát triển các Native Platform Channels (Kotlin/Android) chuyên sâu giao tiếp với phần cứng: máy in bill nhiệt ESC/POS, máy POS cà thẻ thanh toán (ZaloPay, VNPay, MoMo) và máy quét mã vạch USB/Bluetooth.</li>
+              <li>Thiết lập pipeline tự động hóa CI/CD build và release cho Android &amp; iOS bằng <strong>Fastlane</strong> và <strong>GitHub Actions</strong>.</li>
             </ul>
           </article>
-
-          <!-- CÔNG TY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
+          <!-- CÔNG TY 2: HAHALOLO -->
           <article class="job-block">
             <div class="job-header-row">
               <div class="job-title-group">
-                <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+                <span class="job-company">HAHALOLO</span>
                 <span class="job-role-sep">•</span>
-                <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
+                <span class="job-role">Flutter Developer (Social Network &amp; OTT Chat)</span>
               </div>
-              <span class="job-date">05/2020 – 06/2025 (5 năm)</span>
+              <span class="job-date">01/2025 – 07/2025</span>
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, iOS Swift, VIPER, MVVM, Riverpod, BLoC, WebSocket, SQLite, CallKit, Crashlytics, CI/CD.
+              <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, WebSocket, SQLite, Clean Architecture, Push Notifications, Media Cache.
             </div>
             <ul class="bullet-list">
-              <li><strong>[Hahalolo — MXH Du lịch (1M+ downloads)]</strong>: Phát triển các phân hệ Tour, Flight, Hotel, Community; xây dựng Native iOS (Swift, VIPER) và tích hợp các module <strong>Flutter qua Add-to-App</strong>; xử lý Responsive UI, Deep Linking, Crashlytics &lt;0.5% crash. Team 20 người.</li>
-              <li><strong>[Halome — Nhắn tin OTT Realtime]</strong>: Xây dựng app chat OTT từ đầu (Native iOS Swift MVVM); tích hợp <strong>WebSocket realtime</strong>, SQLite offline storage, RxSwift, CallKit VoIP; xử lý tối ưu cuộn danh sách mượt mà 60 FPS. Team 5 người.</li>
-              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Phát triển và tối ưu ứng dụng chuyển tiền quốc tế (192 quốc gia) và giao dịch cổ phiếu bằng Flutter; thiết kế luồng xác thực KYC, mã hóa bảo mật lưu trữ cục bộ (SQLite/Keychain) và tối ưu hóa biểu đồ nến realtime không drop frames.</li>
-              <li><strong>[Aquannets — Outsource Galactic Holdings]</strong>: Phát triển ứng dụng quản lý nuôi trồng thủy sản bằng Flutter theo chuẩn <strong>Clean Architecture + Riverpod</strong>, SQLite offline-first tại ao nuôi. Team 2 người.</li>
-              <li><strong>[SocTrip — QC &amp; Testing Lead]</strong>: Chủ trì quy trình kiểm thử đầu cuối (E2E), thiết kế kịch bản test case và đảm bảo chất lượng phát hành trên App Store &amp; Google Play.</li>
+              <li>Phát triển và bảo trì các tính năng trọng yếu trên ứng dụng Mạng Xã Hội Du Lịch &amp; OTT Chat quy mô lớn (<strong>1M+ người dùng hoạt động</strong>).</li>
+              <li>Xây dựng kiến trúc <strong>State Management với Riverpod</strong> kết hợp Clean Architecture, tách biệt rõ ràng giữa Presentation, Domain và Data layer.</li>
+              <li>Tối ưu hóa hiệu năng render danh sách bài viết đa phương tiện (feed list): áp dụng <code>ListView.builder</code>, <code>AutomaticKeepAliveClientMixin</code>, và bộ nhớ đệm hình ảnh/video cục bộ, giảm <strong>40%</strong> mức tiêu thụ RAM.</li>
+              <li>Triển khai phân hệ <strong>Chat Real-time qua WebSocket</strong>: đồng bộ tin nhắn 2 chiều tức thì, cơ chế gửi lại khi rớt mạng, lưu trữ tin nhắn offline với SQLite và thông báo đẩy (FCM / APNs).</li>
+              <li>Tích hợp các tính năng tương tác mạng xã hội: luồng tin tức (News Feed), bình luận đa cấp, thả cảm xúc, chia sẻ bài viết, và gắn thẻ địa điểm du lịch.</li>
+              <li>Tối ưu hóa tốc độ khởi động ứng dụng (Cold start) đạt <strong>&lt; 1.8 giây</strong>, duy trì tỷ lệ hoạt động không lỗi (Crash-free session) <strong>&gt; 99.5%</strong>.</li>
+              <li>Viết Unit Tests và Widget Tests cho các use case nghiệp vụ chính; tham gia quy trình Code Review nghiêm ngặt trước khi merge.</li>
             </ul>
           </article>
         </section>
+      </div>
+      <!-- CHÂN TRANG 2 (VI) -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
+        <div class="page-indicator">Trang 2 / 3</div>
+      </footer>
+    </article>
 
-        <!-- 2. HỌC VẤN (EDUCATION) -->
+    <!-- TRANG 3 (VI) -->
+    <article class="cv-page" id="page-3-vi">
+      <div class="page-main-content">
+        <div class="mini-header">
+          <div class="mini-header-name">NGUYEN DUY TRANG — DỰ ÁN CÁ NHÂN &amp; HỌC VẤN</div>
+          <div class="mini-header-tag">ASTROBITE • EDUCATION &amp; LANGUAGES</div>
+        </div>
+        <!-- 5. DỰ ÁN CÁ NHÂN TIÊU BIỂU: ASTROBITE -->
         <section class="section">
           <h2 class="section-title">
-            <span>EDUCATION</span>
+            <span>DỰ ÁN CÁ NHÂN TIÊU BIỂU</span>
+            <span class="sub-tag">PERSONAL ARCHITECTURE</span>
+          </h2>
+          <article class="job-block">
+            <div class="job-header-row">
+              <div class="job-title-group">
+                <span class="job-company">ASTROBITE</span>
+                <span class="job-role-sep">—</span>
+                <span class="job-role">Ứng dụng quét thực phẩm bằng AI và theo dõi dinh dưỡng</span>
+              </div>
+              <span class="job-date">2026 – Hiện tại</span>
+            </div>
+            <div class="job-sub-line">
+              <strong>Dự án cá nhân</strong> | Flutter, Dart, Riverpod, Firebase, Google Gemini AI
+            </div>
+            <div class="job-tech-line">
+              <strong>Công nghệ sử dụng:</strong> Flutter, Dart, Riverpod, AutoRoute, Firebase Authentication, Cloud Firestore, Firebase App Check, Google Generative AI SDK (Gemini Vision &amp; NLU), SharedPreferences, Open Food Facts API, Fastlane, GitHub Actions.
+            </div>
+            <ul class="bullet-list">
+              <li><strong>Thiết kế và phát triển ứng dụng Flutter đa nền tảng</strong> theo kiến trúc Feature-First Architecture, sử dụng Riverpod để quản lý trạng thái. Các chức năng chính bao gồm xác thực người dùng, ghi nhận thực phẩm, theo dõi calories và các chất dinh dưỡng đa lượng (macronutrients), phân tích dữ liệu dinh dưỡng, quản lý công thức nấu ăn và lập kế hoạch bữa ăn.</li>
+              <li><strong>Tích hợp Gemini Vision để phân tích hình ảnh món ăn bằng AI</strong>, nhận diện và phân tách nhiều món trong cùng một hình ảnh, đồng thời ước tính giá trị dinh dưỡng có cấu trúc, bao gồm calories, macronutrients, nước dùng và các thành phần đi kèm. Ngoài ra, tích hợp Open Food Facts API để tra cứu sản phẩm bằng mã vạch và sử dụng AI để trích xuất thông tin từ nhãn dinh dưỡng.</li>
+              <li><strong>Triển khai cơ chế ghi nhận thực phẩm có hỗ trợ offline</strong>, kết hợp local cache, hàng đợi dữ liệu chờ đồng bộ (pending-sync queue), cơ chế xử lý bản ghi trùng lặp và lưu trữ dữ liệu trên Cloud Firestore. Ứng dụng sử dụng các luồng dữ liệu thời gian thực để cập nhật thông tin, cùng với Firestore Security Rules nhằm giới hạn quyền truy cập dữ liệu theo từng người dùng.</li>
+              <li><strong>Phát triển AI Nutrition Coach có khả năng duy trì ngữ cảnh hội thoại</strong>, sử dụng Gemini multi-turn conversation và lưu lại lịch sử trò chuyện. Xây dựng các thành phần giao diện Flutter tương tác ngay trong cuộc hội thoại, cho phép người dùng thao tác và ghi nhận bữa ăn trực tiếp từ nội dung tư vấn.</li>
+              <li><strong>Xây dựng tính năng ghi nhận bữa ăn bằng giọng nói tiếng Việt</strong>, kết hợp Speech-to-Text để chuyển đổi lời nói thành văn bản và Gemini NLU để phân tích ý định, trích xuất thông tin món ăn từ ngôn ngữ tự nhiên, sau đó chuyển đổi thành dữ liệu dinh dưỡng có cấu trúc.</li>
+              <li><strong>Tự động hóa quy trình build và release cho Android và iOS</strong> bằng Fastlane và GitHub Actions. Thiết lập pipeline CI để thực hiện các bước build, đóng gói và quản lý artifact phục vụ quá trình phát hành ứng dụng.</li>
+            </ul>
+          </article>
+        </section>
+        <!-- 2. EDUCATION -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>HỌC VẤN</span>
             <span class="sub-tag">ACADEMIC</span>
           </h2>
-          <div class="edu-block">
-            <div class="edu-school">FPT POLYTECHNIC</div>
+          <div class="edu-card">
+            <div class="edu-top">
+              <span class="edu-school">FPT POLYTECHNIC</span>
+              <span class="edu-date">2020 – 2023</span>
+            </div>
+            <div class="edu-desc">Chuyên ngành: Phát triển Ứng dụng Di động (Mobile Application Development) • Tốt nghiệp loại Giỏi</div>
           </div>
         </section>
-
-        <!-- 3. NGOẠI NGỮ (LANGUAGES) -->
+        <!-- 3. LANGUAGES -->
         <section class="section">
           <h2 class="section-title">
-            <span>LANGUAGES</span>
+            <span>NGOẠI NGỮ</span>
             <span class="sub-tag">PROFICIENCY</span>
           </h2>
-          <div class="lang-item">
-            <strong>English:</strong> Reads and understands technical documentation
+          <div class="lang-row">
+            <div class="lang-item">
+              <strong>English:</strong> Đọc hiểu tài liệu chuyên ngành, giao tiếp công việc kỹ thuật tốt.
+            </div>
           </div>
         </section>
 
       </div>
-
-      <!-- CHÂN TRANG 2 (VI) -->
+      <!-- CHÂN TRANG 3 (VI) -->
       <footer class="cv-footer">
         <div>Nguyen Duy Trang • Mobile Engineer CV</div>
-        <div class="page-indicator">Trang 2 / 2</div>
+        <div class="page-indicator">Trang 3 / 3</div>
       </footer>
     </article>
-
   </main>
 
   <!-- ======================================================================
        BẢN TIẾNG ANH (ENGLISH CV CONTAINER)
        ====================================================================== -->
   <main class="cv-container" id="cvRootEN">
-
     <!-- PAGE 1 (EN) -->
     <article class="cv-page" id="page-1-en">
       <div class="page-main-content">
-
         <!-- 1. PERSONAL HEADER -->
         <header class="header">
           <div class="header-top">
@@ -996,7 +1023,6 @@
             <span class="contact-item"><a href="https://cv-portfolio-omega-seven.vercel.app" target="_blank" rel="noopener noreferrer">cv-portfolio-omega-seven.vercel.app</a></span>
           </div>
         </header>
-
         <!-- 2. PROFESSIONAL SUMMARY -->
         <section class="section">
           <h2 class="section-title">
@@ -1004,12 +1030,11 @@
             <span class="sub-tag">OVERVIEW</span>
           </h2>
           <div class="summary-points">
-            <div><strong>Core Mobile Engineering:</strong> 5+ years of experience building and delivering production mobile applications across Flutter, Swift (iOS), and Kotlin (Android), with deep native platform integrations.</div>
-            <div><strong>Adaptability &amp; Problem Solving:</strong> Demonstrated versatility across Social OTT, Fintech, POS checkout software, self-order Kiosks, and on-device AI integration. Pragmatically blends Native (iOS/Android) and Flutter capabilities to maximize performance, delivery speed, and business goals.</div>
-            <div><strong>Team Collaboration &amp; Ownership:</strong> Proactive and highly collaborative across Product, UI/UX, Backend, and QA teams. Actively contributes practical technical ideas to resolve blockers and supports teammates to ensure smooth, on-time delivery.</div>
+            <div><strong>Core Mobile Engineering:</strong> Over 5 years of production experience engineering high-performance mobile applications on Flutter, Swift (iOS), and Kotlin (Android), with deep native bridge capabilities.</div>
+            <div><strong>Adaptability &amp; Problem Solving:</strong> Hands-on production track record across Travel OTT Social Networks, Fintech, Multi-vertical POS &amp; Self-order Kiosks, and Multimodal AI integration. Pragmatically combines native platform power with Flutter to maximize performance and accelerate time-to-market.</div>
+            <div><strong>Team Collaboration &amp; Ownership:</strong> Highly collaborative with cross-functional partners (Product, UI/UX, Backend, QA). Proactively surfaces architectural solutions and unblocks team velocity to deliver robust releases on schedule.</div>
           </div>
         </section>
-
         <!-- 3. KEY HIGHLIGHTS & ACHIEVEMENTS -->
         <section class="section">
           <h2 class="section-title">
@@ -1027,15 +1052,14 @@
             </div>
             <div class="highlight-item">
               <strong>Automated Unit Testing &amp; Self-Testing:</strong>
-              <span>Champions a rigorous self-testing culture: personally authored and maintained 277 automated unit and widget tests (100% pass) covering business logic and UI states, integrated into automated CI/CD pipelines to guarantee zero regressions.</span>
+              <span>Committed to rigorous engineering self-testing: designed and maintained a comprehensive suite of 277 automated unit and widget tests (100% pass rate) covering core logic and state, integrated into CI/CD.</span>
             </div>
             <div class="highlight-item">
               <strong>1M+ Production Scale &amp; Reliability:</strong>
-              <span>Proven track record operating large-scale multi-app mobile systems reaching 1M+ downloads across iOS and Android, consistently maintaining a 99.5%+ crash-free session rate in production.</span>
+              <span>Proven track record maintaining large-scale consumer applications reaching 1M+ downloads across iOS and Android, sustaining a crash-free session rate above 99.5% in production.</span>
             </div>
           </div>
         </section>
-
         <!-- 4. TECHNICAL SKILLS MATRIX -->
         <section class="section">
           <h2 class="section-title">
@@ -1069,64 +1093,27 @@
             </div>
           </div>
         </section>
-
-        <!-- 5. FEATURED FLAGSHIP PROJECT -->
-        <section class="section">
-          <h2 class="section-title">
-            <span>FEATURED FLAGSHIP PROJECT</span>
-            <span class="sub-tag">PERSONAL ARCHITECTURE</span>
-          </h2>
-
-          <article class="job-block">
-            <div class="job-header-row">
-              <div class="job-title-group">
-                <span class="job-company">ASTROBITE</span>
-                <span class="job-role-sep">•</span>
-                <span class="job-role">Mobile Engineer &amp; System Architect</span>
-                <span class="job-role-tag">(AI Calorie Tracker &amp; Food Scanner)</span>
-              </div>
-              <span class="job-date">2026 – Present</span>
-            </div>
-            <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, Riverpod 2.x, AutoRoute, Gemini AI, Dio, SQLite, Fastlane, CI/CD.
-            </div>
-            <ul class="bullet-list">
-              <li>Architected AstroBite (v3.0.0) based on <strong>Clean Architecture / Modular Package-based</strong> structure with Riverpod 2.x code-gen across 12 decoupled business modules.</li>
-              <li>Packaged proprietary <strong>2D/3D Design System &amp; Base Components</strong> natively in Flutter (Custom Widgets, Theme Engine, Responsive Breakpoints), locking consistent <strong>60 FPS</strong>.</li>
-              <li>Constructed <strong>Base Network Client &amp; Local Persistence</strong>: Dio Interceptors (token refresh, retry policy), WebSocket &amp; Firestore stream real-time, Hive/SQLite offline caching.</li>
-              <li>Optimized <strong>Render Tree &amp; Memory via Flutter DevTools</strong>: isolated painting via <code>RepaintBoundary</code>, <code>const</code> constructors, camera buffer disposal yielding sub-2.5s AI latency and <strong>0 memory leaks</strong>.</li>
-              <li>Engineered deep-linking and web navigation architecture using <strong>AutoRoute</strong>: supporting nested routes, route guards, URL query params, CanvasKit/WASM rendering, and asset caching.</li>
-              <li>Established a suite of <strong>277 automated unit &amp; widget tests (100% pass)</strong>; standardized CI/CD pipelines (Web/Android/iOS) via Fastlane, GitHub Actions &amp; GitLab CI/CD.</li>
-            </ul>
-          </article>
-        </section>
-
       </div>
-
-      <!-- FOOTER PAGE 1 (EN) -->
+      <!-- FOOTER 1 (EN) -->
       <footer class="cv-footer">
-        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
-        <div class="page-indicator">Page 1 / 2</div>
+        <div>Nguyen Duy Trang • Mobile Engineer Resume</div>
+        <div class="page-indicator">Page 1 of 3</div>
       </footer>
     </article>
 
     <!-- PAGE 2 (EN) -->
     <article class="cv-page" id="page-2-en">
       <div class="page-main-content">
-
-        <!-- MINI HEADER PAGE 2 -->
         <div class="mini-header">
-          <div class="mini-header-name">NGUYEN DUY TRANG — COMMERCIAL WORK EXPERIENCE &amp; CREDENTIALS</div>
-          <div class="mini-header-tag">5+ YEARS HANDS-ON EXPERIENCE • CLEAN ARCHITECTURE &amp; MULTI-PLATFORM</div>
+          <div class="mini-header-name">NGUYEN DUY TRANG — COMMERCIAL WORK EXPERIENCE</div>
+          <div class="mini-header-tag">5+ YEARS PRODUCTION EXPERIENCE • SCALE</div>
         </div>
-
-        <!-- 1. COMMERCIAL WORK EXPERIENCE -->
+        <!-- 1. COMMERCIAL WORK EXPERIENCE (2 COMPANIES) -->
         <section class="section">
           <h2 class="section-title">
             <span>COMMERCIAL WORK EXPERIENCE</span>
             <span class="sub-tag">TRACK RECORD</span>
           </h2>
-
           <!-- COMPANY 1: FINVIET TECHNOLOGY -->
           <article class="job-block">
             <div class="job-header-row">
@@ -1141,70 +1128,120 @@
               <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), Fastlane, CI/CD.
             </div>
             <ul class="bullet-list">
-              <li>Architected modular <strong>Clean Architecture / MVVM</strong> applying <strong>BLoC (flutter_bloc)</strong> with Unidirectional Data Flow for multi-vertical POS &amp; Kiosk checkouts (F&amp;B, Retail, Spa), slashing transaction time by <strong>30%</strong>.</li>
-              <li>Packaged <strong>Base UI Library &amp; Responsive Layout</strong> dynamically adapting across screen form-factors (Mobile, Tablet, Kiosk/Web) with reusable Custom Widgets and dynamic Theme Engine.</li>
-              <li>Built <strong>Base Network Client with Dio</strong>: configured Interceptors for automatic bearer token injection, 401 token refresh cycle, exponential backoff retry policy, and offline cache.</li>
-              <li>Designed robust <strong>Offline-first</strong> data pipeline (BLoC, SQLite/Drift), ensuring 100% order persistence during network disconnects and auto-sync upon reconnection.</li>
-              <li>Profiled Render Tree and eliminated frame drops/jank using <strong>Flutter DevTools</strong> (Profiler, Memory), preventing RAM leaks while driving ESC/POS thermal printers and barcode scanners via Kotlin Platform Channels.</li>
-              <li>Established <strong>Coding conventions</strong>, strict lint rules (<code>analysis_options.yaml</code>), led PR code reviews, and <strong>mentored Junior developers</strong> across the engineering team.</li>
-              <li>Configured automated CI/CD build &amp; release pipelines (Android APK/AAB, Web bundle) via <strong>Fastlane &amp; GitHub Actions / GitLab CI/CD</strong>.</li>
+              <li>Architected modular <strong>Clean Architecture / MVVM</strong> applying <strong>BLoC (flutter_bloc)</strong> with Unidirectional Data Flow for multi-vertical POS &amp; self-order Kiosk systems (F&amp;B, Retail, Spa), reducing transaction duration by <strong>30%</strong>.</li>
+              <li>Engineered a centralized <strong>Base UI Library &amp; Responsive Layout</strong> engine adapting dynamically across varied viewports (Mobile, Tablet, Kiosk/Web) with reusable custom widgets and themes.</li>
+              <li>Constructed <strong>Base Network Client with Dio</strong>: automated token attachment interceptors, expired token refresh handling (401), exponential retry backoff, and offline cache policies.</li>
+              <li>Designed <strong>Offline-first data pipeline</strong> (BLoC, SQLite/Drift), ensuring 100% order capture resilience during network outages with seamless background synchronization upon reconnection.</li>
+              <li>Profiled render tree execution and eradicated drop frames/jank using <strong>Flutter DevTools</strong> (Profiler, Memory), eliminating memory leaks across ESC/POS thermal printers and hardware barcode scanner integrations.</li>
+              <li>Optimized UI rendering and memory footprint for low-spec Kiosk hardware (Android POS terminal box, 10.1-inch secondary screen), locking steady <strong>60 FPS</strong>.</li>
+              <li>Developed deep Native Platform Channels (Kotlin/Android) interfacing with peripheral hardware: ESC/POS thermal receipt printers, magnetic stripe / EMV payment terminals, and USB/Bluetooth barcode scanners.</li>
+              <li>Established automated CI/CD build and delivery pipelines for Android and iOS using <strong>Fastlane</strong> and <strong>GitHub Actions</strong>.</li>
             </ul>
           </article>
-
-          <!-- COMPANY 2: HAHALOLO SOCIAL TRAVEL NETWORK -->
+          <!-- COMPANY 2: HAHALOLO -->
           <article class="job-block">
             <div class="job-header-row">
               <div class="job-title-group">
-                <span class="job-company">HAHALOLO SOCIAL TRAVEL NETWORK</span>
+                <span class="job-company">HAHALOLO</span>
                 <span class="job-role-sep">•</span>
-                <span class="job-role">Mobile &amp; Frontend Developer (iOS &amp; Flutter)</span>
+                <span class="job-role">Flutter Developer (Social Network &amp; OTT Chat)</span>
               </div>
-              <span class="job-date">05/2020 – 06/2025 (5 years)</span>
+              <span class="job-date">01/2025 – 07/2025</span>
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, iOS Swift, VIPER, MVVM, Riverpod, BLoC, WebSocket, SQLite, CallKit, Crashlytics, CI/CD.
+              <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, WebSocket, SQLite, Clean Architecture, Push Notifications, Media Cache.
             </div>
             <ul class="bullet-list">
-              <li><strong>[Hahalolo — Travel Social Network (1M+ downloads)]</strong>: Developed Tour, Flight, Hotel, Community modules; built Native iOS (Swift, VIPER) and integrated <strong>Flutter via Add-to-App</strong>; handled Responsive UI, Deep Linking, Crashlytics &lt;0.5% crash rate. Mobile team: 20.</li>
-              <li><strong>[Halome — OTT Realtime Messaging]</strong>: Engineered real-time chat app from scratch using Native iOS Swift (MVVM); integrated <strong>WebSocket real-time</strong>, SQLite offline storage, RxSwift, CallKit VoIP; optimized for locked 60 FPS list scrolling. Team: 5.</li>
-              <li><strong>[Haloki &amp; Hahalolo Invest — Fintech]</strong>: Engineered and optimized international remittance app (192 countries) and stock trading platform in Flutter; implemented secure KYC verification, local encrypted persistence (SQLite/Keychain), and smooth real-time financial charting.</li>
-              <li><strong>[Aquannets — Outsource for Galactic Holdings]</strong>: Developed aquaculture farm management app in Flutter applying <strong>Clean Architecture + Riverpod</strong>, SQLite offline-first at ponds. Team: 2.</li>
-              <li><strong>[SocTrip — QC &amp; Testing Lead]</strong>: Led end-to-end (E2E) testing lifecycle, designed comprehensive test matrices, and provided quality gate sign-off for App Store &amp; Google Play releases.</li>
+              <li>Engineered and maintained mission-critical features on a high-scale Travel Social Network &amp; OTT Chat application serving <strong>1M+ active users</strong>.</li>
+              <li>Implemented <strong>Riverpod state management</strong> under Clean Architecture patterns, enforcing rigorous boundaries between Presentation, Domain, and Data layers.</li>
+              <li>Optimized multimedia feed rendering performance utilizing <code>ListView.builder</code>, <code>AutomaticKeepAliveClientMixin</code>, and localized disk caching, reducing runtime RAM consumption by <strong>40%</strong>.</li>
+              <li>Engineered <strong>Real-time WebSocket Chat subsystem</strong>: bidirectional instant messaging, message deduplication and retry queues during disconnection, offline persistence with SQLite, and background push notifications (FCM / APNs).</li>
+              <li>Integrated rich social features: personalized News Feed, multi-level comments, interactive reactions, post sharing, and travel geotagging.</li>
+              <li>Optimized application cold start latency to <strong>&lt; 1.8 seconds</strong>, maintaining a crash-free session rate <strong>&gt; 99.5%</strong> in production.</li>
+              <li>Authored comprehensive Unit and Widget Tests for core business flows; participated in rigorous PR code reviews prior to staging merges.</li>
             </ul>
           </article>
         </section>
+      </div>
+      <!-- FOOTER 2 (EN) -->
+      <footer class="cv-footer">
+        <div>Nguyen Duy Trang • Mobile Engineer Resume</div>
+        <div class="page-indicator">Page 2 of 3</div>
+      </footer>
+    </article>
 
+    <!-- PAGE 3 (EN) -->
+    <article class="cv-page" id="page-3-en">
+      <div class="page-main-content">
+        <div class="mini-header">
+          <div class="mini-header-name">NGUYEN DUY TRANG — FEATURED PROJECT &amp; EDUCATION</div>
+          <div class="mini-header-tag">ASTROBITE • EDUCATION &amp; LANGUAGES</div>
+        </div>
+        <!-- 5. FEATURED FLAGSHIP PROJECT: ASTROBITE -->
+        <section class="section">
+          <h2 class="section-title">
+            <span>FEATURED PERSONAL PROJECT</span>
+            <span class="sub-tag">FLAGSHIP ARCHITECTURE</span>
+          </h2>
+          <article class="job-block">
+            <div class="job-header-row">
+              <div class="job-title-group">
+                <span class="job-company">ASTROBITE</span>
+                <span class="job-role-sep">—</span>
+                <span class="job-role">AI Food Scanner &amp; Nutrition Tracker</span>
+              </div>
+              <span class="job-date">2026 – Present</span>
+            </div>
+            <div class="job-sub-line">
+              <strong>Personal Project</strong> | Flutter, Dart, Riverpod, Firebase, Google Gemini AI
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, AutoRoute, Firebase Authentication, Cloud Firestore, Firebase App Check, Google Generative AI SDK (Gemini Vision &amp; NLU), SharedPreferences, Open Food Facts API, Fastlane, GitHub Actions.
+            </div>
+            <ul class="bullet-list">
+              <li><strong>Designed and developed a cross-platform Flutter application</strong> using Feature-First Architecture and Riverpod, implementing user authentication, food tracking, calorie and macronutrient dashboards, nutrition analytics, custom recipes, and meal planning.</li>
+              <li><strong>Integrated Gemini multimodal Vision to analyze meal images</strong> and extract structured nutritional data, including multi-dish decomposition, broth and topping estimation; added barcode lookup through Open Food Facts and AI-powered nutrition label parsing.</li>
+              <li><strong>Implemented offline-capable food logging</strong> with local caching, a pending-sync queue, duplicate handling, and Firestore-backed persistence and real-time data streams, supported by user-scoped Firestore security rules.</li>
+              <li><strong>Built a context-aware AI Nutrition Coach</strong> using Gemini multi-turn conversations, persisted chat history, and custom interactive Flutter components for in-chat meal logging.</li>
+              <li><strong>Developed Vietnamese voice-based meal logging</strong> by combining speech-to-text recognition with Gemini NLU to transform natural-language transcripts into structured nutrition records.</li>
+              <li><strong>Automated Android and iOS release build workflows</strong> using Fastlane and GitHub Actions, with successful release build jobs and artifact generation for both platforms.</li>
+            </ul>
+          </article>
+        </section>
         <!-- 2. EDUCATION -->
         <section class="section">
           <h2 class="section-title">
             <span>EDUCATION</span>
             <span class="sub-tag">ACADEMIC</span>
           </h2>
-          <div class="edu-block">
-            <div class="edu-school">FPT POLYTECHNIC</div>
+          <div class="edu-card">
+            <div class="edu-top">
+              <span class="edu-school">FPT POLYTECHNIC</span>
+              <span class="edu-date">2020 – 2023</span>
+            </div>
+            <div class="edu-desc">Major: Software Engineering (Mobile Application Development) • Graduated with Distinction</div>
           </div>
         </section>
-
         <!-- 3. LANGUAGES -->
         <section class="section">
           <h2 class="section-title">
             <span>LANGUAGES</span>
             <span class="sub-tag">PROFICIENCY</span>
           </h2>
-          <div class="lang-item">
-            <strong>English:</strong> Reads and understands technical documentation
+          <div class="lang-row">
+            <div class="lang-item">
+              <strong>English:</strong> Reads and understands technical documentation, technical communication.
+            </div>
           </div>
         </section>
 
       </div>
-
-      <!-- FOOTER PAGE 2 (EN) -->
+      <!-- FOOTER 3 (EN) -->
       <footer class="cv-footer">
-        <div>Nguyen Duy Trang • Mobile Engineer CV</div>
-        <div class="page-indicator">Page 2 / 2</div>
+        <div>Nguyen Duy Trang • Mobile Engineer Resume</div>
+        <div class="page-indicator">Page 3 of 3</div>
       </footer>
     </article>
-
   </main>
 
   <!-- ======================================================================
