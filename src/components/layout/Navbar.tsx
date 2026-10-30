@@ -11,13 +11,13 @@ export const Navbar: React.FC = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sectionIds = ['about', 'manifesto', 'experience', 'projects', 'skills', 'engineering', 'contact'];
+      const sectionIds = ['hero', 'about', 'experience', 'projects', 'skills', 'engineering', 'contact'];
       const scrollPos = window.scrollY + 140;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -34,10 +34,10 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: t.navAbout, href: '#about' },
-    { label: language === 'vi' ? 'Triết lý' : 'Manifesto', href: '#manifesto' },
     { label: t.navExperience, href: '#experience' },
     { label: t.navProjects, href: '#projects' },
     { label: t.navSkills, href: '#skills' },
+    { label: t.navEngineering, href: '#engineering' },
     { label: t.navContact, href: '#contact' },
   ];
 
@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Brand / Logo */}
-        <a href="#about" data-cursor="pointer" className="flex items-center gap-3 group">
+        <a href="#hero" data-cursor="pointer" className="flex items-center gap-3 group">
           <div className="w-8 h-8 rounded-lg bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#FFB648] group-hover:border-[#FF6417] group-hover:text-[#FFF4DE] font-bold text-xs flex items-center justify-center transition-all font-mono">
             DT
           </div>

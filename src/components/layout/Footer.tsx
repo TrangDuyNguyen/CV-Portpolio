@@ -13,20 +13,17 @@ export const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const fullName = language === 'vi' ? 'Nguyễn Duy Trang' : 'Nguyen Duy Trang';
-
   return (
     <footer className="mt-20 px-3 sm:px-6 pb-6">
-      {/* Curved Bone-White Editorial Base Block (inspired by richabh footer) */}
       <div className="max-w-6xl mx-auto rounded-3xl bg-[#F4F2EA] text-[#08090A] p-8 sm:p-12 shadow-2xl transition-all">
         
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-[#08090A]/10">
           <div>
             <h2 className="font-display italic text-3xl sm:text-4xl text-[#08090A] tracking-tight">
-              {fullName}
+              {profile.name}
             </h2>
             <p className="text-xs sm:text-sm text-[#08090A]/70 font-mono mt-1">
-              Mid-Level Mobile Engineer · Flutter · Native iOS & Android
+              {profile.roleTitle} · Flutter · Native iOS & Android
             </p>
           </div>
 
@@ -75,18 +72,16 @@ export const Footer: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#08090A] text-[#F4F2EA] hover:bg-[#FF6417] hover:text-[#FFF4DE] text-xs font-mono font-medium transition-colors cursor-pointer ml-1"
               aria-label={t.backToTop}
             >
-              <span>{language === 'vi' ? 'Lên đầu trang' : 'Back to top'}</span>
+              <span>{t.backToTop}</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Bottom base metadata */}
+        {/* Bottom Base Metadata */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#08090A]/60 font-mono gap-3 text-center sm:text-left">
-          <p>© 2026 {fullName}. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            <span>Built with React 18, TypeScript & Cinematic Editorial Motion</span>
-          </p>
+          <p>{t.rights}</p>
+          <p>{t.craftedWith}</p>
         </div>
 
       </div>

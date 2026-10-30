@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Download, Github, Linkedin } from 'lucide-react';
+import { Copy, Check, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -25,21 +25,19 @@ export const ContactSection: React.FC = () => {
         {/* Large Editorial Lead */}
         <div className="max-w-4xl mb-16 md:mb-20 reveal">
           <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-3">
-            {isVi ? '// Khởi Đầu Hợp Tác' : '// Get In Touch'}
+            // {t.statusBadge}
           </p>
 
           <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-6">
-            {isVi ? 'Liên hệ với tôi.' : 'Write to me.'}
+            {t.title}
           </h2>
 
           <p className="text-base sm:text-xl text-[#8E96A4] font-light leading-relaxed max-w-2xl" data-cursor="lens">
-            {isVi
-              ? 'Sẵn sàng thảo luận về các cơ hội Mobile Engineer mới. Đóng góp vào các sản phẩm yêu cầu kiến trúc vững chắc, tích hợp phần cứng và trải nghiệm người dùng mượt mà.'
-              : 'Open to new Mobile Engineer opportunities. Excited to contribute to products demanding clean architecture, native performance, and crafted user experiences.'}
+            {t.description}
           </p>
         </div>
 
-        {/* Minimalist Contact Grid (Zero Fake Terminal Window) */}
+        {/* Minimalist Contact Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-10 border-t border-[rgba(244,242,234,0.08)] reveal">
           
           {/* Email & Phone Direct Row */}
@@ -71,7 +69,7 @@ export const ContactSection: React.FC = () => {
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5" />
-                      <span>{isVi ? 'Sao chép email' : 'Copy address'}</span>
+                      <span>{isVi ? 'Sao chép' : 'Copy'}</span>
                     </>
                   )}
                 </button>
@@ -94,12 +92,24 @@ export const ContactSection: React.FC = () => {
 
               <div>
                 <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-1">
-                  {isVi ? 'Địa điểm làm việc' : 'Location'}
+                  {t.locationLabel}
                 </span>
                 <span className="text-base sm:text-lg font-mono text-[#F4F2EA]">
                   {profile.location}
                 </span>
               </div>
+            </div>
+
+            {/* Main Email CTA Button */}
+            <div className="pt-4">
+              <a
+                href={`mailto:${profile.email}`}
+                data-cursor="pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+              >
+                <Mail className="w-4 h-4" />
+                <span>{isVi ? 'Gửi email cho tôi' : 'Send an email'}</span>
+              </a>
             </div>
           </div>
 
@@ -107,13 +117,13 @@ export const ContactSection: React.FC = () => {
           <div className="md:col-span-5 md:pl-8 md:border-l md:border-[rgba(244,242,234,0.08)] space-y-6">
             <div>
               <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
-                {isVi ? 'Hồ Sơ Bản In (PDF)' : 'Official Resume (PDF)'}
+                {t.downloadTitle}
               </span>
               <a
                 href={profile.cvPdfUrl}
                 download={isVi ? 'Mobile_Engineer_Nguyen_Duy_Trang.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'}
                 data-cursor="pointer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#F4F2EA] hover:border-[#FF6417] hover:text-[#FFF4DE] font-medium text-xs sm:text-sm transition-all duration-200"
               >
                 <Download className="w-4 h-4" />
                 <span>{t.downloadPdfBtn}</span>

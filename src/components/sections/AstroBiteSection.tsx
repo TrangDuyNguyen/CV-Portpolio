@@ -2,16 +2,24 @@ import React from 'react';
 import {
   ArrowUpRight,
   Camera,
-  Mic,
   Database,
+  Sparkles,
+  Check,
 } from 'lucide-react';
-import { getAstrobiteOverview, getAstrobitePillars } from '../../data/astrobiteData';
+import {
+  getAstrobiteOverview,
+  getAstrobitePillars,
+  getAstrobiteFeatures,
+} from '../../data/astrobiteData';
+import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const AstroBiteSection: React.FC = () => {
   const { language } = useLanguage();
+  const t = translations[language].astrobite;
   const overview = getAstrobiteOverview(language);
   const pillars = getAstrobitePillars(language);
+  const features = getAstrobiteFeatures(language);
   const isVi = language === 'vi';
 
   return (
@@ -20,18 +28,18 @@ export const AstroBiteSection: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Editorial Case Study Header */}
-        <div className="mb-16 md:mb-24 reveal">
+        {/* 1. Project Identity */}
+        <div className="mb-12 md:mb-16 reveal">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#141C2E] text-[#FFB648] border border-[rgba(244,242,234,0.12)]">
-              {isVi ? 'DỰ ÁN TIÊU BIỂU' : 'FLAGSHIP CASE STUDY'}
+              {t.badgeFlagship}
             </span>
             <span className="text-xs font-mono text-[#8E96A4]">
-              {overview.role} · 2026
+              {overview.role}
             </span>
           </div>
 
-          <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-6">
+          <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-4">
             AstroBite —{' '}
             <span className="text-[#FF6417] not-italic">
               {overview.tagline}
@@ -42,35 +50,31 @@ export const AstroBiteSection: React.FC = () => {
             {overview.description}
           </p>
 
-          {/* Quick Metrics Hairline Row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 pt-6 border-t border-[rgba(244,242,234,0.08)]">
-            {overview.metrics.map((m, idx) => (
-              <div key={idx}>
-                <div className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider mb-1">
-                  {m.label}
-                </div>
-                <div className="text-sm sm:text-base font-mono font-medium text-[#F4F2EA]">
-                  {m.value}
-                </div>
-              </div>
+          {/* Quick Stack Badges */}
+          <div className="flex flex-wrap items-center gap-2 mt-6">
+            <span className="text-xs font-mono text-[#8E96A4] mr-1">// Stack:</span>
+            {overview.stackBadges.slice(0, 5).map((b) => (
+              <span
+                key={b}
+                className="px-2.5 py-1 text-xs font-mono rounded-md bg-[#141C2E] text-[#F4F2EA] border border-[rgba(244,242,234,0.08)]"
+              >
+                {b}
+              </span>
             ))}
           </div>
         </div>
 
-        {/* Visual Showcase: Video Walkthrough + Heroic Screenshots */}
-        <div className="mb-24 reveal">
+        {/* 2. Product Visual First: Video Demo */}
+        <div className="mb-20 md:mb-24 reveal">
           <div className="relative rounded-2xl overflow-hidden bg-[#0E131F] border border-[rgba(244,242,234,0.1)] shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-            
-            {/* Top Bar Indicator */}
             <div className="px-4 py-3 bg-[#08090A]/90 border-b border-[rgba(244,242,234,0.08)] flex items-center justify-between text-xs font-mono text-[#8E96A4]">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#FF6417] animate-pulse" />
-                <span>AstroBite Interactive Production Demo</span>
+                <span>{t.demoVideoTitle}</span>
               </div>
               <span className="text-[11px] text-[#8E96A4]/60">Flutter · Google Gemini · Riverpod</span>
             </div>
 
-            {/* Video / Poster Box */}
             <div className="relative aspect-video max-w-5xl mx-auto bg-black flex items-center justify-center">
               <video
                 controls
@@ -79,21 +83,21 @@ export const AstroBiteSection: React.FC = () => {
                 className="w-full h-full object-contain"
               >
                 <source src="/astrobite-demo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
+                Trình duyệt của bạn không hỗ trợ thẻ video.
               </video>
             </div>
           </div>
         </div>
 
-        {/* 3 Core Engineering Decisions (Editorial Asymmetric Layout) */}
+        {/* 3. Vấn Đề & Cách Tiếp Cận (3 Core Pillars) */}
         <div className="mb-20">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-[rgba(244,242,234,0.08)] gap-4 reveal">
             <div>
               <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-2">
-                {isVi ? '// Giải Pháp Kỹ Thuật' : '// Core Architectural Decisions'}
+                // {t.pillarsHeader}
               </p>
               <h3 className="font-display italic text-2xl sm:text-4xl text-[#F4F2EA]">
-                {isVi ? 'Thách Thức & Lựa Chọn Kiến Trúc' : 'Challenges & Engineering Decisions'}
+                {t.pillarsSub}
               </h3>
             </div>
 
@@ -102,17 +106,17 @@ export const AstroBiteSection: React.FC = () => {
               data-cursor="pointer"
               className="inline-flex items-center gap-1.5 text-xs font-mono text-[#FFB648] hover:text-[#FFF4DE] transition-colors"
             >
-              <span>{isVi ? 'Xem toàn bộ 12 màn hình giao diện' : 'Explore full 12 production screens'}</span>
+              <span>{t.viewScreensLink}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 reveal">
-            {pillars.slice(0, 3).map((pillar, pIdx) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 reveal">
+            {pillars.map((pillar, pIdx) => {
               const icons = [
-                <Camera key="1" className="w-5 h-5 text-[#FF6417]" />,
-                <Mic key="2" className="w-5 h-5 text-[#FFB648]" />,
-                <Database key="3" className="w-5 h-5 text-[#FFF4DE]" />,
+                <Camera key="1" className="w-4 h-4 text-[#FF6417]" />,
+                <Database key="2" className="w-4 h-4 text-[#FFB648]" />,
+                <Sparkles key="3" className="w-4 h-4 text-[#FFF4DE]" />,
               ];
 
               return (
@@ -123,7 +127,7 @@ export const AstroBiteSection: React.FC = () => {
                         {icons[pIdx]}
                       </div>
                       <span className="text-xs font-mono text-[#FFB648]">
-                        Story {pillar.number} · {pillar.metricBadge}
+                        0{pIdx + 1} · {pillar.metricBadge}
                       </span>
                     </div>
 
@@ -138,7 +142,7 @@ export const AstroBiteSection: React.FC = () => {
                     <ul className="space-y-2 border-t border-[rgba(244,242,234,0.06)] pt-3">
                       {pillar.highlights.map((h, hIdx) => (
                         <li key={hIdx} className="text-xs text-[#8E96A4] flex items-start gap-2">
-                          <span className="text-[#FF6417] mt-0.5">·</span>
+                          <Check className="w-3.5 h-3.5 text-[#FF6417] shrink-0 mt-0.5" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -153,6 +157,50 @@ export const AstroBiteSection: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* 4. Một Số Chức Năng (Features) & Engineering Note */}
+        <div className="pt-10 border-t border-[rgba(244,242,234,0.08)] reveal">
+          <div className="mb-6 flex items-baseline justify-between">
+            <h4 className="text-sm font-mono uppercase tracking-wider text-[#F4F2EA]">
+              // {t.featuresHeader}
+            </h4>
+            <span className="text-xs font-mono text-[#8E96A4]/70">
+              {isVi ? 'Tổng hợp tính năng' : 'Feature highlights'}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-8">
+            {features.map((feat) => (
+              <div
+                key={feat.id}
+                className="p-3.5 rounded-xl bg-[#0E131F]/70 border border-[rgba(244,242,234,0.06)]"
+              >
+                <div className="text-xs font-medium text-[#F4F2EA] mb-1">
+                  {feat.title}
+                </div>
+                <div className="text-[11px] text-[#8E96A4] leading-relaxed">
+                  {feat.naturalDescription}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Engineering Note Box */}
+          <div className="p-4 rounded-xl bg-[#141C2E]/60 border border-[rgba(244,242,234,0.08)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono">
+            <div className="text-[#8E96A4]">
+              <span className="text-[#FFB648] font-semibold">// Engineering note: </span>
+              <span>{isVi ? 'Tập trung vào luồng dữ liệu offline-first, tích hợp AI và khả năng đồng bộ giữa dữ liệu cục bộ với backend.' : 'Focusing on offline-first data flows, AI integration, and robust local-to-backend synchronization.'}</span>
+            </div>
+            <a
+              href="#gallery"
+              data-cursor="pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F2EA] text-[#08090A] font-medium text-xs hover:bg-[#FFF4DE] transition-colors shrink-0"
+            >
+              <span>{t.viewScreensLink}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
 

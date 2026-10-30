@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, ArrowUpRight, ArrowDown, Mail } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Mail } from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -40,7 +40,6 @@ export const HeroSection: React.FC = () => {
     setIsHammerActive(true);
     setTimeout(() => setIsHammerActive(false), 450);
 
-    // Dispatch synthetic pointerdown to trigger SparksCanvas
     const sparkEvent = new PointerEvent('pointerdown', {
       clientX: e.clientX,
       clientY: e.clientY,
@@ -50,9 +49,6 @@ export const HeroSection: React.FC = () => {
     window.dispatchEvent(sparkEvent);
   };
 
-  const fullName = language === 'vi' ? 'Nguyễn Duy Trang' : 'Nguyen Duy Trang';
-
-  // Dynamic scroll-driven hero styles (reversibly scales & dissolves into the forge)
   const typographyStyle = isReducedMotion
     ? {}
     : {
@@ -64,16 +60,16 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       ref={heroRef}
-      id="about"
+      id="hero"
       className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 md:pt-40 md:pb-24 overflow-hidden"
     >
-      {/* 1. Cinematic WebGL2 / Canvas2D Forge Light Background */}
+      {/* 1. Cinematic Forge Shader Background */}
       <HeroForgeCanvas
         scrollProgress={scrollProgress}
         onIntroComplete={() => setIntroReady(true)}
       />
 
-      {/* 2. Main Hero Content */}
+      {/* 2. Main Hero Editorial Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         <div
           style={typographyStyle}
@@ -81,17 +77,10 @@ export const HeroSection: React.FC = () => {
             introReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          
-          {/* Eyebrow & Status */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-mono tracking-wider mb-6">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141C2E]/90 border border-[rgba(244,242,234,0.12)] text-[#FFB648] shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse" />
-              <span>{language === 'vi' ? 'SẴN SÀNG CHO CƠ HỘI MỚI' : 'OPEN TO MOBILE OPPORTUNITIES'}</span>
-            </span>
-
-            <span className="text-[#8E96A4] font-medium hidden sm:inline-block">
-              {language === 'vi' ? 'Hồ sơ năng lực, 2026 · TP. Hồ Chí Minh' : 'Portfolio, 2026 · Ho Chi Minh City'}
-            </span>
+          {/* Eyebrow */}
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#FFB648] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse" />
+            <span>{t.hero.eyebrow}</span>
           </div>
 
           {/* Large Expressive Serif Name Centerpiece */}
@@ -99,7 +88,7 @@ export const HeroSection: React.FC = () => {
             <h1
               onClick={handleNameClick}
               data-cursor="pointer"
-              title={language === 'vi' ? 'Click để tạo xung kích nhiệt' : 'Click for thermal strike'}
+              title={language === 'vi' ? 'Chạm để tạo xung kích nhiệt' : 'Click for thermal strike'}
               className={`font-display italic text-[clamp(2.75rem,8.5vw,7.8rem)] leading-[1.02] tracking-[-0.03em] font-normal cursor-pointer transition-transform ${
                 isHammerActive ? 'hammer-strike' : ''
               }`}
@@ -108,89 +97,60 @@ export const HeroSection: React.FC = () => {
                 textShadow: '0 0 30px rgba(255, 182, 72, 0.75), 0 0 70px rgba(255, 100, 23, 0.45)',
               }}
             >
-              {fullName}
+              {profile.name}
             </h1>
 
-            {/* Interaction Prompt Cue */}
             <p className="mt-3 text-[11px] sm:text-xs font-mono text-[#8E96A4] tracking-wide">
               {language === 'vi'
-                ? '✦ Di chuyển chuột để khuấy động ánh sáng lò rèn. Chạm hoặc click để phóng tia lửa.'
+                ? '✦ Di chuyển để khuấy động ánh sáng lò rèn. Chạm để tạo tia lửa.'
                 : '✦ Move to stir the forge light. Click or tap to strike it.'}
             </p>
           </div>
 
-          {/* Headline & Concise Value Proposition */}
+          {/* Headline & Concise Description */}
           <div className="max-w-2xl space-y-4 mb-8" data-cursor="lens">
             <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-[#F4F2EA]">
-              {language === 'vi'
-                ? 'Xây dựng ứng dụng di động bền vững từ kiến trúc đến trải nghiệm.'
-                : 'Building dependable mobile experiences from architecture to craft.'}
+              {t.hero.headline}
             </h2>
 
             <p className="text-sm sm:text-base leading-relaxed text-[#8E96A4]">
-              {language === 'vi' ? (
-                <>
-                  <span className="thermal-word text-[#F4F2EA] font-medium">Mobile Engineer</span> với hơn{' '}
-                  <span className="thermal-word text-[#F4F2EA] font-medium">5 năm kinh nghiệm</span> thực chiến trên{' '}
-                  <span className="thermal-word text-[#FFB648]">Flutter</span>,{' '}
-                  <span className="thermal-word text-[#FFB648]">iOS Swift</span> và{' '}
-                  <span className="thermal-word text-[#FFB648]">Android Kotlin</span>. Trực tiếp tham gia phát triển hệ sinh thái mạng xã hội du lịch 1M+ downloads, hệ thống POS/Kiosk phần cứng thương mại và ứng dụng dinh dưỡng AI.
-                </>
-              ) : (
-                <>
-                  <span className="thermal-word text-[#F4F2EA] font-medium">Mobile Engineer</span> with{' '}
-                  <span className="thermal-word text-[#F4F2EA] font-medium">5+ years of production experience</span> across{' '}
-                  <span className="thermal-word text-[#FFB648]">Flutter</span>,{' '}
-                  <span className="thermal-word text-[#FFB648]">iOS Swift</span>, and{' '}
-                  <span className="thermal-word text-[#FFB648]">Android Kotlin</span>. Contributed to a 1M+ downloads social travel platform, commercial POS/Kiosk hardware integrations, and an AI nutrition engine.
-                </>
-              )}
+              {t.hero.description}
             </p>
           </div>
 
-          {/* Minimal Editorial Actions */}
+          {/* Minimal 2 CTAs */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <a
-              href={profile.cvPdfUrl}
-              download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
-              data-cursor="pointer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>{t.hero.ctaDownloadCv}</span>
-            </a>
-
             <a
               href="#projects"
               data-cursor="pointer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#F4F2EA] hover:text-[#FF6417] transition-colors group"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
             >
-              <span>{language === 'vi' ? 'Xem các dự án chọn lọc' : 'Explore Selected Work'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>{t.hero.ctaProjects}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
 
             <a
-              href={`mailto:${profile.email}`}
+              href="#contact"
               data-cursor="pointer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#8E96A4] hover:text-[#F4F2EA] transition-colors ml-1"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#8E96A4] hover:text-[#F4F2EA] transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
-              <span>{language === 'vi' ? 'Liên hệ trực tiếp' : 'Write to me'}</span>
+              <span>{t.hero.ctaContact}</span>
             </a>
           </div>
 
         </div>
       </div>
 
-      {/* 3. Bottom Verified Track Record (Typographic, Non-card layout) */}
+      {/* 3. Bottom Proof Points (Typographic, Non-card layout) */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12 sm:mt-16 pt-8 border-t border-[rgba(244,242,234,0.08)]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           {stats.map((stat, idx) => (
             <div key={idx} className="group">
               <div className="text-2xl sm:text-3xl font-mono font-medium text-[#F4F2EA] tracking-tight group-hover:text-[#FFB648] transition-colors">
                 {stat.value}
               </div>
-              <div className="text-xs font-mono text-[#8E96A4] mt-1 uppercase tracking-wider">
+              <div className="text-xs font-mono text-[#FFB648] mt-1 uppercase tracking-wider">
                 {stat.label}
               </div>
               <p className="text-[11px] text-[#8E96A4]/70 mt-1 line-clamp-2">
@@ -203,10 +163,10 @@ export const HeroSection: React.FC = () => {
         {/* Scroll Cue Indicator */}
         <div className="mt-10 flex items-center justify-between text-xs font-mono text-[#8E96A4]">
           <span className="tracking-widest uppercase text-[10px]">
-            {language === 'vi' ? 'Cuộn xuống để khám phá' : 'Scroll to explore'}
+            {t.hero.scrollCue}
           </span>
           <a
-            href="#manifesto"
+            href="#about"
             aria-label={t.hero.scrollCue}
             data-cursor="pointer"
             className="flex items-center gap-1.5 hover:text-[#FF6417] transition-colors"

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Calendar, Layers, ChevronDown, ChevronUp } from 'lucide-react';
 import { getCareerData } from '../../data/careerData';
+import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const CareerSection: React.FC = () => {
   const { language } = useLanguage();
+  const t = translations[language].career;
   const careerItems = getCareerData(language);
   const isVi = language === 'vi';
 
@@ -18,15 +20,13 @@ export const CareerSection: React.FC = () => {
         {/* Section Editorial Header */}
         <div className="mb-16 md:mb-20 reveal">
           <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-3">
-            {isVi ? '// Hành Trình Thương Mại' : '// Production Career Record'}
+            // {t.badge}
           </p>
           <h2 className="font-display italic text-3xl sm:text-5xl lg:text-6xl text-[#F4F2EA] tracking-tight mb-4">
-            {isVi ? 'Kinh Nghiệm Thực Chiến' : 'Commercial Experience'}
+            {t.title}
           </h2>
           <p className="text-sm sm:text-base text-[#8E96A4] max-w-2xl leading-relaxed">
-            {isVi
-              ? 'Hơn 5 năm đồng hành cùng các sản phẩm thương mại quy mô lớn: từ mạng xã hội du lịch hàng triệu người dùng đến hệ thống POS/Kiosk vận hành phần cứng thực tế.'
-              : '5+ years contributing to large-scale production ecosystems: from a 1M+ downloads social network to enterprise POS/Kiosk systems running on retail hardware.'}
+            {t.subtitle}
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export const CareerSection: React.FC = () => {
                 {/* Key Contributions & Engineering Outcomes */}
                 <div className="mt-6">
                   <h4 className="text-xs font-mono uppercase tracking-wider text-[#F4F2EA]/70 mb-3">
-                    {isVi ? 'Đóng Góp Kỹ Thuật Chính:' : 'Key Engineering Contributions:'}
+                    {isVi ? 'Đóng góp kỹ thuật:' : 'Key contributions:'}
                   </h4>
                   <ul className="space-y-2.5 max-w-4xl">
                     {item.achievements.map((ach, achIdx) => (
@@ -145,12 +145,12 @@ export const CareerSection: React.FC = () => {
                             </p>
                             {sub.technologies && (
                               <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[rgba(244,242,234,0.06)]">
-                                {sub.technologies.map((t) => (
+                                {sub.technologies.map((tech) => (
                                   <span
-                                    key={t}
+                                    key={tech}
                                     className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#141C2E] text-[#8E96A4]"
                                   >
-                                    {t}
+                                    {tech}
                                   </span>
                                 ))}
                               </div>
