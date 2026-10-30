@@ -45,6 +45,7 @@ export interface CareerItem {
   achievements: string[];
   subProjects?: SubProjectItem[];
   technologies: string[];
+  playStoreUrl?: string;
 }
 
 export interface SkillGroup {

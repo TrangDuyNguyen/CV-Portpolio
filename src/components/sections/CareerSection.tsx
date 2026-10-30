@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Layers, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, Layers, ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react';
 import { getCareerData } from '../../data/careerData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -61,8 +61,21 @@ export const CareerSection: React.FC = () => {
                   <div className="text-sm font-mono text-[#8E96A4] md:text-right">
                     <span className="text-[#F4F2EA] font-medium">{item.role}</span>
                     {item.project && (
-                      <div className="text-xs text-[#8E96A4]/80 mt-0.5">
-                        {item.project}
+                      <div className="text-xs text-[#8E96A4]/90 mt-0.5 flex flex-wrap md:justify-end items-center gap-1.5 sm:gap-2">
+                        <span>{item.project}</span>
+                        {item.playStoreUrl && (
+                          <a
+                            href={item.playStoreUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cursor="pointer"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[10px] text-[#FFB648] hover:text-[#FFF4DE] hover:border-[#FF6417] transition-all"
+                            title="Xem ứng dụng trên Google Play Store"
+                          >
+                            <span>Google Play</span>
+                            <ArrowUpRight className="w-2.5 h-2.5" />
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>

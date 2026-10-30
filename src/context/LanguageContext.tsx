@@ -53,7 +53,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       if (ogDesc) {
         ogDesc.setAttribute(
           'content',
-          'Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo, Finviet POS, AstroBite).'
+          'Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo, Finviet ECO POS, AstroBite).'
         );
       }
     } else {
@@ -76,7 +76,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       if (ogDesc) {
         ogDesc.setAttribute(
           'content',
-          'Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng Flutter & Native iOS/Android (Hahalolo, Finviet POS, AstroBite).'
+          'Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng Flutter & Native iOS/Android (Hahalolo, Finviet ECO POS, AstroBite).'
         );
       }
     }

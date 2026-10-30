@@ -6,18 +6,22 @@ const careerDataVi: CareerItem[] = [
     period: "08/2025 — 08/2026",
     role: "Mobile Developer",
     company: "Finviet",
-    project: "Hệ thống POS, Thu Ngân & Kiosk",
+    project: "ECO POS — Quản Lý Bán Hàng & Hóa Đơn Điện Tử",
     type: "Commercial Production",
-    summary: "Tham gia phát triển các giải pháp phục vụ hoạt động bán hàng và thanh toán, bao gồm hệ thống POS, ứng dụng thu ngân và Self-Order Kiosk.",
+    summary: "Tham gia phát triển ECO POS — giải pháp quản lý bán hàng, thu ngân và chuyển đổi số toàn diện của Finviet dành cho các hộ kinh doanh cá thể, cửa hàng tạp hóa, F&B, nhà thuốc và chuỗi bán lẻ. Ứng dụng tích hợp thanh toán VietQR Pay động, hóa đơn điện tử và chữ ký số trực tiếp theo chuẩn Tổng cục Thuế ngay trên điện thoại và máy POS chuyên dụng.",
     achievements: [
-      "Phát triển và hoàn thiện các luồng chức năng phục vụ hoạt động bán hàng tại điểm giao dịch.",
-      "Làm việc với tích hợp phần cứng và các thành phần native phục vụ nghiệp vụ của thiết bị.",
-      "Xử lý các tình huống kết nối không ổn định và yêu cầu vận hành tại điểm bán.",
+      "Phát triển và hoàn thiện luồng bán hàng tốc độ cao: tạo đơn, quét mã vạch bằng camera/máy quét phần cứng và in bill nhiệt ESC/POS (Bluetooth/USB) chỉ trong vài giây.",
+      "Tích hợp cổng thanh toán VietQR Pay động của Finviet, tự động nhận diện và cập nhật trạng thái thanh toán ngân hàng theo thời gian thực.",
+      "Tích hợp giải pháp xuất hóa đơn điện tử từ máy tính tiền và ký số chuẩn Nghị định 123 (Tổng cục Thuế) trực tiếp trên ứng dụng mà không cần thiết bị rườm rà.",
+      "Thiết kế cơ chế Offline-First với BLoC và SQLite, đảm bảo 100% dữ liệu đơn hàng không bị mất khi mất kết nối mạng và tự động đồng bộ khi online.",
+      "Tối ưu hóa UI render và kiểm soát rò rỉ RAM cho các dòng máy POS Android cấu hình thấp (Sunmi, iMin) và Kiosk bán hàng tự phục vụ.",
     ],
     technologies: [
-      "Flutter", "Android Kotlin", "BLoC", "SQLite", "Platform Channels",
-      "ESC/POS Thermal Printer", "Barcode Scanner", "RBAC", "Fastlane"
+      "Flutter", "Android Kotlin", "BLoC", "SQLite", "VietQR Pay",
+      "Hóa Đơn Điện Tử", "Chữ Ký Số", "ESC/POS Thermal Printer", "Barcode Scanner",
+      "Platform Channels", "RBAC", "Fastlane"
     ],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=vn.com.finviet.ecopos&hl=vi",
   },
   {
     period: "05/2020 — 06/2025 (5 năm)",
@@ -81,18 +85,22 @@ const careerDataEn: CareerItem[] = [
     period: "08/2025 — 08/2026",
     role: "Mobile Developer",
     company: "Finviet",
-    project: "POS, Cashier & Self-Order Kiosk Systems",
+    project: "ECO POS — Smart Retail POS, Cashier & E-Invoice System",
     type: "Commercial Production",
-    summary: "Contributed to developing checkout and payment solutions, including POS systems, cashier applications, and self-order kiosks.",
+    summary: "Contributed to engineering ECO POS — Finviet's smart retail and point-of-sale ecosystem for grocery stores, F&B outlets, pharmacies, and retail chains. The application integrates dynamic VietQR Pay, electronic invoice issuance compliant with Tax Authority regulations, and in-app digital signatures directly on mobile and Android POS devices.",
     achievements: [
-      "Developed and refined core POS transaction workflows at point-of-sale terminals.",
-      "Integrated hardware peripherals and native Android platform channels for device workflows.",
-      "Handled intermittent network conditions and offline business requirements.",
+      "Engineered rapid point-of-sale checkout workflows: barcode scanning via camera/hardware scanners and instant ESC/POS thermal receipt printing via Bluetooth/USB.",
+      "Integrated Finviet's dynamic VietQR Pay gateway, enabling automated banking payment reconciliation and real-time transaction status updates.",
+      "Integrated E-Invoice issuance and in-app digital signature workflows complying with Vietnamese tax decree standards (Decree 123) without external hardware.",
+      "Architected an offline-first data layer with BLoC and SQLite, guaranteeing zero order loss during network interruptions and seamless background synchronization upon reconnection.",
+      "Profiled and optimized UI rendering and memory footprint for low-spec Android POS hardware (Sunmi, iMin) and self-order kiosks.",
     ],
     technologies: [
-      "Flutter", "Android Kotlin", "BLoC", "SQLite", "Platform Channels",
-      "ESC/POS Thermal Printer", "Barcode Scanner", "RBAC", "Fastlane"
+      "Flutter", "Android Kotlin", "BLoC", "SQLite", "VietQR Pay",
+      "E-Invoice (Decree 123)", "Digital Signatures", "ESC/POS Thermal Printer",
+      "Barcode Scanner", "Platform Channels", "RBAC", "Fastlane"
     ],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=vn.com.finviet.ecopos&hl=vi",
   },
   {
     period: "05/2020 — 06/2025 (5 years)",
