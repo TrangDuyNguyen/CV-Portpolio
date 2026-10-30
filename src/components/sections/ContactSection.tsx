@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { Copy, Check, Download, Github, Linkedin, Mail, FileText, ArrowUpRight } from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -119,15 +119,30 @@ export const ContactSection: React.FC = () => {
               <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
                 {t.downloadTitle}
               </span>
-              <a
-                href={profile.cvPdfUrl}
-                download={isVi ? 'Mobile_Engineer_Nguyen_Duy_Trang.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'}
-                data-cursor="pointer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#F4F2EA] hover:border-[#FF6417] hover:text-[#FFF4DE] font-medium text-xs sm:text-sm transition-all duration-200"
-              >
-                <Download className="w-4 h-4" />
-                <span>{t.downloadPdfBtn}</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={profile.cvPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
+                  <span>{isVi ? 'Xem CV' : 'View CV'}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#08090A]/70" />
+                </a>
+
+                <a
+                  href={profile.cvPdfUrl}
+                  download={isVi ? 'Mobile_Engineer_Nguyen_Duy_Trang.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'}
+                  data-cursor="pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#8E96A4] hover:border-[#FF6417] hover:text-[#FFF4DE] text-xs font-mono transition-all duration-200"
+                  title={isVi ? 'Tải tệp PDF về máy' : 'Download PDF file'}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{t.downloadPdfBtn}</span>
+                </a>
+              </div>
             </div>
 
             <div className="pt-6 border-t border-[rgba(244,242,234,0.06)]">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Github, Menu, X, Globe } from 'lucide-react';
+import { Github, Menu, X, Globe, FileText, ArrowUpRight } from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -115,15 +115,17 @@ export const Navbar: React.FC = () => {
             <Github className="w-3.5 h-3.5" />
           </a>
 
-          {/* Download CV Button */}
+          {/* View CV Primary Action */}
           <a
             href={profile.cvPdfUrl}
-            download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor="pointer"
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] font-medium text-xs transition-all shadow-sm"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>{t.downloadCv}</span>
+            <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
+            <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
+            <ArrowUpRight className="w-3 h-3 text-[#08090A]/60" />
           </a>
         </div>
 
@@ -174,11 +176,13 @@ export const Navbar: React.FC = () => {
             <div className="pt-3 flex items-center justify-between">
               <a
                 href={profile.cvPdfUrl}
-                download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] text-xs font-medium shadow-sm transition-colors"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>{t.downloadCv}</span>
+                <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
+                <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
+                <ArrowUpRight className="w-3 h-3 text-[#08090A]/60" />
               </a>
 
               <a

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, ArrowDown, Mail } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Mail, FileText } from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
@@ -116,21 +116,36 @@ export const HeroSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Minimal 2 CTAs */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          {/* Action CTAs: Xem CV, Xem dự án, Liên hệ */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            {/* Primary CTA: Xem CV (Mở tab mới xem trực tiếp) */}
+            <a
+              href={profile.cvPdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
+              <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#08090A]/70" />
+            </a>
+
+            {/* Secondary CTA: Xem dự án */}
             <a
               href="#projects"
               data-cursor="pointer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#141C2E] text-[#F4F2EA] hover:text-[#FFF4DE] hover:border-[#FF6417] border border-[rgba(244,242,234,0.12)] font-medium text-xs sm:text-sm transition-all duration-200"
             >
               <span>{t.hero.ctaProjects}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
 
+            {/* Subtle Link: Liên hệ */}
             <a
               href="#contact"
               data-cursor="pointer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#8E96A4] hover:text-[#F4F2EA] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm text-[#8E96A4] hover:text-[#F4F2EA] transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>{t.hero.ctaContact}</span>
