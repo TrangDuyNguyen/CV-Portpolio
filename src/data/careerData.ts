@@ -45,7 +45,7 @@ const careerDataVi: CareerItem[] = [
     ],
   },
   {
-    period: "05/2020 — 06/2025 (5 năm)",
+    period: "05/2021 — 07/2025 (4 năm 2 tháng)",
     role: "Mobile Developer (iOS & Flutter)",
     company: "Hahalolo Social Travel Network",
     project: "Hệ sinh thái 6 ứng dụng: Mạng xã hội, OTT, Du lịch, Fintech & Outsource",
@@ -110,7 +110,7 @@ const careerDataEn: CareerItem[] = [
     ],
   },
   {
-    period: "05/2020 — 06/2025 (5 years)",
+    period: "05/2021 — 07/2025 (4 yrs 2 mos)",
     role: "Mobile Developer (iOS & Flutter)",
     company: "Hahalolo Social Travel Network",
     project: "Ecosystem of 6 Apps: Social Network, OTT, Travel, Fintech & Outsource",

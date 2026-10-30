@@ -174,7 +174,7 @@ AstroBite cuts the friction of daily calorie tracking by combining **Google Gemi
 ---
 
 ### 🏢 2. HAHALOLO SOCIAL TRAVEL NETWORK
-* **Thời gian**: Tháng 05/2020 – Tháng 06/2025 (5 năm)
+* **Thời gian**: Tháng 05/2021 – Tháng 07/2025 (4 năm 2 tháng)
 * **Vị trí**: **Mobile Developer (iOS & Flutter)**
 * **Dự án & Sản phẩm**: Phát triển hệ sinh thái 6 ứng dụng (Mạng xã hội, OTT, Du lịch, Fintech & Outsource)
 * **Các ứng dụng trong hệ sinh thái & Đóng góp chi tiết**:
