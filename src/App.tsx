@@ -2,11 +2,11 @@ import React from 'react';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { Navbar } from './components/layout/Navbar';
 import { HeroSection } from './components/sections/HeroSection';
+import { CareerSection } from './components/sections/CareerSection';
 import { AstroBiteSection } from './components/sections/AstroBiteSection';
 import { GalleryLightbox } from './components/sections/GalleryLightbox';
-import { CareerSection } from './components/sections/CareerSection';
-import { EngineeringSection } from './components/sections/EngineeringSection';
 import { SkillsSection } from './components/sections/SkillsSection';
+import { EngineeringSection } from './components/sections/EngineeringSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/layout/Footer';
 
@@ -20,25 +20,25 @@ export const App: React.FC = () => {
 
       {/* Main Content Sections */}
       <main>
-        {/* 1. Hero & Verified Stats */}
+        {/* 1. Hero / About & Key Highlights */}
         <HeroSection />
 
-        {/* 2. Flagship Project: AstroBite v3.0.0 */}
-        <AstroBiteSection />
-
-        {/* 3. Showcase Gallery & Lightbox Walkthrough */}
-        <GalleryLightbox />
-
-        {/* 4. Commercial Career Milestones */}
+        {/* 2. Professional Commercial Experience (Finviet & Hahalolo) */}
         <CareerSection />
 
-        {/* 5. Ponytail Engineering Mindset & 8-Gate SOP */}
-        <EngineeringSection />
+        {/* 3. Selected Projects: AstroBite Case Study & Architecture */}
+        <AstroBiteSection />
 
-        {/* 6. Technical Skills Matrix */}
+        {/* 4. AstroBite Production UI Screenshots & Lightbox */}
+        <GalleryLightbox />
+
+        {/* 5. Technical Skills & Architecture Competencies */}
         <SkillsSection />
 
-        {/* 7. Contact & Download CV */}
+        {/* 6. Engineering Approach & Principles */}
+        <EngineeringSection />
+
+        {/* 7. Contact & Resume Download */}
         <ContactSection />
       </main>
 

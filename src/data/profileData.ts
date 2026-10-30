@@ -7,7 +7,6 @@ export interface ProfileInfo {
   levelTag: string;
   tagline: string;
   location: string;
-  birthYear: string;
   status: string;
   email: string;
   phone: string;
@@ -20,12 +19,11 @@ export interface ProfileInfo {
 }
 
 const profileDataVi: ProfileInfo = {
-  name: "Nguyen Duy Trang",
+  name: "Nguyễn Duy Trang",
   roleTitle: "Mobile Engineer",
-  levelTag: "Mid-Level",
-  tagline: "5+ Years Production Experience • 1M+ Downloads • Clean Architecture & Multi-Platform (Mobile & Web)",
+  levelTag: "Flutter · Native iOS · Android",
+  tagline: "5+ năm kinh nghiệm phát triển ứng dụng Mobile • Flutter, Swift & Kotlin • Kiến trúc phân tầng & Vận hành thực tế",
   location: "TP. Hồ Chí Minh, Việt Nam",
-  birthYear: "10/04/2000",
   status: "🟢 Sẵn sàng cho cơ hội Mobile Engineer mới",
   email: "trangndps10349@gmail.com",
   phone: "0397308962",
@@ -34,16 +32,15 @@ const profileDataVi: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261014",
   cvViewUrl: "/cv-print.html?lang=vi",
   avatarUrl: "/avatar.png?v=2",
-  bio: "Mobile Engineer với hơn 5 năm kinh nghiệm thực chiến phát triển ứng dụng đa nền tảng (Mobile & Web/Kiosk). Chuyên sâu thiết kế kiến trúc chuẩn hóa (Clean Architecture, MVVM, Modular/Package-based), làm chủ cả BLoC (flutter_bloc) và Riverpod với Unidirectional Data Flow, đóng gói Core Design System & Base Components (Custom Widgets, dynamic Theme Engine, Responsive Multi-screen, Localization, Base Dio Client với Interceptors/Token Refresh/Retry, Global Error Handling). Am hiểu tường tận vòng đời Widget và Render Tree (Widget/Element/RenderObject), làm chủ Flutter DevTools (Profiler, Memory, Network) để duy trì 60 FPS mượt mà, triệt tiêu drop frames và rò rỉ RAM (0 memory leak). Tối ưu hóa chuyên sâu Flutter Web (GoRouter/AutoRoute nested routes, query params, CanvasKit/WASM, asset caching). Từng vận hành sản phẩm 1M+ downloads, thiết lập pipeline CI/CD (Fastlane, GitHub Actions, GitLab CI/CD, Docker) và văn hóa code review, mentoring cho đội ngũ.",
+  bio: "Tôi có hơn 5 năm kinh nghiệm phát triển ứng dụng mobile với Flutter và native iOS/Android, tham gia xây dựng sản phẩm trong các lĩnh vực mạng xã hội du lịch, nhắn tin thời gian thực, fintech và POS/Kiosk. Tôi quan tâm đến kiến trúc dễ bảo trì, tích hợp native platform và trải nghiệm ứng dụng ổn định trong môi trường thực tế.",
 };
 
 const profileDataEn: ProfileInfo = {
   name: "Nguyen Duy Trang",
   roleTitle: "Mobile Engineer",
-  levelTag: "Mid-Level",
-  tagline: "5+ Years Production Experience • 1M+ Downloads • Clean Architecture & Multi-Platform (Mobile & Web)",
+  levelTag: "Flutter · Native iOS · Android",
+  tagline: "5+ Years of Mobile Development Experience • Flutter, Swift & Kotlin • Maintainable Architecture & Production Reliability",
   location: "Ho Chi Minh City, Vietnam",
-  birthYear: "10/04/2000",
   status: "🟢 Open to Mobile Engineer Opportunities",
   email: "trangndps10349@gmail.com",
   phone: "0397308962",
@@ -52,7 +49,7 @@ const profileDataEn: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261014",
   cvViewUrl: "/cv-print.html?lang=en",
   avatarUrl: "/avatar.png?v=2",
-  bio: "Mobile Engineer with 5+ years of hands-on experience developing high-performance multi-platform applications (Mobile & Web/Kiosk). Expert in standardized architecture (Clean Architecture, MVVM, Modular/Package-based), mastering both BLoC (flutter_bloc) and Riverpod with Unidirectional Data Flow, packaging Core Design Systems & Base Components (Custom Widgets, dynamic Theme Engine, Responsive Multi-screen Layout, Localization, Base Dio Client with Interceptors/Auto-Refresh Token/Retry Policy, Global Exception Handling). Deep understanding of Widget lifecycle and the Render Tree (Widget/Element/RenderObject), utilizing Flutter DevTools (Profiler, Memory, Network) to ensure smooth 60 FPS, zero jank/drop frames, and zero memory leaks. Specialized in Flutter Web optimization (GoRouter/AutoRoute nested routes, query params, CanvasKit/WASM, asset caching). Proven track record operating 1M+ download apps, establishing automated CI/CD pipelines (Fastlane, GitHub Actions, GitLab CI/CD, Docker), code review standards, and junior developer mentoring.",
+  bio: "Mobile Engineer with 5+ years of experience building applications with Flutter and native iOS/Android. Contributed to products across social travel, real-time messaging, fintech, and POS/Kiosk systems. Focused on maintainable architecture, native platform integration, and reliable mobile experiences in production environments.",
 };
 
 export const getProfileData = (lang: Language = 'vi'): ProfileInfo => {
@@ -66,68 +63,56 @@ export const getVerifiedStats = (lang: Language = 'vi'): StatItem[] => {
   if (lang === 'en') {
     return [
       {
-        value: "1M+",
-        label: "Production Downloads",
-        desc: "Engineered and scaled large-scale social travel network & real-time chat OTT on iOS & Android.",
-        iconName: "download",
-      },
-      {
-        value: "99.5%+",
-        label: "Crash-Free Rate",
-        desc: "Strict memory lifecycle management, safe exception boundaries & 60 FPS rendering.",
+        value: "5+ Years",
+        label: "Mobile Experience",
+        desc: "Hands-on commercial mobile engineering across social, messaging, fintech, and retail POS.",
         iconName: "shield",
       },
       {
-        value: "-30%",
-        label: "Transaction Time",
-        desc: "Optimized UI/UX order flow, thermal receipt printing & asynchronous POS Kiosk checkout.",
-        iconName: "zap",
+        value: "1M+",
+        label: "Hahalolo Downloads",
+        desc: "Key contributor to Hahalolo Social Travel Network on iOS and Android app stores.",
+        iconName: "download",
       },
       {
-        value: "277 Tests",
-        label: "Automated Tests Pass",
-        desc: "100% Pass rate across Domain, Repositories, Notifiers, and Widget UI (0 warnings).",
+        value: "Flutter · Swift",
+        label: "Cross-Platform & Native",
+        desc: "Proficient in Flutter along with Native iOS (Swift) and Android (Kotlin) platform channels.",
+        iconName: "boxes",
+      },
+      {
+        value: "6+ Products",
+        label: "Commercial Portfolio",
+        desc: "Built features for Hahalolo, Halome, Haloki, Hahalolo Invest, Aquannets, and Finviet POS.",
         iconName: "check-circle",
-      },
-      {
-        value: "< 2.5s",
-        label: "AI Latency & 60 FPS",
-        desc: "Instant Gemini food recognition and silky smooth 60 FPS Claymorphic UI with 0 memory leaks.",
-        iconName: "bot",
       },
     ];
   }
 
   return [
     {
-      value: "1M+",
-      label: "Lượt Tải Production",
-      desc: "Xây dựng và duy trì mạng xã hội du lịch & chat OTT quy mô lớn trên cả iOS và Android.",
-      iconName: "download",
-    },
-    {
-      value: "99.5%+",
-      label: "Độ Ổn Định Crash-Free",
-      desc: "Quản lý vòng đời bộ nhớ nghiêm ngặt, rào chắn ngoại lệ an toàn và tối ưu render 60 FPS.",
+      value: "5+ Năm",
+      label: "Kinh Nghiệm Mobile",
+      desc: "Phát triển ứng dụng thực tế qua các mảng mạng xã hội, nhắn tin OTT, fintech và hệ thống POS.",
       iconName: "shield",
     },
     {
-      value: "-30%",
-      label: "Thời Gian Đặt Món",
-      desc: "Tối ưu hóa UI/UX flow và xử lý bất đồng bộ trong hệ thống POS Kiosk tự phục vụ F&B.",
-      iconName: "zap",
+      value: "1M+",
+      label: "Lượt Tải Hahalolo",
+      desc: "Đóng góp phát triển mạng xã hội du lịch Hahalolo trên cả App Store và Google Play.",
+      iconName: "download",
     },
     {
-      value: "277 Tests",
-      label: "Kiểm Thử Tự Động",
-      desc: "100% Pass toàn bộ test suite từ Domain, Repositories, Notifiers đến Widget UI (0 cảnh báo).",
+      value: "Flutter · Swift",
+      label: "Cross-Platform & Native",
+      desc: "Thành thạo Flutter kết hợp Native iOS (Swift) và Android (Kotlin) qua Platform Channels.",
+      iconName: "boxes",
+    },
+    {
+      value: "6+ Sản Phẩm",
+      label: "Sản Phẩm Thương Mại",
+      desc: "Trực tiếp tham gia phát triển Hahalolo, Halome, Haloki, Hahalolo Invest, Aquannets và Finviet POS.",
       iconName: "check-circle",
-    },
-    {
-      value: "< 2.5s",
-      label: "AI Latency & 60 FPS",
-      desc: "Nhận diện món ăn Gemini siêu tốc và giao diện Đất nặn 60 FPS mượt mà (0 rò rỉ RAM).",
-      iconName: "bot",
     },
   ];
 };

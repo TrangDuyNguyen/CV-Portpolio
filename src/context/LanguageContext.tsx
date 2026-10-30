@@ -23,11 +23,65 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return 'vi';
   });
 
+  const syncDocumentMetadata = (lang: Language) => {
+    if (typeof document === 'undefined') return;
+
+    document.documentElement.lang = lang;
+
+    if (lang === 'en') {
+      document.title = 'Nguyen Duy Trang — Mobile Engineer Portfolio';
+      
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute(
+          'content',
+          'Portfolio of Nguyen Duy Trang — Mobile Engineer with 5+ years of experience in Flutter, Native iOS (Swift), and Android (Kotlin).'
+        );
+      }
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', 'Nguyen Duy Trang — Mobile Engineer Portfolio');
+      }
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) {
+        ogDesc.setAttribute(
+          'content',
+          'Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo, Finviet POS, AstroBite).'
+        );
+      }
+    } else {
+      document.title = 'Nguyễn Duy Trang — Mobile Engineer Portfolio';
+      
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute(
+          'content',
+          'Hồ sơ năng lực của Nguyễn Duy Trang — Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng di động với Flutter, Native iOS (Swift) và Android (Kotlin).'
+        );
+      }
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', 'Nguyễn Duy Trang — Mobile Engineer Portfolio');
+      }
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) {
+        ogDesc.setAttribute(
+          'content',
+          'Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng Flutter & Native iOS/Android (Hahalolo, Finviet POS, AstroBite).'
+        );
+      }
+    }
+  };
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
       localStorage.setItem('portfolio_lang', lang);
-      document.documentElement.lang = lang;
+      syncDocumentMetadata(lang);
       const url = new URL(window.location.href);
       if (url.searchParams.has('lang')) {
         url.searchParams.set('lang', lang);
@@ -41,9 +95,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.documentElement.lang = language;
-    }
+    syncDocumentMetadata(language);
   }, [language]);
 
   return (

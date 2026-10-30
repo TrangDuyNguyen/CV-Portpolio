@@ -27,6 +27,14 @@ export interface ScreenshotItem {
   techSpecs: string[];
 }
 
+export interface SubProjectItem {
+  name: string;
+  category: string;
+  description: string;
+  highlights?: string[];
+  technologies?: string[];
+}
+
 export interface CareerItem {
   period: string;
   role: string;
@@ -35,6 +43,7 @@ export interface CareerItem {
   type: string;
   summary: string;
   achievements: string[];
+  subProjects?: SubProjectItem[];
   technologies: string[];
 }
 
@@ -43,11 +52,10 @@ export interface SkillGroup {
   description: string;
   skills: {
     name: string;
-    level: string;
+    level?: string;
     isKey?: boolean;
   }[];
 }
-
 
 export interface AstroFeature {
   id: string;

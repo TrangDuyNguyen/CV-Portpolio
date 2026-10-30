@@ -4,23 +4,14 @@ import {
   Mic,
   Utensils,
   Bot,
-  Sparkles,
-  Gauge,
-  Shield,
-  Trophy,
-  Smartphone,
   TrendingUp,
-  BookOpen,
   Activity,
-  Cpu,
-  LayoutGrid,
   Layers,
   ArrowUpRight,
   Check,
-  Image as ImageIcon,
-  Wheat,
-  Beef,
-  Droplet
+  Play,
+  Database,
+  Cpu
 } from 'lucide-react';
 import { getAstrobiteOverview, getAstrobitePillars, getAstrobiteFeatures } from '../../data/astrobiteData';
 import { translations } from '../../data/translations';
@@ -36,17 +27,14 @@ export const AstroBiteSection: React.FC = () => {
 
   const getPillarIcon = (id: string) => {
     switch (id) {
-      case 'voice-ai':
-        return <Mic className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
       case 'vision-ai':
         return <Camera className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
-      case 'claymorphic-ui':
-        return <Sparkles className="w-5 h-5 text-amber-500 dark:text-amber-400" />;
-      case 'genui-coach':
+      case 'voice-ai':
+        return <Mic className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
+      case 'offline-data':
+        return <Database className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+      case 'architecture':
         return <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
-      case 'widgets-quality':
-      case 'social-widgets':
-        return <LayoutGrid className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
       default:
         return <Layers className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
     }
@@ -62,20 +50,8 @@ export const AstroBiteSection: React.FC = () => {
         return <Utensils className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
       case 'bot':
         return <Bot className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
-      case 'sparkles':
-        return <Sparkles className="w-5 h-5 text-pink-600 dark:text-pink-400" />;
-      case 'gauge':
-        return <Gauge className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
-      case 'shield':
-        return <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
-      case 'trophy':
-        return <Trophy className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />;
-      case 'smartphone':
-        return <Smartphone className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
       case 'trending-up':
         return <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
-      case 'book-open':
-        return <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />;
       case 'activity':
         return <Activity className="w-5 h-5 text-rose-600 dark:text-rose-400" />;
       default:
@@ -84,8 +60,12 @@ export const AstroBiteSection: React.FC = () => {
   };
 
   return (
-    <section id="astrobite" className="py-24 border-t border-slate-300/70 dark:border-slate-800 relative bg-[#E8ECF2] dark:bg-[#0B1120]">
+    <section id="projects" className="py-24 border-t border-slate-300/70 dark:border-slate-800 relative bg-[#E8ECF2] dark:bg-[#0B1120]">
+      {/* Target anchor for backward compatibility */}
+      <span id="astrobite" className="absolute -top-20" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Project Header */}
         <div className="mb-14 reveal">
           <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -93,11 +73,11 @@ export const AstroBiteSection: React.FC = () => {
               {t.badgeFlagship}
             </Badge>
             <Badge variant="slate" size="md">
-              {t.roleTag}
+              {overview.role}
             </Badge>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-800 dark:text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             {overview.name} —{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400">
               {overview.tagline}
@@ -108,29 +88,29 @@ export const AstroBiteSection: React.FC = () => {
             {overview.description}
           </p>
 
-          {/* Quick Metrics Bar - Inset Neumorphic Cells */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mb-6">
+          {/* Quick Architecture Indicators */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mb-6">
             {overview.metrics.map((m, idx) => (
               <div
                 key={idx}
-                className="p-3 sm:p-4 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c5d1e2,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800/80"
+                className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 shadow-sm"
               >
-                <div className="text-xs font-mono text-slate-500 dark:text-slate-400 mb-1">
+                <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-0.5">
                   {m.label}
                 </div>
-                <div className="text-sm sm:text-base font-bold text-sky-700 dark:text-sky-400">
+                <div className="text-sm font-bold text-sky-700 dark:text-sky-400">
                   {m.value}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Tech Badges */}
+          {/* Tech Stack Badges */}
           <div className="flex flex-wrap gap-2">
             {overview.stackBadges.map((badge, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs font-medium rounded-lg bg-[#E8ECF2] dark:bg-[#151F32] text-slate-700 dark:text-slate-300 shadow-[2px_2px_4px_#c5d1e2,-2px_-2px_4px_#ffffff] dark:shadow-[2px_2px_4px_#050811,-2px_-2px_4px_#1E2D44] border border-white/70 dark:border-slate-700/60"
+                className="px-3 py-1 text-xs font-mono font-medium rounded-xl bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm"
               >
                 {badge}
               </span>
@@ -138,37 +118,44 @@ export const AstroBiteSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 5 Architectural Pillars */}
+        {/* 4 Technical Deep-Dives */}
         <div className="mb-20">
-          <div className="flex items-center justify-between mb-8 border-b border-slate-300/60 dark:border-slate-800 pb-4 reveal">
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">
-              {t.pillarsHeader}
-            </h3>
-            <span className="text-xs font-mono text-sky-700 dark:text-sky-400 font-semibold">
-              {t.pillarsSub}
-            </span>
+          <div className="flex items-center justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-4 reveal">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                {t.pillarsHeader}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                {t.pillarsSub}
+              </p>
+            </div>
+            <a
+              href="#gallery"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline"
+            >
+              <span>{t.viewScreensLink}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {pillars.map((pillar, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {pillars.map((pillar) => (
               <div
                 key={pillar.id}
-                className={`bg-[#E8ECF2] dark:bg-[#151F32] rounded-2xl p-5 sm:p-7 relative group shadow-[7px_7px_15px_#c2cee0,-7px_-7px_15px_#ffffff] dark:shadow-[7px_7px_15px_#050811,-7px_-7px_15px_#1E2D44] hover:shadow-[10px_10px_20px_#bed0e2,-10px_-10px_20px_#ffffff] dark:hover:shadow-[10px_10px_20px_#04060d,-10px_-10px_20px_#22344f] border border-white/80 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between reveal stagger-${(idx % 3) + 1}`}
+                className="bg-white/80 dark:bg-slate-900/80 rounded-3xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-md flex flex-col justify-between reveal"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c4d0de,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800">
-                        {getPillarIcon(pillar.id)}
-                      </div>
-                      <div>
-                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 block font-semibold">
-                          Pillar {pillar.number} • {pillar.tag}
-                        </span>
-                        <h4 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                          {pillar.title}
-                        </h4>
-                      </div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-3 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800">
+                      {getPillarIcon(pillar.id)}
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-sky-600 dark:text-sky-400 font-semibold block">
+                        Story {pillar.number} • {pillar.tag}
+                      </span>
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                        {pillar.title}
+                      </h4>
                     </div>
                   </div>
 
@@ -176,46 +163,23 @@ export const AstroBiteSection: React.FC = () => {
                     {pillar.description}
                   </p>
 
-                  <ul className="space-y-2.5 mb-6">
+                  <ul className="space-y-2 mb-6">
                     {pillar.highlights.map((h, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300">
+                      <li key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                         <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                        {pillar.id === 'vision-ai' && hIdx === 0 ? (
-                          <div className="space-y-2">
-                            <span>{t.macroIntro}</span>
-                            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#0D1829] text-sky-700 dark:text-sky-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#182a44] border border-sky-300/70 dark:border-sky-800/60 text-[11px] font-semibold">
-                                <Wheat className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                                <span>{t.macroCarbs}</span>
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#1CB0F6] shadow-sm" title="Carbs (#1CB0F6 Xanh)" />
-                              </span>
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#21170A] text-amber-700 dark:text-amber-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#382810] border border-amber-300/70 dark:border-amber-800/60 text-[11px] font-semibold">
-                                <Beef className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                                <span>{t.macroProtein}</span>
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#FF9600] shadow-sm" title="Protein (#FF9600 Cam)" />
-                              </span>
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#260E18] text-pink-700 dark:text-pink-300 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#441228] border border-pink-300/70 dark:border-pink-800/60 text-[11px] font-semibold">
-                                <Droplet className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400 fill-pink-500/20" />
-                                <span>{t.macroFat}</span>
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#FF5C8D] shadow-sm" title="Fat (#FF5C8D Hồng)" />
-                              </span>
-                            </div>
-                          </div>
-                        ) : (
-                          <span>{h}</span>
-                        )}
+                        <span>{h}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-4 border-t border-slate-300/60 dark:border-slate-800 flex items-center justify-between">
-                  <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#E8ECF2] dark:bg-[#0D1524] text-sky-700 dark:text-sky-400 shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff] dark:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1A283E] border border-sky-300/60 dark:border-sky-800/60 font-semibold">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 font-semibold">
                     {pillar.metricBadge}
                   </span>
                   <a
                     href="#gallery"
-                    className="inline-flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 font-medium transition-colors"
+                    className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-sky-600 font-medium transition-colors"
                   >
                     <span>{t.viewScreensLink}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -226,14 +190,42 @@ export const AstroBiteSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 12 Core Features Section */}
-        <div className="mb-20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3 border-b border-slate-300/60 dark:border-slate-800 pb-4 reveal">
+        {/* Walkthrough Video Demo Box */}
+        <div className="mb-20 bg-white/80 dark:bg-slate-900/80 rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 dark:border-slate-800 shadow-lg reveal">
+          <div className="max-w-3xl mb-6">
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono uppercase text-sky-600 dark:text-sky-400 font-bold">
+              <Play className="w-4 h-4" />
+              <span>{t.demoVideoTitle}</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+              {language === 'en' ? 'AstroBite Hands-on Demo' : 'Trực Quan Hoạt Động Của AstroBite'}
+            </h3>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+              {t.demoVideoSubtitle}
+            </p>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden bg-black aspect-video max-w-4xl mx-auto shadow-2xl border border-slate-800">
+            <video
+              controls
+              preload="none"
+              poster="/screenshots/clay/cockpit_dashboard.png"
+              className="w-full h-full object-contain"
+            >
+              <source src="/astrobite-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        {/* 6 Key Features */}
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3 border-b border-slate-200 dark:border-slate-800 pb-4 reveal">
             <div>
               <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-300/60 dark:border-sky-800/60 font-semibold mb-2 inline-block">
                 {t.featuresBadge}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                 {t.featuresHeader}
               </h3>
             </div>
@@ -242,75 +234,35 @@ export const AstroBiteSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {features.map((feat, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {features.map((feat) => (
               <div
                 key={feat.id}
-                className={`bg-[#E8ECF2] dark:bg-[#151F32] rounded-2xl p-5 sm:p-6 relative group shadow-[6px_6px_14px_#c2cee0,-6px_-6px_14px_#ffffff] dark:shadow-[6px_6px_14px_#050811,-6px_-6px_14px_#1E2D44] hover:shadow-[9px_9px_18px_#bed0e2,-9px_-9px_18px_#ffffff] dark:hover:shadow-[9px_9px_18px_#04060d,-9px_-9px_18px_#22344f] border border-white/80 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between reveal stagger-${(idx % 3) + 1}`}
+                className="bg-white/70 dark:bg-slate-900/70 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-sky-300 dark:hover:border-sky-700 transition-colors flex flex-col justify-between reveal"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3.5">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c4d0de,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800">
-                        {getFeatureIcon(feat.iconName)}
-                      </div>
-                      <div>
-                        <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block font-semibold">
-                          #{feat.number} • {feat.tag}
-                        </span>
-                        <h4 className="text-base font-bold text-slate-800 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                          {feat.title}
-                        </h4>
-                      </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">
+                      {getFeatureIcon(feat.iconName)}
                     </div>
+                    {feat.badge && (
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        {feat.badge}
+                      </span>
+                    )}
                   </div>
-
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                    {feat.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     {feat.naturalDescription}
                   </p>
                 </div>
-
-                {feat.badge && (
-                  <div className="pt-3 border-t border-slate-300/50 dark:border-slate-800/80 flex items-center justify-between">
-                    <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-[#E8ECF2] dark:bg-[#0D1524] text-sky-700 dark:text-sky-400 shadow-[inset_1.5px_1.5px_3px_#c5d1e2,inset_-1.5px_-1.5px_3px_#ffffff] dark:shadow-[inset_1.5px_1.5px_3px_#050811,inset_-1.5px_-1.5px_3px_#1A283E] border border-sky-300/50 dark:border-sky-800/50">
-                      {feat.badge}
-                    </span>
-                    <a
-                      href="#gallery"
-                      className="inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 font-medium transition-colors"
-                    >
-                      <span>UI Mockup</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  </div>
-                )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Gallery CTA banner */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#E8ECF2] dark:bg-[#151F32] shadow-[8px_8px_18px_#c2cee0,-8px_-8px_18px_#ffffff] dark:shadow-[8px_8px_18px_#050811,-8px_-8px_18px_#1E2D44] border border-white/90 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 reveal">
-          <div className="flex items-center gap-3.5 sm:gap-4">
-            <div className="p-2.5 sm:p-3 rounded-xl bg-[#E8ECF2] dark:bg-[#0D1524] shadow-[inset_3px_3px_6px_#c5d1e2,inset_-3px_-3px_6px_#ffffff] dark:shadow-[inset_3px_3px_6px_#050811,inset_-3px_-3px_6px_#1A283E] border border-white/60 dark:border-slate-800 text-sky-600 dark:text-sky-400 shrink-0">
-              <ImageIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-            <div>
-              <h4 className="text-sm sm:text-base font-semibold text-slate-800 dark:text-white">
-                {t.galleryBannerTitle}
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                {t.galleryBannerDesc}
-              </p>
-            </div>
-          </div>
-          <a
-            href="#gallery"
-            className="w-full sm:w-auto text-center px-4 py-2.5 text-xs font-semibold rounded-xl bg-[#E8ECF2] dark:bg-[#151F32] text-sky-700 dark:text-sky-400 shadow-[4px_4px_8px_#c5d1e2,-4px_-4px_8px_#ffffff] dark:shadow-[4px_4px_8px_#050811,-4px_-4px_8px_#1E2D44] hover:shadow-[6px_6px_12px_#bed0e2,-6px_-6px_12px_#ffffff] dark:hover:shadow-[6px_6px_12px_#04060d,-6px_-6px_12px_#22344f] active:shadow-[inset_2px_2px_4px_#c5d1e2,inset_-2px_-2px_4px_#ffffff] dark:active:shadow-[inset_2px_2px_4px_#050811,inset_-2px_-2px_4px_#1A283E] border border-white/80 dark:border-slate-700 transition-all shrink-0"
-          >
-            {t.galleryBannerBtn}
-          </a>
-        </div>
       </div>
     </section>
   );

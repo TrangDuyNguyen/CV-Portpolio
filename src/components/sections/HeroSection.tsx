@@ -1,240 +1,142 @@
 import React from 'react';
-import { ArrowUpRight, Download, Sparkles, Clock, FileText } from 'lucide-react';
+import { Download, Clock, FolderGit2, Mail, ExternalLink } from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
 import { StatCard } from '../common/StatCard';
 
-/* ─────────────────────────────────────────
-   Curved Text Badge Component
-───────────────────────────────────────── */
-const CurvedTextBadge: React.FC = () => {
-  return (
-    <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-slate-900 dark:bg-black text-white flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300">
-      {/* Curved Text via SVG */}
-      <div className="absolute inset-0 animate-[spin_10s_linear_infinite]">
-        <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
-          <path
-            id="textPath"
-            d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-            fill="none"
-          />
-          <text fontSize="10.5" fill="currentColor" fontWeight="600" letterSpacing="1.5">
-            <textPath href="#textPath" startOffset="0%">
-              EXPLORE ASTROBITE ✦ GET IN TOUCH ✦
-            </textPath>
-          </text>
-        </svg>
-      </div>
-      {/* Inner Circle with Arrow */}
-      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-slate-900 flex items-center justify-center">
-        <ArrowUpRight className="w-6 h-6 sm:w-7 sm:h-7" />
-      </div>
-    </div>
-  );
-};
-
-/* ─────────────────────────────────────────
-   Main Hero Section
-───────────────────────────────────────── */
 export const HeroSection: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language].hero;
   const profile = getProfileData(language);
   const stats = getVerifiedStats(language);
 
-  // Marquee items
-  const marqueeItems = [
-    'Mobile Engineer',
-    'App Developer',
-    'UI/UX',
-    'Flutter',
-    'Native iOS/Android'
-  ];
-
-  // We repeat the marquee array multiple times to ensure continuous scrolling
-  const renderMarqueeGroup = (keyPrefix: string) => (
-    <div key={keyPrefix} className="flex items-center whitespace-nowrap min-w-full justify-around shrink-0">
-      {marqueeItems.map((item, idx) => (
-        <React.Fragment key={`${keyPrefix}-${idx}`}>
-          <span className="mx-4 text-white/90 font-medium tracking-wide text-sm sm:text-base uppercase">
-            {item}
-          </span>
-          <Sparkles className="w-4 h-4 text-white/50" />
-        </React.Fragment>
-      ))}
-    </div>
-  );
-
   return (
-    <section id="about" className="relative pt-24 pb-16 md:pt-28 md:pb-24">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-
-        {/* ══════════════════════════════════════
-            THE PIXEL BLOOM CARD (Neumorphic)
-        ══════════════════════════════════════ */}
-        <div className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden neu-flat-lg">
-
-          
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-0">
+    <section id="about" className="relative pt-24 pb-16 md:pt-32 md:pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main Two-Column Editorial Card */}
+        <div className="relative w-full rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 shadow-xl backdrop-blur-sm overflow-hidden mb-12">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center p-6 sm:p-10 lg:p-12">
             
-            {/* ── Left Column: Text & CTAs ── */}
-            <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16 lg:pr-8 z-10">
+            {/* Left Column: Headline, Bio & CTAs (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-center z-10">
               
               {/* Badges Row */}
-              <div className="flex flex-wrap items-center gap-3 mb-8">
-                {/* Open to Work Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                  border border-slate-200 dark:border-slate-800 w-fit
-                  bg-slate-50 dark:bg-slate-900/50">
-                  <Sparkles className="w-4 h-4 text-sky-500" />
-                  <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide">
-                    {t.openToWork}
-                  </span>
+              <div className="flex flex-wrap items-center gap-2.5 mb-6">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>{t.openToWork}</span>
                 </div>
 
-                {/* Experience Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                  border border-slate-200 dark:border-slate-800 w-fit
-                  bg-slate-50 dark:bg-slate-900/50">
-                  <Clock className="w-4 h-4 text-amber-500" />
-                  <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide">
-                    {language === 'en' ? '5+ Years Exp' : '5+ Năm Kinh Nghiệm'}
-                  </span>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 text-xs font-semibold">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>{t.avatarExpYears}</span>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono">
+                  <span>Flutter · Swift · Kotlin</span>
                 </div>
               </div>
 
-              {/* Greeting */}
-              <div className="mb-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500 dark:from-sky-400 dark:via-blue-500 dark:to-indigo-400 animate-fadeInUp pb-1">
-                {language === 'en' ? 'Hello, I am Nguyen Duy Trang 👋' : 'Xin chào, Tôi là Nguyễn Duy Tráng 👋'}
+              {/* Title & Headline */}
+              <div className="mb-5">
+                <span className="text-sm font-semibold tracking-wide uppercase font-mono text-sky-600 dark:text-sky-400 block mb-1">
+                  {language === 'en' ? 'Mobile Engineer' : 'Kỹ sư Lập trình Di Động'}
+                </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                  {profile.name}
+                </h1>
+                <p className="text-base sm:text-lg font-medium text-slate-600 dark:text-slate-300 mt-2">
+                  {profile.tagline}
+                </p>
               </div>
 
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] lg:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6 animate-fadeInUp"
-                style={{ animationDelay: '50ms' }}>
-                {language === 'en' ? (
-                  <>
-                    Mobile App <span className="text-slate-400 dark:text-slate-500 font-medium">Developer</span>
-                  </>
-                ) : (
-                  <>
-                    Lập trình <span className="text-slate-400 dark:text-slate-500 font-medium">Mobile App</span>
-                  </>
-                )}
-              </h1>
-
-              {/* Description */}
-              <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed animate-fadeInUp"
-                style={{ animationDelay: '100ms' }}>
-                {t.subHeadline}
+              {/* Bio Summary */}
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl">
+                {profile.bio}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 animate-fadeInUp"
-                style={{ animationDelay: '200ms' }}>
-                
-                {/* Primary Button */}
+              {/* 3 Focused Action CTAs */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                {/* Primary: Download CV */}
                 <a
                   href={profile.cvPdfUrl}
-                  download
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
-                    border-2 border-slate-200 dark:border-slate-700
-                    text-slate-800 dark:text-slate-200 font-bold text-sm
-                    hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200"
+                  download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
                 >
-                  {language === 'en' ? 'Download CV' : 'Tải CV PDF'}
                   <Download className="w-4 h-4" />
+                  <span>{t.ctaDownloadCv}</span>
                 </a>
 
-                {/* View CV Button */}
+                {/* Secondary: View Projects */}
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold text-sm border border-slate-200 dark:border-slate-700 transition-all"
+                >
+                  <FolderGit2 className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+                  <span>{t.ctaProjects}</span>
+                </a>
+
+                {/* Tertiary: Contact */}
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 font-semibold text-sm transition-all"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>{t.ctaContact}</span>
+                </a>
+              </div>
+
+            </div>
+
+            {/* Right Column: Profile Avatar & Details (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-[360px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                <img
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  className="w-full h-full object-cover object-top"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+                  <div className="text-lg font-bold">{profile.name}</div>
+                  <div className="text-xs text-slate-200 font-mono flex items-center justify-between">
+                    <span>{profile.roleTitle}</span>
+                    <span>{t.avatarLocation}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* View Online CV link */}
+              <div className="mt-4 text-center">
                 <a
                   href={profile.cvViewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
-                    border-2 border-sky-300 dark:border-sky-600
-                    text-sky-700 dark:text-sky-300 font-bold text-sm
-                    hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 font-medium transition-colors"
                 >
-                  {language === 'en' ? 'View CV' : 'Xem CV'}
-                  <FileText className="w-4 h-4" />
-                </a>
-
-                {/* Secondary Button */}
-                <a
-                  href="#astrobite"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
-                    bg-slate-900 dark:bg-sky-500
-                    text-white font-bold text-sm
-                    hover:bg-slate-800 dark:hover:bg-sky-400 shadow-lg transition-colors duration-200"
-                >
-                  {t.ctaExploreAstroBite}
-                </a>
-
-                {/* Tertiary Button - Download APK */}
-                <a
-                  href="https://github.com/TrangDuyNguyen/AstroBite/releases/latest/download/app-release.apk"
-                  download="AstroBite_Demo.apk"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
-                    bg-emerald-600 dark:bg-emerald-500
-                    text-white font-bold text-sm
-                    hover:bg-emerald-700 dark:hover:bg-emerald-400 shadow-lg transition-colors duration-200"
-                >
-                  {language === 'en' ? 'Download AstroBite' : 'Tải về AstroBite'}
-                  <Download className="w-4 h-4" />
+                  <span>{language === 'en' ? 'Open Printable CV (A4 View)' : 'Xem Bản In CV A4'}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
-
             </div>
 
-            {/* ── Right Column: Image & Floating Badge ── */}
-            <div className="relative p-6 sm:p-12 lg:p-16 lg:pl-0 flex items-center justify-center lg:justify-end min-h-[400px]">
-              
-              {/* Image Container */}
-              <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src={profile.avatarUrl} 
-                  alt={profile.name}
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-
-              {/* Floating Curved Text Badge (overlapping the left edge of the image on large screens) */}
-              <div className="absolute bottom-4 right-4 sm:bottom-auto sm:right-auto sm:top-1/2 sm:-translate-y-1/2 sm:left-2 lg:-left-12 z-20 scale-75 sm:scale-100 origin-bottom-right sm:origin-center">
-                <CurvedTextBadge />
-              </div>
-
-            </div>
           </div>
-
-          {/* ── Bottom Marquee Bar ── */}
-          <div className="w-full bg-slate-900 dark:bg-black py-4 border-t border-slate-800 overflow-hidden flex relative">
-            {/* The animated container must be double the width to scroll seamlessly. 
-                We use two identical groups side-by-side inside the marquee wrapper. */}
-            <div className="flex animate-marquee">
-              {renderMarqueeGroup('group1')}
-              {renderMarqueeGroup('group2')}
-              {renderMarqueeGroup('group3')}
-              {renderMarqueeGroup('group4')}
-            </div>
-          </div>
-
         </div>
 
-        {/* ══════════════════════════════════════
-            VERIFIED STATS ROW (below card)
-        ══════════════════════════════════════ */}
-        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/80 reveal">
-          <div className="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-            <span className="text-xs uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 font-semibold">
+        {/* Highlighted Proof Points Row */}
+        <div className="pt-4 reveal">
+          <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span className="text-xs uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 font-bold">
               {t.metricsTitle}
             </span>
             <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">
               {t.metricsSub}
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 items-stretch">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
             {stats.map((stat, idx) => (
               <div key={stat.label} className={`reveal stagger-${idx + 1} h-full`}>
                 <StatCard stat={stat} />
