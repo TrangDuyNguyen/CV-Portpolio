@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nguyen Duy Trang - Mobile Engineer CV</title>
+  <title>Nguyen Duy Trang - Mobile Engineer Resume (EN)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap');
 
@@ -680,7 +680,7 @@
     }
   </style>
 </head>
-<body data-lang="vi">
+<body data-lang="en">
 
   <!-- ======================================================================
        THANH CÔNG CỤ (TOOLBAR CỐ ĐỊNH, KHÔNG IN RA)
@@ -689,17 +689,17 @@
     <header class="toolbar" aria-label="CV Controls">
       <div class="toolbar-info">
         <span class="status-dot"></span>
-        <span id="toolbarStatusText">CV Mobile Engineer — Nguyen Duy Trang</span>
+        <span id="toolbarStatusText">Mobile Engineer Resume — Nguyen Duy Trang</span>
       </div>
       <div class="toolbar-actions">
         <!-- Chuyển đổi ngôn ngữ VI / EN -->
         <div class="lang-switch-group" role="group" aria-label="Language selector">
-          <button type="button" class="btn-lang active" id="btnLangVI" onclick="setLanguage('vi')">Tiếng Việt</button>
-          <button type="button" class="btn-lang" id="btnLangEN" onclick="setLanguage('en')">English</button>
+          <button type="button" class="btn-lang" id="btnLangVI" onclick="setLanguage('vi')">Tiếng Việt</button>
+          <button type="button" class="btn-lang active" id="btnLangEN" onclick="setLanguage('en')">English</button>
         </div>
 
         <!-- Trở về trang Portfolio -->
-        <a href="/" class="btn-tb btn-tb-secondary" title="Quay lại trang Portfolio">
+        <a href="/" class="btn-tb btn-tb-secondary" title="Return to Portfolio">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -707,43 +707,43 @@
           <span>Portfolio</span>
         </a>
 
-        <!-- Nút Tải PDF Trắng Đen Trực tiếp -->
-        <a href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030" download="Mobile_Engineer_Nguyen_Duy_Trang.pdf" class="btn-tb btn-tb-primary" id="btnDownloadPdf" title="Tải trực tiếp bản PDF Trắng Đen 3 trang">
+        <!-- Nút Tải PDF Trắng Đen Trực tiếp (Mặc định bản tiếng Anh) -->
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030" download="Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf" class="btn-tb btn-tb-primary" id="btnDownloadPdf" title="Download ATS B&W PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          <span id="btnPdfText">Tải PDF Trắng Đen</span>
+          <span id="btnPdfText">Download B&W PDF</span>
         </a>
 
         <!-- Nút Mở hộp thoại In / Lưu PDF trình duyệt -->
-        <button type="button" class="btn-tb btn-tb-secondary" onclick="window.print()" title="Mở hộp thoại In / Lưu PDF trình duyệt">
+        <button type="button" class="btn-tb btn-tb-secondary" onclick="window.print()" title="Print / Save PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 6 2 18 2 18 9"></polyline>
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
             <rect x="6" y="14" width="12" height="8"></rect>
           </svg>
-          <span id="btnPrintText">In / Lưu PDF</span>
+          <span id="btnPrintText">Print / Save PDF</span>
         </button>
 
         <!-- Nút Bật/Tắt chế độ sửa trực tiếp (Inline Edit) -->
-        <button type="button" class="btn-tb btn-tb-secondary" id="editToggleBtn" onclick="toggleEditMode()" title="Chỉnh sửa văn bản trực tiếp trên trang">
+        <button type="button" class="btn-tb btn-tb-secondary" id="editToggleBtn" onclick="toggleEditMode()" title="Direct Inline Text Edit">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 20h9"></path>
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
           </svg>
-          <span id="btnEditText">Sửa trực tiếp: TẮT</span>
+          <span id="btnEditText">Direct Edit: OFF</span>
         </button>
 
         <!-- Nút Lưu file HTML đã chỉnh sửa -->
-        <button type="button" class="btn-tb btn-tb-secondary" onclick="downloadCurrentHTML()" title="Lưu lại file HTML sau khi đã chỉnh sửa">
+        <button type="button" class="btn-tb btn-tb-secondary" onclick="downloadCurrentHTML()" title="Download Edited HTML File">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          <span id="btnHtmlText">Lưu HTML</span>
+          <span id="btnHtmlText">Save HTML</span>
         </button>
       </div>
     </header>
@@ -1254,18 +1254,25 @@
        ====================================================================== -->
   <script>
     let isEditing = false;
-    let currentLang = 'vi';
+    let currentLang = 'en';
 
     // Khởi tạo ngôn ngữ từ URL query param (?lang=en) hoặc localStorage
     (function initLanguage() {
+      // Purge stale legacy key that was cached in visitor browsers
+      if (localStorage.getItem('portfolio_lang')) {
+        localStorage.removeItem('portfolio_lang');
+      }
+
       const urlParams = new URLSearchParams(window.location.search);
       const paramLang = urlParams.get('lang');
-      const savedLang = localStorage.getItem('portfolio_lang');
+      const savedLang = localStorage.getItem('portfolio_language');
 
       if (paramLang === 'en' || paramLang === 'vi') {
         currentLang = paramLang;
       } else if (savedLang === 'en' || savedLang === 'vi') {
         currentLang = savedLang;
+      } else {
+        currentLang = 'en';
       }
 
       setLanguage(currentLang, false);
@@ -1277,7 +1284,8 @@
       document.documentElement.lang = lang;
 
       if (syncStorage) {
-        localStorage.setItem('portfolio_lang', lang);
+        localStorage.setItem('portfolio_language', lang);
+        localStorage.removeItem('portfolio_lang');
       }
 
       // Cập nhật URL mà không reload trang

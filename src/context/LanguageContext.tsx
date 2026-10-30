@@ -17,7 +17,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const paramLang = urlParams.get('lang');
       if (paramLang === 'vi' || paramLang === 'en') return paramLang;
 
-      const saved = localStorage.getItem('portfolio_lang');
+      // Migrate / purge stale legacy key that previously defaulted to Vietnamese
+      if (localStorage.getItem('portfolio_lang')) {
+        localStorage.removeItem('portfolio_lang');
+      }
+
+      const saved = localStorage.getItem('portfolio_language');
       if (saved === 'vi' || saved === 'en') return saved;
     }
     return 'en';
@@ -80,7 +85,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('portfolio_lang', lang);
+      localStorage.setItem('portfolio_language', lang);
+      localStorage.removeItem('portfolio_lang');
       syncDocumentMetadata(lang);
       const url = new URL(window.location.href);
       if (url.searchParams.has('lang')) {

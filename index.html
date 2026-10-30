@@ -30,9 +30,14 @@
             document.documentElement.classList.remove('light');
           }
 
+          // Purge stale legacy key that was cached in visitor browsers
+          if (localStorage.getItem('portfolio_lang')) {
+            localStorage.removeItem('portfolio_lang');
+          }
+
           var urlParams = new URLSearchParams(window.location.search);
           var paramLang = urlParams.get('lang');
-          var savedLang = localStorage.getItem('portfolio_lang');
+          var savedLang = localStorage.getItem('portfolio_language');
           var activeLang = (paramLang === 'vi' || paramLang === 'en') ? paramLang : (savedLang === 'vi' || savedLang === 'en' ? savedLang : 'en');
           document.documentElement.lang = activeLang;
         } catch (e) {}

@@ -30,15 +30,20 @@
             document.documentElement.classList.remove('light');
           }
 
+          // Purge stale legacy key that was cached in visitor browsers
+          if (localStorage.getItem('portfolio_lang')) {
+            localStorage.removeItem('portfolio_lang');
+          }
+
           var urlParams = new URLSearchParams(window.location.search);
           var paramLang = urlParams.get('lang');
-          var savedLang = localStorage.getItem('portfolio_lang');
+          var savedLang = localStorage.getItem('portfolio_language');
           var activeLang = (paramLang === 'vi' || paramLang === 'en') ? paramLang : (savedLang === 'vi' || savedLang === 'en' ? savedLang : 'en');
           document.documentElement.lang = activeLang;
         } catch (e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/assets/main-Cd0gsmuJ.js"></script>
+    <script type="module" crossorigin src="/assets/main-Dfn1mBRM.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/main-XGGEDj23.css">
   </head>
   <body class="bg-[#08090A] text-[#F4F2EA] antialiased selection:bg-[#FF6417]/30 selection:text-[#FFF4DE]">
