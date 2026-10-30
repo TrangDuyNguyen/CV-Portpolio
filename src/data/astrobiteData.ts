@@ -371,18 +371,18 @@ const astrobiteScreenshotsEn: ScreenshotItem[] = [
   },
 ];
 
-export const getAstrobiteOverview = (lang: Language = 'vi'): AstrobiteOverview => {
+export const getAstrobiteOverview = (lang: Language = 'en'): AstrobiteOverview => {
   return lang === 'en' ? astrobiteOverviewEn : astrobiteOverviewVi;
 };
 
-export const getAstrobitePillars = (lang: Language = 'vi'): AstroPillar[] => {
+export const getAstrobitePillars = (lang: Language = 'en'): AstroPillar[] => {
   return lang === 'en' ? astrobitePillarsEn : astrobitePillarsVi;
 };
 
-export const getAstrobiteFeatures = (lang: Language = 'vi'): AstroFeature[] => {
+export const getAstrobiteFeatures = (lang: Language = 'en'): AstroFeature[] => {
   return lang === 'en' ? astrobiteFeaturesEn : astrobiteFeaturesVi;
 };
 
-export const getAstrobiteScreenshots = (lang: Language = 'vi'): ScreenshotItem[] => {
+export const getAstrobiteScreenshots = (lang: Language = 'en'): ScreenshotItem[] => {
   return lang === 'en' ? astrobiteScreenshotsEn : astrobiteScreenshotsVi;
 };

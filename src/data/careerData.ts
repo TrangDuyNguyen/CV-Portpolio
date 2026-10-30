@@ -151,6 +151,6 @@ const careerDataEn: CareerItem[] = [
   },
 ];
 
-export const getCareerData = (lang: Language = 'vi'): CareerItem[] => {
+export const getCareerData = (lang: Language = 'en'): CareerItem[] => {
   return lang === 'en' ? careerDataEn : careerDataVi;
 };

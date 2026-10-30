@@ -97,6 +97,6 @@ const skillsDataEn: SkillGroup[] = [
   },
 ];
 
-export const getSkillsData = (lang: Language = 'vi'): SkillGroup[] => {
+export const getSkillsData = (lang: Language = 'en'): SkillGroup[] => {
   return lang === 'en' ? skillsDataEn : skillsDataVi;
 };

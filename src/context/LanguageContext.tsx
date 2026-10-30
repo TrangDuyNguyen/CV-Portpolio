@@ -20,7 +20,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const saved = localStorage.getItem('portfolio_lang');
       if (saved === 'vi' || saved === 'en') return saved;
     }
-    return 'vi';
+    return 'en';
   });
 
   const syncDocumentMetadata = (lang: Language) => {

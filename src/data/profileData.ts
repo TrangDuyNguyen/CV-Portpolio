@@ -52,13 +52,13 @@ const profileDataEn: ProfileInfo = {
   bio: "5+ years working across Flutter and native iOS/Android. Focused on product craft, maintainable architecture, and stable production runtime.",
 };
 
-export const getProfileData = (lang: Language = 'vi'): ProfileInfo => {
+export const getProfileData = (lang: Language = 'en'): ProfileInfo => {
   return lang === 'en' ? profileDataEn : profileDataVi;
 };
 
-export const profileData = profileDataVi;
+export const profileData = profileDataEn;
 
-export const getVerifiedStats = (lang: Language = 'vi'): StatItem[] => {
+export const getVerifiedStats = (lang: Language = 'en'): StatItem[] => {
   if (lang === 'en') {
     return [
       {
@@ -104,4 +104,4 @@ export const getVerifiedStats = (lang: Language = 'vi'): StatItem[] => {
   ];
 };
 
-export const verifiedStats: StatItem[] = getVerifiedStats('vi');
+export const verifiedStats: StatItem[] = getVerifiedStats('en');

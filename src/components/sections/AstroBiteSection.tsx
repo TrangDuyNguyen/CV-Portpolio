@@ -94,7 +94,7 @@ export const AstroBiteSection: React.FC = () => {
                   className="w-full h-full object-cover"
                 >
                   <source src="/astrobite-demo.mp4" type="video/mp4" />
-                  Trình duyệt của bạn không hỗ trợ thẻ video.
+                  {isVi ? 'Trình duyệt của bạn không hỗ trợ thẻ video.' : 'Your browser does not support the video tag.'}
                 </video>
               </div>
 
