@@ -16,27 +16,19 @@ export interface TranslationDictionary {
     langSwitchTooltip: string;
   };
   hero: {
-    openToWork: string;
-    greeting: string;
-    fullNameFirst: string;
-    fullNameLast: string;
-    subHeadline: string;
-    bullet1Title: string;
-    bullet1Text: string;
-    bullet2Title: string;
-    bullet2Text: string;
-    bullet3Title: string;
-    bullet3Text: string;
-    missionTitle: string;
-    missionText: string;
-    ctaProjects: string;
+    eyebrow: string;
+    roleLabel: string;
+    fullName: string;
+    headline: string;
+    supportingLine: string;
+    description: string;
     ctaDownloadCv: string;
+    ctaProjects: string;
     ctaContact: string;
-    avatarExpYears: string;
-    avatarExpSkills: string;
-    avatarWorkType: string;
-    avatarWorkModes: string;
-    avatarLocation: string;
+    viewPrintableCv: string;
+    floatingBadge: string;
+    mockupBadge: string;
+    scrollCue: string;
     metricsTitle: string;
     metricsSub: string;
   };
@@ -140,34 +132,26 @@ export const translations: Record<Language, TranslationDictionary> = {
       navSkills: "Kỹ năng",
       navEngineering: "Tiếp cận kỹ thuật",
       navContact: "Liên hệ",
-      downloadCv: "Tải CV (PDF)",
+      downloadCv: "Tải CV",
       downloadCvFull: "Tải CV (PDF 2 Trang)",
       themeLightTooltip: "Chuyển sang giao diện tối",
       themeDarkTooltip: "Chuyển sang giao diện sáng",
       langSwitchTooltip: "Switch to English",
     },
     hero: {
-      openToWork: "Sẵn sàng cơ hội mới",
-      greeting: "Xin chào, tôi là",
-      fullNameFirst: "Nguyễn Duy",
-      fullNameLast: "Trang",
-      subHeadline: "Mobile Engineer | Flutter · Native iOS (Swift) · Android (Kotlin)",
-      bullet1Title: "5+ năm kinh nghiệm phát triển ứng dụng di động",
-      bullet1Text: "Tham gia phát triển và duy trì các sản phẩm di động thương mại đa dạng: mạng xã hội du lịch 1M+ downloads, ứng dụng nhắn tin OTT thời gian thực, fintech chuyển tiền quốc tế và hệ thống POS/Kiosk đa ngành.",
-      bullet2Title: "Kiến trúc phân tầng & Vận hành ổn định",
-      bullet2Text: "Áp dụng Clean Architecture (Feature-First), phân tách rõ ràng presentation, business logic và data access; quản lý trạng thái hiệu quả với Riverpod và BLoC; chú trọng xử lý lỗi và dữ liệu cục bộ.",
-      bullet3Title: "Tích hợp Native Platform Channels & AI",
-      bullet3Text: "Thành thạo kết nối phần cứng ngoại vi (máy in nhiệt ESC/POS, máy quét mã vạch) qua Kotlin Platform Channels; tích hợp Google Gemini Vision & Speech-to-Text vào sản phẩm di động.",
-      missionTitle: "Mục tiêu & Định hướng:",
-      missionText: "Ứng tuyển vị trí Mid-Level Mobile Engineer, đóng góp năng lực kỹ thuật thực tế để xây dựng những trải nghiệm ứng dụng mượt mà, ổn định và dễ bảo trì.",
-      ctaProjects: "Xem Dự Án",
-      ctaDownloadCv: "Tải CV PDF",
-      ctaContact: "Liên Hệ",
-      avatarExpYears: "5+ Năm Kinh Nghiệm",
-      avatarExpSkills: "Flutter · Swift · Kotlin",
-      avatarWorkType: "Full-time",
-      avatarWorkModes: "Hybrid · Remote · Onsite",
-      avatarLocation: "TP. Hồ Chí Minh, Việt Nam",
+      eyebrow: "SẴN SÀNG CHO CƠ HỘI MOBILE ENGINEER",
+      roleLabel: "MOBILE ENGINEER",
+      fullName: "Nguyễn Duy Trang",
+      headline: "Xây dựng ứng dụng Mobile chỉn chu từ kiến trúc đến trải nghiệm.",
+      supportingLine: "Flutter · Native iOS · Native Android",
+      description: "Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng bằng Flutter và native iOS/Android. Đã tham gia xây dựng sản phẩm thuộc các lĩnh vực du lịch, nhắn tin thời gian thực, fintech và POS/Kiosk. Tập trung vào kiến trúc dễ bảo trì, tích hợp nền tảng và độ tin cậy của ứng dụng trong môi trường production.",
+      ctaDownloadCv: "Tải CV",
+      ctaProjects: "Xem dự án",
+      ctaContact: "Liên hệ",
+      viewPrintableCv: "Xem Bản In CV A4",
+      floatingBadge: "5+ Năm Kinh Nghiệm Mobile",
+      mockupBadge: "AstroBite v3.0 • Flagship",
+      scrollCue: "Cuộn để khám phá",
       metricsTitle: "Thông Tin Nổi Bật",
       metricsSub: "Kinh nghiệm thực tế từ các sản phẩm đã phát hành",
     },
@@ -288,27 +272,19 @@ export const translations: Record<Language, TranslationDictionary> = {
       langSwitchTooltip: "Chuyển sang tiếng Việt",
     },
     hero: {
-      openToWork: "Open to Work",
-      greeting: "Hello, I am",
-      fullNameFirst: "Nguyen Duy",
-      fullNameLast: "Trang",
-      subHeadline: "Mobile Engineer | Flutter · Native iOS (Swift) · Android (Kotlin)",
-      bullet1Title: "5+ years of mobile development experience",
-      bullet1Text: "Contributed to diverse commercial mobile apps: travel social network with 1M+ downloads, real-time OTT messaging, international remittance, and multi-vertical POS/Kiosk solutions.",
-      bullet2Title: "Maintainable architecture & production reliability",
-      bullet2Text: "Practicing Clean Architecture (Feature-First) with clean separation of presentation, business logic, and data layers; state management with Riverpod and BLoC; resilient offline persistence.",
-      bullet3Title: "Native platform integration & AI exploration",
-      bullet3Text: "Experienced in interfacing with hardware peripherals (ESC/POS thermal printers, barcode scanners) via Kotlin Platform Channels; integrating Google Gemini Vision & Speech-to-Text.",
-      missionTitle: "Career Objective:",
-      missionText: "Seeking a Mid-Level Mobile Engineer position to deliver reliable, maintainable, and high-quality mobile experiences for production users.",
-      ctaProjects: "View Projects",
+      eyebrow: "OPEN TO MOBILE ENGINEER OPPORTUNITIES",
+      roleLabel: "MOBILE ENGINEER",
+      fullName: "Nguyen Duy Trang",
+      headline: "Building dependable mobile experiences.",
+      supportingLine: "Flutter · Native iOS · Native Android",
+      description: "Mobile Engineer with 5+ years of experience building applications across Flutter and native iOS/Android. Contributed to products in social travel, real-time messaging, fintech, and POS/Kiosk systems. Focused on maintainable architecture, platform integration, and reliable production experiences.",
       ctaDownloadCv: "Download CV",
-      ctaContact: "Contact Me",
-      avatarExpYears: "5+ Years Experience",
-      avatarExpSkills: "Flutter · Swift · Kotlin",
-      avatarWorkType: "Full-time",
-      avatarWorkModes: "Hybrid · Remote · Onsite",
-      avatarLocation: "Ho Chi Minh City, Vietnam",
+      ctaProjects: "Explore Projects",
+      ctaContact: "Get in touch",
+      viewPrintableCv: "Open Printable CV (A4 View)",
+      floatingBadge: "5+ Years in Mobile",
+      mockupBadge: "AstroBite v3.0 • Flagship",
+      scrollCue: "Scroll to explore",
       metricsTitle: "Key Highlights",
       metricsSub: "Proven track record across released commercial mobile applications",
     },

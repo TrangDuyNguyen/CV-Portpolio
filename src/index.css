@@ -4,25 +4,31 @@
 
 @layer base {
   :root {
-    --neu-bg: #E8ECF2;
-    --neu-surface: #E8ECF2;
-    --neu-surface-elevated: #E8ECF2;
-    --neu-sunken: #DDE4EE;
-    --neu-shadow-dark: #C4D0DE;
-    --neu-shadow-light: #FFFFFF;
-    --neu-text: #1E293B;
-    --neu-muted: #64748B;
+    --bg: #F4F5F7;
+    --surface: #FFFFFF;
+    --surface-raised: #E9EEF4;
+    --text-primary: #101828;
+    --text-muted: #566276;
+    --border: rgba(16, 24, 40, 0.12);
+    --accent: #087DB5;
+    --accent-secondary: #6256D9;
+
+    --motion-fast: 160ms;
+    --motion-base: 280ms;
+    --motion-slow: 520ms;
+    --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .dark {
-    --neu-bg: #0B1120;
-    --neu-surface: #151F32;
-    --neu-surface-elevated: #1A263D;
-    --neu-sunken: #0D1524;
-    --neu-shadow-dark: #050811;
-    --neu-shadow-light: #1E2D44;
-    --neu-text: #F8FAFC;
-    --neu-muted: #94A3B8;
+    --bg: #090D15;
+    --surface: #111827;
+    --surface-raised: #172235;
+    --text-primary: #F5F7FB;
+    --text-muted: #A4AFBF;
+    --border: rgba(255, 255, 255, 0.11);
+    --accent: #62D7F2;
+    --accent-secondary: #8C83FF;
   }
 
   html {
@@ -35,8 +41,8 @@
   }
 
   body {
-    background-color: var(--neu-bg);
-    color: var(--neu-text);
+    background-color: var(--bg);
+    color: var(--text-primary);
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -44,192 +50,60 @@
     transition: background-color 0.25s ease, color 0.25s ease;
   }
 
-  /* Custom subtle light/dark neumorphic scrollbar */
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 9px;
+    width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #E8ECF2;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
     background: #CAD5E2;
     border-radius: 9999px;
-    border: 2px solid #E8ECF2;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #B0C0D4;
+    background: #94A3B8;
   }
 
   .dark ::-webkit-scrollbar-track {
-    background: #0B1120;
+    background: transparent;
   }
   .dark ::-webkit-scrollbar-thumb {
     background: #1E293B;
-    border: 2px solid #0B1120;
+    border-radius: 9999px;
   }
   .dark ::-webkit-scrollbar-thumb:hover {
     background: #334155;
   }
 }
 
-/* Neumorphic Soft UI Utilities */
-.neu-flat {
-  background: #E8ECF2;
-  box-shadow: 7px 7px 15px #c2cee0, -7px -7px 15px #ffffff;
-}
-.dark .neu-flat {
-  background: #151F32;
-  box-shadow: 7px 7px 15px #050811, -7px -7px 15px #1E2D44;
+/* Typography Utility Classes */
+.font-display {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.neu-flat-sm {
-  background: #E8ECF2;
-  box-shadow: 4px 4px 8px #c5d1e2, -4px -4px 8px #ffffff;
-}
-.dark .neu-flat-sm {
-  background: #151F32;
-  box-shadow: 4px 4px 8px #050811, -4px -4px 8px #1E2D44;
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-.neu-flat-lg {
-  background: #E8ECF2;
-  box-shadow: 12px 12px 24px #bed0e2, -12px -12px 24px #ffffff;
-}
-.dark .neu-flat-lg {
-  background: #151F32;
-  box-shadow: 12px 12px 24px #04060d, -12px -12px 24px #1c2b42;
-}
-
-.neu-pressed {
-  background: #E8ECF2;
-  box-shadow: inset 4px 4px 8px #c2cee0, inset -4px -4px 8px #ffffff;
-}
-.dark .neu-pressed {
-  background: #0D1524;
-  box-shadow: inset 4px 4px 8px #050811, inset -4px -4px 8px #1A283E;
-}
-
-.neu-pressed-sm {
-  background: #E8ECF2;
-  box-shadow: inset 2px 2px 5px #c5d1e2, inset -2px -2px 5px #ffffff;
-}
-.dark .neu-pressed-sm {
-  background: #0D1524;
-  box-shadow: inset 2px 2px 5px #050811, inset -2px -2px 5px #1A283E;
-}
-
-.neu-convex {
-  background: linear-gradient(145deg, #f7fcff, #dce4ef);
-  box-shadow: 6px 6px 14px #c2cee0, -6px -6px 14px #ffffff;
-}
-.dark .neu-convex {
-  background: linear-gradient(145deg, #18243a, #111a2c);
-  box-shadow: 6px 6px 14px #050811, -6px -6px 14px #1E2D44;
-}
-
-.neu-concave {
-  background: linear-gradient(145deg, #dce4ef, #f7fcff);
-  box-shadow: 6px 6px 14px #c2cee0, -6px -6px 14px #ffffff;
-}
-.dark .neu-concave {
-  background: linear-gradient(145deg, #111a2c, #18243a);
-  box-shadow: 6px 6px 14px #050811, -6px -6px 14px #1E2D44;
-}
-
-/* Neumorphic interactive button */
-.neu-btn {
-  background: #E8ECF2;
-  box-shadow: 5px 5px 10px #c2cee0, -5px -5px 10px #ffffff;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.neu-btn:hover {
-  box-shadow: 7px 7px 14px #bed0e2, -7px -7px 14px #ffffff;
-  transform: translateY(-1px);
-}
-.neu-btn:active {
-  box-shadow: inset 4px 4px 8px #c2cee0, inset -4px -4px 8px #ffffff;
-  transform: translateY(1px);
-}
-.dark .neu-btn {
-  background: #151F32;
-  box-shadow: 5px 5px 10px #050811, -5px -5px 10px #1E2D44;
-}
-.dark .neu-btn:hover {
-  box-shadow: 7px 7px 14px #04060d, -7px -7px 14px #22344f;
-}
-.dark .neu-btn:active {
-  box-shadow: inset 4px 4px 8px #050811, inset -4px -4px 8px #1A283E;
-}
-
-/* Neumorphic Card */
-.neu-card {
-  background: #E8ECF2;
-  border-radius: 1.25rem;
-  box-shadow: 8px 8px 18px #c2cee0, -8px -8px 18px #ffffff;
-  transition: all 0.3s ease;
-}
-.neu-card:hover {
-  box-shadow: 10px 10px 22px #bed0e2, -10px -10px 22px #ffffff;
-}
-.dark .neu-card {
-  background: #151F32;
-  box-shadow: 8px 8px 18px #050811, -8px -8px 18px #1E2D44;
-}
-.dark .neu-card:hover {
-  box-shadow: 10px 10px 22px #04060d, -10px -10px 22px #22344f;
-}
-
-/* Subtle Neumorphic Grid Texture */
-.bg-neu-pattern {
-  background-size: 32px 32px;
+/* Subtle background grid pattern for depth */
+.bg-grid-subtle {
+  background-size: 40px 40px;
   background-image: 
-    radial-gradient(circle at 1px 1px, rgba(163, 177, 198, 0.25) 1px, transparent 0);
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
-.dark .bg-neu-pattern {
+.light .bg-grid-subtle {
   background-image: 
-    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.12) 1px, transparent 0);
-}
-
-/* ========================================================
-   Smooth Page Transitions & Micro-Animations (60 FPS)
-   ======================================================== */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
 /* Scroll-triggered reveal classes */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -239,38 +113,75 @@
 }
 
 /* Stagger transition delays for child grid cards */
-.stagger-1 { transition-delay: 80ms; }
-.stagger-2 { transition-delay: 160ms; }
-.stagger-3 { transition-delay: 240ms; }
-.stagger-4 { transition-delay: 320ms; }
+.stagger-1 { transition-delay: 60ms; }
+.stagger-2 { transition-delay: 120ms; }
+.stagger-3 { transition-delay: 180ms; }
+.stagger-4 { transition-delay: 240ms; }
+.stagger-5 { transition-delay: 300ms; }
 
 /* Micro-interaction animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-fadeInUp {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.animate-fadeInScale {
-  animation: fadeInScale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
 }
 
-.animate-floatSlow {
-  animation: floatSlow 4s ease-in-out infinite;
+.animate-pulseGlow {
+  animation: pulseGlow 6s ease-in-out infinite;
 }
 
-/* Gradient shift animation for hero name text */
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
 }
 
-/* stagger-5 for 5th stat card */
-.stagger-5 { transition-delay: 400ms; }
-
-/* Infinite Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+.animate-floatGentle {
+  animation: floatGentle 5s ease-in-out infinite;
 }
-.animate-marquee {
-  animation: marquee 20s linear infinite;
+
+/* ========================================================
+   Reduced Motion Accessibility Override (Section 9)
+   ======================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .custom-cursor-layer {
+    display: none !important;
+  }
 }

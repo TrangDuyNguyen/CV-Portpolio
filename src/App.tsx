@@ -9,18 +9,26 @@ import { SkillsSection } from './components/sections/SkillsSection';
 import { EngineeringSection } from './components/sections/EngineeringSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/layout/Footer';
+import { ScrollProgress } from './components/common/ScrollProgress';
+import { CustomCursor } from './components/common/CustomCursor';
 
 export const App: React.FC = () => {
   useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-[#E8ECF2] dark:bg-[#0B1120] text-slate-800 dark:text-slate-100 selection:bg-sky-500/20 selection:text-sky-700 dark:selection:text-sky-300 transition-colors duration-250">
+    <div className="min-h-screen bg-[#F4F5F7] dark:bg-[#090D15] text-slate-800 dark:text-slate-100 selection:bg-sky-500/20 selection:text-sky-700 dark:selection:text-cyan-300 transition-colors duration-250 relative">
+      {/* 2px Scroll Progress Bar at very top */}
+      <ScrollProgress />
+
+      {/* Interactive Cursor for Desktop */}
+      <CustomCursor />
+
       {/* Top Sticky Navigation */}
       <Navbar />
 
       {/* Main Content Sections */}
       <main>
-        {/* 1. Hero / About & Key Highlights */}
+        {/* 1. Hero / Cinematic Editorial Showcase */}
         <HeroSection />
 
         {/* 2. Professional Commercial Experience (Finviet & Hahalolo) */}

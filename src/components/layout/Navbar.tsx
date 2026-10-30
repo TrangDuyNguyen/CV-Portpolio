@@ -47,7 +47,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#E8ECF2]/90 dark:bg-[#0B1120]/90 backdrop-blur-md border-b border-white/60 dark:border-slate-800 shadow-[0_4px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)]'
+          ? 'bg-[#F4F5F7]/85 dark:bg-[#090D15]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -174,7 +174,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#E8ECF2]/95 dark:bg-[#0B1120]/95 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 shadow-lg px-4 pt-3 pb-6 space-y-2 animate-fadeInUp">
+        <div className="md:hidden bg-[#F4F5F7]/95 dark:bg-[#090D15]/95 backdrop-blur-lg border-b border-slate-200 dark:border-white/10 shadow-xl px-4 pt-3 pb-6 space-y-2 animate-fadeInUp">
           <nav className="space-y-1.5">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');

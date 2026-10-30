@@ -22,7 +22,7 @@ const profileDataVi: ProfileInfo = {
   name: "Nguyễn Duy Trang",
   roleTitle: "Mobile Engineer",
   levelTag: "Flutter · Native iOS · Android",
-  tagline: "5+ năm kinh nghiệm phát triển ứng dụng Mobile • Flutter, Swift & Kotlin • Kiến trúc phân tầng & Vận hành thực tế",
+  tagline: "Xây dựng ứng dụng Mobile chỉn chu từ kiến trúc đến trải nghiệm.",
   location: "TP. Hồ Chí Minh, Việt Nam",
   status: "🟢 Sẵn sàng cho cơ hội Mobile Engineer mới",
   email: "trangndps10349@gmail.com",
@@ -31,15 +31,15 @@ const profileDataVi: ProfileInfo = {
   linkedin: "https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/",
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261014",
   cvViewUrl: "/cv-print.html?lang=vi",
-  avatarUrl: "/avatar.png?v=2",
-  bio: "Tôi có hơn 5 năm kinh nghiệm phát triển ứng dụng mobile với Flutter và native iOS/Android, tham gia xây dựng sản phẩm trong các lĩnh vực mạng xã hội du lịch, nhắn tin thời gian thực, fintech và POS/Kiosk. Tôi quan tâm đến kiến trúc dễ bảo trì, tích hợp native platform và trải nghiệm ứng dụng ổn định trong môi trường thực tế.",
+  avatarUrl: "/avatar.webp",
+  bio: "Mobile Engineer với hơn 5 năm kinh nghiệm phát triển ứng dụng bằng Flutter và native iOS/Android. Đã tham gia xây dựng sản phẩm thuộc các lĩnh vực du lịch, nhắn tin thời gian thực, fintech và POS/Kiosk. Tập trung vào kiến trúc dễ bảo trì, tích hợp nền tảng và độ tin cậy của ứng dụng trong môi trường production.",
 };
 
 const profileDataEn: ProfileInfo = {
   name: "Nguyen Duy Trang",
   roleTitle: "Mobile Engineer",
   levelTag: "Flutter · Native iOS · Android",
-  tagline: "5+ Years of Mobile Development Experience • Flutter, Swift & Kotlin • Maintainable Architecture & Production Reliability",
+  tagline: "Building dependable mobile experiences.",
   location: "Ho Chi Minh City, Vietnam",
   status: "🟢 Open to Mobile Engineer Opportunities",
   email: "trangndps10349@gmail.com",
@@ -48,8 +48,8 @@ const profileDataEn: ProfileInfo = {
   linkedin: "https://www.linkedin.com/in/nguy%E1%BB%85n-duy-tr%C3%A1ng-132567224/",
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261014",
   cvViewUrl: "/cv-print.html?lang=en",
-  avatarUrl: "/avatar.png?v=2",
-  bio: "Mobile Engineer with 5+ years of experience building applications with Flutter and native iOS/Android. Contributed to products across social travel, real-time messaging, fintech, and POS/Kiosk systems. Focused on maintainable architecture, native platform integration, and reliable mobile experiences in production environments.",
+  avatarUrl: "/avatar.webp",
+  bio: "Mobile Engineer with 5+ years of experience building applications across Flutter and native iOS/Android. Contributed to products in social travel, real-time messaging, fintech, and POS/Kiosk systems. Focused on maintainable architecture, platform integration, and reliable production experiences.",
 };
 
 export const getProfileData = (lang: Language = 'vi'): ProfileInfo => {
