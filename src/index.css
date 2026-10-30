@@ -4,14 +4,21 @@
 
 @layer base {
   :root {
-    --bg: #F4F5F7;
-    --surface: #FFFFFF;
-    --surface-raised: #E9EEF4;
-    --text-primary: #101828;
-    --text-muted: #566276;
-    --border: rgba(16, 24, 40, 0.12);
-    --accent: #087DB5;
-    --accent-secondary: #6256D9;
+    --bg-void: #08090A;
+    --text-bone: #F4F2EA;
+    --text-muted: #8E96A4;
+    --flare: #FF6417;
+    --amber-glow: #FFB648;
+    --white-hot: #FFF4DE;
+    --ember: #C22B0D;
+    --border-subtle: rgba(244, 242, 234, 0.08);
+
+    --bg: #08090A;
+    --surface: #0E131F;
+    --surface-raised: #141C2E;
+    --text-primary: #F4F2EA;
+    --border: rgba(244, 242, 234, 0.08);
+    --accent: #FF6417;
 
     --motion-fast: 160ms;
     --motion-base: 280ms;
@@ -20,30 +27,34 @@
     --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .dark {
-    --bg: #090D15;
-    --surface: #111827;
-    --surface-raised: #172235;
-    --text-primary: #F5F7FB;
-    --text-muted: #A4AFBF;
-    --border: rgba(255, 255, 255, 0.11);
-    --accent: #62D7F2;
-    --accent-secondary: #8C83FF;
+  .light {
+    --bg-void: #F5F2EB;
+    --text-bone: #10141E;
+    --text-muted: #566173;
+    --flare: #D9480F;
+    --amber-glow: #E8590C;
+    --white-hot: #FFF4DE;
+    --ember: #A61E4D;
+    --border-subtle: rgba(16, 20, 30, 0.08);
+
+    --bg: #F5F2EB;
+    --surface: #FFFFFF;
+    --surface-raised: #EAE6DC;
+    --text-primary: #10141E;
+    --border: rgba(16, 20, 30, 0.08);
+    --accent: #D9480F;
   }
 
   html {
     scroll-behavior: smooth;
-    color-scheme: light;
-  }
-
-  html.dark {
-    color-scheme: dark;
+    background-color: var(--bg-void);
+    color: var(--text-bone);
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-void);
+    color: var(--text-bone);
+    font-family: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -52,51 +63,101 @@
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #CAD5E2;
+    background: rgba(244, 242, 234, 0.2);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
-  }
-
-  .dark ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .dark ::-webkit-scrollbar-thumb {
-    background: #1E293B;
-    border-radius: 9999px;
-  }
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: rgba(255, 100, 23, 0.5);
   }
 }
 
 /* Typography Utility Classes */
 .font-display {
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Bodoni Moda', Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Geist', 'Inter', system-ui, sans-serif;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Subtle background grid pattern for depth */
-.bg-grid-subtle {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Organic Celluloid Film Grain Texture (richabh u-grain inspired) */
+.u-grain {
+  position: relative;
 }
-.light .bg-grid-subtle {
+.u-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle background grid pattern */
+.bg-grid-subtle {
+  background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(244, 242, 234, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 242, 234, 0.02) 1px, transparent 1px);
+}
+
+/* Thermal text glow & quenching */
+@keyframes quench {
+  0% {
+    color: #FFF4DE;
+    text-shadow: 0 0 45px rgba(255, 182, 72, 0.95), 0 0 95px rgba(255, 100, 23, 0.8);
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    color: #F4F2EA;
+    text-shadow: 0 0 35px rgba(255, 182, 72, 0.7), 0 0 80px rgba(255, 100, 23, 0.4);
+    transform: translateY(0);
+  }
+}
+
+.animate-quench {
+  animation: quench 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hammer strike pulse when name is clicked */
+@keyframes hammerPulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(0.97) rotate(-0.4deg);
+    filter: brightness(1.7);
+    text-shadow: 0 0 60px #FFF4DE, 0 0 110px #FF6417;
+  }
+  55% {
+    transform: scale(1.025) rotate(0.2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    filter: brightness(1);
+  }
+}
+
+.hammer-strike {
+  animation: hammerPulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Scroll-triggered reveal classes */
@@ -112,60 +173,23 @@
   transform: translateY(0);
 }
 
-/* Stagger transition delays for child grid cards */
+/* Stagger transition delays */
 .stagger-1 { transition-delay: 60ms; }
 .stagger-2 { transition-delay: 120ms; }
 .stagger-3 { transition-delay: 180ms; }
 .stagger-4 { transition-delay: 240ms; }
 .stagger-5 { transition-delay: 300ms; }
 
-/* Micro-interaction animation utilities */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Thermal hover words */
+.thermal-word {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.thermal-word:hover {
+  color: #FFF4DE;
+  text-shadow: 0 0 16px rgba(255, 182, 72, 0.8), 0 0 32px rgba(255, 100, 23, 0.5);
 }
 
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.08);
-  }
-}
-
-.animate-pulseGlow {
-  animation: pulseGlow 6s ease-in-out infinite;
-}
-
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0) rotate(-3deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(-1.5deg);
-  }
-}
-
-.animate-floatGentle {
-  animation: floatGentle 5s ease-in-out infinite;
-}
-
-/* ========================================================
-   Reduced Motion Accessibility Override (Section 9)
-   ======================================================== */
+/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

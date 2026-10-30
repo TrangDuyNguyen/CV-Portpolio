@@ -11,14 +11,18 @@ import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { ScrollProgress } from './components/common/ScrollProgress';
 import { CustomCursor } from './components/common/CustomCursor';
+import { SparksCanvas } from './components/common/SparksCanvas';
 
 export const App: React.FC = () => {
   useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] dark:bg-[#090D15] text-slate-800 dark:text-slate-100 selection:bg-sky-500/20 selection:text-sky-700 dark:selection:text-cyan-300 transition-colors duration-250 relative">
+    <div className="u-grain min-h-screen bg-[#08090A] text-[#F4F2EA] selection:bg-[#FF6417]/30 selection:text-[#FFF4DE] transition-colors duration-250 relative">
       {/* 2px Scroll Progress Bar at very top */}
       <ScrollProgress />
+
+      {/* Full-screen Physics Sparks Engine on click */}
+      <SparksCanvas />
 
       {/* Interactive Cursor for Desktop */}
       <CustomCursor />

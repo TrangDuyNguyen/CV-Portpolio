@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { usePointerFine } from '../../hooks/usePointerFine';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
+type CursorMode = 'default' | 'interactive' | 'view' | 'lens';
+
 export const CustomCursor: React.FC = () => {
   const isPointerFine = usePointerFine();
   const isReducedMotion = useReducedMotion();
@@ -9,21 +11,18 @@ export const CustomCursor: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLSpanElement>(null);
 
-  const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [cursorLabel, setCursorLabel] = useState<string>('');
+  const [mode, setMode] = useState<CursorMode>('default');
+  const [customLabel, setCustomLabel] = useState<string>('');
 
   useEffect(() => {
-    // Only run on fine pointer (desktop mouse/trackpad) and when reduced motion is not requested
     if (!isPointerFine || isReducedMotion) return;
 
     let targetX = -100;
     let targetY = -100;
-    let currentRingX = -100;
-    let currentRingY = -100;
-    let animationFrameId: number;
+    let ringX = -100;
+    let ringY = -100;
+    let animId: number;
 
     const onMouseMove = (e: MouseEvent) => {
       targetX = e.clientX;
@@ -33,37 +32,37 @@ export const CustomCursor: React.FC = () => {
         containerRef.current.style.opacity = '1';
       }
 
-      // Dot follows immediately without lag
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
       }
 
-      // Check if hovering over interactive element or custom cursor target
+      // Check hover context
       const target = e.target as HTMLElement | null;
       if (target) {
-        const interactiveEl = target.closest('a, button, [role="button"], input, textarea, [data-cursor]');
+        const viewEl = target.closest('[data-cursor="view"], [data-cursor-view]');
+        const lensEl = target.closest('[data-cursor="lens"]');
         const customText = target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
-
-        if (customText) {
-          setCursorLabel(customText);
-        } else {
-          setCursorLabel('');
-        }
-
+        const interactiveEl = target.closest('a, button, [role="button"], [data-cursor="pointer"]');
         const isInput = target.closest('input, textarea, select, [contenteditable="true"]');
+
         if (isInput) {
-          // Keep native cursor for inputs
-          setIsHoveringInteractive(false);
+          setMode('default');
+          setCustomLabel('');
+        } else if (viewEl) {
+          setMode('view');
+          setCustomLabel(customText || 'VIEW');
+        } else if (lensEl) {
+          setMode('lens');
+          setCustomLabel('');
         } else if (interactiveEl) {
-          setIsHoveringInteractive(true);
+          setMode('interactive');
+          setCustomLabel(customText || '');
         } else {
-          setIsHoveringInteractive(false);
+          setMode('default');
+          setCustomLabel('');
         }
       }
     };
-
-    const onMouseDown = () => setIsClicking(true);
-    const onMouseUp = () => setIsClicking(false);
 
     const onMouseLeave = () => {
       if (containerRef.current) {
@@ -77,34 +76,30 @@ export const CustomCursor: React.FC = () => {
       }
     };
 
-    // Smooth lerp loop for the outer ring
     const render = () => {
+      // Soft lerp following
       const ease = 0.16;
-      currentRingX += (targetX - currentRingX) * ease;
-      currentRingY += (targetY - currentRingY) * ease;
+      ringX += (targetX - ringX) * ease;
+      ringY += (targetY - ringY) * ease;
 
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${currentRingX}px, ${currentRingY}px, 0)`;
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      animId = requestAnimationFrame(render);
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', onMouseUp);
     document.documentElement.addEventListener('mouseleave', onMouseLeave);
     document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
-    animationFrameId = requestAnimationFrame(render);
+    animId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mouseup', onMouseUp);
       document.documentElement.removeEventListener('mouseleave', onMouseLeave);
       document.documentElement.removeEventListener('mouseenter', onMouseEnter);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animId);
     };
   }, [isPointerFine, isReducedMotion]);
 
@@ -112,40 +107,43 @@ export const CustomCursor: React.FC = () => {
     return null;
   }
 
+  const isView = mode === 'view';
+  const isLens = mode === 'lens';
+  const isInteractive = mode === 'interactive';
+
   return (
     <div
       ref={containerRef}
       aria-hidden="true"
       style={{ opacity: 0 }}
-      className="custom-cursor-layer fixed inset-0 pointer-events-none z-[9999] transition-opacity duration-300"
+      className="custom-cursor-layer fixed inset-0 pointer-events-none z-[70] transition-opacity duration-300"
     >
-      {/* Precision Dot */}
+      {/* Precision Dot: 2px with difference blend */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 -ml-1 -mt-1 w-2 h-2 rounded-full bg-sky-400 dark:bg-cyan-300 pointer-events-none transition-transform duration-75"
+        className={`fixed top-0 left-0 -ml-1 -mt-1 w-2 h-2 rounded-full pointer-events-none transition-opacity duration-200 ${
+          isView ? 'opacity-0' : 'bg-[#f4f2ea] mix-blend-difference'
+        }`}
         style={{ willChange: 'transform' }}
       />
 
-      {/* Fluid Following Ring */}
+      {/* Outer Ring / Flare Lens */}
       <div
         ref={ringRef}
-        className={`fixed top-0 left-0 pointer-events-none rounded-full flex items-center justify-center transition-all duration-200 border ${
-          isClicking
-            ? '-ml-3 -mt-3 w-6 h-6 border-cyan-400 bg-cyan-400/20 scale-90'
-            : isHoveringInteractive
-            ? cursorLabel
-              ? '-ml-7 -mt-7 w-14 h-14 border-cyan-400/80 bg-sky-500/15 backdrop-blur-[1px]'
-              : '-ml-6 -mt-6 w-12 h-12 border-sky-400/80 bg-sky-400/10'
-            : '-ml-4 -mt-4 w-8 h-8 border-sky-400/40 dark:border-cyan-300/40 bg-transparent'
+        className={`fixed top-0 left-0 pointer-events-none rounded-full flex items-center justify-center transition-all duration-200 ${
+          isView
+            ? '-ml-7 -mt-7 w-14 h-14 bg-[#ff6417] text-[#08090a] shadow-[0_0_24px_rgba(255,100,23,0.5)] border-transparent mix-blend-normal'
+            : isLens
+            ? '-ml-2 -mt-2 w-4 h-4 border border-[#ffb648] bg-[#ffb648]/20 mix-blend-difference'
+            : isInteractive
+            ? '-ml-6 -mt-6 w-12 h-12 border border-[#f4f2ea]/80 bg-[#f4f2ea]/10 mix-blend-difference'
+            : '-ml-4 -mt-4 w-8 h-8 border border-[#f4f2ea]/60 bg-transparent mix-blend-difference'
         }`}
         style={{ willChange: 'transform' }}
       >
-        {cursorLabel && (
-          <span
-            ref={labelRef}
-            className="text-[9px] font-mono font-bold tracking-widest text-sky-400 uppercase select-none"
-          >
-            {cursorLabel}
+        {isView && (
+          <span className="text-[10px] font-mono font-black tracking-widest uppercase select-none">
+            {customLabel || 'VIEW'}
           </span>
         )}
       </div>

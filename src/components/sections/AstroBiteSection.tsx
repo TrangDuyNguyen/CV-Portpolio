@@ -60,7 +60,7 @@ export const AstroBiteSection: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-24 border-t border-slate-300/70 dark:border-slate-800 relative bg-[#E8ECF2] dark:bg-[#0B1120]">
+    <section id="projects" className="py-24 border-t border-[rgba(244,242,234,0.08)] relative bg-[#08090A]">
       {/* Target anchor for backward compatibility */}
       <span id="astrobite" className="absolute -top-20" />
 
@@ -77,14 +77,14 @@ export const AstroBiteSection: React.FC = () => {
             </Badge>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h2 className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-[#F4F2EA] tracking-tight mb-4">
             {overview.name} —{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400">
+            <span className="text-[#FF6417]">
               {overview.tagline}
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed mb-6">
+          <p className="text-base sm:text-lg text-[#8E96A4] max-w-3xl leading-relaxed mb-6">
             {overview.description}
           </p>
 
@@ -93,12 +93,12 @@ export const AstroBiteSection: React.FC = () => {
             {overview.metrics.map((m, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 shadow-sm"
+                className="p-3.5 rounded-2xl bg-[#0E131F]/90 border border-[rgba(244,242,234,0.08)] shadow-sm"
               >
-                <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-0.5">
+                <div className="text-[11px] font-mono text-[#8E96A4] mb-0.5">
                   {m.label}
                 </div>
-                <div className="text-sm font-bold text-sky-700 dark:text-sky-400">
+                <div className="text-sm font-bold text-[#FFB648]">
                   {m.value}
                 </div>
               </div>
@@ -110,7 +110,7 @@ export const AstroBiteSection: React.FC = () => {
             {overview.stackBadges.map((badge, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs font-mono font-medium rounded-xl bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm"
+                className="px-3 py-1 text-xs font-mono font-medium rounded-xl bg-[#141C2E] text-[#F4F2EA] border border-[rgba(244,242,234,0.1)] shadow-sm"
               >
                 {badge}
               </span>

@@ -11,7 +11,7 @@ export const CareerSection: React.FC = () => {
   const careerItems = getCareerData(language);
 
   return (
-    <section id="experience" className="py-24 border-t border-slate-300/70 dark:border-slate-800 bg-[#E8ECF2] dark:bg-[#0B1120] relative">
+    <section id="experience" className="py-24 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -19,10 +19,10 @@ export const CareerSection: React.FC = () => {
           <Badge variant="cyan" size="md" className="mb-3">
             {t.badge}
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 dark:text-white tracking-tight mb-4">
+          <h2 className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-[#F4F2EA] tracking-tight mb-4">
             {t.title}
           </h2>
-          <p className="text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-base text-[#8E96A4] max-w-3xl leading-relaxed">
             {t.subtitle}
           </p>
         </div>
@@ -32,23 +32,23 @@ export const CareerSection: React.FC = () => {
           {careerItems.map((item) => (
             <div
               key={item.company}
-              className="bg-white/80 dark:bg-slate-900/80 rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 dark:border-slate-800 shadow-lg reveal"
+              className="bg-[#0E131F]/90 rounded-3xl p-6 sm:p-8 lg:p-10 border border-[rgba(244,242,234,0.08)] shadow-xl hover:border-[#FF6417]/40 transition-colors reveal"
             >
               {/* Header row: Period, Company, Role, Type */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-5 border-b border-slate-200 dark:border-slate-800">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-5 border-b border-[rgba(244,242,234,0.08)]">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-sky-600 dark:text-sky-400 font-bold mb-1">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#FFB648] font-bold mb-1">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{item.period}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-2xl font-bold text-[#F4F2EA]">
                     {item.company}
                   </h3>
-                  <div className="text-sm font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-2 mt-0.5">
-                    <Briefcase className="w-4 h-4 text-sky-500" />
+                  <div className="text-sm font-semibold text-[#8E96A4] flex items-center gap-2 mt-0.5">
+                    <Briefcase className="w-4 h-4 text-[#FF6417]" />
                     <span>{item.role}</span>
                     {item.project && (
-                      <span className="text-xs text-slate-500 font-normal">
+                      <span className="text-xs text-[#8E96A4]/80 font-normal">
                         • {item.project}
                       </span>
                     )}

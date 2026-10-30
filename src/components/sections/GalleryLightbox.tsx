@@ -104,8 +104,8 @@ export const GalleryLightbox: React.FC = () => {
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 overflow-x-auto shadow-sm">
-            <Filter className="w-3.5 h-3.5 text-slate-400 ml-1.5 mr-0.5 hidden sm:block shrink-0" />
+          <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#0E131F] border border-[rgba(244,242,234,0.08)] overflow-x-auto shadow-sm">
+            <Filter className="w-3.5 h-3.5 text-[#FFB648] ml-1.5 mr-0.5 hidden sm:block shrink-0" />
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -113,10 +113,11 @@ export const GalleryLightbox: React.FC = () => {
                   setActiveCategory(cat.id);
                   setSelectedScreenIndex(null);
                 }}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all cursor-pointer ${
+                data-cursor="pointer"
+                className={`px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all cursor-pointer font-mono ${
                   activeCategory === cat.id
-                    ? 'bg-sky-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400'
+                    ? 'bg-[#FF6417] text-[#FFF4DE] shadow-sm'
+                    : 'text-[#8E96A4] hover:text-[#F4F2EA]'
                 }`}
               >
                 {cat.label}
@@ -132,19 +133,21 @@ export const GalleryLightbox: React.FC = () => {
               key={item.id}
               type="button"
               onClick={(e) => handleOpen(index, e)}
-              className="text-left bg-white/80 dark:bg-slate-900/80 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-300 dark:hover:border-sky-700 transition-all group flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-500"
+              data-cursor="view"
+              data-cursor-text="VIEW"
+              className="text-left bg-[#0E131F]/90 rounded-2xl overflow-hidden border border-[rgba(244,242,234,0.08)] hover:border-[#FF6417]/50 hover:shadow-[0_0_24px_rgba(255,100,23,0.2)] transition-all group flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF6417]"
               aria-label={`${item.title} - ${language === 'en' ? 'Click to inspect' : 'Nhấp để xem chi tiết'}`}
             >
               {/* Image Frame */}
-              <div className="relative aspect-[9/16] bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div className="relative aspect-[9/16] bg-[#141C2E] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/30 transition-colors flex items-center justify-center">
-                  <div className="w-8 h-8 rounded-full bg-white/90 text-slate-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                <div className="absolute inset-0 bg-[#08090A]/0 group-hover:bg-[#08090A]/40 transition-colors flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-[#FF6417] text-[#FFF4DE] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
                     <ZoomIn className="w-4 h-4" />
                   </div>
                 </div>
@@ -153,10 +156,10 @@ export const GalleryLightbox: React.FC = () => {
               {/* Caption */}
               <div className="p-3 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-sky-600 dark:text-sky-400 font-semibold block mb-1">
+                  <span className="text-[10px] font-mono text-[#FFB648] font-semibold block mb-1">
                     {item.tag}
                   </span>
-                  <h4 className="text-xs font-bold text-slate-800 dark:text-slate-100 line-clamp-2">
+                  <h4 className="text-xs font-bold text-[#F4F2EA] line-clamp-2">
                     {item.title}
                   </h4>
                 </div>

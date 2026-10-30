@@ -15,7 +15,7 @@ export const EngineeringSection: React.FC = () => {
   ];
 
   return (
-    <section id="engineering" className="py-24 border-t border-slate-300/70 dark:border-slate-800 bg-[#E8ECF2] dark:bg-[#0B1120] relative">
+    <section id="engineering" className="py-24 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -23,10 +23,10 @@ export const EngineeringSection: React.FC = () => {
           <Badge variant="amber" size="md" className="mb-3">
             {t.badge}
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h2 className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-[#F4F2EA] tracking-tight mb-4">
             {t.title}
           </h2>
-          <p className="text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-base text-[#8E96A4] max-w-3xl leading-relaxed">
             {t.description}
           </p>
         </div>
@@ -36,11 +36,11 @@ export const EngineeringSection: React.FC = () => {
           {t.principles.map((p, idx) => (
             <div
               key={p.title}
-              className="bg-white/80 dark:bg-slate-900/80 rounded-3xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between reveal"
+              className="bg-[#0E131F]/90 rounded-3xl p-6 sm:p-7 border border-[rgba(244,242,234,0.08)] shadow-sm hover:border-[#FF6417]/40 transition-colors flex flex-col justify-between reveal"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60">
+                  <div className="p-3 rounded-2xl bg-[#141C2E] border border-[rgba(244,242,234,0.1)]">
                     {icons[idx]}
                   </div>
                   <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">

@@ -30,3 +30,4 @@ export const useReducedMotion = (): boolean => {
 
   return reducedMotion;
 };
+

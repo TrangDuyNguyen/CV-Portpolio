@@ -46,8 +46,9 @@ export const ScrollProgress: React.FC = () => {
     >
       <div
         ref={progressBarRef}
-        className="h-full w-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-500 origin-left scale-x-0 will-change-transform"
+        className="h-full w-full bg-gradient-to-r from-[#FF6417] via-[#FFB648] to-[#FFF4DE] origin-left scale-x-0 will-change-transform"
       />
     </div>
   );
 };
+
