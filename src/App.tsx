@@ -22,7 +22,7 @@ export const App: React.FC = () => {
   useScrollReveal();
 
   return (
-    <div className="u-grain min-h-screen bg-[#08090A] text-[#F4F2EA] selection:bg-[#FF6417]/30 selection:text-[#FFF4DE] transition-colors duration-250 relative">
+    <div className="u-grain min-h-screen bg-[#08090A] text-[#F4F2EA] selection:bg-[#FF6417]/30 selection:text-[#FFF4DE] transition-colors duration-250 relative overflow-x-hidden">
       {/* Minimal Scroll Progress Bar */}
       <ScrollProgress />
 
@@ -36,7 +36,7 @@ export const App: React.FC = () => {
       <Navbar />
 
       {/* Main Editorial Content */}
-      <main>
+      <main className="overflow-x-hidden">
         {/* 1. Cinematic Forge Hero (Shader + Scroll-driven reverse) */}
         <HeroSection />
 

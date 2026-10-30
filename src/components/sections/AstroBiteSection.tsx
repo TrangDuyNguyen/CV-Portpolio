@@ -39,27 +39,29 @@ export const AstroBiteSection: React.FC = () => {
             </span>
           </div>
 
-          <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-4">
-            AstroBite —{' '}
-            <span className="text-[#FF6417] not-italic">
+          <div className="mb-4">
+            <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight">
+              AstroBite
+            </h2>
+            <p className="text-xl sm:text-2xl lg:text-3xl font-light text-[#FFB648] mt-2 font-display italic">
               {overview.tagline}
-            </span>
-          </h2>
+            </p>
+          </div>
 
-          <p className="text-base sm:text-xl text-[#8E96A4] max-w-3xl font-light leading-relaxed" data-cursor="lens">
+          <p className="text-base sm:text-lg text-[#8E96A4] max-w-3xl font-light leading-relaxed" data-cursor="lens">
             {overview.description}
           </p>
 
-          {/* Quick Stack Badges */}
-          <div className="flex flex-wrap items-center gap-2 mt-6">
-            <span className="text-xs font-mono text-[#8E96A4] mr-1">// Stack:</span>
-            {overview.stackBadges.slice(0, 5).map((b) => (
-              <span
-                key={b}
-                className="px-2.5 py-1 text-xs font-mono rounded-md bg-[#141C2E] text-[#F4F2EA] border border-[rgba(244,242,234,0.08)]"
-              >
-                {b}
-              </span>
+          {/* Quick Stack (Editorial typographic flow, zero badge clutter) */}
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-6 text-xs font-mono text-[#8E96A4]">
+            <span className="text-[#FFB648] font-semibold">// Stack:</span>
+            {overview.stackBadges.map((b, bIdx) => (
+              <React.Fragment key={b}>
+                <span className="text-[#F4F2EA]/90 hover:text-[#FF6417] transition-colors">{b}</span>
+                {bIdx < overview.stackBadges.length - 1 && (
+                  <span className="text-[#8E96A4]/30 select-none">·</span>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -67,12 +69,12 @@ export const AstroBiteSection: React.FC = () => {
         {/* 2. Product Visual First: Video Demo */}
         <div className="mb-20 md:mb-24 reveal">
           <div className="relative rounded-2xl overflow-hidden bg-[#0E131F] border border-[rgba(244,242,234,0.1)] shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-            <div className="px-4 py-3 bg-[#08090A]/90 border-b border-[rgba(244,242,234,0.08)] flex items-center justify-between text-xs font-mono text-[#8E96A4]">
+            <div className="px-4 py-3 bg-[#08090A]/90 border-b border-[rgba(244,242,234,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono text-[#8E96A4]">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#FF6417] animate-pulse" />
-                <span>{t.demoVideoTitle}</span>
+                <span className="w-2 h-2 rounded-full bg-[#FF6417] animate-pulse shrink-0" />
+                <span className="font-medium text-[#F4F2EA]">{t.demoVideoTitle}</span>
               </div>
-              <span className="text-[11px] text-[#8E96A4]/60">Flutter · Google Gemini · Riverpod</span>
+              <span className="text-[11px] text-[#8E96A4]/70">Flutter · Google Gemini · Riverpod</span>
             </div>
 
             <div className="relative aspect-video max-w-5xl mx-auto bg-black flex items-center justify-center">

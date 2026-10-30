@@ -22,7 +22,7 @@ export default {
         ember: '#C22B0D',
       },
       fontFamily: {
-        display: ['Bodoni Moda', 'Georgia', 'serif'],
+        display: ['Newsreader', 'Playfair Display', 'Georgia', 'serif'],
         sans: ['Geist', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },

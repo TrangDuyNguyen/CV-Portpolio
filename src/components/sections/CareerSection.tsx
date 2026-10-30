@@ -91,22 +91,17 @@ export const CareerSection: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* Technologies used */}
-                <div className="mt-6 flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-mono text-[#8E96A4] mr-1">// Tech:</span>
-                  {item.technologies.slice(0, 8).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-xs font-mono rounded-md bg-[#141C2E]/60 text-[#8E96A4] border border-[rgba(244,242,234,0.06)] hover:border-[#FF6417]/50 hover:text-[#FFF4DE] transition-colors"
-                    >
-                      {tech}
-                    </span>
+                {/* Technologies used (Clean typographic flow, zero badge clutter) */}
+                <div className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs font-mono text-[#8E96A4]">
+                  <span className="text-[#FFB648] font-semibold">// Tech:</span>
+                  {item.technologies.map((tech, tIdx) => (
+                    <React.Fragment key={tech}>
+                      <span className="hover:text-[#F4F2EA] transition-colors">{tech}</span>
+                      {tIdx < item.technologies.length - 1 && (
+                        <span className="text-[#8E96A4]/30 select-none">·</span>
+                      )}
+                    </React.Fragment>
                   ))}
-                  {item.technologies.length > 8 && (
-                    <span className="text-xs font-mono text-[#8E96A4]/60">
-                      +{item.technologies.length - 8} more
-                    </span>
-                  )}
                 </div>
 
                 {/* Hahalolo Sub-Projects Drawer Button */}

@@ -49,11 +49,13 @@ export const HeroSection: React.FC = () => {
     window.dispatchEvent(sparkEvent);
   };
 
-  const typographyStyle = isReducedMotion
+  const typographyStyle: React.CSSProperties = isReducedMotion
     ? {}
     : {
         transform: `translate3d(0, ${scrollProgress * 65}px, 0) scale(${1 + scrollProgress * 0.28})`,
         opacity: Math.max(1 - scrollProgress * 1.35, 0),
+        visibility: scrollProgress > 0.8 ? 'hidden' : 'visible',
+        pointerEvents: scrollProgress > 0.6 ? 'none' : 'auto',
         willChange: 'transform, opacity',
       };
 
@@ -78,24 +80,20 @@ export const HeroSection: React.FC = () => {
           }`}
         >
           {/* Eyebrow */}
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#FFB648] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse" />
+          <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-mono tracking-wider sm:tracking-widest uppercase text-[#FFB648] mb-4 sm:mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse shrink-0" />
             <span>{t.hero.eyebrow}</span>
           </div>
 
           {/* Large Expressive Serif Name Centerpiece */}
-          <div className="relative select-none mb-6">
+          <div className="relative select-none mb-6 max-w-full overflow-hidden">
             <h1
               onClick={handleNameClick}
               data-cursor="pointer"
               title={language === 'vi' ? 'Chạm để tạo xung kích nhiệt' : 'Click for thermal strike'}
-              className={`font-display italic text-[clamp(2.75rem,8.5vw,7.8rem)] leading-[1.02] tracking-[-0.03em] font-normal cursor-pointer transition-transform ${
-                isHammerActive ? 'hammer-strike' : ''
+              className={`font-display italic text-[clamp(1.85rem,6.5vw,6.8rem)] leading-[1.06] tracking-[-0.02em] font-normal cursor-pointer transition-all duration-300 break-words ${
+                isHammerActive ? 'hammer-strike text-[#FFF4DE]' : 'text-[#F4F2EA]'
               }`}
-              style={{
-                color: '#F4F2EA',
-                textShadow: '0 0 30px rgba(255, 182, 72, 0.75), 0 0 70px rgba(255, 100, 23, 0.45)',
-              }}
             >
               {profile.name}
             </h1>
@@ -147,7 +145,7 @@ export const HeroSection: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           {stats.map((stat, idx) => (
             <div key={idx} className="group">
-              <div className="text-2xl sm:text-3xl font-mono font-medium text-[#F4F2EA] tracking-tight group-hover:text-[#FFB648] transition-colors">
+              <div className="text-2xl sm:text-3xl font-sans font-semibold text-[#F4F2EA] tracking-tight group-hover:text-[#FFB648] transition-colors">
                 {stat.value}
               </div>
               <div className="text-xs font-mono text-[#FFB648] mt-1 uppercase tracking-wider">
@@ -160,19 +158,19 @@ export const HeroSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Scroll Cue Indicator */}
+        {/* Unified Scroll Cue Indicator */}
         <div className="mt-10 flex items-center justify-between text-xs font-mono text-[#8E96A4]">
-          <span className="tracking-widest uppercase text-[10px]">
-            {t.hero.scrollCue}
+          <span className="tracking-widest uppercase text-[10px] text-[#8E96A4]/50">
+            // 01 / 07
           </span>
           <a
             href="#about"
             aria-label={t.hero.scrollCue}
             data-cursor="pointer"
-            className="flex items-center gap-1.5 hover:text-[#FF6417] transition-colors"
+            className="flex items-center gap-2 hover:text-[#FF6417] transition-colors"
           >
-            <span>Scroll</span>
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+            <span>{t.hero.scrollCue}</span>
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#FF6417]" />
           </a>
         </div>
       </div>

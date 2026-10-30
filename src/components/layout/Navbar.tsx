@@ -44,8 +44,8 @@ export const Navbar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#08090A]/85 backdrop-blur-md border-b border-[rgba(244,242,234,0.08)] shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
+        isScrolled || mobileMenuOpen
+          ? 'bg-[#08090A] border-b border-[rgba(244,242,234,0.08)] shadow-[0_4px_24px_rgba(0,0,0,0.7)]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -150,42 +150,49 @@ export const Navbar: React.FC = () => {
 
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer & Backdrop */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#08090A]/95 border-b border-[rgba(244,242,234,0.1)] px-4 py-6 space-y-4 animate-in fade-in duration-200">
-          <div className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
+        <>
+          <div
+            className="fixed inset-0 top-16 bg-black/80 backdrop-blur-sm -z-10 animate-in fade-in duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="md:hidden bg-[#0C0E12] border-b border-[rgba(244,242,234,0.12)] px-6 py-6 space-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.95)] animate-in slide-in-from-top-2 duration-200 relative z-50">
+            <div className="flex flex-col space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm font-mono text-[#F4F2EA]/90 hover:text-[#FF6417] py-2.5 border-b border-[rgba(244,242,234,0.06)] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="pt-3 flex items-center justify-between">
               <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-mono text-[#8E96A4] hover:text-[#F4F2EA] py-2 border-b border-[rgba(244,242,234,0.06)]"
+                href={profile.cvPdfUrl}
+                download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] text-xs font-medium shadow-sm transition-colors"
               >
-                {link.label}
+                <Download className="w-3.5 h-3.5" />
+                <span>{t.downloadCv}</span>
               </a>
-            ))}
-          </div>
 
-          <div className="pt-2 flex items-center justify-between">
-            <a
-              href={profile.cvPdfUrl}
-              download={language === 'en' ? 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F2EA] text-[#08090A] text-xs font-medium"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>{t.downloadCv}</span>
-            </a>
-
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[#141C2E] text-[#8E96A4]"
-            >
-              <Github className="w-4 h-4" />
-            </a>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-[#141C2E] text-[#8E96A4] hover:text-[#F4F2EA] border border-[rgba(244,242,234,0.1)] transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
