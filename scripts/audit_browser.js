@@ -215,6 +215,8 @@ async function runAudit() {
         const issues = [];
         const allElements = document.querySelectorAll('*');
         for (const el of allElements) {
+          // Ignore items inside a horizontal scroll container or carousel
+          if (el.closest('[style*="overflow"], .overflow-x-auto, .overflow-hidden, #gallery')) continue;
           const rect = el.getBoundingClientRect();
           if (rect.right > docWidth + 2) {
             issues.push({

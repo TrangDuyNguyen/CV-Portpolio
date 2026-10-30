@@ -66,28 +66,55 @@ export const AstroBiteSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 2. Product Visual First: Video Demo */}
-        <div className="mb-20 md:mb-24 reveal">
-          <div className="relative rounded-2xl overflow-hidden bg-[#0E131F] border border-[rgba(244,242,234,0.1)] shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-            <div className="px-4 py-3 bg-[#08090A]/90 border-b border-[rgba(244,242,234,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono text-[#8E96A4]">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#FF6417] animate-pulse shrink-0" />
-                <span className="font-medium text-[#F4F2EA]">{t.demoVideoTitle}</span>
+        {/* 2. Product Visual First: Compact Smartphone Video Demo */}
+        <div className="mb-20 md:mb-24 reveal flex flex-col items-center">
+          <div className="w-full max-w-[340px] sm:max-w-[380px] relative">
+            
+            {/* Phone Device Frame */}
+            <div className="relative rounded-[2.75rem] p-3 sm:p-3.5 bg-gradient-to-b from-[#1E2638] via-[#0E131F] to-[#08090A] border border-[rgba(244,242,234,0.15)] shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+              
+              {/* Top Speaker / Camera Pill */}
+              <div className="flex items-center justify-between px-6 py-1.5 text-[10px] font-mono text-[#8E96A4]/60 mb-1 select-none">
+                <span>9:41</span>
+                <div className="w-16 h-3 rounded-full bg-[#08090A] border border-[rgba(244,242,234,0.08)] flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-[#141C2E]" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500/70" />
+                </div>
               </div>
-              <span className="text-[11px] text-[#8E96A4]/70">Flutter · Google Gemini · Riverpod</span>
+
+              {/* Video Screen Container (9:16 portrait) */}
+              <div className="relative rounded-[2rem] overflow-hidden bg-black aspect-[9/16] shadow-inner">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster="/screenshots/clay/cockpit_dashboard.png"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/astrobite-demo.mp4" type="video/mp4" />
+                  Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+              </div>
+
+              {/* Bottom Home Indicator Bar */}
+              <div className="pt-2 pb-1 flex justify-center">
+                <div className="w-28 h-1 rounded-full bg-[rgba(244,242,234,0.2)]" />
+              </div>
+
             </div>
 
-            <div className="relative aspect-video max-w-5xl mx-auto bg-black flex items-center justify-center">
-              <video
-                controls
-                preload="metadata"
-                poster="/screenshots/clay/cockpit_dashboard.png"
-                className="w-full h-full object-contain"
-              >
-                <source src="/astrobite-demo.mp4" type="video/mp4" />
-                Trình duyệt của bạn không hỗ trợ thẻ video.
-              </video>
+            {/* Video Caption & Stack Meta below phone */}
+            <div className="mt-4 text-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141C2E]/60 border border-[rgba(244,242,234,0.08)] text-xs font-mono text-[#8E96A4]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse" />
+                <span className="text-[#F4F2EA]">{t.demoVideoTitle}</span>
+                <span className="text-[#8E96A4]/40">·</span>
+                <span className="text-[11px]">Flutter & Gemini AI</span>
+              </div>
             </div>
+
           </div>
         </div>
 

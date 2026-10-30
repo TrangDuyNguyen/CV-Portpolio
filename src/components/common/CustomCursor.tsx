@@ -86,8 +86,8 @@ export const CustomCursor: React.FC = () => {
     };
 
     const render = () => {
-      // Soft lerp following
-      const ease = 0.18;
+      // Responsive rapid-follow lerp
+      const ease = 0.52;
       ringX += (targetX - ringX) * ease;
       ringY += (targetY - ringY) * ease;
 
