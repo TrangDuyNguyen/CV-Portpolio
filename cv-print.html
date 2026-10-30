@@ -703,7 +703,7 @@
         </a>
 
         <!-- Nút Tải PDF Trắng Đen Trực tiếp (Mặc định bản tiếng Anh) -->
-        <a href="/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030" download="Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf" class="btn-tb btn-tb-primary" id="btnDownloadPdf" title="Download ATS B&W PDF">
+        <a href="/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030_v2" download="Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf" class="btn-tb btn-tb-primary" id="btnDownloadPdf" title="Download ATS B&W PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -899,21 +899,23 @@
               <div class="job-title-group">
                 <span class="job-company">HAHALOLO</span>
                 <span class="job-role-sep">•</span>
-                <span class="job-role">Flutter Developer (Social Network &amp; OTT Chat)</span>
+                <span class="job-role">Mobile Developer (iOS &amp; Flutter)</span>
               </div>
-              <span class="job-date">05/2021 – 07/2025</span>
+              <span class="job-date">05/2020 – 06/2025 (5 năm)</span>
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, WebSocket, SQLite, Clean Architecture, Push Notifications, Media Cache.
+              <strong>Hệ sinh thái 6 sản phẩm:</strong> Mạng xã hội du lịch, Nhắn tin OTT, Fintech chuyển tiền &amp; đầu tư, Nông nghiệp thông minh &amp; QC phát hành Store.
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> iOS Swift, UIKit, VIPER, MVVM, RxSwift, WebSocket, SQLite, CallKit, Flutter, Add-to-App, Clean Architecture, Riverpod.
             </div>
             <ul class="bullet-list">
-              <li>Phát triển và bảo trì các tính năng trọng yếu trên ứng dụng Mạng Xã Hội Du Lịch &amp; OTT Chat quy mô lớn (1M+ người dùng hoạt động).</li>
-              <li>Xây dựng kiến trúc State Management với Riverpod kết hợp Clean Architecture, tách biệt rõ ràng giữa Presentation, Domain và Data layer.</li>
-              <li>Tối ưu hóa hiệu năng render danh sách bài viết đa phương tiện (feed list): áp dụng <code>ListView.builder</code>, <code>AutomaticKeepAliveClientMixin</code>, và bộ nhớ đệm hình ảnh/video cục bộ, giảm 40% mức tiêu thụ RAM.</li>
-              <li>Triển khai phân hệ Chat Real-time qua WebSocket: đồng bộ tin nhắn 2 chiều tức thì, cơ chế gửi lại khi rớt mạng, lưu trữ tin nhắn offline với SQLite và thông báo đẩy (FCM / APNs).</li>
-              <li>Tích hợp các tính năng tương tác mạng xã hội: luồng tin tức (News Feed), bình luận đa cấp, thả cảm xúc, chia sẻ bài viết, và gắn thẻ địa điểm du lịch.</li>
-              <li>Tối ưu hóa tốc độ khởi động ứng dụng (Cold start) đạt &lt; 1.8 giây, duy trì tỷ lệ hoạt động không lỗi (Crash-free session) &gt; 99.5%.</li>
-              <li>Viết Unit Tests và Widget Tests cho các use case nghiệp vụ chính; tham gia quy trình Code Review nghiêm ngặt trước khi merge.</li>
+              <li><strong>[Hahalolo — Mạng Xã Hội Du Lịch (1M+ downloads)]:</strong> Phát triển các phân hệ cốt lõi Tour, Flight, Hotel và Community; xây dựng Native iOS (Swift, VIPER) và tích hợp module <strong>Flutter qua Add-to-App</strong>; tối ưu giao diện responsive, Deep Linking và duy trì tỷ lệ crash &lt; 0.5% qua Crashlytics.</li>
+              <li><strong>[Halome — Nhắn Tin OTT Realtime]:</strong> Xây dựng ứng dụng nhắn tin bảo mật từ đầu bằng Native iOS Swift (<strong>MVVM</strong>); tích hợp <strong>WebSocket realtime</strong>, <strong>RxSwift</strong>, cơ chế lưu trữ offline với <strong>SQLite</strong> và <strong>CallKit VoIP</strong> cho cuộc gọi màn hình khóa; tối ưu danh sách tin nhắn mượt mà <strong>60 FPS</strong>.</li>
+              <li><strong>[Haloki — Fintech Chuyển Tiền Quốc Tế]:</strong> Phát triển ứng dụng chuyển tiền đa quốc gia (192 quốc gia) bằng Flutter; đảm bảo luồng giao dịch tài chính nghiêm ngặt, tích hợp xác thực <strong>KYC</strong>, sinh trắc học (Biometrics) và mã hóa an toàn dữ liệu cục bộ.</li>
+              <li><strong>[Hahalolo Invest — Fintech &amp; Chứng Khoán]:</strong> Phát triển ứng dụng giao dịch cổ phiếu bằng Flutter; tối ưu hóa biểu đồ nến kỹ thuật theo thời gian thực (Financial Charts) qua WebSocket, quản lý danh mục và luồng khớp lệnh không drop frame.</li>
+              <li><strong>[Aquannets — Quản Lý Nuôi Trồng Thủy Sản (Outsource)]:</strong> Phát triển ứng dụng quản lý trang trại doanh nghiệp bằng Flutter theo chuẩn <strong>Clean Architecture + Riverpod</strong>; thiết kế cơ sở dữ liệu <strong>SQLite Offline-first</strong> phục vụ ổn định tại các vùng ao nuôi mất sóng.</li>
+              <li><strong>[SocTrip — QC &amp; Phát Hành Store]:</strong> Chủ trì quy trình kiểm thử chất lượng (E2E testing), thiết kế ma trận test case, kiểm thử hồi quy và đối soát nghiệm thu chất lượng trước khi phát hành lên App Store &amp; Google Play.</li>
             </ul>
           </article>
         </section>
@@ -1153,21 +1155,23 @@
               <div class="job-title-group">
                 <span class="job-company">HAHALOLO</span>
                 <span class="job-role-sep">•</span>
-                <span class="job-role">Flutter Developer (Social Network &amp; OTT Chat)</span>
+                <span class="job-role">Mobile Developer (iOS &amp; Flutter)</span>
               </div>
-              <span class="job-date">05/2021 – 07/2025</span>
+              <span class="job-date">05/2020 – 06/2025 (5 years)</span>
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, WebSocket, SQLite, Clean Architecture, Push Notifications, Media Cache.
+              <strong>Ecosystem of 6 Products:</strong> Social Travel Network, OTT Realtime Chat, Fintech Remittance &amp; Investing, Aquaculture Management &amp; Store QC.
+            </div>
+            <div class="job-tech-line">
+              <strong>Tech Stack:</strong> iOS Swift, UIKit, VIPER, MVVM, RxSwift, WebSocket, SQLite, CallKit, Flutter, Add-to-App, Clean Architecture, Riverpod.
             </div>
             <ul class="bullet-list">
-              <li>Engineered and maintained mission-critical features on a high-scale Travel Social Network &amp; OTT Chat application serving 1M+ active users.</li>
-              <li>Implemented Riverpod state management under Clean Architecture patterns, enforcing rigorous boundaries between Presentation, Domain, and Data layers.</li>
-              <li>Optimized multimedia feed rendering performance utilizing <code>ListView.builder</code>, <code>AutomaticKeepAliveClientMixin</code>, and localized disk caching, reducing runtime RAM consumption by 40%.</li>
-              <li>Engineered Real-time WebSocket Chat subsystem: bidirectional instant messaging, message deduplication and retry queues during disconnection, offline persistence with SQLite, and background push notifications (FCM / APNs).</li>
-              <li>Integrated rich social features: personalized News Feed, multi-level comments, interactive reactions, post sharing, and travel geotagging.</li>
-              <li>Optimized application cold start latency to &lt; 1.8 seconds, maintaining a crash-free session rate &gt; 99.5% in production.</li>
-              <li>Authored comprehensive Unit and Widget Tests for core business flows; participated in rigorous PR code reviews prior to staging merges.</li>
+              <li><strong>[Hahalolo — Travel Social Network (1M+ downloads)]:</strong> Engineered core Tour, Flight, Hotel, and Community modules; built Native iOS (Swift, VIPER) and integrated <strong>Flutter modules via Add-to-App</strong>; handled responsive UI, deep linking, and sustained crash rates &lt; 0.5% via Crashlytics.</li>
+              <li><strong>[Halome — OTT Realtime Messaging]:</strong> Built secure messaging app from scratch in Native iOS Swift (<strong>MVVM</strong>); integrated <strong>Realtime WebSockets</strong>, <strong>RxSwift</strong>, <strong>SQLite offline cache</strong>, and <strong>CallKit VoIP</strong> for lock-screen incoming calls; locked silky <strong>60 FPS</strong> chat scrolling.</li>
+              <li><strong>[Haloki — International Remittance Fintech]:</strong> Engineered cross-border remittance app (192 countries) using Flutter; established high-security transaction pipelines, biometric authentication, <strong>KYC verification</strong>, and encrypted local storage.</li>
+              <li><strong>[Hahalolo Invest — Fintech &amp; Securities]:</strong> Engineered stock trading application in Flutter; optimized real-time financial candlestick charting over WebSockets, portfolio analytics, and low-latency order execution flows without frame drops.</li>
+              <li><strong>[Aquannets — Aquaculture Enterprise Management (Outsource)]:</strong> Built farm management application in Flutter applying <strong>Clean Architecture + Riverpod</strong>; implemented <strong>SQLite Offline-first persistence</strong> for remote field operations with zero connectivity.</li>
+              <li><strong>[SocTrip — QC &amp; Store Release Lead]:</strong> Led quality assurance and end-to-end testing lifecycle; drafted test case matrices, conducted regression audits, and provided release sign-offs for App Store and Google Play distributions.</li>
             </ul>
           </article>
         </section>
@@ -1310,7 +1314,7 @@
         btnVI.classList.remove('active');
         btnEN.classList.add('active');
         statusText.textContent = "Mobile Engineer Resume — Nguyen Duy Trang";
-        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030_v2";
         btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf";
         btnPdfText.textContent = "Download B&W PDF";
         btnPrintText.textContent = "Print / Save PDF";
@@ -1321,7 +1325,7 @@
         btnEN.classList.remove('active');
         btnVI.classList.add('active');
         statusText.textContent = "CV Mobile Engineer — Nguyen Duy Trang";
-        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030";
+        btnPdf.href = "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030_v2";
         btnPdf.download = "Mobile_Engineer_Nguyen_Duy_Trang.pdf";
         btnPdfText.textContent = "Tải PDF Trắng Đen";
         btnPrintText.textContent = "In / Lưu PDF";

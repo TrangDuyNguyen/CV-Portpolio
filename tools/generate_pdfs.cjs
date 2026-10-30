@@ -2,7 +2,13 @@ const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const CHROME_PATH = process.env.CHROME_PATH || (
+  process.platform === 'darwin'
+    ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    : (process.platform === 'win32'
+        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+        : 'google-chrome')
+);
 
 async function generatePdfForLang(lang, outputPath) {
   const filePath = 'file:///' + path.resolve(__dirname, '../cv-print.html').replace(/\\/g, '/') + '?lang=' + lang;
@@ -89,6 +95,17 @@ async function main() {
   fs.copyFileSync(enTarget, path.resolve(publicDir, 'cv_en.pdf'));
   fs.copyFileSync(enTarget, path.resolve(rootDir, 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'));
   fs.copyFileSync(enTarget, path.resolve(rootDir, 'Mobile Engineer_Nguyen Duy Trang_EN.pdf'));
+
+  const distDir = path.resolve(__dirname, '../dist');
+  if (fs.existsSync(distDir)) {
+    fs.copyFileSync(viTarget, path.resolve(distDir, 'Mobile_Engineer_Nguyen_Duy_Trang.pdf'));
+    fs.copyFileSync(viTarget, path.resolve(distDir, 'Mobile Engineer_Nguyen Duy Trang.pdf'));
+    fs.copyFileSync(viTarget, path.resolve(distDir, 'cv.pdf'));
+
+    fs.copyFileSync(enTarget, path.resolve(distDir, 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'));
+    fs.copyFileSync(enTarget, path.resolve(distDir, 'Mobile Engineer_Nguyen Duy Trang_EN.pdf'));
+    fs.copyFileSync(enTarget, path.resolve(distDir, 'cv_en.pdf'));
+  }
 
   console.log('All PDF files synced successfully!');
 }
