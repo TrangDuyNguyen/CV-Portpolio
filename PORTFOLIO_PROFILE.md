@@ -263,7 +263,7 @@ FINVIET TECHNOLOGY | Mobile Developer — Flutter, Web & Kiosk (Aug 2025 – Aug
 • Established Coding conventions, strict lint rules (analysis_options.yaml), led PR code reviews, and mentored Junior developers across the engineering team.
 • Configured automated CI/CD build & release pipelines (Android APK/AAB, Web bundle) via Fastlane, GitHub Actions & GitLab CI/CD.
 
-HAHALOLO SOCIAL TRAVEL NETWORK | Mobile & Frontend Developer — iOS & Flutter (May 2020 – Jun 2025)
+HAHALOLO SOCIAL TRAVEL NETWORK | Mobile & Frontend Developer — iOS & Flutter (May 2021 – Jul 2025)
 Ecosystem of 6 Apps: Social Network, OTT Messaging, Travel, Fintech & Outsource
 
 • [Hahalolo — Travel Social Network (1M+ downloads)] Developed Tour, Flight, Hotel, and Community modules; built Native iOS (Swift, VIPER) and integrated Flutter via Add-to-App; handled Responsive UI, Deep Linking, and Firebase Crashlytics (<0.5% crash rate). Mobile team: 20.

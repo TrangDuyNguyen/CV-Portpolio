@@ -17,23 +17,25 @@ const careerDataVi: CareerItem[] = [
       "Xây dựng hệ thống báo cáo doanh thu, lợi nhuận, ca làm việc thu ngân và đối soát giao dịch ngân hàng theo thời gian thực.",
       "Thiết kế cơ chế Offline-First với BLoC và SQLite/Drift, đảm bảo 100% dữ liệu đơn hàng không bị mất khi mất kết nối mạng.",
       "Tối ưu hóa UI render 60 FPS và kiểm soát rò rỉ RAM cho các dòng máy POS Android cấu hình thấp (Sunmi, iMin) và Kiosk tự phục vụ.",
+      "Thiết lập pipeline CI/CD tự động hóa build & release bằng Fastlane và GitHub Actions, giám sát crash rate dưới 0.5% qua Firebase Crashlytics.",
     ],
     technologies: [
       "Flutter", "Android Kotlin", "BLoC", "SQLite", "VietQR Pay",
       "Hóa Đơn Điện Tử", "Chữ Ký Số", "ESC/POS Thermal Printer", "Barcode Scanner",
-      "Platform Channels", "RBAC", "Fastlane"
+      "Platform Channels", "RBAC", "Fastlane", "GitHub Actions", "Firebase Crashlytics"
     ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=vn.com.finviet.ecopos&hl=vi",
   },
   {
-    period: "05/2020 — 06/2025 (5 năm)",
+    period: "05/2021 — 07/2025 (4 năm 2 tháng)",
     role: "Mobile Developer (iOS & Flutter)",
     company: "Hahalolo",
     project: "Hệ sinh thái sản phẩm mạng xã hội, OTT & Fintech",
     type: "Commercial Production",
     summary: "Tham gia phát triển hệ sinh thái sản phẩm của Hahalolo, với nhiều ứng dụng và dịch vụ phục vụ các nhu cầu khác nhau của người dùng.",
     achievements: [
-      "Phát triển các phân hệ Tour, Flight, Hotel và Community trên mạng xã hội du lịch Hahalolo.",
+      "Phát triển các phân hệ Tour, Flight, Hotel và Community trên mạng xã hội du lịch Hahalolo (1M+ downloads).",
+      "Thiết lập quy trình kiểm thử tự động, tích hợp CI/CD tự động hóa build qua GitLab CI/CD và Bitrise, giám sát chất lượng sản xuất với Firebase Crashlytics (đạt 99.5%+ crash-free).",
       "Xây dựng ứng dụng nhắn tin OTT Halome native iOS Swift với WebSocket, RxSwift, SQLite và CallKit.",
       "Tham gia phát triển và hoàn thiện các ứng dụng fintech, nông nghiệp và đối soát chất lượng (Haloki, Hahalolo Invest, Aquannets, SocTrip).",
     ],
@@ -98,23 +100,25 @@ const careerDataEn: CareerItem[] = [
       "Engineered real-time revenue analytics dashboards, cashier shift reconciliation, and automated bank settlement tracking.",
       "Architected an offline-first data layer with BLoC and SQLite/Drift, guaranteeing zero order loss during network interruptions.",
       "Optimized rendering pipelines for steady 60 FPS and eliminated memory leaks on low-spec Android POS hardware (Sunmi, iMin) and self-order kiosks.",
+      "Automated multi-track CI/CD build and delivery pipelines using Fastlane and GitHub Actions, maintaining crash-free rates above 99.5% via Firebase Crashlytics.",
     ],
     technologies: [
       "Flutter", "Android Kotlin", "BLoC", "SQLite", "VietQR Pay",
       "E-Invoice (Decree 123)", "Digital Signatures", "ESC/POS Thermal Printer",
-      "Barcode Scanner", "Platform Channels", "RBAC", "Fastlane"
+      "Barcode Scanner", "Platform Channels", "RBAC", "Fastlane", "GitHub Actions", "Firebase Crashlytics"
     ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=vn.com.finviet.ecopos&hl=vi",
   },
   {
-    period: "05/2020 — 06/2025 (5 years)",
+    period: "05/2021 — 07/2025 (4 yrs 2 mos)",
     role: "Mobile Developer (iOS & Flutter)",
     company: "Hahalolo",
     project: "Social Travel, OTT & Fintech Ecosystem",
     type: "Commercial Production",
     summary: "Contributed to developing Hahalolo's multi-product ecosystem, spanning consumer social travel, real-time messaging, and fintech applications.",
     achievements: [
-      "Engineered Tour, Flight, Hotel, and Community modules on the Hahalolo travel social network.",
+      "Engineered Tour, Flight, Hotel, and Community modules on the Hahalolo travel social network (1M+ downloads).",
+      "Automated build and testing pipelines using GitLab CI/CD and Bitrise; monitored production stability and crashes via Firebase Crashlytics (99.5%+ crash-free rate).",
       "Built the Halome OTT real-time messaging native iOS application with WebSocket, RxSwift, SQLite, and CallKit.",
       "Contributed to fintech, aquaculture, and release quality verification (Haloki, Hahalolo Invest, Aquannets, SocTrip).",
     ],
