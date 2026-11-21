@@ -794,15 +794,15 @@
           <div class="highlights-list">
             <div class="highlight-item">
               <strong>Measured Performance Optimization:</strong>
-              <span>Rút ngắn 30% thời gian thanh toán trên Kiosk tự phục vụ; tối ưu luồng camera buffer đạt độ trễ phân tích AI &lt; 2.5s và giữ render ổn định 60 FPS (0 memory leak).</span>
+              <span>Rút ngắn 30% thời gian thanh toán trên Kiosk &amp; quét barcode POS; tối ưu luồng camera buffer đạt độ trễ phân tích AI &lt; 2.5s và giữ render ổn định 60 FPS (0 memory leak).</span>
             </div>
             <div class="highlight-item">
               <strong>Offline-First — Local Database:</strong>
-              <span>Nhúng Rust core vào Flutter qua Dart FFI để quản trị SQLite và xử lý logic giao dịch cục bộ, cho tốc độ phản hồi nhanh và lưu trữ offline hoàn toàn.</span>
+              <span>Nhúng Rust core vào Flutter qua Dart FFI (flutter_rust_bridge) để quản trị SQLite Price Store và tra cứu bảng giá cục bộ, dùng multi-row batch INSERT và stress test 50.000 items.</span>
             </div>
             <div class="highlight-item">
               <strong>Automated Unit Testing &amp; Self-Testing:</strong>
-              <span>Tự thiết kế và duy trì bộ 277 automated unit &amp; widget tests (100% pass) cho các luồng logic nghiệp vụ và state chính, tích hợp chạy tự động trên CI/CD.</span>
+              <span>Tự viết và duy trì bộ test tự động chạy CI: 277 unit &amp; widget tests (100% pass) ở AstroBite cùng 61 file unit/widget test (Onboarding V2, Table Order, Sync) tại ECO POS.</span>
             </div>
             <div class="highlight-item">
               <strong>Tech Sharing (SOLID &amp; Clean Architecture):</strong>
@@ -810,7 +810,7 @@
             </div>
             <div class="highlight-item">
               <strong>1M+ Production Scale &amp; Reliability:</strong>
-              <span>Vận hành các ứng dụng quy mô người dùng lớn đạt 1M+ downloads trên iOS và Android, duy trì tỷ lệ phiên chạy không crash trên 99.5% ở production.</span>
+              <span>Vận hành ứng dụng đạt 1M+ downloads trên iOS và Android, giữ tỷ lệ phiên chạy không crash trên 99.5% ở production.</span>
             </div>
           </div>
         </section>
@@ -831,7 +831,7 @@
             </div>
             <div class="skill-row">
               <div class="skill-label">Networking &amp; Data:</div>
-              <div class="skill-values">Offline-First, SQLite, Realm, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
+              <div class="skill-values">Offline-First, SQLite, Hive, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Performance &amp; Advanced:</div>
@@ -839,7 +839,7 @@
             </div>
             <div class="skill-row">
               <div class="skill-label">Testing &amp; CI/CD:</div>
-              <div class="skill-values">Unit &amp; Widget Testing (277 Tests), GitHub Actions, GitLab CI/CD, Fastlane.</div>
+              <div class="skill-values">Unit &amp; Widget Testing (277 AstroBite, 61 ECO POS files), GitHub Actions, GitLab CI/CD, Fastlane.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Delivery &amp; Monitoring:</div>
@@ -878,22 +878,23 @@
               <span class="job-date">08/2025 – 08/2026</span>
             </div>
             <div class="job-tech-line">
-              <strong>Sản phẩm chính:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Ứng dụng quản lý bán hàng POS, thu ngân và phát hành hóa đơn điện tử cho cửa hàng tạp hóa, chuỗi bán lẻ, nhà thuốc &amp; F&amp;B.
+              <strong>Sản phẩm chính:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Ứng dụng bán hàng POS, F&amp;B, thu ngân và hóa đơn điện tử cho cửa hàng tạp hóa, chuỗi bán lẻ, nhà thuốc &amp; nhà hàng.
             </div>
             <div class="job-tech-line">
-              <strong>Nghiệp vụ đảm nhiệm:</strong> Phân quyền tính năng hệ thống (RBAC) • Luồng bán hàng tạp hóa &amp; thanh toán đa kênh (VietQR, thẻ POS, tiền mặt) • Quản lý sản phẩm &amp; kho hàng (nhập/xuất/tồn) • Kê khai thuế &amp; hóa đơn điện tử (NĐ 123) • Báo cáo doanh thu &amp; dòng tiền.
+              <strong>Nghiệp vụ đảm nhiệm:</strong> Hàng hóa, Combo &amp; Bảng giá • Bán hàng Retail/F&amp;B &amp; Đặt bàn realtime • Kê khai Thuế &amp; HĐĐT (NĐ 123) • Đăng ký Onboarding V2 &amp; RBAC • Kho &amp; Khai báo Ngân hàng.
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), VietQR Pay, ESC/POS Printer, Barcode Scanner, Fastlane, GitHub Actions, Firebase Crashlytics.
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC/Cubit, Hive, Rust Core (Dart FFI / SQLite), Dio, Socket.IO, ESC/POS &amp; iMin Printer, Fastlane, GitHub Actions, Sentry, Firebase Crashlytics.
             </div>
             <ul class="bullet-list">
-              <li><strong>Phân quyền tính năng toàn hệ thống:</strong> Thiết lập ma trận phân quyền chi tiết (RBAC) theo vai trò (chủ cửa hàng, quản lý, thu ngân, thủ kho), bảo mật dữ liệu và cấu hình chi nhánh.</li>
-              <li><strong>Luồng bán hàng &amp; thanh toán:</strong> Tối ưu luồng quét barcode tính tiền (giảm 30% thời gian giao dịch); tích hợp đối soát VietQR Pay động, quẹt thẻ máy POS và tiền mặt.</li>
-              <li><strong>Quản lý sản phẩm &amp; nhập xuất kho:</strong> Xây dựng module quản lý danh mục hàng hóa đa biến thể, kiểm kê theo mã vạch, tạo phiếu nhập/xuất kho và cảnh báo tồn kho thấp.</li>
-              <li><strong>Kê khai thuế &amp; hóa đơn điện tử:</strong> Tích hợp luồng kê khai thuế và phát hành hóa đơn điện tử có mã của cơ quan thuế theo Nghị định 123 kèm chữ ký số trực tiếp trên thiết bị POS di động.</li>
-              <li><strong>Báo cáo doanh thu &amp; dòng tiền:</strong> Xây dựng dashboard báo cáo doanh số, lợi nhuận, biểu đồ bán hàng theo thời gian thực và tự động đối soát ca làm việc, đối soát giao dịch ngân hàng.</li>
-              <li><strong>Offline-first &amp; Tích hợp phần cứng:</strong> Thiết kế luồng lưu trữ offline-first (BLoC, SQLite/Drift) để không mất đơn khi rớt mạng; tích hợp máy in nhiệt ESC/POS và máy quét barcode qua Kotlin Platform Channels.</li>
-              <li><strong>Tối ưu hiệu năng &amp; CI/CD:</strong> Giữ render 60 FPS trên thiết bị POS cấu hình thấp (Sunmi, iMin, màn hình phụ); tự động hóa build và phát hành Android/iOS bằng Fastlane và GitHub Actions.</li>
+              <li><strong>Bán hàng Retail &amp; F&amp;B Đặt bàn:</strong> Phát triển quét barcode &amp; POS/Kiosk (-30% thời gian giao dịch), xử lý đơn F&amp;B (món phụ, VAT), trả hàng và <code>TableOrder</code> (Clean Architecture + WebSocket <code>update_table</code>).</li>
+              <li><strong>Rust + SQLite Price Store (Dart FFI):</strong> Tự xây dựng Rust SQLite Price Store qua <code>flutter_rust_bridge</code> (v1.8.0), migrations đánh index, multi-row batch <code>INSERT</code> (stress test 50.000 items) và <code>PriceContextCubit</code>.</li>
+              <li><strong>Hàng hóa, Biến thể, Combo &amp; Kho:</strong> Xây CRUD hàng hóa đa biến thể/đơn vị quy đổi, combo, thêm hàng nhanh theo thuế, phân quyền sửa giá vốn chi nhánh/công ty và kiểm kê/nhập xuất kho.</li>
+              <li><strong>Kê khai Thuế, HĐĐT &amp; Ngân hàng:</strong> Xây kê khai thuế đa bước (tờ khai bổ sung, khấu trừ/trực tiếp, xuất PDF), HĐĐT NĐ 123 kèm chữ ký số và <code>bank_declaration</code> (đối soát T+0, Pub/Sub).</li>
+              <li><strong>Onboarding V2 &amp; Phân quyền RBAC:</strong> Thiết kế &amp; triển khai <code>RegisterV2</code> (OTP khóa đếm ngược BR-03, tra cứu MST, đơn vị hành chính) theo Clean Architecture; áp dụng RBAC cho menu, máy in và sổ quỹ.</li>
+              <li><strong>Kiểm thử &amp; Chuẩn hóa Mạng (Dio):</strong> Đóng góp 860 non-merge commits (201 tickets) và 61 file unit/widget tests (<code>Onboarding V2</code>, <code>TableOrder</code>, <code>BranchSync</code>); chuẩn hóa lỗi <code>ApiError</code> qua Dio và S3 upload.</li>
+              <li><strong>Tối ưu POS RAM Thấp &amp; DevTools:</strong> Viết <code>BaseNetworkImageV2</code> tính <code>_MemCacheSize</code> theo <code>devicePixelRatio</code>; tối ưu cache/probing máy in ESC/POS/iMin và làm DevTools (đổi host, log, seed 50k items).</li>
+              <li><strong>Thanh toán, 60 FPS &amp; Phát hành:</strong> Tích hợp VietQR Pay động, thẻ POS, tiền mặt; giữ 60 FPS trên máy POS RAM thấp (Sunmi, iMin), hỗ trợ màn hình phụ và phát hành qua Fastlane, GitHub Actions, Sentry &amp; Crashlytics.</li>
             </ul>
           </article>
           <!-- CÔNG TY 2: HAHALOLO -->
@@ -958,12 +959,12 @@
               <strong>Công nghệ sử dụng:</strong> Flutter, Dart, Riverpod, AutoRoute, Firebase Authentication, Cloud Firestore, Firebase App Check, Google Generative AI SDK (Gemini Vision &amp; NLU), SharedPreferences, Open Food Facts API, Fastlane, GitHub Actions.
             </div>
             <ul class="bullet-list">
-              <li>Thiết kế và phát triển ứng dụng Flutter đa nền tảng theo Feature-First Architecture và Riverpod cho quản lý trạng thái, gồm xác thực người dùng, ghi nhật ký bữa ăn, theo dõi calories và macronutrients, thống kê dinh dưỡng, công thức tự nấu và lập thực đơn.</li>
+              <li>Thiết kế và phát triển ứng dụng Flutter đa nền tảng theo Feature-First Architecture và quản lý state bằng Riverpod, gồm xác thực người dùng, ghi nhật ký bữa ăn, theo dõi calories và macronutrients, thống kê dinh dưỡng, công thức tự nấu và lập thực đơn.</li>
               <li>Tích hợp Gemini Vision để nhận diện và tách nhiều món trong một ảnh chụp, ước tính calories, macronutrients, phần nước dùng và topping; kết hợp Open Food Facts API để quét mã vạch và dùng AI đọc nhãn dinh dưỡng.</li>
               <li>Xây luồng ghi bữa ăn offline với local cache, hàng đợi đồng bộ (pending-sync queue) và chống trùng bản ghi trên Cloud Firestore; cập nhật dữ liệu realtime qua stream và phân quyền truy cập theo người dùng bằng Firestore Security Rules.</li>
               <li>Phát triển AI Nutrition Coach dùng Gemini multi-turn conversation kèm lưu lịch sử chat, kết hợp các widget Flutter tương tác để người dùng chỉnh khẩu phần và ghi bữa ăn ngay trong khung chat.</li>
-              <li>Xây dựng tính năng ghi bữa ăn bằng giọng nói tiếng Việt, kết hợp Speech-to-Text và Gemini NLU để tách món ăn, định lượng và quy đổi thành dữ liệu dinh dưỡng từ câu nói tự nhiên.</li>
-              <li>Tự động hóa build và phát hành Android/iOS bằng Fastlane và GitHub Actions, tạo sẵn file cài đặt và artifact cho cả hai nền tảng.</li>
+              <li>Xây dựng tính năng ghi bữa ăn bằng giọng nói tiếng Việt, kết hợp Speech-to-Text và Gemini NLU để tách tên món, định lượng và tính dinh dưỡng từ câu nói tự nhiên.</li>
+              <li>Tự động hóa build và phát hành Android/iOS bằng Fastlane và GitHub Actions, tạo sẵn artifact cài đặt cho cả hai nền tảng.</li>
             </ul>
           </article>
         </section>
@@ -1019,7 +1020,7 @@
             MOBILE ENGINEER
           </div>
           <div class="contact-row">
-            <span class="contact-item">Ho Chi Minh city, Viet Nam</span>
+            <span class="contact-item">Ho Chi Minh City, Vietnam</span>
             <span class="contact-sep">|</span>
             <span class="contact-item">2000</span>
             <span class="contact-sep">|</span>
@@ -1053,15 +1054,15 @@
           <div class="highlights-list">
             <div class="highlight-item">
               <strong>Measured Performance Optimization:</strong>
-              <span>Reduced self-order Kiosk checkout time by 30%; optimized camera buffer streaming to achieve sub-2.5s AI inference latency with steady 60 FPS rendering (0 memory leaks).</span>
+              <span>Reduced POS/Kiosk &amp; barcode checkout time by 30%; optimized camera buffer streaming to achieve sub-2.5s AI inference latency with steady 60 FPS rendering (0 memory leaks).</span>
             </div>
             <div class="highlight-item">
               <strong>Offline-First — Local Database:</strong>
-              <span>Embedded a high-performance Rust core into Flutter via Dart FFI to directly manage the Local Database (SQLite) and execute transactional business logic, guaranteeing zero-latency response and 100% offline persistence.</span>
+              <span>Embedded a Rust SQLite core into Flutter via Dart FFI (flutter_rust_bridge) for local price book resolution, with multi-row batch inserts and a 50,000-item stress benchmark.</span>
             </div>
             <div class="highlight-item">
               <strong>Automated Unit Testing &amp; Self-Testing:</strong>
-              <span>Committed to rigorous engineering self-testing: designed and maintained a comprehensive suite of 277 automated unit and widget tests (100% pass rate) covering core logic and state, integrated into CI/CD.</span>
+              <span>Built and maintained automated test suites integrated with CI: 277 unit and widget tests (100% pass) in AstroBite and 61 test files (Onboarding V2, Table Order, Sync) in ECO POS.</span>
             </div>
             <div class="highlight-item">
               <strong>Tech Sharing (SOLID &amp; Clean Architecture):</strong>
@@ -1069,7 +1070,7 @@
             </div>
             <div class="highlight-item">
               <strong>1M+ Production Scale &amp; Reliability:</strong>
-              <span>Proven track record maintaining large-scale consumer applications reaching 1M+ downloads across iOS and Android, sustaining a crash-free session rate above 99.5% in production.</span>
+              <span>Maintained production consumer apps reaching 1M+ downloads across iOS and Android, keeping crash-free sessions above 99.5%.</span>
             </div>
           </div>
         </section>
@@ -1090,7 +1091,7 @@
             </div>
             <div class="skill-row">
               <div class="skill-label">Networking &amp; Data:</div>
-              <div class="skill-values">Offline-First, SQLite, Realm, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
+              <div class="skill-values">Offline-First, SQLite, Hive, Secure Storage, REST APIs (Dio), WebSocket, Firebase, Dart FFI.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Performance &amp; Advanced:</div>
@@ -1098,7 +1099,7 @@
             </div>
             <div class="skill-row">
               <div class="skill-label">Testing &amp; CI/CD:</div>
-              <div class="skill-values">Unit &amp; Widget Testing (277 Tests), GitHub Actions, GitLab CI/CD, Fastlane.</div>
+              <div class="skill-values">Unit &amp; Widget Testing (277 AstroBite, 61 ECO POS files), GitHub Actions, GitLab CI/CD, Fastlane.</div>
             </div>
             <div class="skill-row">
               <div class="skill-label">Delivery &amp; Monitoring:</div>
@@ -1137,22 +1138,23 @@
               <span class="job-date">08/2025 – 08/2026</span>
             </div>
             <div class="job-tech-line">
-              <strong>Core Product:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Smart Retail POS, Cashier &amp; E-Invoice Issuance system for grocery stores, retail chains, pharmacies &amp; F&amp;B.
+              <strong>Core Product:</strong> ECO POS (Google Play: <code>vn.com.finviet.ecopos</code>) — Retail &amp; F&amp;B POS, Cashier &amp; E-Invoice Issuance system for grocery stores, retail chains, pharmacies &amp; restaurants.
             </div>
             <div class="job-tech-line">
-              <strong>Core Business Scope:</strong> RBAC Permissions • Retail Sales &amp; Multi-modal Payments (VietQR, Cards, Cash) • Product &amp; Inventory Management (Stock-in/out) • Tax &amp; E-Invoicing (Decree 123) • Real-time Revenue Analytics.
+              <strong>Core Business Scope:</strong> Catalog, Combo &amp; Price Books • Retail/F&amp;B Checkout &amp; Real-time Table Orders • Tax Declaration &amp; E-Invoicing (Decree 123) • Onboarding V2 &amp; RBAC • Inventory &amp; Bank Declarations.
             </div>
             <div class="job-tech-line">
-              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC, Dio, SQLite/Drift, Platform Channels (Kotlin), VietQR Pay, ESC/POS Printer, Barcode Scanner, Fastlane, GitHub Actions, Firebase Crashlytics.
+              <strong>Tech Stack:</strong> Flutter, Dart, Clean Architecture, BLoC/Cubit, Hive, Rust Core (Dart FFI / SQLite), Dio, Socket.IO, ESC/POS &amp; iMin Printer, Fastlane, GitHub Actions, Sentry, Firebase Crashlytics.
             </div>
             <ul class="bullet-list">
-              <li><strong>System RBAC:</strong> Engineered Role-Based Access Control matrix across all store operations (owner, manager, cashier, warehouse), securing feature access and multi-branch data.</li>
-              <li><strong>Retail Checkout &amp; Multi-Modal Payments:</strong> Built high-speed barcode checkout (cutting transaction time by 30%); integrated dynamic VietQR Pay reconciliation, POS card terminals, and cash payments.</li>
-              <li><strong>Product &amp; Inventory Management:</strong> Developed product catalog management with variants, barcode inventory tracking, stock-in/stock-out logging, and automated low-stock threshold alerts.</li>
-              <li><strong>Tax Declaration &amp; E-Invoice Issuance:</strong> Integrated tax reporting and certified electronic invoice (E-Invoice) issuance compliant with Decree 123 regulations and digital signatures on mobile POS terminals.</li>
-              <li><strong>Revenue &amp; Cash Flow Analytics:</strong> Built real-time revenue dashboards, sales analytics, cashier shift reconciliation, and automated banking transaction matching.</li>
-              <li><strong>Offline-First &amp; Hardware Integration:</strong> Architected an Offline-first pipeline (BLoC, SQLite/Drift) guaranteeing zero order loss during outages; integrated ESC/POS thermal printers and barcode scanners via Kotlin Platform Channels.</li>
-              <li><strong>Performance &amp; CI/CD Delivery:</strong> Held 60 FPS rendering on low-spec Android POS hardware (Sunmi, iMin, dual customer displays); automated Android/iOS build and deployment pipelines via Fastlane and GitHub Actions.</li>
+              <li><strong>Retail &amp; F&amp;B Table Order POS:</strong> Built POS/Kiosk &amp; barcode checkout (-30% transaction time), F&amp;B modifiers/returns/VAT, and Clean Architecture <code>TableOrder</code> syncing via WebSocket <code>update_table</code>.</li>
+              <li><strong>Rust + SQLite Price Store (Dart FFI):</strong> Built embedded Rust SQLite Price Store via <code>flutter_rust_bridge</code> (v1.8.0) with indexed migrations, batch inserts (50k-item benchmark), and <code>PriceContextCubit</code>.</li>
+              <li><strong>Merchandise, Combo &amp; Warehouse:</strong> Built variant/sub-unit catalog CRUD, combos, quick add by tax method, branch vs. company cost-price permissions, stock counts, and stock-in/out flows.</li>
+              <li><strong>Tax Declaration, E-Invoice &amp; Banking:</strong> Built multi-step tax declaration (supplementary filings, deduction/direct, PDF export), Decree 123 e-invoicing with digital signatures, and <code>bank_declaration</code> (T+0, Pub/Sub).</li>
+              <li><strong>Onboarding V2 &amp; System RBAC:</strong> Authored specs/plans and built <code>RegisterV2</code> (BR-03 OTP lockout, tax ID lookup, admin units) in Clean Architecture; enforced RBAC gates across menus, printers, and cashbooks.</li>
+              <li><strong>Automated Testing &amp; Networking (Dio):</strong> Delivered 860 non-merge commits across 201 tickets and 61 unit/widget test files (<code>Onboarding V2</code>, <code>TableOrder</code>, <code>BranchSync</code>); standardized Dio <code>ApiError</code> &amp; S3 upload.</li>
+              <li><strong>Low-RAM Optimization &amp; In-App DevTools:</strong> Built <code>BaseNetworkImageV2</code> sizing <code>_MemCacheSize</code> by <code>devicePixelRatio</code> for Sunmi/iMin; added printer probing cache and DevTools (host switcher, log, 50k seed).</li>
+              <li><strong>Payments, 60 FPS &amp; Releases:</strong> Integrated VietQR Pay, POS card, and cash flows; held 60 FPS on low-RAM POS hardware (Sunmi, iMin) with dual displays and shipped via Fastlane, GitHub Actions, Sentry &amp; Crashlytics.</li>
             </ul>
           </article>
           <!-- COMPANY 2: HAHALOLO -->
@@ -1176,7 +1178,7 @@
               <li><strong>[Halome — OTT Realtime Messaging]:</strong> Built a messaging app from scratch in Native iOS Swift (MVVM); integrated Realtime WebSockets, RxSwift, SQLite offline cache, and CallKit VoIP for lock-screen incoming calls; 60 FPS chat scrolling.</li>
               <li><strong>[Haloki — International Remittance Fintech]:</strong> Maintained a cross-border remittance app (192 countries) in Flutter, covering transaction flow fixes, KYC verification, transaction integrity and data security.</li>
               <li><strong>[Hahalolo Invest — Fintech &amp; Securities]:</strong> Maintained a stock trading app in Flutter, covering live WebSocket price feeds, financial charts, portfolio state and buy/sell order flows.</li>
-              <li><strong>[Aquannets — Aquaculture Enterprise Management (Outsource)]:</strong> Built farm management application in Flutter applying Clean Architecture + Riverpod; implemented SQLite Offline-first persistence for remote field operations with zero connectivity.</li>
+              <li><strong>[Aquannets — Aquaculture Management (Outsource)]:</strong> Built an aquaculture farm app in Flutter with Clean Architecture, Riverpod, and SQLite for offline logging at ponds.</li>
               <li><strong>[SocTrip — QC &amp; Store Release]:</strong> Ran end-to-end testing, drafted test case matrices, ran regression tests, and confirmed quality before App Store and Google Play distributions.</li>
             </ul>
           </article>
@@ -1217,12 +1219,12 @@
               <strong>Tech Stack:</strong> Flutter, Dart, Riverpod, AutoRoute, Firebase Authentication, Cloud Firestore, Firebase App Check, Google Generative AI SDK (Gemini Vision &amp; NLU), SharedPreferences, Open Food Facts API, Fastlane, GitHub Actions.
             </div>
             <ul class="bullet-list">
-              <li>Designed and developed a cross-platform Flutter application using Feature-First Architecture and Riverpod, implementing user authentication, food tracking, calorie and macronutrient dashboards, nutrition analytics, custom recipes, and meal planning.</li>
-              <li>Integrated Gemini multimodal Vision to analyze meal images and extract structured nutritional data, including multi-dish decomposition, broth and topping estimation; added barcode lookup through Open Food Facts and AI-powered nutrition label parsing.</li>
-              <li>Implemented offline-capable food logging with local caching, a pending-sync queue, duplicate handling, and Firestore-backed persistence and real-time data streams, supported by user-scoped Firestore security rules.</li>
-              <li>Built a context-aware AI Nutrition Coach using Gemini multi-turn conversations, persisted chat history, and custom interactive Flutter components for in-chat meal logging.</li>
-              <li>Developed Vietnamese voice-based meal logging by combining speech-to-text recognition with Gemini NLU to transform natural-language transcripts into structured nutrition records.</li>
-              <li>Automated Android and iOS release build workflows using Fastlane and GitHub Actions, with successful release build jobs and artifact generation for both platforms.</li>
+              <li>Built a cross-platform Flutter app with Feature-First Architecture and Riverpod, covering auth, meal logging, macro dashboards, nutrition analytics, custom recipes, and meal plans.</li>
+              <li>Integrated Gemini Vision to identify multiple dishes in one photo and estimate calories, macros, broth, and toppings; added Open Food Facts barcode lookup and Gemini nutrition label parsing.</li>
+              <li>Implemented offline meal logging with local cache, a sync queue, duplicate checks, Cloud Firestore streams, and per-user Firestore security rules.</li>
+              <li>Built a multi-turn AI Nutrition Coach with Gemini, persisted chat history, and interactive Flutter widgets so users log meals directly inside chat.</li>
+              <li>Added Vietnamese voice meal logging combining speech-to-text with Gemini NLU to turn spoken Vietnamese into logged meals and macro estimates.</li>
+              <li>Automated Android and iOS builds with Fastlane and GitHub Actions, packaging release artifacts for both platforms.</li>
             </ul>
           </article>
         </section>

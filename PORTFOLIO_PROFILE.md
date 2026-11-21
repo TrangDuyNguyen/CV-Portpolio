@@ -29,7 +29,7 @@ Hồ sơ gốc dùng để sinh CV, LinkedIn và portfolio.
 | :--- | :--- | :--- |
 | 1M+ downloads | Hahalolo và Halome | Xây dựng và duy trì ứng dụng mạng xã hội và nhắn tin trên iOS và Android. |
 | 99.5%+ crash-free | Production (Crashlytics) | Quản lý vòng đời bộ nhớ, bắt ngoại lệ và tối ưu render 60 FPS. |
-| -30% thời gian giao dịch | Finviet F&B POS Kiosk | Tối ưu UI/UX flow và xử lý bất đồng bộ trong Kiosk tự phục vụ. |
+| -30% thời gian giao dịch | Finviet ECO POS & Kiosk | Tối ưu luồng quét barcode tính tiền và quy trình gọi món POS/Kiosk tự phục vụ. |
 | 277 tests pass 100% | AstroBite (`flutter test`) | 277 test từ 12 module Domain, Repositories, Notifiers đến Widget UI đều pass, 0 cảnh báo. |
 | < 2.5s latency, 60 FPS | AstroBite AI Scanner và Claymorphic UI | Nhận diện món ăn bằng Gemini dưới 2.5s, hiển thị 60 FPS, 0 memory leak. |
 
@@ -166,14 +166,15 @@ AstroBite makes daily calorie tracking easier by pairing Google Gemini 3.8 Flash
 
 * Thời gian: 08/2025 đến 08/2026
 * Vị trí: Mobile Developer
-* Dự án: hệ sinh thái F&B POS và Kiosk tự phục vụ
-* Đóng góp:
-  * Phát triển và bàn giao module Kiosk tự gọi món (Self-Order Kiosk) và Thu ngân bằng Flutter, rút ngắn thời gian giao dịch 30%.
-  * Thiết kế luồng đồng bộ đơn hàng offline-first bằng Clean Architecture, BLoC và SQLite: không mất đơn khi mất mạng, tự đồng bộ khi có mạng lại.
-  * Viết Android Platform Channels (Kotlin) để tích hợp máy in hóa đơn nhiệt (ESC/POS) và máy quét mã vạch/QR, giúp ngoại vi ổn định hơn và phản hồi nhanh hơn.
-  * Tích hợp Firebase FCM, Crashlytics và Analytics cho thông báo thời gian thực và giám sát crash trên production.
-  * Dùng quy trình phát triển có AI hỗ trợ (Git Worktrees, Cursor, Claude Code) để làm song song nhiều tính năng.
-  * Thiết lập pipeline build/release Android và iOS bằng Fastlane và GitHub Actions.
+* Dự án: ECO POS — hệ sinh thái bán hàng Retail/F&B, Kiosk tự phục vụ và Hóa đơn điện tử
+* Đóng góp (xác minh từ repo: 860 non-merge commits, 201 mã ticket EPOS-*):
+  * Bán hàng Retail & F&B Đặt bàn: Xây luồng quét barcode & POS/Kiosk (giảm 30% thời gian giao dịch), xử lý đơn F&B (món chính/phụ, tùy chọn, VAT), trả hàng và module `TableOrder` dùng Clean Architecture + WebSocket (`update_table`) đồng bộ đơn nháp realtime.
+  * Rust + SQLite Price Store (Dart FFI): Xây local SQLite Price Store bằng Rust qua `flutter_rust_bridge` (nhánh `v.1.8.0`) với schema migrations đánh index, multi-row batch `INSERT`, build `.so` Android (`arm64-v8a`, `armeabi-v7a`, `x86_64`), `build_rust.sh` iOS và stress test 50.000 items; xây `PriceContextCubit` đồng bộ bảng giá đa chi nhánh (`branch_sync`).
+  * Hàng hóa, Biến thể, Combo & Kho hàng: Phát triển CRUD hàng hóa đa biến thể/đơn vị quy đổi, combo, thêm hàng nhanh theo phương pháp tính thuế, phân tách quyền sửa giá vốn giữa chi nhánh/công ty và nghiệp vụ kiểm kê, nhập xuất kho.
+  * Kê khai Thuế, HĐĐT & Ngân hàng: Xây luồng kê khai thuế đa bước (tờ khai bổ sung, khấu trừ/trực tiếp, xuất chia sẻ PDF), phát hành hóa đơn điện tử NĐ 123 kèm chữ ký số và module `bank_declaration` (đối soát T+0, Pub/Sub).
+  * Onboarding V2 & Phân quyền RBAC: Viết spec/plan và triển khai luồng đăng ký mới (`RegisterV2`: OTP đếm ngược/khóa BR-03, tra cứu MST, đơn vị hành chính) theo Clean Architecture; áp dụng ma trận RBAC cho menu, máy in và sổ quỹ.
+  * Kiểm thử, Mạng & Tối ưu thiết bị POS yếu: Đóng góp 61 file unit/widget tests (`Onboarding V2`, `TableOrder`, `BranchSync`, `Rust Bridge`); viết `BaseNetworkImageV2` tính `_MemCacheSize` theo `devicePixelRatio` cho Sunmi/iMin; tối ưu cache/probing máy in ESC/POS/iMin, chuẩn hóa parse lỗi `ApiError` qua Dio, upload S3 pre-signed URL và xây In-app DevTools (API host switcher, network log, seed 50k items).
+  * Thanh toán & Phát hành: Tích hợp VietQR Pay động, thẻ POS, tiền mặt; giữ 60 FPS trên thiết bị RAM thấp (Sunmi, iMin), hỗ trợ màn hình phụ và phát hành build đa môi trường qua Fastlane, GitHub Actions, Sentry & Firebase Crashlytics.
 
 ---
 
@@ -234,7 +235,7 @@ AstroBite makes daily calorie tracking easier by pairing Google Gemini 3.8 Flash
 | Ngôn ngữ và nền tảng | Flutter và Dart (5+ năm Expert), Swift, SwiftUI, UIKit, Kotlin, Rust, HTML5, CSS3, TypeScript |
 | Kiến trúc và state | Clean Architecture (Package-based / Feature-First), BLoC (flutter_bloc), Riverpod 2.x (AsyncNotifier, Code-Gen), MVVM, Unidirectional Data Flow, SOLID, Modularization, Offline-First |
 | Design System và Base UI | Core UI Library, Custom Widgets, Theme Engine (Dark/Light), Responsive Layout (Mobile/Tablet/Web), Localization (`intl`), Exception/Error Handler |
-| Networking và dữ liệu local | Base Dio Client (Interceptors: Bearer Token, Auto Refresh Token khi 401, Exponential Retry, Client Cache), WebSocket/Socket.IO, Cloud Firestore Stream, SQLite/Drift, Hive, Isar/SharedPreferences, Dart FFI (Rust core) |
+| Networking và dữ liệu local | Base Dio Client (Interceptors: Bearer Token, Auto Refresh Token khi 401, Exponential Retry, Client Cache), WebSocket/Socket.IO, Cloud Firestore Stream, SQLite (Rust FFI), Hive, SharedPreferences, Dart FFI (Rust core) |
 | Hiệu năng và Flutter Web | Widget Lifecycle và Render Tree (Widget/Element/RenderObject, RepaintBoundary, const), Flutter DevTools (Profiler, Memory, Network; 60 FPS, 0 memory leak), GoRouter và AutoRoute (Nested Routes, URL Query Params), CanvasKit/WASM, Asset Caching |
 | DevOps, CI/CD và testing | Fastlane, GitHub Actions, GitLab CI/CD, Docker, Sentry, Crashlytics, 277 Automated Unit và Widget Tests (100% pass), Static Analysis và Lint Rules (`analysis_options.yaml`) |
 | Quy trình và đội ngũ | Code Review, Mentoring Junior developers, Coding Conventions, Gitflow (Rebase, Cherry-pick), Scrum/Agile, Ponytail Mindset |
@@ -259,14 +260,15 @@ Tech Stack: Flutter 3.x, Dart 3.x, Clean Architecture (12 Modular Packages), Riv
 
 #### Work experience
 ```markdown
-FINVIET TECHNOLOGY | Mobile Developer, Flutter, Web & Kiosk (Aug 2025 - Aug 2026)
-• Architected modular Clean Architecture / MVVM apps with BLoC (flutter_bloc) and Unidirectional Data Flow for multi-vertical POS and self-order Kiosks (F&B, Retail, Spa), cutting transaction time by 30%.
-• Built a base UI library and responsive layout shared across Mobile, Tablet and Kiosk/Web, with common custom widgets and a Theme Engine.
-• Built the base network client with Dio Interceptors: bearer token injection, 401 token refresh, exponential backoff retry, client-side offline cache.
-• Designed an offline-first data pipeline (BLoC, SQLite/Drift) that kept 100% of orders during network drops and synced them on reconnect.
-• Profiled the Render Tree and memory with Flutter DevTools to remove jank and RAM leaks while driving ESC/POS thermal printers and barcode scanners through Kotlin Platform Channels.
-• Set coding conventions and strict lint rules (analysis_options.yaml), led PR code reviews and mentored junior developers.
-• Configured CI/CD build and release pipelines (Android APK/AAB, Web bundle) with Fastlane, GitHub Actions and GitLab CI/CD.
+FINVIET TECHNOLOGY | Mobile Developer — Flutter, ECO POS & Kiosk (Aug 2025 - Aug 2026)
+• Built POS/Kiosk & barcode checkout (cutting transaction time by 30%), F&B modifiers/returns/VAT, and a Clean Architecture TableOrder module syncing live table status and draft orders via WebSocket update_table.
+• Built an embedded Rust SQLite Price Store via flutter_rust_bridge (v1.8.0 branch) with indexed migrations, multi-row batch inserts, and a 50,000-item stress benchmark; added PriceContextCubit for multi-branch price sync.
+• Developed variant/sub-unit catalog CRUD, combos, quick add by tax method, branch vs. company cost-price permissions, stock counts, and stock-in/out workflows.
+• Built multi-step tax declaration workflows (supplementary filings, deduction/direct methods, PDF export), Decree 123 e-invoicing with digital signatures, and a bank_declaration module (T+0 settlement, Pub/Sub).
+• Authored specs/plans and implemented the Clean Architecture RegisterV2 onboarding wizard (BR-03 OTP lockout, tax ID lookup, admin units); enforced RBAC permission gates across menus, printers, and cashbooks.
+• Delivered 860 non-merge commits across 201 tickets and 61 unit/widget test files (Onboarding V2, TableOrder, BranchSync, Rust Bridge); standardized Dio ApiError parsing and S3 pre-signed uploads.
+• Built BaseNetworkImageV2 sizing _MemCacheSize by devicePixelRatio for low-RAM Sunmi/iMin POS terminals; added printer probing cache (ESC/POS/iMin) and In-app DevTools (API host switcher, network log, 50k-item seed).
+• Integrated dynamic VietQR Pay, POS card, and cash flows; held 60 FPS on low-RAM POS hardware (Sunmi, iMin) with dual customer displays and shipped multi-env builds via Fastlane, GitHub Actions, Sentry & Crashlytics.
 
 HAHALOLO SOCIAL TRAVEL NETWORK | Mobile & Frontend Developer, iOS & Flutter (May 2021 - Jul 2025)
 Ecosystem of 6 apps: social network, OTT messaging, travel, fintech and outsource
