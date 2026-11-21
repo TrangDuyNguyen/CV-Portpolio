@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Menu, X, Globe, FileText, ArrowUpRight } from 'lucide-react';
+import { Github, Menu, X, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
+import { useTheme } from '../../context/ThemeContext';
 
 export const Navbar: React.FC = () => {
   const { language, toggleLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const t = translations[language].navbar;
   const profile = getProfileData(language);
+  const isDark = theme === 'dark';
 
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      const sectionIds = ['hero', 'about', 'experience', 'projects', 'skills', 'engineering', 'contact'];
-      const scrollPos = window.scrollY + 140;
+      const sectionIds = ['hero', 'projects', 'experience', 'gallery', 'skills', 'contact'];
+      const scrollPos = window.scrollY + 180;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(sectionIds[i]);
@@ -28,49 +28,50 @@ export const Navbar: React.FC = () => {
         }
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: t.navAbout, href: '#about' },
-    { label: t.navExperience, href: '#experience' },
-    { label: t.navProjects, href: '#projects' },
-    { label: t.navSkills, href: '#skills' },
-    { label: t.navEngineering, href: '#engineering' },
-    { label: t.navContact, href: '#contact' },
+    { num: '01', label: t.navAbout, href: '#hero' },
+    { num: '02', label: t.navProjects, href: '#projects' },
+    { num: '03', label: t.navExperience, href: '#experience' },
+    { num: '04', label: t.navGallery, href: '#gallery' },
+    { num: '05', label: t.navSkills, href: '#skills' },
+    { num: '06', label: t.navContact, href: '#contact' },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen
-          ? 'bg-[#08090A] border-b border-[rgba(244,242,234,0.08)] shadow-[0_4px_24px_rgba(0,0,0,0.7)]'
-          : 'bg-transparent border-b border-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
-        {/* Brand / Logo */}
-        <a href="#hero" data-cursor="pointer" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-lg bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#FFB648] group-hover:border-[#FF6417] group-hover:text-[#FFF4DE] font-bold text-xs flex items-center justify-center transition-all font-mono">
-            DT
-          </div>
-          <div>
+    <header className="fixed top-0 left-0 right-0 z-40 bg-[var(--bg-glass)] backdrop-blur-md border-b border-[var(--line)]">
+      <div className="swiss-frame h-14 flex items-stretch justify-between">
+        {/* Cell 1: Identity Stamp */}
+        <a
+          href="#hero"
+          data-cursor="pointer"
+          className="flex items-center gap-3 px-4 sm:px-6 border-r border-[var(--line)] group shrink-0 hover:bg-[var(--bg-subtle)] transition-colors"
+        >
+          <img
+            src={profile.avatarUrl}
+            alt={profile.name}
+            className="w-7 h-7 object-cover border border-[var(--line-strong)] grayscale-[20%] group-hover:grayscale-0 transition-all"
+          />
+          <div className="leading-none">
             <div className="flex items-center gap-2">
-              <span className="font-medium text-xs sm:text-sm text-[#F4F2EA] tracking-tight group-hover:text-[#FFB648] transition-colors">
+              <span className="font-heading font-bold text-xs sm:text-sm uppercase tracking-tight text-[var(--text-primary)]">
                 {profile.name}
               </span>
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse" />
+              <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse" />
             </div>
-            <p className="text-[10px] text-[#8E96A4] font-mono hidden sm:block">
-              {profile.roleTitle}
-            </p>
+            <span className="text-[10px] font-mono text-[var(--text-muted)] hidden sm:block mt-0.5">
+              MOBILE.ARCH // HCMC
+            </span>
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
+        {/* Cell 2: Numbered Brutalist Navigation */}
+        <nav className="hidden lg:flex items-stretch flex-1 justify-center">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
@@ -78,121 +79,138 @@ export const Navbar: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 data-cursor="pointer"
-                className={`text-xs font-mono px-3 py-1.5 rounded-full transition-all ${
+                className={`relative flex items-center gap-1.5 px-4 text-[11px] font-mono uppercase tracking-wider border-r border-[var(--line)] first:border-l transition-colors ${
                   isActive
-                    ? 'bg-[#141C2E] text-[#FFF4DE] border border-[rgba(244,242,234,0.18)] font-semibold shadow-[0_0_12px_rgba(255,100,23,0.15)]'
-                    : 'text-[#8E96A4] hover:text-[#F4F2EA] hover:bg-[#141C2E]/40'
+                    ? 'bg-[var(--bg-invert)] text-[var(--text-invert)] font-bold'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
                 }`}
               >
-                {link.label}
+                <span className={isActive ? 'text-[var(--accent)]' : 'opacity-50'}>
+                  {link.num}
+                </span>
+                <span>{link.label}</span>
               </a>
             );
           })}
         </nav>
 
-        {/* Right Actions (Desktop) */}
-        <div className="hidden md:flex items-center gap-2">
-          {/* Language Toggle */}
+        {/* Cell 3: Controls & CV Action (Desktop) */}
+        <div className="hidden md:flex items-stretch shrink-0">
           <button
-            onClick={toggleLanguage}
+            type="button"
+            onClick={toggleTheme}
             data-cursor="pointer"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold rounded-full bg-[#141C2E]/70 border border-[rgba(244,242,234,0.1)] text-[#F4F2EA] hover:border-[#FF6417] transition-all cursor-pointer"
-            aria-label={t.langSwitchTooltip}
+            className="flex items-center gap-1.5 px-3.5 text-[11px] font-mono uppercase tracking-wider border-l border-[var(--line)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+            aria-label={isDark ? t.themeLightTooltip : t.themeDarkTooltip}
+            title={isDark ? t.themeLightTooltip : t.themeDarkTooltip}
           >
-            <Globe className="w-3.5 h-3.5 text-[#FFB648]" />
-            <span>{language.toUpperCase()}</span>
+            {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            <span className="hidden xl:inline">{isDark ? 'LIGHT' : 'DARK'}</span>
           </button>
 
-          {/* GitHub Link */}
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            data-cursor="pointer"
+            className="flex items-center px-3.5 text-[11px] font-mono font-bold uppercase tracking-wider border-l border-[var(--line)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+            aria-label={t.langSwitchTooltip}
+            title={t.langSwitchTooltip}
+          >
+            {language === 'vi' ? 'VI / EN' : 'EN / VI'}
+          </button>
+
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="pointer"
-            className="p-2 text-[#8E96A4] hover:text-[#F4F2EA] rounded-full bg-[#141C2E]/70 border border-[rgba(244,242,234,0.1)] hover:border-[#FF6417] transition-all"
+            className="flex items-center px-3.5 border-l border-[var(--line)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] transition-colors"
             aria-label="GitHub Profile"
           >
-            <Github className="w-3.5 h-3.5" />
+            <Github className="w-4 h-4" />
           </a>
 
-          {/* View CV Primary Action */}
           <a
             href={profile.cvViewUrl}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="pointer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] font-medium text-xs transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-5 bg-[var(--accent)] text-white hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] font-mono font-bold text-xs uppercase tracking-wider transition-colors"
           >
-            <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
-            <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
-            <ArrowUpRight className="w-3 h-3 text-[#08090A]/60" />
+            <span>{language === 'vi' ? 'CV A4' : 'RESUME'}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <div className="flex md:hidden items-center gap-2">
+        {/* Mobile Controls */}
+        <div className="flex md:hidden items-stretch">
           <button
+            type="button"
+            onClick={toggleTheme}
+            className="px-3 border-l border-[var(--line)] text-[var(--text-primary)] flex items-center"
+            aria-label={isDark ? t.themeLightTooltip : t.themeDarkTooltip}
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+          <button
+            type="button"
             onClick={toggleLanguage}
-            data-cursor="pointer"
-            className="px-2 py-1 text-xs font-mono font-bold rounded-lg bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-[#F4F2EA]"
+            className="px-3 border-l border-[var(--line)] text-xs font-mono font-bold text-[var(--text-primary)] flex items-center"
             aria-label={t.langSwitchTooltip}
           >
             {language.toUpperCase()}
           </button>
-
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-cursor="pointer"
-            className="p-2 text-[#8E96A4] hover:text-[#F4F2EA] rounded-lg bg-[#141C2E] border border-[rgba(244,242,234,0.1)]"
+            className="px-3.5 border-l border-[var(--line)] text-[var(--text-primary)] flex items-center"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-
       </div>
 
-      {/* Mobile Drawer & Backdrop */}
+      {/* Mobile Exposed Drawer */}
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 top-16 bg-black/80 backdrop-blur-sm -z-10 animate-in fade-in duration-200"
+            className="fixed inset-0 top-14 bg-black/60 backdrop-blur-sm -z-10"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="md:hidden bg-[#0C0E12] border-b border-[rgba(244,242,234,0.12)] px-6 py-6 space-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.95)] animate-in slide-in-from-top-2 duration-200 relative z-50">
-            <div className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-mono text-[#F4F2EA]/90 hover:text-[#FF6417] py-2.5 border-b border-[rgba(244,242,234,0.06)] transition-colors"
-                >
+          <div className="md:hidden bg-[var(--bg)] border-b border-[var(--line-strong)] relative z-50">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between px-5 py-3.5 border-b border-[var(--line)] text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] transition-colors"
+              >
+                <span>
+                  <span className="text-[var(--accent)] mr-2">{link.num}</span>
                   {link.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="pt-3 flex items-center justify-between">
+                </span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+              </a>
+            ))}
+            <div className="grid grid-cols-2">
               <a
                 href={profile.cvViewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F2EA] hover:bg-[#FFF4DE] text-[#08090A] text-xs font-medium shadow-sm transition-colors"
+                className="flex items-center justify-center gap-2 py-3.5 bg-[var(--accent)] text-white font-mono text-xs font-bold uppercase tracking-wider"
               >
-                <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
-                <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
-                <ArrowUpRight className="w-3 h-3 text-[#08090A]/60" />
+                <span>{language === 'vi' ? 'MỞ CV A4' : 'VIEW A4 CV'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
-
               <a
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-[#141C2E] text-[#8E96A4] hover:text-[#F4F2EA] border border-[rgba(244,242,234,0.1)] transition-colors"
-                aria-label="GitHub Profile"
+                className="flex items-center justify-center gap-2 py-3.5 bg-[var(--bg-subtle)] text-[var(--text-primary)] font-mono text-xs font-bold uppercase tracking-wider border-l border-[var(--line)]"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 h-3.5" />
+                <span>GITHUB</span>
               </a>
             </div>
           </div>

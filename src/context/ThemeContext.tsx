@@ -14,10 +14,10 @@ const THEME_STORAGE_KEY = 'portfolio-theme';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'light';
+    if (typeof window === 'undefined') return 'dark';
     const saved = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
     if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'dark';
   });
 
   useEffect(() => {
@@ -28,13 +28,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       root.classList.add('dark');
       root.classList.remove('light');
       if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', '#0B1120');
+        metaThemeColor.setAttribute('content', '#07080A');
       }
     } else {
       root.classList.remove('dark');
       root.classList.add('light');
       if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', '#E8ECF2');
+        metaThemeColor.setAttribute('content', '#F6F3EC');
       }
     }
 

@@ -1,195 +1,420 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, ArrowDown, Mail, FileText } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  ArrowUpRight,
+  ArrowDown,
+  Copy,
+  Check,
+  Play,
+  Camera,
+  Sparkles,
+  LayoutDashboard,
+  Smartphone,
+} from 'lucide-react';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
-import { HeroForgeCanvas } from './HeroForgeCanvas';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { GridCrosshairs, Magnetic, TiltStage3D } from '../common/KineticPrimitives';
+
+interface StageTab {
+  id: 'dashboard' | 'scanner' | 'genui' | 'widget' | 'video';
+  code: string;
+  label: string;
+  title: string;
+  spec: string;
+  hud: string;
+  glow: string;
+  image?: string;
+  isVideo?: boolean;
+  icon: React.ReactNode;
+}
 
 export const HeroSection: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language].hero;
   const profile = getProfileData(language);
   const stats = getVerifiedStats(language);
-  const isReducedMotion = useReducedMotion();
+  const isVi = language === 'vi';
 
-  const heroRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isHammerActive, setIsHammerActive] = useState(false);
-  const [introReady, setIntroReady] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [activeStage, setActiveStage] = useState<StageTab['id']>('dashboard');
 
-  useEffect(() => {
-    if (isReducedMotion) {
-      setIntroReady(true);
-      return;
-    }
+  const stageTabs: StageTab[] = [
+    {
+      id: 'dashboard',
+      code: '01',
+      label: 'COCKPIT',
+      title: isVi ? 'Cockpit Dinh Dưỡng 1 Giây' : '1-Second Nutrition Cockpit',
+      spec: 'Flutter 3.x · Riverpod 2.6 · 60 FPS',
+      hud: '60 FPS · CLAY UI',
+      glow: '#FF4D00',
+      image: '/screenshots/clay/cockpit_dashboard.png',
+      icon: <LayoutDashboard className="w-3 h-3" />,
+    },
+    {
+      id: 'scanner',
+      code: '02',
+      label: isVi ? 'AI VISION' : 'AI VISION',
+      title: isVi ? 'Quét ảnh & Tách nước dùng <2.5s' : 'Meal Scan & Broth Switch <2.5s',
+      spec: 'Gemini 3.8 Flash · Buffer Dispose',
+      hud: '< 2.5s LATENCY',
+      glow: '#1CB0F6',
+      image: '/screenshots/clay/ar_camera_scanner.png',
+      icon: <Camera className="w-3 h-3" />,
+    },
+    {
+      id: 'genui',
+      code: '03',
+      label: 'GENUI',
+      title: isVi ? 'Thẻ món ăn tương tác trong Chat' : 'Interactive GenUI Chat Cards',
+      spec: 'A2UI Protocol · +/-20g 1-Tap Log',
+      hud: 'A2UI PROTOCOL',
+      glow: '#FFB238',
+      image: '/screenshots/clay/genui_astrocoach_chat.png',
+      icon: <Sparkles className="w-3 h-3" />,
+    },
+    {
+      id: 'widget',
+      code: '04',
+      label: 'WIDGET',
+      title: isVi ? 'Widget Màn Hình Khóa & Chính' : 'Native iOS & Android Widgets',
+      spec: 'Swift WidgetKit · Kotlin AppWidget',
+      hud: '< 300ms LAUNCH',
+      glow: '#10B981',
+      image: '/screenshots/clay/widget_home_screen.png',
+      icon: <Smartphone className="w-3 h-3" />,
+    },
+    {
+      id: 'video',
+      code: '05',
+      label: 'VIDEO',
+      title: isVi ? 'Video Chạy Thực Tế AstroBite' : 'AstroBite Live Walkthrough',
+      spec: 'Real Capture · Voice + Vision + GenUI',
+      hud: 'LIVE DEMO MP4',
+      glow: '#FF5C8D',
+      isVideo: true,
+      icon: <Play className="w-3 h-3" />,
+    },
+  ];
 
-    const handleScroll = () => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      const heroHeight = heroRef.current.offsetHeight || window.innerHeight;
-      const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
-      setScrollProgress(progress);
-    };
+  const currentStage = stageTabs.find((item) => item.id === activeStage) || stageTabs[0];
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isReducedMotion]);
+  const marqueeItems = [
+    'FLUTTER 3.X',
+    'NATIVE iOS SWIFT',
+    'ANDROID KOTLIN',
+    '1M+ DOWNLOADS',
+    '99.5% CRASH-FREE',
+    '-30% POS CHECKOUT',
+    '277/277 AUTOMATED TESTS',
+    '<2.5S GEMINI VISION',
+    'CLEAN ARCHITECTURE',
+    'ZERO MEMORY LEAK',
+  ];
 
-  const handleNameClick = (e: React.MouseEvent) => {
-    setIsHammerActive(true);
-    setTimeout(() => setIsHammerActive(false), 450);
-
-    const sparkEvent = new PointerEvent('pointerdown', {
-      clientX: e.clientX,
-      clientY: e.clientY,
-      button: 0,
-      bubbles: true,
-    });
-    window.dispatchEvent(sparkEvent);
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(profile.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const typographyStyle: React.CSSProperties = isReducedMotion
-    ? {}
-    : {
-        transform: `translate3d(0, ${scrollProgress * 65}px, 0) scale(${1 + scrollProgress * 0.28})`,
-        opacity: Math.max(1 - scrollProgress * 1.35, 0),
-        visibility: scrollProgress > 0.8 ? 'hidden' : 'visible',
-        pointerEvents: scrollProgress > 0.6 ? 'none' : 'auto',
-        willChange: 'transform, opacity',
-      };
-
   return (
-    <section
-      ref={heroRef}
-      id="hero"
-      className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 md:pt-40 md:pb-24 overflow-hidden"
-    >
-      {/* 1. Cinematic Forge Shader Background */}
-      <HeroForgeCanvas
-        scrollProgress={scrollProgress}
-        onIntroComplete={() => setIntroReady(true)}
-      />
-
-      {/* 2. Main Hero Editorial Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div
-          style={typographyStyle}
-          className={`transition-all duration-700 ${
-            introReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-          }`}
-        >
-          {/* Eyebrow */}
-          <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-mono tracking-wider sm:tracking-widest uppercase text-[#FFB648] mb-4 sm:mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6417] animate-pulse shrink-0" />
-            <span>{t.hero.eyebrow}</span>
+    <section id="hero" className="pt-14 bg-[var(--bg)] relative">
+      {/* 1. Exposed Telemetry Strip */}
+      <div className="border-b border-[var(--line)]">
+        <div className="swiss-frame px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-[var(--text-muted)]">
+          <div className="flex items-center gap-3">
+            <span className="text-[var(--accent)] font-bold">[SYS.01]</span>
+            <span>{t.eyebrow}</span>
           </div>
-
-          {/* Large Expressive Serif Name Centerpiece */}
-          <div className="relative select-none mb-6 max-w-full overflow-hidden">
-            <h1
-              onClick={handleNameClick}
-              data-cursor="pointer"
-              title={language === 'vi' ? 'Chạm để tạo xung kích nhiệt' : 'Click for thermal strike'}
-              className={`font-display italic text-[clamp(1.85rem,6.5vw,6.8rem)] leading-[1.06] tracking-[-0.02em] font-normal cursor-pointer transition-all duration-300 break-words ${
-                isHammerActive ? 'hammer-strike text-[#FFF4DE]' : 'text-[#F4F2EA]'
-              }`}
-            >
-              {profile.name}
-            </h1>
-
-            <p className="mt-3 text-[11px] sm:text-xs font-mono text-[#8E96A4] tracking-wide flex items-center gap-1.5 flex-wrap">
-              <span className="text-[#FFB648]">✦</span>
-              <span>
-                {language === 'vi'
-                  ? 'Ngôn ngữ hay framework không còn là rào cản — trọng tâm là kiến trúc bền bỉ và giá trị thực tế của sản phẩm.'
-                  : 'Languages and frameworks are never the barrier — the focus is resilient architecture and real product impact.'}
-              </span>
-            </p>
+          <div className="hidden md:flex items-center gap-4">
+            <span>HCMC // 10.7769°N, 106.7009°E</span>
+            <span className="text-[var(--line-strong)]">|</span>
+            <span>TARGET: 60.0 FPS · 0 MEMORY LEAK</span>
           </div>
-
-          {/* Headline & Concise Description */}
-          <div className="max-w-2xl space-y-4 mb-8" data-cursor="lens">
-            <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-[#F4F2EA]">
-              {t.hero.headline}
-            </h2>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#8E96A4]">
-              {t.hero.description}
-            </p>
+          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
+            <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse" />
+            <span>{profile.status}</span>
           </div>
-
-          {/* Action CTAs: Xem CV, Xem dự án, Liên hệ */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            {/* Primary CTA: Xem CV (Mở tab mới xem trực tiếp) */}
-            <a
-              href={profile.cvViewUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="pointer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
-              <span>{language === 'vi' ? 'Xem CV' : 'View CV'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#08090A]/70" />
-            </a>
-
-            {/* Secondary CTA: Xem dự án */}
-            <a
-              href="#projects"
-              data-cursor="pointer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#141C2E] text-[#F4F2EA] hover:text-[#FFF4DE] hover:border-[#FF6417] border border-[rgba(244,242,234,0.12)] font-medium text-xs sm:text-sm transition-all duration-200"
-            >
-              <span>{t.hero.ctaProjects}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-
-            {/* Subtle Link: Liên hệ */}
-            <a
-              href="#contact"
-              data-cursor="pointer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm text-[#8E96A4] hover:text-[#F4F2EA] transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>{t.hero.ctaContact}</span>
-            </a>
-          </div>
-
         </div>
       </div>
 
-      {/* 3. Bottom Proof Points (Typographic, Non-card layout) */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12 sm:mt-16 pt-8 border-t border-[rgba(244,242,234,0.08)]">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+      {/* 2. Asymmetric Swiss Brutalist Poster Grid */}
+      <div className="swiss-frame relative">
+        <GridCrosshairs corners={['bl', 'br']} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          {/* LEFT 8 COLUMNS: Monumental Typography + Raw Portrait + Magnetic CTAs */}
+          <div className="lg:col-span-8 lg:border-r border-[var(--line)] flex flex-col justify-between">
+            {/* Upper Poster Headline */}
+            <div className="px-5 sm:px-8 lg:px-10 pt-6 sm:pt-8 pb-6 relative">
+              <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-[var(--text-muted)] mb-4">
+                <span>// FLUTTER · SWIFT · KOTLIN</span>
+                <span className="text-[var(--accent)] font-bold">EDITION 2026</span>
+              </div>
+
+              <h1 className="font-heading font-bold uppercase text-[clamp(2.8rem,7.2vw,6.8rem)] leading-[0.87] tracking-[-0.045em] text-[var(--text-primary)] select-none">
+                <span className="block">{isVi ? 'NGUYỄN' : 'NGUYEN'}</span>
+                <span className="flex items-baseline flex-wrap gap-x-4">
+                  <span>{isVi ? 'DUY TRÁNG' : 'DUY TRANG'}</span>
+                  <span className="text-[var(--accent)] font-display italic font-normal lowercase text-[clamp(1.5rem,3.4vw,3.1rem)] tracking-tight">
+                    (mobile)
+                  </span>
+                </span>
+              </h1>
+
+              <p className="mt-4 font-display italic text-[clamp(1.25rem,2.4vw,2.2rem)] leading-[1.15] text-[var(--text-primary)] max-w-3xl">
+                {t.headline}
+              </p>
+            </div>
+
+            {/* Lower Split Row: Raw Avatar Crop + Authentic Bio & Magnetic Controls */}
+            <div className="border-t border-[var(--line)] grid grid-cols-1 sm:grid-cols-12 relative">
+              <GridCrosshairs corners={['tl', 'tr']} />
+
+              {/* Portrait Cell (4 cols) */}
+              <div className="sm:col-span-4 border-b sm:border-b-0 sm:border-r border-[var(--line)] p-4 sm:p-5 flex flex-col justify-between bg-[var(--bg-elevated)]">
+                <div className="relative overflow-hidden border border-[var(--line-strong)] bg-[var(--bg-subtle)] aspect-square group">
+                  <img
+                    src={profile.avatarUrl}
+                    alt={profile.name}
+                    className="w-full h-full object-cover grayscale-[18%] contrast-[1.04] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-500"
+                  />
+                  <span className="absolute top-2 left-2 px-1.5 py-0.5 bg-black/75 text-white text-[9px] font-mono uppercase tracking-widest">
+                    NDT // 2000
+                  </span>
+                </div>
+                <div className="mt-2.5 flex items-center justify-between text-[10px] font-mono uppercase text-[var(--text-muted)]">
+                  <span>{profile.location}</span>
+                  <span className="text-[var(--accent)] font-bold">5+ YRS</span>
+                </div>
+              </div>
+
+              {/* Bio & Magnetic Action Dock (8 cols) */}
+              <div className="sm:col-span-8 p-5 sm:p-6 flex flex-col justify-between gap-4">
+                <div className="space-y-3.5">
+                  <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
+                    {profile.bio}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Flutter 3.x', 'iOS Swift', 'Android Kotlin', 'Clean Architecture', 'Riverpod / BLoC', 'Platform Channels'].map(
+                      (stack) => (
+                        <span
+                          key={stack}
+                          className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide bg-[var(--bg-subtle)] text-[var(--text-primary)] border border-[var(--line)]"
+                        >
+                          {stack}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Magnetic Brutalist CTAs */}
+                <div className="flex flex-wrap items-center gap-2.5 pt-3.5 border-t border-[var(--line)]">
+                  <Magnetic>
+                    <a
+                      href={profile.cvViewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="pointer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[var(--accent)] text-white hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] font-mono font-bold text-xs uppercase tracking-wider transition-colors"
+                    >
+                      <span>{t.viewPrintableCv}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </Magnetic>
+
+                  <Magnetic>
+                    <a
+                      href="#projects"
+                      data-cursor="pointer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[var(--bg-elevated)] text-[var(--text-primary)] border border-[var(--line-strong)] hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] font-mono font-bold text-xs uppercase tracking-wider transition-colors"
+                    >
+                      <span>{isVi ? 'THỬ LIVE LAB' : 'TRY LIVE LAB'}</span>
+                      <ArrowDown className="w-3.5 h-3.5" />
+                    </a>
+                  </Magnetic>
+
+                  <Magnetic>
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      data-cursor="pointer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-[var(--text-secondary)] border border-[var(--line)] hover:border-[var(--accent)] hover:text-[var(--accent)] font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                    >
+                      {copiedEmail ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-500" />
+                          <span>{t.copiedLabel}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>{t.copyEmailLabel}</span>
+                        </>
+                      )}
+                    </button>
+                  </Magnetic>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT 4 COLUMNS: 3D Tilt Hardware Showcase Stage */}
+          <div className="lg:col-span-4 border-t lg:border-t-0 border-[var(--line)] bg-[var(--bg-elevated)] flex flex-col justify-between relative overflow-hidden">
+            {/* Stage Bar */}
+            <div className="px-5 py-3 border-b border-[var(--line)] flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
+              <span className="text-[var(--accent)] font-bold">STAGE.01 // 3D DEVICE</span>
+              <span className="text-[var(--text-muted)]">{currentStage.code} / 05</span>
+            </div>
+
+            {/* Switcher Grid */}
+            <div className="grid grid-cols-5 border-b border-[var(--line)]">
+              {stageTabs.map((tab) => {
+                const active = activeStage === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveStage(tab.id)}
+                    data-cursor="pointer"
+                    className={`py-2.5 px-1 flex flex-col items-center justify-center gap-1 text-[9px] font-mono uppercase tracking-wider border-r last:border-r-0 border-[var(--line)] transition-colors cursor-pointer ${
+                      active
+                        ? 'bg-[var(--bg-invert)] text-[var(--text-invert)] font-bold'
+                        : 'text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    {tab.icon}
+                    <span className="truncate max-w-full">{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 3D Tilt Phone */}
+            <div className="px-6 py-8 flex items-center justify-center relative flex-1">
+              <TiltStage3D glowColor={currentStage.glow} maxTilt={11}>
+                <div className="relative w-[228px] sm:w-[244px] rounded-[2.45rem] p-2.5 bg-[#0D1017] border border-white/20 shadow-[0_28px_60px_-14px_rgba(0,0,0,0.6)]">
+                  {/* Floating Hardware Telemetry HUD */}
+                  <div
+                    className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-[var(--bg-invert)] text-[var(--text-invert)] text-[10px] font-mono font-bold uppercase tracking-wider border border-[var(--line-strong)] shadow-xl absolute -right-8 top-12 z-30"
+                    style={{ transform: 'translateZ(35px)' }}
+                  >
+                    <span className="w-1.5 h-1.5" style={{ backgroundColor: currentStage.glow }} />
+                    <span>{currentStage.hud}</span>
+                  </div>
+
+                  {/* Top Bezel */}
+                  <div className="flex items-center justify-between px-4 py-1 text-[9px] font-mono text-white/60 mb-1 select-none">
+                    <span>9:41</span>
+                    <div className="w-14 h-2.5 rounded-full bg-black border border-white/10" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  </div>
+
+                  {/* Viewport */}
+                  <div
+                    key={currentStage.id}
+                    className="animate-stage-enter relative rounded-[1.85rem] overflow-hidden bg-black aspect-[9/18.2]"
+                  >
+                    {currentStage.isVideo ? (
+                      <video
+                        controls
+                        playsInline
+                        preload="metadata"
+                        poster="/screenshots/clay/cockpit_dashboard.png"
+                        className="w-full h-full object-cover"
+                      >
+                        <source src="/astrobite-demo.mp4" type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img
+                        src={currentStage.image}
+                        alt={currentStage.title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    )}
+                  </div>
+
+                  {/* Home Indicator */}
+                  <div className="pt-2 pb-0.5 flex justify-center">
+                    <div className="w-20 h-1 rounded-full bg-white/25" />
+                  </div>
+                </div>
+              </TiltStage3D>
+            </div>
+
+            {/* Active Hardware Telemetry Footer */}
+            <div className="px-5 py-3.5 border-t border-[var(--line)] bg-[var(--bg-subtle)] flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <p className="text-xs font-heading font-bold uppercase tracking-tight text-[var(--text-primary)] truncate">
+                  {currentStage.title}
+                </p>
+                <p className="text-[11px] font-mono text-[var(--accent)] truncate">
+                  {currentStage.spec}
+                </p>
+              </div>
+              <a
+                href="#projects"
+                data-cursor="pointer"
+                className="shrink-0 px-2.5 py-1.5 bg-[var(--bg-invert)] text-[var(--text-invert)] hover:bg-[var(--accent)] hover:text-white text-[10px] font-mono font-bold uppercase tracking-wider transition-colors"
+              >
+                LAB →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Full-Bleed Inverted Kinetic Marquee */}
+      <div className="marquee-wrap border-y border-[var(--line-strong)] bg-[var(--bg-invert)] text-[var(--text-invert)] overflow-hidden py-3 select-none">
+        <div className="marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((item, idx) => (
+            <span
+              key={idx}
+              className="inline-flex items-center gap-6 px-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.18em]"
+            >
+              <span>{item}</span>
+              <span className="text-[var(--accent)]">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. 4-Column Exposed Oversized Brutalist Metrics Strip */}
+      <div className="border-b border-[var(--line)]">
+        <div className="swiss-frame grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative">
+          <GridCrosshairs corners={['bl', 'br']} />
           {stats.map((stat, idx) => (
-            <div key={idx} className="group">
-              <div className="text-2xl sm:text-3xl font-sans font-semibold text-[#F4F2EA] tracking-tight group-hover:text-[#FFB648] transition-colors">
-                {stat.value}
+            <div
+              key={stat.label}
+              className={`brutalist-invert p-6 sm:p-7 border-b sm:border-b-0 border-[var(--line)] ${
+                idx < 3 ? 'lg:border-r' : ''
+              } ${idx % 2 === 0 ? 'sm:border-r' : ''} ${
+                idx < 2 ? 'sm:border-b lg:border-b-0' : ''
+              } flex flex-col justify-between gap-4 reveal stagger-${idx + 1}`}
+            >
+              <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
+                <span className="invert-accent text-[var(--accent)] font-bold">
+                  [M.0{idx + 1}] {stat.metricTag}
+                </span>
+                <span className="invert-muted text-[var(--text-muted)]">VERIFIED</span>
               </div>
-              <div className="text-xs font-mono text-[#FFB648] mt-1 uppercase tracking-wider">
-                {stat.label}
+
+              <div>
+                <div className="font-heading font-bold text-3xl sm:text-4xl xl:text-[2.65rem] leading-none tracking-[-0.03em]">
+                  {stat.value}
+                </div>
+                <div className="text-xs font-mono font-semibold uppercase tracking-wider mt-2 invert-accent text-[var(--accent-amber)]">
+                  {stat.label}
+                </div>
               </div>
-              <p className="text-[11px] text-[#8E96A4]/70 mt-1 line-clamp-2">
+
+              <p className="text-xs leading-relaxed invert-muted text-[var(--text-muted)]">
                 {stat.desc}
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Unified Scroll Cue Indicator */}
-        <div className="mt-10 flex items-center justify-between text-xs font-mono text-[#8E96A4]">
-          <span className="tracking-widest uppercase text-[10px] text-[#8E96A4]/50">
-            // 01 / 07
-          </span>
-          <a
-            href="#about"
-            aria-label={t.hero.scrollCue}
-            data-cursor="pointer"
-            className="flex items-center gap-2 hover:text-[#FF6417] transition-colors"
-          >
-            <span>{t.hero.scrollCue}</span>
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#FF6417]" />
-          </a>
         </div>
       </div>
     </section>

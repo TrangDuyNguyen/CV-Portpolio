@@ -3,6 +3,7 @@ export interface StatItem {
   label: string;
   desc: string;
   iconName: 'download' | 'zap' | 'boxes' | 'bot' | 'shield' | 'check-circle';
+  metricTag?: string;
 }
 
 export interface AstroPillar {
@@ -13,6 +14,9 @@ export interface AstroPillar {
   description: string;
   highlights: string[];
   metricBadge: string;
+  screenImage: string;
+  techStack: string[];
+  codeInsight: string;
 }
 
 export type ScreenshotCategory = 'all' | 'ai' | 'genui' | 'cockpit' | 'features' | 'widgets';
@@ -33,6 +37,8 @@ export interface SubProjectItem {
   description: string;
   highlights?: string[];
   technologies?: string[];
+  iconUrl?: string;
+  scaleBadge?: string;
 }
 
 export interface CareerItem {
@@ -51,6 +57,8 @@ export interface CareerItem {
 export interface SkillGroup {
   category: string;
   description: string;
+  iconName?: 'smartphone' | 'layers' | 'cpu' | 'terminal';
+  proofPoint?: string;
   skills: {
     name: string;
     level?: string;

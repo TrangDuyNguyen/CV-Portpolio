@@ -98,9 +98,15 @@ export const CustomCursor: React.FC = () => {
       animId = requestAnimationFrame(render);
     };
 
+    const onScroll = () => {
+      setMode('default');
+      setCustomLabel('');
+    };
+
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('mousedown', onMouseDown, { passive: true });
     window.addEventListener('mouseup', onMouseUp, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.documentElement.addEventListener('mouseleave', onMouseLeave);
     document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
@@ -110,6 +116,7 @@ export const CustomCursor: React.FC = () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('scroll', onScroll);
       document.documentElement.removeEventListener('mouseleave', onMouseLeave);
       document.documentElement.removeEventListener('mouseenter', onMouseEnter);
       cancelAnimationFrame(animId);

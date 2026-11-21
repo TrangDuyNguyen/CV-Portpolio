@@ -10,24 +10,27 @@
     <meta property="og:title" content="Nguyen Duy Trang — Mobile Engineer Portfolio" />
     <meta property="og:description" content="Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo, Finviet ECO POS, AstroBite)." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#08090A" />
+    <meta name="theme-color" content="#07080A" />
     
-    <!-- Google Fonts: Newsreader & Playfair Display (Full Vietnamese Editorial Serif), Geist, Inter, JetBrains Mono -->
+    <!-- Google Fonts: Newsreader & Playfair Display (Full Vietnamese Editorial Serif), Geist, Inter, JetBrains Mono, Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Pre-hydration Theme & Language Detection Script: Default to dark void cinematic mode & English -->
+    <!-- Pre-hydration Theme & Language Detection Script: Dual Theme (Swiss Paper Light / Raw Carbon Dark) -->
     <script>
       (function() {
         try {
           var savedTheme = localStorage.getItem('portfolio-theme');
+          var metaTheme = document.querySelector('meta[name="theme-color"]');
           if (savedTheme === 'light') {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
+            if (metaTheme) metaTheme.setAttribute('content', '#F6F3EC');
           } else {
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
+            if (metaTheme) metaTheme.setAttribute('content', '#07080A');
           }
 
           // Purge stale legacy key that was cached in visitor browsers
@@ -44,7 +47,7 @@
       })();
     </script>
   </head>
-  <body class="bg-[#08090A] text-[#F4F2EA] antialiased selection:bg-[#FF6417]/30 selection:text-[#FFF4DE]">
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

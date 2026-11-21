@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { Copy, Check, Download, Github, Linkedin, Mail, FileText, ArrowUpRight } from 'lucide-react';
+import {
+  Copy,
+  Check,
+  Download,
+  Github,
+  Linkedin,
+  Mail,
+  FileText,
+  ArrowUpRight,
+  Phone,
+  MapPin,
+} from 'lucide-react';
 import { getProfileData } from '../../data/profileData';
 import { translations } from '../../data/translations';
 import { useLanguage } from '../../context/LanguageContext';
+import { GridCrosshairs, Magnetic } from '../common/KineticPrimitives';
 
 export const ContactSection: React.FC = () => {
   const { language } = useLanguage();
@@ -19,164 +31,196 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-36 border-t border-[rgba(244,242,234,0.08)] bg-[#08090A] relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Large Editorial Lead */}
-        <div className="max-w-4xl mb-16 md:mb-20 reveal">
-          <p className="text-xs font-mono uppercase tracking-widest text-[#FFB648] mb-3">
-            // {t.statusBadge}
-          </p>
+    <section id="contact" className="border-b border-[var(--line)] bg-[var(--bg)] relative">
+      <div className="swiss-frame relative">
+        <GridCrosshairs corners={['bl', 'br']} />
 
-          <h2 className="font-display italic text-4xl sm:text-6xl lg:text-7xl text-[#F4F2EA] tracking-tight mb-6">
-            {t.title}
+        {/* Monumental Contact Poster Top */}
+        <div className="px-5 sm:px-8 lg:px-10 py-12 sm:py-16 border-b border-[var(--line)] reveal">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest mb-5">
+            <div className="flex items-center gap-3">
+              <span className="px-2 py-0.5 bg-[var(--accent)] text-white font-bold">05</span>
+              <span className="text-[var(--accent)] font-bold">// {t.statusBadge}</span>
+            </div>
+            <div className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold">
+              <span className="w-2 h-2 bg-emerald-500 animate-pulse" />
+              <span>{t.statusActive}</span>
+            </div>
+          </div>
+
+          <h2 className="font-heading font-bold uppercase text-[clamp(2.4rem,6.5vw,6rem)] leading-[0.9] tracking-[-0.04em] text-[var(--text-primary)] mb-5">
+            {isVi ? 'TRAO ĐỔI TRỰC TIẾP.' : "LET'S BUILD."}
           </h2>
 
-          <p className="text-base sm:text-xl text-[#8E96A4] font-light leading-relaxed max-w-2xl" data-cursor="lens">
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
             {t.description}
           </p>
         </div>
 
-        {/* Minimalist Contact Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-10 border-t border-[rgba(244,242,234,0.08)] reveal">
-          
-          {/* Email & Phone Direct Row */}
-          <div className="md:col-span-7 space-y-8">
-            <div>
-              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-2">
-                {t.emailLabel}
+        {/* Exposed 12-Col Terminal Contact & Resume Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          {/* Left 7 Cols: Direct Email + Phone + Location */}
+          <div className="lg:col-span-7 lg:border-r border-[var(--line)] flex flex-col justify-between">
+            {/* Email Block */}
+            <div className="p-6 sm:p-8 lg:p-10 border-b border-[var(--line)] bg-[var(--bg-elevated)]">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] block mb-2">
+                // {t.emailLabel}
               </span>
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <a
                   href={`mailto:${profile.email}`}
                   data-cursor="pointer"
-                  className="font-sans font-medium text-xl sm:text-2xl lg:text-3xl text-[#F4F2EA] hover:text-[#FF6417] transition-colors break-all tracking-tight"
+                  className="font-heading font-bold text-xl sm:text-3xl text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors break-all"
                 >
                   {profile.email}
                 </a>
 
-                <button
-                  onClick={handleCopyEmail}
-                  data-cursor="pointer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-xs font-mono text-[#8E96A4] hover:text-[#FFF4DE] hover:border-[#FF6417] transition-all cursor-pointer"
-                  title={t.copyTooltip}
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>{t.copiedText}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>{isVi ? 'Sao chép' : 'Copy'}</span>
-                    </>
-                  )}
-                </button>
+                <Magnetic>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    data-cursor="pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[var(--bg-invert)] text-[var(--text-invert)] hover:bg-[var(--accent)] hover:text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                    title={t.copyTooltip}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>{t.copiedText}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>{isVi ? 'COPY EMAIL' : 'COPY EMAIL'}</span>
+                      </>
+                    )}
+                  </button>
+                </Magnetic>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[rgba(244,242,234,0.06)]">
-              <div>
-                <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-1">
-                  {t.phoneLabel}
+            {/* Phone + Location + Mailto */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 flex-1">
+              <div className="p-6 border-b sm:border-b-0 sm:border-r border-[var(--line)]">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-1.5 mb-2">
+                  <Phone className="w-3 h-3 text-[var(--accent)]" />
+                  <span>{t.phoneLabel}</span>
                 </span>
                 <a
                   href={`tel:${profile.phone}`}
                   data-cursor="pointer"
-                  className="text-base sm:text-lg font-mono text-[#F4F2EA] hover:text-[#FF6417] transition-colors"
+                  className="text-base font-mono font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors"
                 >
                   {profile.phone}
                 </a>
               </div>
 
-              <div>
-                <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-1">
-                  {t.locationLabel}
+              <div className="p-6 border-b sm:border-b-0 sm:border-r border-[var(--line)]">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-1.5 mb-2">
+                  <MapPin className="w-3 h-3 text-[var(--accent)]" />
+                  <span>{t.locationLabel}</span>
                 </span>
-                <span className="text-base sm:text-lg font-mono text-[#F4F2EA]">
+                <span className="text-sm font-mono font-semibold text-[var(--text-primary)]">
                   {profile.location}
                 </span>
               </div>
-            </div>
 
-            {/* Main Email CTA Button */}
-            <div className="pt-4">
               <a
                 href={`mailto:${profile.email}`}
                 data-cursor="pointer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
+                className="p-6 bg-[var(--bg-subtle)] hover:bg-[var(--accent)] text-[var(--text-primary)] hover:text-white flex items-center justify-between font-mono font-bold text-xs uppercase tracking-wider transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                <span>{isVi ? 'Gửi email cho tôi' : 'Send an email'}</span>
+                <span className="inline-flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <span>{t.viewWebBtn}</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Direct Actions & Resume */}
-          <div className="md:col-span-5 md:pl-8 md:border-l md:border-[rgba(244,242,234,0.08)] space-y-6">
-            <div>
-              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
-                {t.downloadTitle}
-              </span>
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href={profile.cvViewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="pointer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F4F2EA] text-[#08090A] hover:bg-[#FFF4DE] hover:shadow-[0_0_24px_rgba(255,182,72,0.4)] font-medium text-xs sm:text-sm transition-all duration-200"
-                >
-                  <FileText className="w-3.5 h-3.5 text-[#FF6417]" />
-                  <span>{isVi ? 'Xem CV' : 'View CV'}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#08090A]/70" />
-                </a>
+          {/* Right 5 Cols: A4 CV & Bilingual PDF + Social Matrix */}
+          <div className="lg:col-span-5 border-t lg:border-t-0 border-[var(--line)] flex flex-col justify-between bg-[var(--bg-elevated)]">
+            <div className="p-6 sm:p-8 border-b border-[var(--line)] space-y-4">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] font-bold block mb-1">
+                  // ATS RESUME 2-PAGE A4
+                </span>
+                <h3 className="font-heading font-bold uppercase text-lg text-[var(--text-primary)]">
+                  {t.downloadTitle}
+                </h3>
+                <p className="text-xs text-[var(--text-secondary)] mt-1">
+                  {t.downloadDesc}
+                </p>
+              </div>
 
+              <a
+                href={profile.cvViewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="pointer"
+                className="w-full flex items-center justify-between px-5 py-3.5 bg-[var(--accent)] text-white hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] font-mono font-bold text-xs uppercase tracking-wider transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  <span>{isVi ? 'MỞ CV BẢN IN A4 TRỰC TIẾP' : 'OPEN PRINTABLE A4 CV'}</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <div className="grid grid-cols-2 border border-[var(--line-strong)]">
                 <a
-                  href={profile.cvPdfUrl}
-                  download={isVi ? 'Mobile_Engineer_Nguyen_Duy_Trang.pdf' : 'Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf'}
+                  href="/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030_v2"
+                  download="Mobile_Engineer_Nguyen_Duy_Trang.pdf"
                   data-cursor="pointer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.12)] text-[#8E96A4] hover:border-[#FF6417] hover:text-[#FFF4DE] text-xs font-mono transition-all duration-200"
-                  title={isVi ? 'Tải tệp PDF về máy' : 'Download PDF file'}
+                  className="flex items-center justify-center gap-2 py-3 border-r border-[var(--line)] text-xs font-mono font-bold uppercase text-[var(--text-primary)] hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{t.downloadPdfBtn}</span>
+                  <Download className="w-3.5 h-3.5 text-[var(--accent)]" />
+                  <span>PDF (VI)</span>
+                </a>
+                <a
+                  href="/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030_v2"
+                  download="Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf"
+                  data-cursor="pointer"
+                  className="flex items-center justify-center gap-2 py-3 text-xs font-mono font-bold uppercase text-[var(--text-primary)] hover:bg-[var(--bg-invert)] hover:text-[var(--text-invert)] transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5 text-[var(--accent)]" />
+                  <span>PDF (EN)</span>
                 </a>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-[rgba(244,242,234,0.06)]">
-              <span className="text-xs font-mono text-[#8E96A4] uppercase tracking-wider block mb-3">
-                {isVi ? 'Kênh Chuyên Môn' : 'Professional Channels'}
-              </span>
-              <div className="flex items-center gap-3">
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="pointer"
-                  className="p-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-[#F4F2EA] hover:text-[#FF6417] hover:border-[#FF6417] transition-all"
-                  aria-label="GitHub"
-                >
+            {/* GitHub & LinkedIn Exposed Cells */}
+            <div className="grid grid-cols-2">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="pointer"
+                className="brutalist-invert p-5 border-r border-[var(--line)] flex items-center justify-between font-mono font-bold text-xs uppercase tracking-wider"
+              >
+                <span className="inline-flex items-center gap-2">
                   <Github className="w-4 h-4" />
-                </a>
-
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="pointer"
-                  className="p-3 rounded-full bg-[#141C2E] border border-[rgba(244,242,234,0.1)] text-[#F4F2EA] hover:text-[#FF6417] hover:border-[#FF6417] transition-all"
-                  aria-label="LinkedIn"
-                >
+                  <span>GITHUB</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="pointer"
+                className="brutalist-invert p-5 flex items-center justify-between font-mono font-bold text-xs uppercase tracking-wider"
+              >
+                <span className="inline-flex items-center gap-2">
                   <Linkedin className="w-4 h-4" />
-                </a>
-              </div>
+                  <span>LINKEDIN</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
