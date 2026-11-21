@@ -82,10 +82,11 @@ python -m http.server 8766 --bind 127.0.0.1
 
 ### Step 5: Verification Gate with `cv-review`
 * Invoke `cv-review` in an isolated context.
-* Inspect the 3 lenses:
+* Inspect the 4 lenses:
   * ATS scanability & verb strength.
   * Technical depth & interview anchor quality.
   * Positioning coherence as a Senior Mobile Engineer / Architect.
+  * Humanizer & Anti-AI tone (26 patterns: zero AI buzzwords, no Not-X-but-Y, no em-dash spam).
 * If any priority fix is flagged, resolve before final export.
 
 ### Step 6: Export & Final Artifact Generation

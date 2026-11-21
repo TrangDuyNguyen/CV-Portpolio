@@ -45,11 +45,18 @@ Run in a fresh context. Do not invent unverified facts, metrics, or responsibili
 You write with high technical density, precision, and clarity.
 
 ### 🚫 Strictly Banned Words & Clichés (Hard Disqualification)
-Never use any of these phrases or words. They read like AI filler or junior fluff:
+Never use any of these phrases or words. They read like AI filler or junior fluff (aligned with Humanizer 26 patterns):
 
 * **Weak/Passive Verbs**: `worked on`, `responsible for`, `participated in`, `helped with`.
 * **Corporate Buzzwords**: `leveraged`, `spearheaded`, `orchestrated`, `collaborated`, `utilized`, `ensured`, `facilitated`.
-* **Vague Hyperboles**: `results-driven`, `passionate`, `world-class`, `best-in-class`, `robust and seamless`, `revolutionized`, `drove synergy`, `leveraged cutting-edge ai`, `end-to-end`, `seamlessly`, `robust`, `stakeholders`.
+* **Stock AI Words (Humanizer §12 & §18)**: `delve`, `tapestry`, `testament`, `pivotal`, `seamless`, `seamlessly`, `robust`, `boasts`, `serves as`, `intricate`, `elevate`, `unlock`, `dynamic`, `realm`, `bespoke`, `landscape`, `underscore`, `garner`, `meticulously`.
+* **Vague Hyperboles & Sales Fluff**: `results-driven`, `passionate`, `world-class`, `best-in-class`, `robust and seamless`, `revolutionized`, `drove synergy`, `leveraged cutting-edge ai`, `end-to-end`, `cutting-edge`, `groundbreaking`, `game-changer`.
+* **Robotic Structural Tells**:
+  - No *Not X but Y* staging (*"Not just a mobile app, but a..."*).
+  - No one-line dramatic closers (*"Setting a new bar for..."*, *"Let that sink in"*).
+  - No forced triads (forcing 3 parallel adjectives).
+  - No em-dash overload (`—`); prefer commas, periods, or colons.
+  - No dangling shallow `-ing` phrases (*"..., ensuring optimal scalability"*).
 
 ### ✅ Required Engineering Tone & Strong Action Verbs
 * Lead every bullet with a decisive engineering verb:

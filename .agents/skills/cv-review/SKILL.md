@@ -1,9 +1,9 @@
 ---
 name: cv-review
 description: >
-  Reviews CV and Portfolio content from three independent lenses — Recruiter/ATS,
-  Interviewer (Technical depth), and Positioning coherence — and produces
-  an analysis report with priority fixes. Does NOT rewrite content.
+  Reviews CV and Portfolio content from four independent lenses — Recruiter/ATS,
+  Interviewer (Technical depth), Positioning coherence, and Humanizer / Anti-AI Tone
+  — and produces an analysis report with priority fixes. Does NOT rewrite content.
   Invoke this in a fresh agent context so review is uncontaminated by
   the writing session's decisions.
 ---
@@ -45,8 +45,8 @@ what to act on.
    - Separate confirmed fit, transferable experience, and gaps.
 3. **Run in Isolation**:
    - Do not carry assumptions from any previous writing session.
-4. **Apply All Three Lenses**:
-   - Never skip any lens.
+4. **Apply All Four Lenses**:
+   - Never skip any lens (Recruiter/ATS, Interviewer Depth, Positioning Coherence, Humanizer/Anti-AI).
 
 ---
 
@@ -128,6 +128,33 @@ Report findings as: `[Section / Project] -> Specific coherence issue`.
 
 ---
 
+## Lens 4 — Humanizer & Anti-AI Tone (AI Tells & Anti-Fluff Audit)
+
+A senior engineer reads genuine, self-authored technical achievements; they instantly detect and discount text that sounds like ChatGPT or corporate marketing. This lens checks against **Wikipedia's Signs of AI Writing** and the **Humanizer 26 Patterns** (`blader/humanizer`).
+
+For every section and bullet, inspect:
+
+**Staging & Artificial Contrasts:**
+- **§1 Not X but Y**: *"Not just a mobile app, but an enterprise ecosystem"* $\rightarrow$ Flag. Name the actual product.
+- **§2 One-line Closers**: Dramatic punchlines like *"Let that sink in."* or *"Setting the new benchmark for excellence."* $\rightarrow$ Flag.
+- **§4 Staged Openers**: *"Here's the thing:"*, *"Let's dive into..."* $\rightarrow$ Flag.
+- **§5 Defending against phantom objections**: *"This is not to say that X isn't important..."* $\rightarrow$ Flag.
+
+**Stock AI Vocabulary & Buzzwords (§12):**
+- Flag dead giveaways: `spearheaded`, `leveraged`, `orchestrated`, `delve`, `tapestry`, `testament`, `pivotal`, `seamless`, `seamlessly`, `robust`, `boasts`, `serves as`, `intricate`, `elevate`, `unlock`, `dynamic`, `realm`, `bespoke`, `landscape`, `underscore`, `garner`.
+- Replace with direct, active verbs (`Built`, `Architected`, `Designed`, `Engineered`, `Integrated`, `is`, `has`).
+
+**Rhythm & Formatting tells:**
+- **§6 Forced Triads**: Unnatural groupings of 3 parallel adjectives or items (*"scalable, maintainable, and robust"*).
+- **§8 Em-Dash Overdose**: Excessive em-dashes (`—`) used as universal glue instead of commas, colons, or periods.
+- **§15 Shallow `-ing` Phrases**: Dangling participles attached for pseudo-depth (*"..., ensuring optimal performance"*, *"..., highlighting architectural elegance"*).
+- **§16 Sales Language**: PR fluff in technical bullets (*"cutting-edge AI"*, *"groundbreaking features"*, *"world-class UX"*).
+- **§19 Bold Decoration**: Random bolding inside bullets that distracts from reading flow.
+
+Report findings as: `[Section / Project] -> [Bullet quote] -> Pattern §X: [Detected AI tell] -> [Humanized replacement suggestion]`.
+
+---
+
 ## Output Format
 
 Produce the report in this exact structure. Do not skip any section.
@@ -158,7 +185,12 @@ technical terms and verbatim quotes.
 
 ---
 
-## 4. Priority Fixes (Top 3–5 Điểm Cần Cải Thiện Nhất)
+## 4. Humanizer & Anti-AI Tone (Phát hiện văn phong AI & Sáo rỗng)
+- [Mục / Bullet] → **Pattern §X**: [Trích đoạn AI tell] → [Đề xuất viết lại theo giọng kỹ sư thật]
+
+---
+
+## 5. Priority Fixes (Top 3–5 Điểm Cần Cải Thiện Nhất)
 Sắp xếp theo thứ tự ưu tiên tác động. Mỗi mục định dạng:
 1. **[Vị trí / Dự án]**: [Vấn đề cụ thể] → [Hướng điều chỉnh khuyến nghị, đối chiếu với PORTFOLIO_PROFILE.md].
 2. ...
