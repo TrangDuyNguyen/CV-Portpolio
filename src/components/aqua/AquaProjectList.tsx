@@ -14,36 +14,31 @@ const AnimatedPreviewOverlay: React.FC<{ project: AquaProjectItem }> = ({ projec
   const slides = project.previewSlides && project.previewSlides.length > 0
     ? project.previewSlides
     : [project.previewImage];
+  const hasRichScreenshots = Boolean(project.previewSlides && project.previewSlides.length > 0);
 
   useEffect(() => {
     if (slides.length <= 1) return;
     const timer = window.setInterval(() => {
       setSlideIdx((prev) => (prev + 1) % slides.length);
-    }, 2200);
+    }, 2400);
     return () => window.clearInterval(timer);
   }, [slides.length]);
 
-  if (project.previewVideo) {
+  if (hasRichScreenshots) {
     return (
-      <div className="relative w-[82%] aspect-[16/10] rounded-[5px] overflow-hidden bg-black shadow-2xl border border-white/20">
-        <video
-          src={project.previewVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={project.previewImage}
-          className="w-full h-full object-cover"
+      <div className="relative w-[68%] max-w-[260px] aspect-[9/17] max-h-[430px] rounded-[16px] overflow-hidden bg-[#FAF8F5] shadow-[0_24px_60px_rgba(0,0,0,0.65)] border-[3px] border-white/25">
+        <img
+          src={slides[slideIdx]}
+          alt={project.fullName}
+          className="w-full h-full object-cover object-top transition-opacity duration-500"
+          loading="lazy"
         />
-        <div className="absolute bottom-2 left-2.5 px-2 py-0.5 bg-black/80 text-white font-montreal text-[10px] uppercase tracking-widest">
-          {project.metrics[0]?.value} · {project.metrics[2]?.value}
-        </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-[82%] aspect-[16/10] rounded-[5px] overflow-hidden bg-[#0e0f12] shadow-2xl border border-white/20 flex flex-col justify-between p-3.5 text-white">
+    <div className="relative w-[84%] aspect-[16/10] rounded-[5px] overflow-hidden bg-[#0e0f12] shadow-2xl border border-white/20 flex flex-col justify-between p-3.5 text-white">
       <img
         src={slides[slideIdx]}
         alt={project.fullName}
@@ -60,7 +55,7 @@ const AnimatedPreviewOverlay: React.FC<{ project: AquaProjectItem }> = ({ projec
       </div>
 
       <div className="relative z-10">
-        <p className="font-clash-bold text-[14px] sm:text-[16px] uppercase tracking-tight leading-tight text-white">
+        <p className="font-clash-bold text-[14px] sm:text-[15px] uppercase tracking-tight leading-tight text-white">
           {project.fullName}
         </p>
         <div className="mt-1.5 flex flex-wrap gap-1">
@@ -117,11 +112,11 @@ export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
       ref={cardRef}
       data-cursor-label={cursorLabel}
       onClick={() => onSelect(project)}
-      className="cursor-proj-img view group relative flex flex-col lg:flex-row lg:justify-between py-12 lg:py-20 select-none"
+      className="cursor-proj-img view group relative flex flex-col lg:flex-row lg:justify-between lg:min-h-[640px] xl:min-h-[700px] py-10 lg:py-14 select-none"
     >
-      {/* 1. Left: Giant 20vw Stacked 2-Line Clash Grotesk Bold Title */}
-      <div className="relative z-[10] pointer-events-none">
-        <h3 className="font-clash-bold uppercase text-[27vw] sm:text-[23vw] md:text-[18.5vw] leading-[82%] sm:leading-[88%] md:leading-[96%] tracking-[-0.03em] text-black">
+      {/* 1. Left: Giant Stacked 2-Line Clash Grotesk Bold Title */}
+      <div className="relative z-[10] pointer-events-none lg:max-w-[52%]">
+        <h3 className="font-clash-bold uppercase text-[25vw] sm:text-[21vw] md:text-[17vw] xl:text-[17.5vw] leading-[82%] sm:leading-[88%] md:leading-[94%] tracking-[-0.03em] text-black">
           <span className="block overflow-hidden">
             <span className="block transition-transform duration-500 group-hover:translate-x-2">
               {project.titleLines[0]}
@@ -135,10 +130,10 @@ export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
         </h3>
       </div>
 
-      {/* 2. Center-Right Overlap: Vertical 504x700px Parallax Cover + Overlaid GIF/Video Preview */}
-      <div className="relative lg:absolute lg:w-[35vw] lg:max-w-[504px] lg:left-[44%] lg:top-[75px] z-[100] my-6 lg:my-0">
+      {/* 2. Center-Right Floating Parallax Cover — Mathematically bounded so right edge NEVER touches description column */}
+      <div className="relative lg:absolute lg:w-[31vw] lg:max-w-[430px] lg:left-[41%] lg:top-[44px] z-[100] my-6 lg:my-0">
         <div
-          className="relative w-full h-[390px] md:h-[440px] lg:h-[520px] xl:h-[680px] rounded-[7px] overflow-hidden flex items-center justify-center"
+          className="relative w-full h-[420px] md:h-[460px] lg:h-[520px] xl:h-[620px] rounded-[7px] overflow-hidden flex items-center justify-center"
           style={{ backgroundColor: project.themeAccent || '#111111' }}
         >
           <img
@@ -147,7 +142,7 @@ export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
             alt={project.fullName}
             loading="lazy"
             className={`ukiyo absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out will-change-transform ${
-              project.darkenCover ? 'brightness-50' : 'brightness-[0.55]'
+              project.darkenCover ? 'brightness-[0.45]' : 'brightness-[0.55]'
             }`}
             style={{ transform: 'scale(1.2)' }}
           />
@@ -155,10 +150,10 @@ export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
           {/* Top Metadata Strip inside Cover Frame */}
           <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between text-[11px] font-montreal uppercase tracking-[0.14em] text-white/80">
             <span>{project.period}</span>
-            <span>{project.companyOrContext.split('·')[0]}</span>
+            <span className="truncate ml-3">{project.companyOrContext.split('·')[0]}</span>
           </div>
 
-          {/* Center Overlaid Preview (400x218px equivalent, w-[82%]) */}
+          {/* Center Overlaid Preview */}
           <div className="relative z-20 w-full flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.03]">
             <AnimatedPreviewOverlay project={project} />
           </div>
@@ -173,8 +168,8 @@ export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
         </div>
       </div>
 
-      {/* 3. Far Right Bottom: Concise Uppercase Editorial Description (xl:w-[19%]) */}
-      <div className="xl:w-[19%] lg:w-[22%] lg:self-end text-left uppercase font-montreal text-[15px] big:text-[18px] leading-[1.35] text-black mt-2 lg:mt-0 z-[20]">
+      {/* 3. Far Right Bottom: Concise Uppercase Editorial Description — Guaranteed gap from center card */}
+      <div className="lg:w-[21%] xl:w-[20%] lg:self-end text-left uppercase font-montreal text-[15px] big:text-[16px] xl:text-[17px] leading-[1.4] text-black mt-2 lg:mt-0 z-[20]">
         <p>{project.shortDesc}</p>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {project.metrics.slice(0, 2).map((m) => (
@@ -256,7 +251,7 @@ export const AquaProjectModal: React.FC<AquaProjectModalProps> = ({ project, onC
           ))}
         </div>
 
-        {/* Engineering Contributions (PORTFOLIO_PROFILE.md verified bullets) */}
+        {/* Engineering Contributions */}
         <div className="my-6">
           <h3 className="font-montreal text-[13px] uppercase tracking-[0.16em] text-[#666] mb-3">
             {language === 'en'
@@ -310,7 +305,7 @@ export const AquaProjectModal: React.FC<AquaProjectModalProps> = ({ project, onC
                   <img
                     src={src}
                     alt={`${project.fullName} screen ${idx + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     loading="lazy"
                   />
                 </div>

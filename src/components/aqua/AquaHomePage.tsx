@@ -81,11 +81,12 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
   const isHoveringTextRef = useRef(false);
 
   useEffect(() => {
-    let targetX = window.innerWidth * 0.5;
-    let targetY = window.innerHeight * 0.45;
-    let currX = targetX;
-    let currY = targetY;
-    let currSize = 40;
+    let targetX = -200;
+    let targetY = -200;
+    let currX = -200;
+    let currY = -200;
+    let currSize = 0;
+    let hasMoved = false;
     let rafId: number;
 
     const onMouseMove = (e: MouseEvent) => {
@@ -93,10 +94,15 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
       const rect = heroRef.current.getBoundingClientRect();
       targetX = e.clientX - rect.left;
       targetY = e.clientY - rect.top;
+      if (!hasMoved) {
+        currX = targetX;
+        currY = targetY;
+        hasMoved = true;
+      }
     };
 
     const tick = () => {
-      const targetSize = isHoveringTextRef.current ? 330 : 40;
+      const targetSize = !hasMoved ? 0 : isHoveringTextRef.current ? 330 : 40;
       currX += (targetX - currX) * 0.16;
       currY += (targetY - currY) * 0.16;
       currSize += (targetSize - currSize) * 0.14;
@@ -240,8 +246,8 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Bottom-Center Circular Scroll Down Button (.circouttercnt — 120x120 SVG circle r=40 stroke-width=2) */}
-        <div className="w-full flex items-center justify-center relative z-[500] md:-top-[210px] -top-[240px] circouttercnt pointer-events-none">
+        {/* Bottom-Center Circular Scroll Down Button (.circouttercnt — 120x120 SVG circle r=40 stroke-width=1.8) */}
+        <div className="w-full flex items-center justify-center absolute bottom-5 sm:bottom-8 left-0 right-0 z-[500] circouttercnt pointer-events-none">
           <button
             type="button"
             aria-label="Scroll down to About section"

@@ -23,8 +23,14 @@ export const App: React.FC = () => {
   );
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const onPopState = () => {
       setRoute(normalizePathname(window.location.pathname));
+      window.scrollTo(0, 0);
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);

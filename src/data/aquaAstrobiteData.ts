@@ -54,7 +54,7 @@ const en: AstroContent = {
         'Gemini requests go through a backend proxy, with fallback models and retry on 503.',
       ],
       tech: ['Gemini Vision', 'Barcode & Label OCR', 'camera'],
-      image: '/screenshots/clay/ar_camera_scanner.png',
+      image: '/screenshots/clay/cockpit_dashboard.png',
     },
     {
       number: '02',
@@ -148,7 +148,7 @@ const vi: AstroContent = {
         'Gemini gọi qua backend proxy, có model dự phòng và retry khi gặp lỗi 503.',
       ],
       tech: ['Gemini Vision', 'Barcode & Label OCR', 'camera'],
-      image: '/screenshots/clay/ar_camera_scanner.png',
+      image: '/screenshots/clay/cockpit_dashboard.png',
     },
     {
       number: '02',
