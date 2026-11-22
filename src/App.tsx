@@ -1,37 +1,53 @@
-import React from 'react';
-import { useScrollReveal } from './hooks/useScrollReveal';
+import React, { useEffect, useState } from 'react';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
-import { Navbar } from './components/layout/Navbar';
-import { HeroSection } from './components/sections/HeroSection';
-import { AstroBiteSection } from './components/sections/AstroBiteSection';
-import { CareerSection } from './components/sections/CareerSection';
-import { GalleryLightbox } from './components/sections/GalleryLightbox';
-import { SkillsSection } from './components/sections/SkillsSection';
-import { ContactSection } from './components/sections/ContactSection';
-import { Footer } from './components/layout/Footer';
-import { ScrollProgress } from './components/common/ScrollProgress';
-import { CustomCursor } from './components/common/CustomCursor';
+import {
+  AquaChrome,
+  AquaCursor,
+  AquaPreloader,
+  AquaRoute,
+} from './components/aqua/AquaChrome';
+import { AquaHomePage } from './components/aqua/AquaHomePage';
+import { AquaWorksPage } from './components/aqua/AquaWorksPage';
+import { AquaAboutPage } from './components/aqua/AquaAboutPage';
+
+const normalizePathname = (pathname: string): AquaRoute => {
+  if (pathname.startsWith('/work')) return '/works';
+  if (pathname.startsWith('/about')) return '/about';
+  return '/';
+};
 
 export const App: React.FC = () => {
   useSmoothScroll();
-  useScrollReveal();
+  const [route, setRoute] = useState<AquaRoute>(() =>
+    normalizePathname(window.location.pathname)
+  );
+
+  useEffect(() => {
+    const onPopState = () => {
+      setRoute(normalizePathname(window.location.pathname));
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  const handleNavigate = (nextRoute: AquaRoute) => {
+    if (nextRoute !== route) {
+      window.history.pushState({}, '', nextRoute);
+      setRoute(nextRoute);
+    }
+  };
 
   return (
-    <div className="u-grain min-h-screen bg-[var(--bg)] text-[var(--text-primary)] transition-colors duration-200 relative overflow-x-hidden">
-      <ScrollProgress />
-      <CustomCursor />
-      <Navbar />
+    <div className="min-h-screen bg-white text-black relative overflow-x-hidden">
+      <AquaPreloader />
+      <AquaCursor />
+      <AquaChrome currentRoute={route} onNavigate={handleNavigate} />
 
-      <main className="overflow-x-hidden">
-        <HeroSection />
-        <AstroBiteSection />
-        <CareerSection />
-        <GalleryLightbox />
-        <SkillsSection />
-        <ContactSection />
+      <main>
+        {route === '/' && <AquaHomePage onNavigate={handleNavigate} />}
+        {route === '/works' && <AquaWorksPage />}
+        {route === '/about' && <AquaAboutPage />}
       </main>
-
-      <Footer />
     </div>
   );
 };

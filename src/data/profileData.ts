@@ -32,7 +32,7 @@ const profileDataVi: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang.pdf?v=20261030_v2",
   cvViewUrl: "/cv-print.html?lang=vi",
   avatarUrl: "/avatar.webp",
-  bio: "Trực tiếp xây dựng từ mạng xã hội du lịch hơn 1 triệu lượt tải (Hahalolo), ứng dụng nhắn tin thời gian thực (Halome), máy POS bán hàng & hóa đơn điện tử (Finviet ECO POS) đến ứng dụng dinh dưỡng AI (AstroBite). Tập trung vào cấu trúc code rõ ràng, giữ 60 FPS trên cả thiết bị cấu hình thấp và không mất dữ liệu khi rớt mạng.",
+  bio: "Hơn 5 năm làm ứng dụng di động thương mại: mạng xã hội du lịch 1M+ lượt tải (Hahalolo), nhắn tin thời gian thực (Halome) và máy POS bán hàng kèm hóa đơn điện tử (Finviet ECO POS). Ngoài giờ làm, tôi tự xây AstroBite, app quét món ăn bằng AI. Tôi ưu tiên kiến trúc code rõ ràng, chạy ổn định trên máy POS RAM thấp và không mất dữ liệu khi rớt mạng.",
 };
 
 const profileDataEn: ProfileInfo = {
@@ -49,7 +49,7 @@ const profileDataEn: ProfileInfo = {
   cvPdfUrl: "/Mobile_Engineer_Nguyen_Duy_Trang_EN.pdf?v=20261030_v2",
   cvViewUrl: "/cv-print.html?lang=en",
   avatarUrl: "/avatar.webp",
-  bio: "Hands-on experience shipping consumer apps with 1M+ downloads (Hahalolo, Halome OTT), retail POS & e-invoice hardware systems (Finviet ECO POS), and AI nutrition tools (AstroBite). I focus on modular Clean Architecture, steady 60 FPS performance on low-spec devices, and offline-first data reliability.",
+  bio: "5+ years shipping commercial mobile apps: a travel social network with 1M+ downloads (Hahalolo), real-time messaging (Halome), and a retail POS with e-invoicing (Finviet ECO POS). On my own time I built AstroBite, an AI food scanner. I focus on clear code structure, stable performance on low-RAM POS terminals, and no data loss when the network drops.",
 };
 
 export const getProfileData = (lang: Language = 'en'): ProfileInfo => {
@@ -83,9 +83,9 @@ export const getVerifiedStats = (lang: Language = 'en'): StatItem[] => {
         metricTag: "Retail Hardware",
       },
       {
-        value: "277/277 Tests",
-        label: "AstroBite v3.0.0 (<2.5s AI)",
-        desc: "100% automated unit & widget test pass rate with sub-2.5s Gemini Vision inference.",
+        value: "400/400 Tests",
+        label: "AstroBite v3.6.0 (13 Modules)",
+        desc: "100% automated unit & widget test pass rate across 98 test files and a Cloud Function AI proxy.",
         iconName: "check-circle",
         metricTag: "Quality Gate",
       },
@@ -115,9 +115,9 @@ export const getVerifiedStats = (lang: Language = 'en'): StatItem[] => {
       metricTag: "Phần cứng POS",
     },
     {
-      value: "277/277 Tests",
-      label: "AstroBite v3.0.0 (<2.5s AI)",
-      desc: "100% unit & widget test đạt chuẩn; nhận diện món ăn qua Gemini Vision dưới 2.5 giây.",
+      value: "400/400 Tests",
+      label: "AstroBite v3.6.0 (13 Modules)",
+      desc: "100% unit & widget test đạt chuẩn trên 98 file test cùng Cloud Function AI proxy.",
       iconName: "check-circle",
       metricTag: "Kiểm thử tự động",
     },

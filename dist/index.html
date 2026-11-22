@@ -1,55 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6417'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='700' font-size='14'>DT</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Nguyen Duy Trang — Mobile Engineer Portfolio</title>
-    <meta name="description" content="Portfolio of Nguyen Duy Trang — Mobile Engineer with 5+ years of experience in Flutter, Native iOS (Swift), and Android (Kotlin)." />
-    <meta name="keywords" content="Nguyen Duy Trang, Mobile Engineer, Flutter Developer, iOS Developer, Android Developer, AstroBite, Clean Architecture" />
+    <meta name="description" content="Portfolio of Nguyen Duy Trang — Mobile Engineer with 5+ years of experience in Flutter, Native iOS (Swift), Android (Kotlin), and Clean Architecture." />
+    <meta name="keywords" content="Nguyen Duy Trang, Mobile Engineer, Flutter Developer, iOS Developer, Android Developer, AstroBite, Finviet ECO POS, Hahalolo, Clean Architecture" />
     <meta property="og:title" content="Nguyen Duy Trang — Mobile Engineer Portfolio" />
-    <meta property="og:description" content="Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo, Finviet ECO POS, AstroBite)." />
+    <meta property="og:description" content="Mobile Engineer with 5+ years of experience in Flutter and Native iOS/Android (Hahalolo 1M+ downloads, Finviet ECO POS, AstroBite v3.0.0)." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#07080A" />
-    
-    <!-- Google Fonts: Newsreader & Playfair Display (Full Vietnamese Editorial Serif), Geist, Inter, JetBrains Mono, Space Grotesk -->
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- Fontshare: Clash Grotesk (700 Bold, 500 Medium) & Neue Montreal alternative (General Sans / Space Grotesk / Inter) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts fallback for full Vietnamese glyphs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Pre-hydration Theme & Language Detection Script: Dual Theme (Swiss Paper Light / Raw Carbon Dark) -->
-    <script>
-      (function() {
-        try {
-          var savedTheme = localStorage.getItem('portfolio-theme');
-          var metaTheme = document.querySelector('meta[name="theme-color"]');
-          if (savedTheme === 'light') {
-            document.documentElement.classList.add('light');
-            document.documentElement.classList.remove('dark');
-            if (metaTheme) metaTheme.setAttribute('content', '#F6F3EC');
-          } else {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-            if (metaTheme) metaTheme.setAttribute('content', '#07080A');
-          }
-
-          // Purge stale legacy key that was cached in visitor browsers
-          if (localStorage.getItem('portfolio_lang')) {
-            localStorage.removeItem('portfolio_lang');
-          }
-
-          var urlParams = new URLSearchParams(window.location.search);
-          var paramLang = urlParams.get('lang');
-          var savedLang = localStorage.getItem('portfolio_language');
-          var activeLang = (paramLang === 'vi' || paramLang === 'en') ? paramLang : (savedLang === 'vi' || savedLang === 'en' ? savedLang : 'en');
-          document.documentElement.lang = activeLang;
-        } catch (e) {}
-      })();
-    </script>
-    <script type="module" crossorigin src="/assets/main-DR0x9dHT.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-Dixwq2GD.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/main-P16tC02J.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-BvNoSE-U.css">
   </head>
-  <body class="antialiased">
+  <body class="antialiased bg-white text-black selection:bg-black selection:text-white">
     <div id="root"></div>
   </body>
 </html>
