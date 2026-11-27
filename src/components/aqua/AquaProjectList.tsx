@@ -1,185 +1,97 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AquaProjectItem } from '../../data/aquaPortfolioData';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface AquaProjectCardProps {
   project: AquaProjectItem;
   index: number;
-  cursorLabel: string;
+  cursorLabel?: string;
   onSelect: (project: AquaProjectItem) => void;
 }
 
-const AnimatedPreviewOverlay: React.FC<{ project: AquaProjectItem }> = ({ project }) => {
-  const [slideIdx, setSlideIdx] = useState(0);
-  const slides = project.previewSlides && project.previewSlides.length > 0
-    ? project.previewSlides
-    : [project.previewImage];
-  const hasRichScreenshots = Boolean(project.previewSlides && project.previewSlides.length > 0);
-
-  useEffect(() => {
-    if (slides.length <= 1) return;
-    const timer = window.setInterval(() => {
-      setSlideIdx((prev) => (prev + 1) % slides.length);
-    }, 2400);
-    return () => window.clearInterval(timer);
-  }, [slides.length]);
-
-  if (hasRichScreenshots) {
-    return (
-      <div className="relative w-[68%] max-w-[260px] aspect-[9/17] max-h-[430px] rounded-[16px] overflow-hidden bg-[#FAF8F5] shadow-[0_24px_60px_rgba(0,0,0,0.65)] border-[3px] border-white/25">
-        <img
-          src={slides[slideIdx]}
-          alt={project.fullName}
-          className="w-full h-full object-cover object-top transition-opacity duration-500"
-          loading="lazy"
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative w-[84%] aspect-[16/10] rounded-[5px] overflow-hidden bg-[#0e0f12] shadow-2xl border border-white/20 flex flex-col justify-between p-3.5 text-white">
-      <img
-        src={slides[slideIdx]}
-        alt={project.fullName}
-        className="absolute inset-0 w-full h-full object-cover opacity-85 transition-opacity duration-500"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30" />
-
-      <div className="relative z-10 flex items-center justify-between text-[10px] font-montreal uppercase tracking-widest text-white/80">
-        <span>{project.role}</span>
-        <span className="px-1.5 py-0.5 bg-white text-black font-bold">
-          {project.metrics[0]?.value}
-        </span>
-      </div>
-
-      <div className="relative z-10">
-        <p className="font-clash-bold text-[14px] sm:text-[15px] uppercase tracking-tight leading-tight text-white">
-          {project.fullName}
-        </p>
-        <div className="mt-1.5 flex flex-wrap gap-1">
-          {project.techStack.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="px-1.5 py-0.5 text-[9px] font-montreal uppercase tracking-wider bg-white/15 text-white/95 backdrop-blur-sm"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
+/**
+ * Dennis Snellenberg-inspired Swiss Editorial Project Row:
+ * Crisp 48x48 native icon or geometric monogram badge (never stretched),
+ * clear typographic hierarchy, and full-row black/white inversion on hover.
+ */
 export const AquaProjectCard: React.FC<AquaProjectCardProps> = ({
   project,
-  cursorLabel,
+  index,
+  cursorLabel = 'View Case',
   onSelect,
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    let rafId: number;
-    const onScroll = () => {
-      if (!cardRef.current || !imgRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      const vh = window.innerHeight || 900;
-      if (rect.bottom < -100 || rect.top > vh + 100) return;
-      const progress = (vh - rect.top) / (vh + rect.height);
-      const clamped = Math.max(0, Math.min(1, progress));
-      const offset = (clamped - 0.5) * -75;
-      imgRef.current.style.transform = `scale(1.2) translate3d(0, ${offset}px, 0)`;
-    };
-
-    const handleScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(onScroll);
-    };
-
-    onScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
+  const num = String(index + 1).padStart(2, '0');
 
   return (
     <article
-      ref={cardRef}
       data-cursor-label={cursorLabel}
       onClick={() => onSelect(project)}
-      className="cursor-proj-img view group relative flex flex-col lg:flex-row lg:justify-between lg:min-h-[640px] xl:min-h-[700px] py-10 lg:py-14 select-none"
+      className="group relative border-b border-black/20 hover:border-black bg-white hover:bg-black text-black hover:text-white transition-colors duration-300 ease-out py-7 sm:py-9 px-2 sm:px-5 select-none"
     >
-      {/* 1. Left: Giant Stacked 2-Line Clash Grotesk Bold Title */}
-      <div className="relative z-[10] pointer-events-none lg:max-w-[52%]">
-        <h3 className="font-clash-bold uppercase text-[25vw] sm:text-[21vw] md:text-[17vw] xl:text-[17.5vw] leading-[82%] sm:leading-[88%] md:leading-[94%] tracking-[-0.03em] text-black">
-          <span className="block overflow-hidden">
-            <span className="block transition-transform duration-500 group-hover:translate-x-2">
-              {project.titleLines[0]}
-            </span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start lg:items-center">
+        {/* Column 1 (5 cols): Index + Crisp 48x48 App Icon / Monogram + Project Title & Context */}
+        <div className="lg:col-span-5 flex items-center gap-4 sm:gap-5 min-w-0">
+          <span className="font-montreal text-[13px] tracking-[0.08em] text-[#777] group-hover:text-white/60 w-6 shrink-0">
+            {num}
           </span>
-          <span className="block overflow-hidden">
-            <span className="block transition-transform duration-500 group-hover:translate-x-4">
-              {project.titleLines[1]}
-            </span>
-          </span>
-        </h3>
-      </div>
 
-      {/* 2. Center-Right Floating Parallax Cover — Mathematically bounded so right edge NEVER touches description column */}
-      <div className="relative lg:absolute lg:w-[31vw] lg:max-w-[430px] lg:left-[41%] lg:top-[44px] z-[100] my-6 lg:my-0">
-        <div
-          className="relative w-full h-[420px] md:h-[460px] lg:h-[520px] xl:h-[620px] rounded-[7px] overflow-hidden flex items-center justify-center"
-          style={{ backgroundColor: project.themeAccent || '#111111' }}
-        >
-          <img
-            ref={imgRef}
-            src={project.coverImage}
-            alt={project.fullName}
-            loading="lazy"
-            className={`ukiyo absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out will-change-transform ${
-              project.darkenCover ? 'brightness-[0.45]' : 'brightness-[0.55]'
-            }`}
-            style={{ transform: 'scale(1.2)' }}
-          />
+          {project.iconUrl ? (
+            <div className="w-12 h-12 rounded-[11px] overflow-hidden border border-black/15 group-hover:border-white/25 bg-white shrink-0">
+              <img
+                src={project.iconUrl}
+                alt={project.displayTitle}
+                width={48}
+                height={48}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className="w-12 h-12 rounded-[11px] border border-black/20 group-hover:border-white/30 bg-[#111] group-hover:bg-white text-white group-hover:text-black flex items-center justify-center font-clash-bold text-[15px] tracking-tight shrink-0 transition-colors duration-300"
+            >
+              {project.monogram}
+            </div>
+          )}
 
-          {/* Top Metadata Strip inside Cover Frame */}
-          <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between text-[11px] font-montreal uppercase tracking-[0.14em] text-white/80">
-            <span>{project.period}</span>
-            <span className="truncate ml-3">{project.companyOrContext.split('·')[0]}</span>
-          </div>
-
-          {/* Center Overlaid Preview */}
-          <div className="relative z-20 w-full flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.03]">
-            <AnimatedPreviewOverlay project={project} />
-          </div>
-
-          {/* Bottom Metric Pills inside Cover Frame */}
-          <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-[11px] font-montreal uppercase tracking-[0.12em] text-white/90">
-            <span>{project.metrics[1]?.value}</span>
-            <span className="underline underline-offset-4">
-              {cursorLabel} →
-            </span>
+          <div className="min-w-0">
+            <h3 className="font-clash-bold text-[24px] sm:text-[32px] xl:text-[36px] uppercase leading-[1.05] tracking-[-0.02em] truncate group-hover:translate-x-1.5 transition-transform duration-300">
+              {project.displayTitle}
+            </h3>
+            <p className="mt-1 font-montreal text-[12px] uppercase tracking-[0.08em] text-[#666] group-hover:text-white/65 truncate">
+              {project.companyOrContext}
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* 3. Far Right Bottom: Concise Uppercase Editorial Description — Guaranteed gap from center card */}
-      <div className="lg:w-[21%] xl:w-[20%] lg:self-end text-left uppercase font-montreal text-[15px] big:text-[16px] xl:text-[17px] leading-[1.4] text-black mt-2 lg:mt-0 z-[20]">
-        <p>{project.shortDesc}</p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {project.metrics.slice(0, 2).map((m) => (
-            <span
-              key={m.label}
-              className="inline-block px-2 py-0.5 text-[11px] border border-black font-medium"
-            >
-              {m.value}
+        {/* Column 2 (4 cols): Role & Short Summary + Top 3 Tech Pills */}
+        <div className="lg:col-span-4 pl-10 sm:pl-[68px] lg:pl-0">
+          <p className="font-montreal text-[14px] leading-[1.45] text-[#222] group-hover:text-white/85 line-clamp-2">
+            {project.shortDesc}
+          </p>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {project.techStack.slice(0, 3).map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-0.5 font-montreal text-[11px] uppercase tracking-[0.05em] border border-black/25 group-hover:border-white/30 text-[#333] group-hover:text-white/85 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Column 3 (3 cols): Key Verified Metric + Period + Arrow */}
+        <div className="lg:col-span-3 pl-10 sm:pl-[68px] lg:pl-0 flex lg:flex-col items-center lg:items-end justify-between gap-2 text-right">
+          <span className="font-clash-medium text-[15px] sm:text-[18px] uppercase tracking-[-0.01em]">
+            {project.metrics[0]?.value}
+          </span>
+          <div className="flex items-center gap-2 font-montreal text-[12px] uppercase tracking-[0.12em] text-[#666] group-hover:text-white/70">
+            <span>{project.period}</span>
+            <span className="inline-block text-[15px] leading-none transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              ↗
             </span>
-          ))}
+          </div>
         </div>
       </div>
     </article>
@@ -217,16 +129,31 @@ export const AquaProjectModal: React.FC<AquaProjectModalProps> = ({ project, onC
       >
         {/* Top Bar */}
         <div className="flex items-start justify-between gap-4 border-b-[1.5px] border-black pb-5">
-          <div>
-            <p className="font-montreal text-[12px] uppercase tracking-[0.18em] text-[#666]">
-              {project.companyOrContext} · {project.period}
-            </p>
-            <h2 className="mt-1 font-clash-bold text-[26px] sm:text-[38px] uppercase leading-[1.05]">
-              {project.fullName}
-            </h2>
-            <p className="mt-1 font-montreal text-[14px] uppercase tracking-wider text-[#1e2022]">
-              {language === 'en' ? 'Role:' : 'Vai trò:'} <strong>{project.role}</strong>
-            </p>
+          <div className="flex items-start gap-4">
+            {project.iconUrl ? (
+              <img
+                src={project.iconUrl}
+                alt={project.displayTitle}
+                width={52}
+                height={52}
+                className="w-[52px] h-[52px] rounded-[12px] border border-black/15 object-cover shrink-0 mt-1"
+              />
+            ) : (
+              <div className="w-[52px] h-[52px] rounded-[12px] bg-black text-white flex items-center justify-center font-clash-bold text-[16px] shrink-0 mt-1">
+                {project.monogram}
+              </div>
+            )}
+            <div>
+              <p className="font-montreal text-[12px] uppercase tracking-[0.18em] text-[#666]">
+                {project.companyOrContext} · {project.period}
+              </p>
+              <h2 className="mt-1 font-clash-bold text-[24px] sm:text-[36px] uppercase leading-[1.05]">
+                {project.fullName}
+              </h2>
+              <p className="mt-1 font-montreal text-[14px] uppercase tracking-wider text-[#1e2022]">
+                {language === 'en' ? 'Role:' : 'Vai trò:'} <strong>{project.role}</strong>
+              </p>
+            </div>
           </div>
           <button
             type="button"
@@ -290,7 +217,7 @@ export const AquaProjectModal: React.FC<AquaProjectModalProps> = ({ project, onC
           </div>
         </div>
 
-        {/* Screenshots Preview Strip */}
+        {/* High-res Screenshots Strip (only shown when crisp screenshots exist, e.g. AstroBite) */}
         {project.previewSlides && project.previewSlides.length > 0 && (
           <div className="mt-6 pt-6 border-t border-black/20">
             <h3 className="font-montreal text-[13px] uppercase tracking-[0.16em] text-[#666] mb-3">
@@ -300,7 +227,7 @@ export const AquaProjectModal: React.FC<AquaProjectModalProps> = ({ project, onC
               {project.previewSlides.slice(0, 3).map((src, idx) => (
                 <div
                   key={idx}
-                  className="aspect-[9/16] max-h-[300px] rounded-[5px] overflow-hidden border border-black/15 bg-[#f5f5f5]"
+                  className="aspect-[9/16] max-h-[320px] rounded-[6px] overflow-hidden border border-black/15 bg-[#f5f5f5]"
                 >
                   <img
                     src={src}

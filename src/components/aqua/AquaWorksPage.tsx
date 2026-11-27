@@ -19,7 +19,7 @@ export const AquaWorksPage: React.FC = () => {
 
   return (
     <div className="bg-white text-black min-h-screen pt-28 sm:pt-36">
-      {/* Top Tab Bar: Project vs Products (1:1 with aquadev.site/works) */}
+      {/* Top Tab Bar: Project vs Products */}
       <section className="px-5 sm:px-[45px] lg:px-[70px]">
         <div className="flex flex-wrap items-baseline justify-between gap-6">
           <div className="flex items-baseline gap-8 sm:gap-14">
@@ -62,16 +62,29 @@ export const AquaWorksPage: React.FC = () => {
         </div>
 
         {/* Full-Width Black Hairline Divider */}
-        <div className="w-full h-[1.5px] bg-black mt-6 mb-12 lg:mb-20" />
+        <div className="w-full h-[1.5px] bg-black mt-6" />
 
-        {/* Project / Products Cards List */}
-        <div className="flex flex-col divide-y divide-black/10 lg:divide-y-0 lg:gap-[110px] mb-[120px] lg:mb-[240px]">
+        {/* Desktop Table Column Header */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-6 px-5 py-3.5 border-b border-black/20 font-montreal text-[11px] uppercase tracking-[0.16em] text-[#777]">
+          <span className="lg:col-span-5">
+            {language === 'en' ? 'PROJECT / CONTEXT' : 'DỰ ÁN / BỐI CẢNH'}
+          </span>
+          <span className="lg:col-span-4">
+            {language === 'en' ? 'SCOPE & CORE STACK' : 'PHẠM VI & CÔNG NGHỆ CHÍNH'}
+          </span>
+          <span className="lg:col-span-3 text-right">
+            {language === 'en' ? 'KEY IMPACT / PERIOD' : 'CHỈ SỐ CHÍNH / THỜI GIAN'}
+          </span>
+        </div>
+
+        {/* Seamless Editorial Rows */}
+        <div className="flex flex-col mb-[110px] lg:mb-[180px]">
           {currentList.map((item, idx) => (
             <AquaProjectCard
               key={item.id}
               project={item}
               index={idx}
-              cursorLabel="View Works"
+              cursorLabel="View Case"
               onSelect={(p) => setSelectedItem(p)}
             />
           ))}

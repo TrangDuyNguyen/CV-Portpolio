@@ -138,11 +138,15 @@ export const AquaCursor: React.FC = () => {
       rafId = requestAnimationFrame(render);
     };
 
+    const onReset = () => setHoverLabel(null);
+
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('keydown', onReset);
     rafId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('keydown', onReset);
       cancelAnimationFrame(rafId);
     };
   }, []);

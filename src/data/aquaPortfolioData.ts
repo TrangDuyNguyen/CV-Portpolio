@@ -2,6 +2,9 @@ import { Language } from '../context/LanguageContext';
 
 export interface AquaProjectItem {
   id: string;
+  displayTitle: string;
+  monogram: string;
+  iconUrl?: string;
   titleLines: [string, string];
   fullName: string;
   companyOrContext: string;
@@ -10,14 +13,21 @@ export interface AquaProjectItem {
   shortDesc: string;
   coverImage: string;
   previewImage: string;
-  previewVideo?: string;
   previewSlides?: string[];
-  darkenCover?: boolean;
   externalUrl?: string;
   metrics: { label: string; value: string }[];
   techStack: string[];
   bullets: string[];
   themeAccent: string;
+}
+
+export interface AquaServiceItem {
+  title: string;
+  align: 'left' | 'right';
+  sub: string;
+  description: string;
+  proof: string;
+  tags: string[];
 }
 
 export interface AquaHobbyItem {
@@ -39,16 +49,17 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
   return [
     {
       id: 'astrobite',
+      displayTitle: 'AstroBite',
+      monogram: 'AB',
       titleLines: ['ASTRO', 'BITE'],
       fullName: 'AstroBite v3.6.0 — AI Food Scanner & Vietnamese Voice Calorie Tracker',
       companyOrContext: isEn ? 'Personal Project · 13 Clean Modules · 222 Commits' : 'Dự án Cá nhân · 13 Phân hệ Clean Arch · 222 Commits',
       period: '2026',
       role: 'Mobile Engineer & System Architect',
       shortDesc: isEn
-        ? 'AI FOOD SCANNER (DISH & PACKAGED BARCODE/OCR), VIETNAMESE VOICE LOGGING & GENUI COACH (V3.6.0). 13 MODULES, 400/400 TESTS PASS & CLOUD FUNCTION PROXY.'
-        : 'ỨNG DỤNG QUÉT MÓN ĂN AI (MÓN ĐĨA & BARCODE/NHÃN), GIỌNG NÓI TIẾNG VIỆT & GENUI COACH (V3.6.0). 13 MODULE, 400/400 TESTS PASS & CLOUD FUNCTION PROXY.',
-      coverImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230d0f14'/%3E%3Cstop offset='100%25' stop-color='%23181b22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='1000' fill='url(%23bg)'/%3E%3Cg stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'%3E%3Cline x1='0' y1='200' x2='800' y2='200'/%3E%3Cline x1='0' y1='400' x2='800' y2='400'/%3E%3Cline x1='0' y1='600' x2='800' y2='600'/%3E%3Cline x1='0' y1='800' x2='800' y2='800'/%3E%3Cline x1='200' y1='0' x2='200' y2='1000'/%3E%3Cline x1='400' y1='0' x2='400' y2='1000'/%3E%3Cline x1='600' y1='0' x2='600' y2='1000'/%3E%3C/g%3E%3C/svg%3E",
+        ? 'Dual-mode AI food scanner (dish & barcode/label OCR), Vietnamese voice logging, and GenUI nutrition coach.'
+        : 'Ứng dụng quét món ăn AI (món đĩa & mã vạch/nhãn), ghi giọng nói tiếng Việt và huấn luyện viên GenUI.',
+      coverImage: '/screenshots/clay/cockpit_dashboard.png',
       previewImage: '/screenshots/clay/genui_astrocoach_chat.png',
       previewSlides: [
         '/screenshots/clay/genui_astrocoach_chat.png',
@@ -57,23 +68,20 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
         '/screenshots/clay/manual_portion_scaler.png',
         '/screenshots/clay/widget_home_screen.png',
       ],
-      darkenCover: false,
       metrics: [
-        { label: isEn ? 'Architecture' : 'Kiến trúc', value: '13 Modules · 50K+ LOC' },
         { label: isEn ? 'Automated QA' : 'Kiểm thử', value: '400 / 400 Tests Pass' },
+        { label: isEn ? 'Architecture' : 'Kiến trúc', value: '13 Modules · 50K+ LOC' },
         { label: isEn ? 'AI Backend' : 'AI Proxy', value: '10 Scans/Day Proxy' },
         { label: isEn ? 'Release' : 'Phát hành', value: 'v3.6.0 · 222 Commits' },
       ],
       techStack: [
         'Flutter 3.x',
-        'Dart 3.x',
         'Riverpod 2.6',
-        'Clean Architecture (13 Modules)',
-        'Gemini Vision & NLU (Cloud Function Proxy)',
-        'Flutter GenUI (A2UI)',
+        'Gemini Vision & NLU',
+        'GenUI (A2UI)',
         'Speech-to-Text (vi-VN)',
-        'iOS WidgetKit (Swift)',
-        'Android AppWidget (Kotlin)',
+        'Cloud Functions Proxy',
+        'WidgetKit & AppWidget',
         'Cloud Firestore & FCM',
         'Fastlane & GitHub Actions',
       ],
@@ -96,35 +104,32 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
     },
     {
       id: 'ecopos',
+      displayTitle: 'Finviet ECO POS',
+      monogram: 'POS',
       titleLines: ['ECO', 'POS'],
       fullName: 'Finviet ECO POS — Retail & F&B POS, Kiosk & E-Invoice',
       companyOrContext: 'Finviet Technology · 860 Commits · 201 Tickets',
-      period: '08/2025 — 08/2026',
+      period: '2025 — 2026',
       role: 'Mobile Developer (Flutter & Rust FFI)',
       shortDesc: isEn
-        ? 'RETAIL & F&B POS, KIOSK & DECREE 123 E-INVOICE ECOSYSTEM (860 COMMITS, 201 TICKETS). RUST SQLITE PRICE STORE & -30% CHECKOUT TIME.'
-        : 'HỆ SINH THÁI BÁN HÀNG RETAIL/F&B, KIOSK & HÓA ĐƠN ĐIỆN TỬ NĐ123 (860 COMMITS, 201 TICKETS). RUST SQLITE PRICE STORE & -30% THỜI GIAN GIAO DỊCH.',
-      coverImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Crect width='800' height='1000' fill='%23111318'/%3E%3Cg stroke='%23252a34' stroke-width='1'%3E%3Cline x1='0' y1='200' x2='800' y2='200'/%3E%3Cline x1='0' y1='400' x2='800' y2='400'/%3E%3Cline x1='0' y1='600' x2='800' y2='600'/%3E%3Cline x1='0' y1='800' x2='800' y2='800'/%3E%3Cline x1='200' y1='0' x2='200' y2='1000'/%3E%3Cline x1='400' y1='0' x2='400' y2='1000'/%3E%3Cline x1='600' y1='0' x2='600' y2='1000'/%3E%3C/g%3E%3Crect x='110' y='140' width='580' height='720' rx='16' fill='%23181c24' stroke='%23ffffff' stroke-opacity='0.25' stroke-width='2'/%3E%3Ctext x='150' y='210' fill='%23ffffff' font-family='monospace' font-size='22' font-weight='bold'%3EFINVIET ECO POS // TERMINAL V2%3C/text%3E%3Ctext x='150' y='245' fill='%239ba3b0' font-family='monospace' font-size='15'%3ERUST + SQLITE FFI (50,000 SKUS) · DECREE 123 E-INVOICE%3C/text%3E%3Crect x='150' y='285' width='500' height='110' fill='%230d1015' stroke='%23333b48'/%3E%3Ctext x='175' y='330' fill='%234ade80' font-family='monospace' font-size='20'%3E%26gt; flutter_rust_bridge: 50,000 items indexed%3C/text%3E%3Ctext x='175' y='365' fill='%23e2e8f0' font-family='monospace' font-size='16'%3E%26gt; Checkout Time: -30%25 | VietQR T+0 | 60 FPS%3C/text%3E%3C/svg%3E",
-      previewImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%230d0f14'/%3E%3Crect x='24' y='24' width='592' height='352' rx='8' fill='%23151922' stroke='%23ffffff' stroke-opacity='0.2'/%3E%3Ctext x='48' y='72' fill='%23ffffff' font-family='monospace' font-size='18' font-weight='bold'%3EECO POS · SUNMI / IMIN TERMINAL%3C/text%3E%3Ctext x='48' y='105' fill='%2394a3b8' font-family='monospace' font-size='13'%3E860 COMMITS · 201 TICKETS · 61 TEST FILES%3C/text%3E%3C/svg%3E",
-      previewSlides: [],
-      darkenCover: true,
+        ? 'Retail & F&B POS, self-ordering kiosk, embedded Rust SQLite price store (50k SKUs), and Decree 123 e-invoicing.'
+        : 'Hệ sinh thái máy POS bán lẻ/F&B, Kiosk tự phục vụ, bảng giá Rust SQLite 50.000 mã hàng và HĐĐT Nghị định 123.',
+      coverImage: '',
+      previewImage: '',
       externalUrl: 'https://play.google.com/store/apps/details?id=vn.com.finviet.ecopos&hl=vi',
       metrics: [
-        { label: isEn ? 'Checkout Speed' : 'Tốc độ bán hàng', value: '-30% Transaction Time' },
+        { label: isEn ? 'Checkout Speed' : 'Tốc độ bán hàng', value: '-30% Checkout Time' },
         { label: isEn ? 'Verified Output' : 'Đóng góp thực tế', value: '860 Commits · 201 Tickets' },
         { label: isEn ? 'Rust FFI Store' : 'Hiệu năng Rust FFI', value: '50,000 SKUs Stress-Tested' },
         { label: isEn ? 'Unit & Widget QA' : 'Kiểm thử', value: '61 Automated Test Files' },
       ],
       techStack: [
         'Flutter',
-        'Rust (flutter_rust_bridge FFI)',
-        'SQLite & Hive',
+        'Rust FFI (SQLite)',
         'BLoC / Cubit',
         'Clean Architecture',
         'WebSocket (TableOrder)',
-        'ESC/POS & iMin Thermal Printer',
+        'ESC/POS & iMin Printer',
         'Decree 123 E-Invoice',
         'VietQR Pay',
         'Fastlane & Sentry',
@@ -135,37 +140,40 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
             'Engineered an embedded Rust SQLite Price Store via flutter_rust_bridge (v1.8.0) with indexed migrations, multi-row batch inserts, and a 50,000-item stress benchmark across Android/iOS.',
             'Built multi-step tax declaration workflows, Decree 123 e-invoicing with digital signatures, and a bank_declaration module (T+0 settlement, Pub/Sub).',
             'Implemented RegisterV2 onboarding (BR-03 OTP lockout, tax ID lookup) and enforced RBAC permission matrices across menus, thermal printers, and cashbooks.',
-            'Optimized low-RAM Sunmi/iMin POS terminals with BaseNetworkImageV2 (_MemCacheSize by devicePixelRatio), ESC/POS printer probing cache, and 61 unit/widget test files holding 60 FPS.',
+            'Optimized low-RAM Sunmi/iMin POS terminals with BaseNetworkImageV2 (_MemCacheSize by devicePixelRatio), ESC/POS printer probing cache, and 61 unit/widget test files.',
           ]
         : [
             'Xây dựng luồng quét barcode & POS/Kiosk giảm 30% thời gian giao dịch, xử lý đơn F&B và module TableOrder dùng Clean Architecture + WebSocket đồng bộ bàn theo thời gian thực.',
             'Phát triển local SQLite Price Store bằng Rust qua flutter_rust_bridge (Dart FFI) với schema migrations đánh index, batch INSERT và stress test 50.000 mã hàng.',
             'Xây dựng luồng kê khai thuế đa bước, phát hành hóa đơn điện tử Nghị định 123 kèm chữ ký số và module bank_declaration đối soát T+0.',
             'Triển khai luồng đăng ký RegisterV2 (khóa OTP BR-03, tra cứu MST) và áp dụng phân quyền RBAC cho menu, máy in nhiệt và sổ quỹ.',
-            'Tối ưu thiết bị POS RAM thấp (Sunmi, iMin) qua BaseNetworkImageV2, cache máy in ESC/POS, In-app DevTools và 61 file unit/widget test giữ vững 60 FPS.',
+            'Tối ưu thiết bị POS RAM thấp (Sunmi, iMin) qua BaseNetworkImageV2, cache máy in ESC/POS, In-app DevTools và 61 file unit/widget test.',
           ],
       themeAccent: '#1a1a1a',
     },
     {
       id: 'hahalolo',
+      displayTitle: 'Hahalolo',
+      monogram: 'HH',
+      iconUrl: '/assets/apps/hahalolo.png',
       titleLines: ['HAHA', 'LOLO'],
       fullName: 'Hahalolo — Social Travel Network (1M+ Downloads)',
       companyOrContext: 'Hahalolo Ecosystem · 20-Engineer Mobile Team',
-      period: '05/2021 — 07/2025',
+      period: '2021 — 2025',
       role: 'Mobile Developer (Native iOS Swift & Flutter)',
       shortDesc: isEn
-        ? 'SOCIAL TRAVEL SUPER-APP WITH 1M+ DOWNLOADS & 99.5%+ CRASH-FREE SESSIONS BUILT WITH NATIVE IOS SWIFT (VIPER) & FLUTTER ADD-TO-APP.'
-        : 'SIÊU ỨNG DỤNG MẠNG XÃ HỘI DU LỊCH 1M+ LƯỢT TẢI & 99.5%+ CRASH-FREE XÂY BẰNG NATIVE IOS SWIFT (VIPER) & FLUTTER ADD-TO-APP.',
+        ? 'Social travel super-app (Tour, Flight, Hotel, Community) built with Native iOS Swift (VIPER) and Flutter Add-to-App.'
+        : 'Siêu ứng dụng mạng xã hội du lịch (Tour, Vé bay, Khách sạn, Cộng đồng) chạy Native iOS Swift (VIPER) & Flutter Add-to-App.',
       coverImage: '/assets/apps/hahalolo.png',
       previewImage: '/assets/apps/hahalolo.png',
       metrics: [
-        { label: isEn ? 'User Scale' : 'Quy mô người dùng', value: '1,000,000+ Downloads' },
+        { label: isEn ? 'User Scale' : 'Quy mô người dùng', value: '1M+ Downloads' },
         { label: isEn ? 'Stability' : 'Độ ổn định', value: '99.5%+ Crash-Free' },
-        { label: isEn ? 'Architecture' : 'Kiến trúc', value: 'iOS VIPER + Flutter Add-to-App' },
+        { label: isEn ? 'Architecture' : 'Kiến trúc', value: 'iOS VIPER + Add-to-App' },
         { label: isEn ? 'Team Size' : 'Quy mô đội ngũ', value: '20 Mobile Engineers' },
       ],
       techStack: [
-        'Native iOS (Swift / UIKit)',
+        'Native iOS Swift',
         'VIPER Architecture',
         'Flutter Add-to-App',
         'Google Maps SDK',
@@ -188,55 +196,61 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
     },
     {
       id: 'halome',
+      displayTitle: 'Halome OTT',
+      monogram: 'HM',
+      iconUrl: '/assets/apps/halome.png',
       titleLines: ['HALO', 'ME'],
       fullName: 'Halome — Real-time OTT Messaging & VoIP Calling',
       companyOrContext: 'Hahalolo Ecosystem · 5-Engineer iOS Team',
       period: '2021 — 2025',
       role: 'Native iOS Developer (Swift & MVVM)',
       shortDesc: isEn
-        ? 'REALTIME OTT MESSAGING & CALLKIT VOIP APP ENGINEERED IN NATIVE IOS SWIFT (MVVM) WITH STARSCREAM WEBSOCKET, RXSWIFT & SQLITE.'
-        : 'ỨNG DỤNG NHẮN TIN OTT THỜI GIAN THỰC & GỌI THOẠI CALLKIT XÂY BẰNG NATIVE IOS SWIFT (MVVM), STARSCREAM WEBSOCKET & SQLITE.',
+        ? 'Real-time OTT messaging and lock-screen VoIP audio/video calling engineered from scratch in Native iOS Swift.'
+        : 'Ứng dụng nhắn tin OTT thời gian thực và gọi thoại/video màn hình khóa xây dựng từ đầu bằng Native iOS Swift.',
       coverImage: '/assets/apps/halome.png',
       previewImage: '/assets/apps/halome.png',
       metrics: [
+        { label: isEn ? 'Voice & Video' : 'Đàm thoại', value: 'Apple CallKit VoIP' },
         { label: isEn ? 'Messaging Engine' : 'Luồng tin nhắn', value: 'Starscream WebSocket' },
-        { label: isEn ? 'Voice & Video' : ' Đàm thoại', value: 'Apple CallKit VoIP' },
-        { label: isEn ? 'Feed Rendering' : 'Hiển thị hội thoại', value: 'IGListKit 60 FPS' },
+        { label: isEn ? 'Feed Rendering' : 'Hiển thị hội thoại', value: 'IGListKit' },
         { label: isEn ? 'Offline Cache' : 'Lưu trữ cục bộ', value: 'SQLite Persistence' },
       ],
       techStack: [
         'Native iOS Swift',
         'MVVM Architecture',
-        'Starscream (WebSocket)',
+        'Starscream WebSocket',
+        'Apple CallKit VoIP',
         'RxSwift',
         'IGListKit',
-        'Apple CallKit VoIP',
         'SQLite Offline Storage',
         'Alamofire',
       ],
       bullets: isEn
         ? [
             'Built a real-time OTT messaging app from scratch in Native iOS Swift (MVVM) supporting anonymous login and Hahalolo SSO.',
-            'Implemented Starscream WebSockets for bi-directional chat events, RxSwift for reactive data binding, and IGListKit for 60 FPS conversation threads.',
+            'Implemented Starscream WebSockets for bi-directional chat events, RxSwift for reactive data binding, and IGListKit for high-volume conversation threads.',
             'Persisted chat histories in local SQLite for instant offline access and integrated Apple CallKit SDK for native lock-screen audio/video VoIP calls.',
           ]
         : [
             'Xây dựng từ đầu ứng dụng nhắn tin OTT thời gian thực bằng Native iOS Swift (MVVM) hỗ trợ đăng nhập ẩn danh và SSO Hahalolo.',
-            'Sử dụng Starscream WebSocket cho luồng chat hai chiều, RxSwift cho reactive data binding và IGListKit giữ cuộn hội thoại mượt 60 FPS.',
+            'Sử dụng Starscream WebSocket cho luồng chat hai chiều, RxSwift cho reactive data binding và IGListKit cho danh sách hội thoại lớn.',
             'Lưu trữ tin nhắn offline bằng SQLite và tích hợp Apple CallKit SDK cho cuộc gọi thoại và video VoIP trực tiếp từ màn hình khóa.',
           ],
       themeAccent: '#131d31',
     },
     {
       id: 'haloki',
+      displayTitle: 'Haloki Fintech',
+      monogram: 'HK',
+      iconUrl: '/assets/apps/haloki.png',
       titleLines: ['HALO', 'KI'],
       fullName: 'Haloki — Cross-Border Fintech Remittance (192 Countries)',
       companyOrContext: 'Hahalolo Fintech · International Money Transfer',
       period: '2022 — 2025',
       role: 'Flutter Mobile Developer',
       shortDesc: isEn
-        ? 'CROSS-BORDER FINTECH REMITTANCE PLATFORM SERVING 192 COUNTRIES IN FLUTTER WITH MULTI-STEP KYC & TRANSACTION INTEGRITY GUARDS.'
-        : 'NỀN TẢNG FINTECH CHUYỂN TIỀN QUỐC TẾ 192 QUỐC GIA TRÊN FLUTTER VỚI XÁC THỰC ĐỊNH DANH KYC & BẢO MẬT GIAO DỊCH.',
+        ? 'Cross-border money transfer app serving 192 countries with multi-step eKYC verification and transaction guards.'
+        : 'Nền tảng chuyển tiền đa quốc gia phục vụ 192 nước trên Flutter với luồng định danh eKYC và bảo vệ giao dịch.',
       coverImage: '/assets/apps/haloki.png',
       previewImage: '/assets/apps/haloki.png',
       metrics: [
@@ -247,9 +261,8 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       ],
       techStack: [
         'Flutter',
-        'Dart',
         'BLoC State Management',
-        'eKYC Identity Verification',
+        'eKYC Verification',
         'Dio Interceptors',
         'Secure Token Storage',
       ],
@@ -266,25 +279,26 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
     },
     {
       id: 'invest',
+      displayTitle: 'Hahalolo Invest',
+      monogram: 'IV',
       titleLines: ['IN', 'VEST'],
       fullName: 'Hahalolo Invest — Real-time Stock & Portfolio Trading',
       companyOrContext: 'Hahalolo Fintech · Securities & Equity Analytics',
       period: '2022 — 2025',
       role: 'Flutter Mobile Developer',
       shortDesc: isEn
-        ? 'REALTIME SECURITIES TRADING & PORTFOLIO ANALYTICS APPLICATION IN FLUTTER WITH WEBSOCKET PRICE STREAMS & FINANCIAL CHARTS.'
-        : 'ỨNG DỤNG GIAO DỊCH CỔ PHIẾU & DANH MỤC ĐẦU TƯ REALTIME TRÊN FLUTTER VỚI BIỂU ĐỒ TÀI CHÍNH & WEBSOCKET STREAM.',
-      coverImage: '/assets/apps/hahalolo-invest.png',
-      previewImage: '/assets/apps/hahalolo-invest.png',
+        ? 'Real-time securities trading and portfolio valuation dashboard with live WebSocket market feeds and financial charts.'
+        : 'Ứng dụng giao dịch cổ phiếu và theo dõi danh mục đầu tư thời gian thực qua WebSocket và biểu đồ tài chính.',
+      coverImage: '',
+      previewImage: '',
       metrics: [
         { label: isEn ? 'Data Stream' : 'Luồng giá', value: 'Realtime WebSocket' },
-        { label: isEn ? 'Visualization' : 'Đồ thị', value: '60 FPS Candlestick Charts' },
+        { label: isEn ? 'Visualization' : 'Đồ thị', value: 'Candlestick Charts' },
         { label: isEn ? 'Order Flow' : 'Giao dịch', value: 'Live Buy/Sell Execution' },
         { label: isEn ? 'Stack' : 'Công nghệ', value: 'Flutter & BLoC' },
       ],
       techStack: [
         'Flutter',
-        'Dart',
         'WebSocket Market Feed',
         'Financial Charting',
         'BLoC / Cubit',
@@ -297,27 +311,26 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
           ]
         : [
             'Xây dựng biểu đồ biến động giá theo thời gian thực, bảng quản lý danh mục đầu tư và luồng đặt lệnh mua/bán cổ phiếu trên Flutter.',
-            'Đồng bộ luồng dữ liệu giá WebSocket tần suất cao với cơ chế cô lập widget rebuild để giữ giao diện luôn mượt 60 FPS.',
+            'Đồng bộ luồng dữ liệu giá WebSocket tần suất cao với cơ chế cô lập widget rebuild tránh giật khung hình.',
           ],
       themeAccent: '#1c1936',
     },
     {
       id: 'aquannets',
+      displayTitle: 'Aquannets',
+      monogram: 'AQ',
       titleLines: ['AQUA', 'NNETS'],
       fullName: 'Aquannets — Offline-First Aquaculture Farm Management',
       companyOrContext: 'Galactic Holdings Outsource · 2-Engineer Mobile Team',
       period: '2023 — 2024',
       role: 'Flutter Mobile Engineer',
       shortDesc: isEn
-        ? 'OFFLINE-FIRST AQUACULTURE FARM MANAGEMENT SYSTEM FOR GALACTIC HOLDINGS BUILT WITH FLUTTER CLEAN ARCHITECTURE, RIVERPOD & SQLITE.'
-        : 'HỆ THỐNG QUẢN LÝ AO NUÔI THỦY SẢN OFFLINE-FIRST CHO GALACTIC HOLDINGS XÂY BẰNG FLUTTER CLEAN ARCHITECTURE, RIVERPOD & SQLITE.',
-      coverImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Crect width='800' height='1000' fill='%230c1f1b'/%3E%3Crect x='110' y='140' width='580' height='720' rx='16' fill='%23122b26' stroke='%23ffffff' stroke-opacity='0.22' stroke-width='2'/%3E%3Ctext x='150' y='210' fill='%23ffffff' font-family='monospace' font-size='22' font-weight='bold'%3EAQUANNETS // GALACTIC HOLDINGS%3C/text%3E%3Ctext x='150' y='245' fill='%2399f6e4' font-family='monospace' font-size='15'%3EOFFLINE-FIRST AQUACULTURE POND TELEMETRY%3C/text%3E%3C/svg%3E",
-      previewImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%230b1c18'/%3E%3Crect x='24' y='24' width='592' height='352' rx='8' fill='%23132e28' stroke='%23ffffff' stroke-opacity='0.2'/%3E%3Ctext x='48' y='72' fill='%23ffffff' font-family='monospace' font-size='18' font-weight='bold'%3EPOND SQLITE SYNC · RIVERPOD CLEAN ARCH%3C/text%3E%3C/svg%3E",
-      darkenCover: true,
+        ? 'Offline-first pond telemetry and feed management app for Galactic Holdings using Clean Architecture, Riverpod, and SQLite.'
+        : 'Hệ thống quản lý ao nuôi thủy sản offline-first cho Tập đoàn Galactic Holdings bằng Clean Architecture, Riverpod & SQLite.',
+      coverImage: '',
+      previewImage: '',
       metrics: [
-        { label: isEn ? 'Field Mode' : 'Chế độ vận hành', value: '100% Pond Offline-First' },
+        { label: isEn ? 'Field Mode' : 'Chế độ vận hành', value: 'Pond Offline-First' },
         { label: isEn ? 'Architecture' : 'Kiến trúc', value: 'Clean Arch + Riverpod' },
         { label: isEn ? 'Persistence' : 'Lưu trữ', value: 'SQLite Sync Queue' },
         { label: isEn ? 'Client' : 'Khách hàng', value: 'Galactic Holdings' },
@@ -348,50 +361,54 @@ export const getAquaProducts = (lang: Language = 'en'): AquaProjectItem[] => {
   return [
     {
       id: 'astrovoice-engine',
+      displayTitle: 'AstroVoice NLU',
+      monogram: 'AV',
       titleLines: ['ASTRO', 'VOICE'],
       fullName: 'AstroVoice AI — Vietnamese On-Device Speech & Gemini NLU Pipeline',
-      companyOrContext: 'AstroBite v3.0.0 Core Module · ~1.1s NLU Latency',
+      companyOrContext: 'AstroBite v3.6.0 Core Module · On-Device vi-VN',
       period: '2026',
       role: 'System Architect',
       shortDesc: isEn
-        ? 'HANDS-FREE VIETNAMESE (VI-VN) SPEECH-TO-TEXT & GEMINI 3.8 FLASH NLU PIPELINE PARSING ASIAN FOOD UNITS IN ~1.1S WITH 45MS 1-TAP LOGGING.'
-        : 'PIPELINE NHẬN DIỆN GIỌNG NÓI TIẾNG VIỆT (VI-VN) & GEMINI 3.8 FLASH NLU BÓC TÁCH ĐƠN VỊ MÓN Á TRONG ~1.1S, LƯU 1 CHẠM ~45MS.',
+        ? 'Hands-free Vietnamese (vi-VN) speech recognition paired with Gemini NLU to parse colloquial food units and meal times.'
+        : 'Pipeline nhận diện giọng nói tiếng Việt (vi-VN) kết hợp Gemini NLU bóc tách đơn vị món ăn dân dã và khung giờ ăn.',
       coverImage: '/screenshots/clay/manual_portion_scaler.png',
       previewImage: '/screenshots/clay/genui_astrocoach_chat.png',
-      darkenCover: true,
-      metrics: [
-        { label: 'NLU Latency', value: '~1.1s (SLA <= 1.5s)' },
-        { label: '1-Tap Firestore Write', value: '~45ms (SLA < 150ms)' },
-        { label: 'Locale Support', value: 'On-Device vi-VN' },
-        { label: 'Prompt Footprint', value: '< 250 Tokens' },
+      previewSlides: [
+        '/screenshots/clay/manual_portion_scaler.png',
+        '/screenshots/clay/genui_astrocoach_chat.png',
       ],
-      techStack: ['Speech-to-Text (vi-VN)', 'Gemini 3.8 Flash NLU', 'Riverpod AsyncNotifier', 'GenUI MealQuickLogCard'],
+      metrics: [
+        { label: 'Locale Support', value: 'On-Device vi-VN' },
+        { label: 'AI Security', value: 'Cloud Function Proxy' },
+        { label: 'State', value: 'Riverpod AsyncNotifier' },
+        { label: 'Testing', value: 'Voice Logging Suite' },
+      ],
+      techStack: ['speech_to_text (vi-VN)', 'Gemini NLU', 'Riverpod 2.6', 'Cloud Function Proxy'],
       bullets: isEn
         ? [
-            'Streams on-device Vietnamese speech recognition directly into a structured Gemini 3.8 Flash NLU prompt.',
-            'Automatically normalizes colloquial units (tô, bát, đĩa, ly, cái, quả) and infers meal slots from the 24-hour clock.',
+            'Separates on-device Vietnamese speech recognition from the Gemini NLU datasource for clean unit testing.',
+            'Normalizes colloquial Vietnamese units (tô, bát, đĩa, ly, cái) and infers meal slots from the 24-hour clock.',
           ]
         : [
-            'Nhận diện giọng nói tiếng Việt có dấu trực tiếp trên thiết bị kết hợp prompt NLU chuẩn hóa đơn vị dân dã (tô, bát, đĩa, ly, cái).',
-            'Tự động suy luận bữa ăn theo khung giờ 24h và sinh thẻ GenUI lưu nhật ký chỉ với 1 chạm (~45ms).',
+            'Tách biệt service nhận giọng nói tiếng Việt trên thiết bị và datasource Gemini NLU thành các lớp độc lập dễ kiểm thử.',
+            'Chuẩn hóa các đơn vị dân dã (tô, bát, đĩa, ly, cái) và tự suy luận bữa ăn theo khung giờ 24h.',
           ],
       themeAccent: '#111111',
     },
     {
       id: 'rust-price-store',
+      displayTitle: 'Rust SQLite FFI',
+      monogram: 'RS',
       titleLines: ['RUST', 'STORE'],
       fullName: 'Rust + SQLite Price Store (Dart FFI via flutter_rust_bridge)',
       companyOrContext: 'Finviet ECO POS Core Module · 50,000-Item Benchmark',
       period: '2025 — 2026',
       role: 'Mobile Systems Engineer',
       shortDesc: isEn
-        ? 'EMBEDDED RUST + SQLITE PRICE ENGINE VIA DART FFI (FLUTTER_RUST_BRIDGE) BENCHMARKED AT 50,000 RETAIL ITEMS ON LOW-RAM POS TERMINALS.'
-        : 'ENGINE BẢNG GIÁ RUST + SQLITE QUA DART FFI (FLUTTER_RUST_BRIDGE) VƯỢT BÀI STRESS TEST 50.000 MÃ HÀNG TRÊN MÁY POS CẤU HÌNH THẤP.',
-      coverImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Crect width='800' height='1000' fill='%23111318'/%3E%3Crect x='110' y='140' width='580' height='720' rx='16' fill='%23181c24' stroke='%23ffffff' stroke-opacity='0.25' stroke-width='2'/%3E%3Ctext x='150' y='210' fill='%23ffffff' font-family='monospace' font-size='22' font-weight='bold'%3ERUST + SQLITE // DART FFI BRIDGE%3C/text%3E%3Ctext x='150' y='245' fill='%234ade80' font-family='monospace' font-size='15'%3E50,000 SKUS BENCHMARKED · ARM64-V8A / IOS%3C/text%3E%3C/svg%3E",
-      previewImage:
-        "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%230d0f14'/%3E%3Crect x='24' y='24' width='592' height='352' rx='8' fill='%23151922' stroke='%23ffffff' stroke-opacity='0.2'/%3E%3Ctext x='48' y='72' fill='%23ffffff' font-family='monospace' font-size='18' font-weight='bold'%3EFLUTTER_RUST_BRIDGE V1.8 · 50K ITEMS%3C/text%3E%3C/svg%3E",
-      darkenCover: true,
+        ? 'Embedded Rust + SQLite price engine via Dart FFI benchmarked at 50,000 retail items on low-RAM POS terminals.'
+        : 'Engine bảng giá Rust + SQLite qua Dart FFI vượt bài stress test 50.000 mã hàng trên máy POS cấu hình thấp.',
+      coverImage: '',
+      previewImage: '',
       metrics: [
         { label: 'Stress Benchmark', value: '50,000 Retail SKUs' },
         { label: 'Bridge', value: 'flutter_rust_bridge 1.8' },
@@ -402,7 +419,7 @@ export const getAquaProducts = (lang: Language = 'en'): AquaProjectItem[] => {
       bullets: isEn
         ? [
             'Compiled native Rust `.so` binaries (`arm64-v8a`, `armeabi-v7a`, `x86_64`) and iOS static libraries for deterministic offline price resolution.',
-            'Implemented indexed SQLite schema migrations and multi-row batch INSERTs keeping UI thread at 60 FPS during 50k-item catalog syncs.',
+            'Implemented indexed SQLite schema migrations and multi-row batch INSERTs keeping UI responsive during 50k-item catalog syncs.',
           ]
         : [
             'Biên dịch thư viện Rust native `.so` cho Android và static lib cho iOS giúp truy vấn giá bán lẻ tức thì không làm nghẽn UI thread.',
@@ -412,91 +429,118 @@ export const getAquaProducts = (lang: Language = 'en'): AquaProjectItem[] => {
     },
     {
       id: 'clay-genui-kit',
+      displayTitle: 'Clay UI & GenUI',
+      monogram: 'UI',
       titleLines: ['CLAY', 'GENUI'],
-      fullName: 'Solar Fresh Claymorphic UI & Flutter GenUI (A2UI) Catalog',
-      companyOrContext: 'Zero-Dependency Design System · 60 FPS · 62.4MB APK',
+      fullName: 'Solar Fresh Claymorphic UI Kit & A2UI Widget Catalog',
+      companyOrContext: 'Zero-Dependency UI Kit · AstroBite v3.6.0',
       period: '2025 — 2026',
       role: 'UI & Design System Architect',
       shortDesc: isEn
-        ? 'ZERO-DEPENDENCY 2D/3D CLAYMORPHIC DESIGN SYSTEM & GOOGLE A2UI GENERATIVE WIDGET CATALOG BUILT Purely WITH FLUTTER PRIMITIVES.'
-        : 'HỆ THỐNG DESIGN SYSTEM CLAYMORPHIC 2D/3D & BỘ WIDGET TƯƠNG TÁC GENUI A2UI TỰ VIẾT 100% BẰNG FLUTTER PRIMITIVES.',
+        ? 'Custom 2D/3D Claymorphic UI kit built from Flutter primitives paired with an A2UI parser and interactive chat widget catalog.'
+        : 'Bộ UI Kit Claymorphic 2D/3D viết bằng Flutter primitives kết hợp A2UI parser và catalog widget tương tác trong khung chat.',
       coverImage: '/screenshots/clay/genui_astrocoach_chat.png',
       previewImage: '/screenshots/clay/cockpit_dashboard.png',
-      darkenCover: true,
-      metrics: [
-        { label: 'External UI Packages', value: '0 (100% Native Primitives)' },
-        { label: 'APK Footprint', value: '62.4 MB (Limit < 65 MB)' },
-        { label: 'Tap Physics', value: '0.98 Scale · Dual Shadow' },
-        { label: 'Scrolling', value: '60 FPS RepaintBoundary' },
+      previewSlides: [
+        '/screenshots/clay/genui_astrocoach_chat.png',
+        '/screenshots/clay/cockpit_dashboard.png',
       ],
-      techStack: ['Flutter Primitives', 'Google A2UI Protocol', 'RepaintBoundary', '4pt Layout Grid'],
+      metrics: [
+        { label: 'UI Kit', value: '0 External UI Libs' },
+        { label: 'GenUI Engine', value: 'A2UI Parser + Catalog' },
+        { label: 'Localization', value: 'vi / en Mirroring' },
+        { label: 'Store Policy', value: 'AI Content Reporting' },
+      ],
+      techStack: ['Flutter Primitives', 'A2UI Parser', 'Widget Catalog', '4pt Layout Grid'],
       bullets: isEn
         ? [
-            'Built tactile 2D/3D Claymorphic surfaces with 0.98 tap compression, 20pt corner radii, and dual elevation shadows without external UI libraries.',
-            'Mapped structured LLM JSON responses directly to interactive native widgets (`MealQuickLogCard`, `MacroBudgetGauge`) inside the chat stream.',
+            'Built tactile 2D/3D Claymorphic cards, buttons, and macro gauges on a 4pt grid without third-party UI libraries.',
+            'Validated structured Gemini JSON against a local catalog so AstroCoach renders native interactive widgets inside chat.',
           ]
         : [
-            'Tự xây dựng hệ thống nút bấm và thẻ 3D Claymorphic phản hồi lực nhấn 0.98 scale trên lưới 4pt mà không dùng bất kỳ thư viện UI bên ngoài nào.',
-            'Ánh xạ JSON từ Gemini sang Native Widget tương tác hai chiều ngay trong khung chat.',
+            'Tự xây dựng hệ thống thẻ, nút bấm 3D Claymorphic và thanh dinh dưỡng trên lưới 4pt không phụ thuộc thư viện UI ngoài.',
+            'Đối chiếu JSON có cấu trúc từ Gemini với catalog cục bộ để render trực tiếp Native Widget tương tác trong khung chat.',
           ],
       themeAccent: '#222222',
     },
     {
       id: 'os-lock-widgets',
+      displayTitle: 'Native OS Widgets',
+      monogram: 'WG',
       titleLines: ['OS', 'WIDGET'],
       fullName: 'Native iOS WidgetKit (Swift) & Android AppWidget (Kotlin)',
-      companyOrContext: 'Zero-Battery Reactive Sync · <300ms Scanner Deep-Link',
+      companyOrContext: 'AstroBite v3.6.0 · Home-Screen Integration',
       period: '2026',
       role: 'Native iOS & Android Engineer',
       shortDesc: isEn
-        ? 'LOCK-SCREEN & HOME-SCREEN WIDGETS IN SWIFT WIDGETKIT & KOTLIN APPWIDGET WITH ZERO-DRAIN REACTIVE SYNC & <300MS CAMERA DEEP-LINK.'
-        : 'TIỆN ÍCH MÀN HÌNH KHÓA & MÀN HÌNH CHÍNH BẰNG SWIFT WIDGETKIT & KOTLIN APPWIDGET ĐỒNG BỘ TỨC THÌ 0 HAO PIN, MỞ CAMERA <300MS.',
+        ? 'Home-screen calorie & streak widgets in Swift WidgetKit and Kotlin AppWidgetProvider synced reactively on meal updates.'
+        : 'Tiện ích màn hình chính bằng Swift WidgetKit và Kotlin AppWidgetProvider tự đồng bộ tức thì mỗi khi cập nhật bữa ăn.',
       coverImage: '/screenshots/clay/widget_home_screen.png',
       previewImage: '/screenshots/clay/cockpit_dashboard.png',
-      darkenCover: true,
+      previewSlides: ['/screenshots/clay/widget_home_screen.png'],
       metrics: [
-        { label: 'Deep-Link Launch', value: '< 300ms to Scanner' },
-        { label: 'Background Drain', value: '0% (Event-Driven Sync)' },
-        { label: 'iOS Bridge', value: 'AppGroup UserDefaults' },
-        { label: 'Android Bridge', value: 'SharedPreferences RemoteViews' },
+        { label: 'iOS Extension', value: 'Swift WidgetKit' },
+        { label: 'Android Provider', value: 'Kotlin AppWidget' },
+        { label: 'Sync Model', value: 'Event-Driven Sync' },
+        { label: 'Bridge', value: 'home_widget Channel' },
       ],
-      techStack: ['iOS Swift WidgetKit', 'Android Kotlin AppWidget', 'AppGroup Shared Container', 'astrobite:// Deep Link'],
+      techStack: ['iOS Swift WidgetKit', 'Android Kotlin AppWidget', 'AppGroup UserDefaults', 'SharedPreferences'],
       bullets: isEn
         ? [
-            'Eliminated background polling daemons by writing key-value snapshots to AppGroup UserDefaults and SharedPreferences immediately upon meal mutations.',
-            'Configured `astrobite://scanner` deep-links launching the camera scanner directly from the lock screen in under 300ms.',
+            'Wrote native Swift WidgetKit and Kotlin AppWidgetProvider extensions sharing state via AppGroup UserDefaults and SharedPreferences.',
+            'Added graceful fallbacks and widget sync unit tests covering unsupported host environments.',
           ]
         : [
-            'Loại bỏ hoàn toàn background service chạy ngầm gây hao pin bằng cơ chế Reactive Sync qua AppGroup UserDefaults và SharedPreferences ngay khi lưu bữa.',
-            'Tích hợp deep-link `astrobite://scanner` mở thẳng camera quét món từ màn hình chính trong dưới 300ms.',
+            'Xây dựng tiện ích native bằng Swift WidgetKit (iOS) và Kotlin AppWidgetProvider (Android) qua AppGroup UserDefaults và SharedPreferences.',
+            'Bổ sung cơ chế fallback an toàn và unit test kiểm thử luồng đồng bộ widget.',
           ],
       themeAccent: '#161616',
     },
   ];
 };
 
-export const getAquaServices = (lang: Language = 'en'): { title: string; align: 'left' | 'right'; sub: string }[] => {
+export const getAquaServices = (lang: Language = 'en'): AquaServiceItem[] => {
   const isEn = lang === 'en';
   return [
     {
       title: 'FLUTTER & CLEAN ARCHITECTURE',
       align: 'left',
       sub: isEn ? '13-Module Feature-First · Riverpod 2.6 · BLoC · 400 Automated Tests' : '13 Phân hệ Feature-First · Riverpod 2.6 · BLoC · 400 Automated Tests',
+      description: isEn
+        ? 'Modular Feature-First architecture isolating Domain, Data, and Presentation layers with strict lint gates and deterministic unit/widget test suites.'
+        : 'Kiến trúc phân tách rõ Domain, Data và Presentation theo từng tính năng độc lập, dễ mở rộng và kiểm soát chất lượng bằng bộ test tự động.',
+      proof: 'AstroBite v3.6.0 (13 modules, 400/400 tests) · Finviet ECO POS (61 test files)',
+      tags: ['Flutter 3.x', 'Dart 3.x', 'Riverpod 2.6', 'BLoC / Cubit', 'AutoRoute'],
     },
     {
       title: 'NATIVE IOS SWIFT & KOTLIN',
       align: 'right',
       sub: isEn ? 'UIKit · VIPER · MVVM · CallKit VoIP · WidgetKit & AppWidget · Add-to-App' : 'UIKit · VIPER · MVVM · CallKit VoIP · WidgetKit & AppWidget · Add-to-App',
+      description: isEn
+        ? 'Deep native iOS & Android engineering from standalone VIPER/MVVM apps and lock-screen VoIP calls to Flutter Add-to-App and home-screen widgets.'
+        : 'Phát triển trực tiếp Native iOS/Android từ ứng dụng độc lập (VIPER/MVVM), gọi thoại màn hình khóa CallKit đến nhúng Flutter Add-to-App và OS Widgets.',
+      proof: 'Hahalolo (1M+ downloads, 99.5%+ crash-free) · Halome OTT (Swift MVVM, CallKit)',
+      tags: ['Swift / UIKit', 'Kotlin', 'VIPER & MVVM', 'CallKit VoIP', 'WidgetKit'],
     },
     {
       title: 'RUST FFI & OFFLINE-FIRST POS',
       align: 'left',
       sub: isEn ? 'flutter_rust_bridge · 50k-SKU SQLite · ESC/POS Thermal Printers · Sunmi/iMin' : 'flutter_rust_bridge · 50k-SKU SQLite · Máy in nhiệt ESC/POS · Sunmi/iMin',
+      description: isEn
+        ? 'High-throughput local persistence with embedded Rust + SQLite over Dart FFI, pending-sync queues, and peripheral control on low-RAM retail terminals.'
+        : 'Xử lý dữ liệu cục bộ tốc độ cao với Rust + SQLite qua Dart FFI, hàng đợi đồng bộ khi rớt mạng và điều khiển máy in nhiệt trên thiết bị POS RAM thấp.',
+      proof: 'Finviet ECO POS (-30% checkout time, 50k SKUs) · Aquannets (Pond Offline-First)',
+      tags: ['Rust (Dart FFI)', 'SQLite & Hive', 'ESC/POS Printer', 'WebSocket', 'VietQR'],
     },
     {
-      title: 'GEMINI AI & GENERATIVE UI',
+      title: 'GEMINI AI & CLOUD RELEASE OPS',
       align: 'right',
-      sub: isEn ? 'Multimodal Vision (<2.5s) · On-Device vi-VN Voice NLU (~1.1s) · Google A2UI' : 'Multimodal Vision (<2.5s) · Giọng nói vi-VN NLU (~1.1s) · Google A2UI',
+      sub: isEn ? 'Multimodal Vision · vi-VN Voice NLU · A2UI GenUI · Cloud Functions & Fastlane' : 'Multimodal Vision · Giọng nói vi-VN NLU · A2UI GenUI · Cloud Functions & Fastlane',
+      description: isEn
+        ? 'Production AI integration secured behind Firebase Cloud Functions proxies with daily per-user quotas, structured GenUI cards, and automated store pipelines.'
+        : 'Tích hợp AI đa phương thức qua Cloud Functions proxy bảo mật API key kèm hạn mức theo ngày, thẻ tương tác GenUI và tự động hóa CI/CD lên Store.',
+      proof: 'AstroBite v3.6.0 (geminiProxy, A2UI Coach, GitHub Actions + Fastlane)',
+      tags: ['Gemini Vision & NLU', 'GenUI (A2UI)', 'Cloud Functions', 'Fastlane', 'GitHub Actions'],
     },
   ];
 };
@@ -507,11 +551,11 @@ export const getAquaHobbies = (lang: Language = 'en'): AquaHobbyItem[] => {
     {
       id: 'architecture',
       tabLabel: 'ARCHITECTURE',
-      roleTitle: isEn ? 'SYSTEM ARCHITECT / 60 FPS PURIST' : 'KIẾN TRÚC HỆ THỐNG / TỐI ƯU 60 FPS',
+      roleTitle: isEn ? 'SYSTEM ARCHITECT / CLEAN CODE PURIST' : 'KIẾN TRÚC HỆ THỐNG / MÃ NGUỒN TINH GỌN',
       description: isEn
-        ? 'I enjoy dissecting widget render trees in Flutter DevTools, isolating high-frequency animations with RepaintBoundary, and enforcing Ponytail minimalism — deleting dead abstractions so 12-module codebases stay fast, testable, and predictable at 277/277 passing tests.'
-        : 'Đam mê mổ xẻ Render Tree trên Flutter DevTools, cô lập các vùng vẽ lại bằng RepaintBoundary và áp dụng triết lý Ponytail tinh gọn — xóa bỏ mọi abstraction thừa để hệ thống 12 phân hệ luôn đạt 60 FPS và 277/277 bài test tự động.',
-      highlights: ['Feature-First Clean Arch', 'Flutter DevTools Profiler', '277/277 Automated Tests', '0 Memory Leaks'],
+        ? 'I enjoy dissecting widget render trees in Flutter DevTools, isolating rebuilds with RepaintBoundary, and enforcing Ponytail minimalism — deleting dead abstractions so 13-module codebases stay fast, readable, and backed by 400/400 passing tests.'
+        : 'Đam mê mổ xẻ Render Tree trên Flutter DevTools, cô lập vùng vẽ lại bằng RepaintBoundary và áp dụng triết lý Ponytail tinh gọn — xóa bỏ mọi abstraction thừa để hệ thống 13 phân hệ luôn gọn sạch với 400/400 bài test tự động.',
+      highlights: ['Feature-First Clean Arch', 'Flutter DevTools Profiler', '400/400 Automated Tests', 'Ponytail Minimalism'],
       modelType: 'phone',
     },
     {
@@ -527,11 +571,11 @@ export const getAquaHobbies = (lang: Language = 'en'): AquaHobbyItem[] => {
     {
       id: 'ai-audio',
       tabLabel: 'AI & AUDIO',
-      roleTitle: isEn ? 'ON-DEVICE AI & ACOUSTIC EXPLORER' : 'AI ĐA PHƯƠNG THỨC & ÂM THANH',
+      roleTitle: isEn ? 'MULTIMODAL AI & ACOUSTIC EXPLORER' : 'AI ĐA PHƯƠNG THỨC & ÂM THANH',
       description: isEn
-        ? 'From streaming Vietnamese speech-to-text into Gemini 3.8 Flash NLU (~1.1s latency) and rendering interactive GenUI cards, to unwinding with acoustic guitar and ambient synthwave after shipping production builds — blending rhythm with engineering discipline.'
-        : 'Từ việc truyền nhận diện giọng nói tiếng Việt trực tiếp vào Gemini 3.8 Flash NLU (~1.1s) để dựng thẻ GenUI tương tác, cho đến những giờ thư giãn với guitar thùng và nhạc Synthwave sau mỗi đợt release — sự kết hợp giữa nhịp điệu và kỷ luật kỹ thuật.',
-      highlights: ['AstroVoice vi-VN (~1.1s)', 'Gemini 3.8 Flash Vision', 'Google A2UI GenUI', 'Acoustic Guitar & Synth'],
+        ? 'From routing Vietnamese speech-to-text and Gemini NLU through Cloud Function proxies to rendering interactive GenUI cards, and unwinding with acoustic guitar and synthwave after shipping builds — blending rhythm with engineering discipline.'
+        : 'Từ việc kết nối nhận diện giọng nói tiếng Việt và Gemini NLU qua Cloud Functions để dựng thẻ GenUI tương tác, cho đến những giờ thư giãn với guitar thùng và nhạc Synthwave sau mỗi đợt release — kết hợp giữa nhịp điệu và kỷ luật kỹ thuật.',
+      highlights: ['AstroVoice vi-VN', 'Gemini Vision & NLU', 'A2UI GenUI', 'Acoustic Guitar & Synth'],
       modelType: 'guitar',
     },
   ];
@@ -544,22 +588,22 @@ export const getAquaTechQAs = (lang: Language = 'en'): AquaTechQA[] => {
       {
         question: '01 // Why Feature-First Clean Architecture over Layer-First in AstroBite?',
         answer:
-          'With 12 modules (scanner, tracker, coach, health, etc.), Layer-First causes constant Git merge conflicts in shared folders. Feature-First isolates Domain (Freezed models), Data (Repositories/DTOs), and Presentation (Riverpod Notifiers) inside each feature package, shrinking test blast radius and keeping 277/277 tests deterministic.',
+          'With 13 modules (scanner, tracker, coach, guilds, health, etc.), Layer-First causes constant Git merge conflicts in shared folders. Feature-First isolates Domain (Freezed models), Data (Repositories/DTOs), and Presentation (Riverpod Notifiers) inside each feature folder, shrinking test blast radius and keeping all 400/400 tests deterministic.',
       },
       {
-        question: '02 // How does Flutter Generative UI (GenUI) & A2UI work in production?',
+        question: '02 // How does Flutter Generative UI (GenUI) & A2UI work in AstroCoach?',
         answer:
-          'Instead of returning raw Markdown from the LLM, the client defines a strongly-typed Widget Catalog (MealQuickLogCard, MacroBudgetGauge). Gemini 3.8 Flash outputs structured JSON specifying component IDs and props, which Flutter binds two-way so users adjust +/-20g steppers and tap 1-Tap Log (~45ms) straight to Firestore.',
+          'Instead of returning plain Markdown, Gemini returns structured JSON validated by an A2UI parser against a local Widget Catalog so Flutter renders native interactive cards inside the chat stream, complete with vi/en language mirroring and AI content reporting.',
       },
       {
         question: '03 // How did you benchmark 50,000 items on low-RAM Android POS terminals?',
         answer:
-          'In Finviet ECO POS, I built an embedded SQLite Price Store in Rust bridged via flutter_rust_bridge (Dart FFI) with indexed migrations and multi-row batch inserts, paired with BaseNetworkImageV2 sizing _MemCacheSize by devicePixelRatio so Sunmi/iMin devices stay at 60 FPS.',
+          'In Finviet ECO POS, I built an embedded SQLite Price Store in Rust bridged via flutter_rust_bridge (Dart FFI) with indexed migrations and multi-row batch inserts, paired with BaseNetworkImageV2 sizing _MemCacheSize by devicePixelRatio on Sunmi/iMin devices.',
       },
       {
-        question: '04 // How do iOS WidgetKit & Android AppWidget sync with zero battery drain?',
+        question: '04 // How do iOS WidgetKit & Android AppWidget sync without background drain?',
         answer:
-          'No background polling daemons. Using Reactive Sync, whenever a meal is logged or DailySummary recalculates, the app writes a key-value snapshot into AppGroup UserDefaults (iOS) and SharedPreferences (Android) and triggers updateWidget(), with a <300ms deep-link (astrobite://scanner) back to the camera.',
+          'No background polling daemons. Whenever a meal is logged or updated, the app writes a key-value snapshot into AppGroup UserDefaults (iOS) and SharedPreferences (Android) over the home_widget channel and triggers an immediate widget refresh.',
       },
     ];
   }
@@ -567,22 +611,22 @@ export const getAquaTechQAs = (lang: Language = 'en'): AquaTechQA[] => {
     {
       question: '01 // Tại sao chọn Feature-First Clean Architecture thay vì Layer-First cho AstroBite?',
       answer:
-        'Với 12 phân hệ độc lập (scanner, tracker, coach, health...), Layer-First dễ gây xung đột Git khi nhiều người sửa chung thư mục lớn. Feature-First đóng gói trọn vẹn Domain (Freezed), Data (Repositories/DTOs) và Presentation (Riverpod Notifiers) trong từng module, giúp cô lập phạm vi test và giữ 277/277 tests luôn xanh.',
+        'Với 13 phân hệ độc lập (scanner, tracker, coach, guilds, health...), Layer-First dễ gây xung đột Git khi sửa chung thư mục lớn. Feature-First đóng gói trọn vẹn Domain (Freezed), Data (Repositories/DTOs) và Presentation (Riverpod Notifiers) trong từng module, giúp cô lập phạm vi test và giữ 400/400 tests luôn xanh.',
     },
     {
       question: '02 // Flutter Generative UI (GenUI) và giao thức A2UI hoạt động thế nào?',
       answer:
-        'Thay vì để LLM trả về văn bản Markdown thụ động, Client định nghĩa sẵn Catalog các Native Widget (MealQuickLogCard, MacroBudgetGauge). Gemini 3.8 Flash trả về JSON có cấu trúc chỉ định component ID và props để Flutter render widget tương tác hai chiều (+/-20g stepper, 1-Tap Log ~45ms vào Firestore) ngay trong khung chat.',
+        'Thay vì trả về Markdown thô, Gemini trả JSON có cấu trúc được A2UI parser đối chiếu với Catalog Widget cục bộ để Flutter render thẻ tương tác native ngay trong luồng chat, hỗ trợ phản hồi song ngữ vi/en và nút báo cáo nội dung AI.',
     },
     {
       question: '03 // Xử lý bài toán 50.000 mã hàng trên máy POS Android RAM thấp như thế nào?',
       answer:
-        'Tại Finviet ECO POS, tôi xây dựng local SQLite Price Store bằng Rust nối qua flutter_rust_bridge (Dart FFI) với schema migrations đánh index và multi-row batch INSERT, kết hợp BaseNetworkImageV2 giới hạn _MemCacheSize theo devicePixelRatio giúp thiết bị Sunmi/iMin luôn giữ 60 FPS.',
+        'Tại Finviet ECO POS, tôi xây dựng local SQLite Price Store bằng Rust nối qua flutter_rust_bridge (Dart FFI) với schema migrations đánh index và multi-row batch INSERT, kết hợp BaseNetworkImageV2 giới hạn _MemCacheSize theo devicePixelRatio trên máy Sunmi/iMin.',
     },
     {
       question: '04 // Đồng bộ dữ liệu ra OS Home Widgets thế nào để không hao pin?',
       answer:
-        'Không dùng background service chạy ngầm theo phút. Mỗi khi người dùng lưu bữa ăn hoặc Riverpod tính xong DailySummary, app ghi snapshot dạng Key-Value vào AppGroup UserDefaults (iOS) và SharedPreferences (Android) rồi gọi updateWidget(), kèm deep-link mở thẳng camera trong <300ms.',
+        'Không dùng background service chạy ngầm theo phút. Mỗi khi người dùng lưu hoặc cập nhật bữa ăn, app ghi snapshot dạng Key-Value vào AppGroup UserDefaults (iOS) và SharedPreferences (Android) qua kênh home_widget rồi kích hoạt làm mới widget ngay lập tức.',
     },
   ];
 };

@@ -5,6 +5,7 @@ import {
   getAquaProjects,
   getAquaServices,
 } from '../../data/aquaPortfolioData';
+import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { AquaRoute, DualRollLink } from './AquaChrome';
 import { AquaProjectCard, AquaProjectModal } from './AquaProjectList';
 import { AquaContactFooter } from './AquaContactFooter';
@@ -13,64 +14,10 @@ interface AquaHomePageProps {
   onNavigate: (route: AquaRoute) => void;
 }
 
-const ScrollScrubParagraph: React.FC<{ text: string }> = ({ text }) => {
-  const containerRef = useRef<HTMLParagraphElement>(null);
-  const words = text.split(' ');
-  const [activeCount, setActiveCount] = useState<number>(0);
-
-  useEffect(() => {
-    let rafId: number;
-    const updateScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const vh = window.innerHeight || 900;
-      const start = vh * 0.85;
-      const end = vh * 0.2;
-      const progress = (start - rect.top) / (start - end);
-      const clamped = Math.max(0, Math.min(1, progress));
-      setActiveCount(Math.round(clamped * words.length));
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateScroll);
-    };
-
-    updateScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, [words.length]);
-
-  return (
-    <p
-      ref={containerRef}
-      className="mx-auto max-w-[1152px] font-montreal uppercase text-[22px] leading-[26px] md:text-3xl md:leading-[36px] lg:text-[40px] lg:leading-[1.25] tracking-[-0.01em] text-black flex flex-wrap gap-x-[0.3em] gap-y-1"
-    >
-      {words.map((word, idx) => {
-        const isLit = idx < activeCount;
-        return (
-          <span key={idx} className="relative inline-block">
-            <span className="opacity-[0.3]">{word}</span>
-            <span
-              className="absolute inset-0 transition-opacity duration-200"
-              style={{ opacity: isLit ? 1 : 0 }}
-            >
-              {word}
-            </span>
-          </span>
-        );
-      })}
-    </p>
-  );
-};
-
 export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const profile = getProfileData(language);
+  const stats = getVerifiedStats(language);
   const projects = getAquaProjects(language);
   const services = getAquaServices(language);
   const [selectedProject, setSelectedProject] = useState<AquaProjectItem | null>(null);
@@ -133,15 +80,10 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
     };
   }, []);
 
-  const aboutParagraphText =
-    language === 'en'
-      ? 'WELL ESTEEMED MOBILE ENGINEER AND SYSTEM ARCHITECT WITH 5+ YEARS HELPING COMPANIES SHIP HIGH-SCALE FLUTTER, NATIVE IOS SWIFT, AND ANDROID APPLICATIONS. BLENDING CLEAN ARCHITECTURE WITH TACTILE 60 FPS UI — 1M+ DOWNLOAD SOCIAL APPS SHIPPED, RUST FFI RETAIL POS TERMINALS OPTIMIZED, MULTIMODAL GEMINI AI ENGINEERED — I CONSTANTLY WEAVE ENGINEERING RIGOR INTO EVERY FRAME.'
-      : 'KỸ SƯ DI ĐỘNG VÀ KIẾN TRÚC SƯ HỆ THỐNG VỚI HƠN 5 NĂM ĐỒNG HÀNH CÙNG DOANH NGHIỆP XÂY DỰNG ỨNG DỤNG FLUTTER, NATIVE IOS SWIFT VÀ ANDROID QUY MÔ LỚN. KẾT HỢP CLEAN ARCHITECTURE VỚI GIAO DIỆN 60 FPS MƯỢT MÀ — TỪ SIÊU ỨNG DỤNG 1M+ LƯỢT TẢI, MÁY POS BÁN LẺ RUST FFI ĐẾN TRÍ TUỆ NHÂN TẠO GEMINI ĐA PHƯƠNG THỨC — LUÔN ĐẶT KỶ LUẬT KỸ THUẬT VÀO TỪNG KHUNG HÌNH.';
-
   return (
     <div className="bg-white text-black min-h-screen">
       {/* ============================================================
-          SECTION 1: HERO (.landing_main__6aiEQ.heroupgrade) — 1:1 EXACT REPLICA
+          SECTION 1: HERO — Minimalist Monochrome with Cursor Spotlight Mask
          ============================================================ */}
       <section
         ref={heroRef}
@@ -183,15 +125,15 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </svg>
         </p>
 
-        {/* Hidden Mask-Reveal Black Layer (.landing_mask__ur_og) — Exact 1:1 DOM & Offsets */}
+        {/* Hidden Mask-Reveal Black Layer */}
         <div
           ref={maskLayerRef}
           className="aqua-hero-mask hidden md:flex absolute inset-0 z-[300] pointer-events-none w-full h-full items-center justify-center"
           style={{
-            WebkitMaskSize: '40px',
-            maskSize: '40px',
-            WebkitMaskPosition: '-100px -100px',
-            maskPosition: '-100px -100px',
+            WebkitMaskSize: '0px',
+            maskSize: '0px',
+            WebkitMaskPosition: '-200px -200px',
+            maskPosition: '-200px -200px',
           }}
         >
           <div className="relative -left-[2%] h-fit px-5 lg:px-[70px] sm:px-[45px]">
@@ -215,7 +157,7 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Foreground Default White Layer (.landing_body__Lt8sp) — Exact 1:1 DOM & Offsets */}
+        {/* Foreground Default White Layer */}
         <div className="landing_body w-full h-full flex items-center justify-center">
           <div
             onMouseEnter={() => {
@@ -246,11 +188,11 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Bottom-Center Circular Scroll Down Button (.circouttercnt — 120x120 SVG circle r=40 stroke-width=1.8) */}
+        {/* Bottom-Center Circular Scroll Down Button */}
         <div className="w-full flex items-center justify-center absolute bottom-5 sm:bottom-8 left-0 right-0 z-[500] circouttercnt pointer-events-none">
           <button
             type="button"
-            aria-label="Scroll down to About section"
+            aria-label="Scroll down to Profile section"
             onClick={() => {
               const el = document.getElementById('about-intro');
               el?.scrollIntoView({ behavior: 'smooth' });
@@ -293,55 +235,130 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ============================================================
-          SECTION 2: ABOUT INTRO (Dual-Layer Word Opacity Scroll Scrub)
+          SECTION 2: SWISS PROFILE & VERIFIED IMPACT STRIP
          ============================================================ */}
       <section
         id="about-intro"
-        className="px-5 sm:px-[45px] lg:px-[70px] mt-[60px] lg:mt-[73px] mb-[120px] lg:mb-[300px]"
+        className="px-5 sm:px-[45px] lg:px-[70px] pt-16 lg:pt-24 mb-[100px] lg:mb-[160px]"
       >
-        <ScrollScrubParagraph text={aboutParagraphText} />
+        <div className="flex items-center justify-between">
+          <h2 className="font-montreal text-[15px] sm:text-[17px] uppercase tracking-[0.06em] text-black">
+            01 // {language === 'en' ? 'PROFILE' : 'TỔNG QUAN'}
+          </h2>
+          <span className="font-montreal text-[13px] uppercase tracking-[0.12em] text-[#666]">
+            {profile.location}
+          </span>
+        </div>
+        <div className="w-full h-[1.5px] bg-black mt-4" />
+
+        <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column (4 cols): Positioning & Quick Actions */}
+          <div className="lg:col-span-4">
+            <p className="font-clash-bold text-[22px] sm:text-[26px] uppercase leading-tight">
+              {profile.name}
+            </p>
+            <p className="mt-1 font-montreal text-[13px] uppercase tracking-[0.1em] text-[#555]">
+              {profile.levelTag}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/about');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="px-4 py-2 bg-black text-white font-montreal text-[12px] uppercase tracking-[0.12em] hover:bg-[#222] transition-colors"
+              >
+                {language === 'en' ? 'More About Me →' : 'Chi tiết Hồ sơ →'}
+              </a>
+              <a
+                href={profile.cvViewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 border border-black text-black font-montreal text-[12px] uppercase tracking-[0.12em] hover:bg-black hover:text-white transition-colors"
+              >
+                {language === 'en' ? 'Printable CV ↗' : 'Xem CV ATS ↗'}
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column (8 cols): Clean Editorial Bio */}
+          <div className="lg:col-span-8">
+            <p className="font-montreal text-[20px] sm:text-[25px] lg:text-[28px] leading-[1.45] tracking-[-0.01em] text-[#111]">
+              {profile.bio}
+            </p>
+          </div>
+        </div>
+
+        {/* 4 Verified Production Metrics Strip */}
+        <div className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 border-t border-l border-black">
+          {stats.map((st) => (
+            <div key={st.label} className="p-4 sm:p-6 border-r border-b border-black min-w-0">
+              <div className="font-montreal text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-[#666] truncate">
+                {st.metricTag}
+              </div>
+              <div className="mt-2 font-clash-bold text-[19px] xs:text-[23px] sm:text-[32px] uppercase leading-tight">
+                {st.value}
+              </div>
+              <div className="mt-1.5 font-montreal font-medium text-[12px] sm:text-[13px] uppercase text-black">
+                {st.label}
+              </div>
+              <p className="mt-1 hidden sm:block font-montreal text-[13px] leading-[1.45] text-[#444]">
+                {st.desc}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ============================================================
-          SECTION 3: PORTFOLIO / SELECTED WORKS (7 Staggered 20vw Cards)
+          SECTION 3: SELECTED WORKS — Dennis Snellenberg Editorial Table
          ============================================================ */}
       <section
         id="portfolio"
-        className="px-5 sm:px-[45px] lg:px-[70px] mb-[120px] lg:mb-[300px]"
+        className="px-5 sm:px-[45px] lg:px-[70px] mb-[110px] lg:mb-[180px]"
       >
-        <div>
-          <div className="flex items-center justify-between">
-            <h2 className="font-montreal text-[18px] uppercase tracking-[0.02em] text-black">
-              PORTFOLIO
-            </h2>
-            <DualRollLink
-              text={language === 'en' ? 'SEE ALL PROJECTS' : 'XEM TẤT CẢ DỰ ÁN'}
-              href="/works"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/works');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              showArrow
-              className="text-[16px] sm:text-[18px] text-black"
-            />
-          </div>
-          <div className="projectLine w-full h-[1.5px] bg-black mt-[22px]" />
-        </div>
-
-        <div className="mt-10 mb-6 text-center">
-          <h2 className="font-montreal text-[16px] sm:text-[18px] uppercase tracking-[0.14em] text-black">
-            SELECTED WORKS
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-montreal text-[14px] sm:text-[17px] uppercase tracking-[0.06em] text-black">
+            02 // SELECTED WORKS (0{projects.length})
           </h2>
+          <DualRollLink
+            text={language === 'en' ? 'ALL WORKS' : 'XEM TẤT CẢ'}
+            href="/works"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/works');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            showArrow
+            className="text-[13px] sm:text-[17px] text-black shrink-0"
+          />
+        </div>
+        <div className="w-full h-[1.5px] bg-black mt-4" />
+
+        {/* Desktop Table Column Header */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-6 px-5 py-3.5 border-b border-black/20 font-montreal text-[11px] uppercase tracking-[0.16em] text-[#777]">
+          <span className="lg:col-span-5">
+            {language === 'en' ? 'PROJECT / CONTEXT' : 'DỰ ÁN / BỐI CẢNH'}
+          </span>
+          <span className="lg:col-span-4">
+            {language === 'en' ? 'SCOPE & CORE STACK' : 'PHẠM VI & CÔNG NGHỆ CHÍNH'}
+          </span>
+          <span className="lg:col-span-3 text-right">
+            {language === 'en' ? 'KEY IMPACT / PERIOD' : 'CHỈ SỐ CHÍNH / THỜI GIAN'}
+          </span>
         </div>
 
-        <div className="flex flex-col divide-y divide-black/10 lg:divide-y-0 lg:gap-[110px]">
+        {/* 7 Interactive Editorial Rows */}
+        <div className="flex flex-col">
           {projects.map((proj, idx) => (
             <AquaProjectCard
               key={proj.id}
               project={proj}
               index={idx}
-              cursorLabel="View more"
+              cursorLabel="View Case"
               onSelect={(p) => setSelectedProject(p)}
             />
           ))}
@@ -349,33 +366,31 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ============================================================
-          SECTION 4: SERVICES (4 Staggered Kinetic Rows)
+          SECTION 4: CORE CAPABILITIES / SERVICES — Swiss Architectural Grid
          ============================================================ */}
       <section
         id="services"
-        className="px-5 sm:px-[45px] lg:px-[70px] mb-[100px] lg:mb-[220px]"
+        className="px-5 sm:px-[45px] lg:px-[70px] mb-[100px] lg:mb-[160px]"
       >
-        <div>
-          <div className="flex items-center justify-between">
-            <h2 className="font-montreal text-[18px] uppercase tracking-[0.02em] text-black">
-              SERVICES
-            </h2>
-            <DualRollLink
-              text={language === 'en' ? 'MORE ABOUT ME' : 'VỀ BẢN THÂN TÔI'}
-              href="/about"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/about');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              showArrow
-              className="text-[16px] sm:text-[18px] text-black"
-            />
-          </div>
-          <div className="projectLine w-full h-[1.5px] bg-black mt-[22px]" />
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-montreal text-[14px] sm:text-[17px] uppercase tracking-[0.06em] text-black">
+            03 // {language === 'en' ? 'CAPABILITIES' : 'NĂNG LỰC'}
+          </h2>
+          <DualRollLink
+            text={language === 'en' ? 'ABOUT & Q&A' : 'HỒ SƠ & Q&A'}
+            href="/about"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/about');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            showArrow
+            className="text-[13px] sm:text-[17px] text-black shrink-0"
+          />
         </div>
+        <div className="w-full h-[1.5px] bg-black mt-4" />
 
-        <div className="mt-14 lg:mt-24 flex flex-col gap-[34px] md:gap-[67px]">
+        <div className="divide-y divide-black/20 border-b border-black/20">
           {services.map((srv, idx) => (
             <div
               key={srv.title}
@@ -383,35 +398,36 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
                 onNavigate('/about');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`group w-fit flex flex-col ${
-                srv.align === 'right' ? 'self-end text-right items-end' : 'self-start text-left items-start'
-              }`}
+              className="group py-8 sm:py-10 px-2 sm:px-4 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start hover:bg-[#f7f7f7] transition-colors"
             >
-              <h3 className="font-montreal font-normal uppercase text-[7.5vw] sm:text-[6.1vw] lg:text-[5.2vw] leading-[1.04] tracking-[-0.02em] text-black flex flex-wrap gap-x-[0.28em]">
-                {srv.title.split(' ').map((word, wIdx) => (
-                  <span key={wIdx} className="inline-flex whitespace-nowrap">
-                    {word.split('').map((ch, cIdx) => {
-                      const tilt = ((cIdx + wIdx + idx) % 5) - 2;
-                      return (
-                        <span
-                          key={cIdx}
-                          className="inline-block transition-transform duration-300 group-hover:rotate-[var(--char-tilt)] group-hover:-translate-y-1"
-                          style={
-                            {
-                              '--char-tilt': `${tilt * 2.5}deg`,
-                            } as React.CSSProperties
-                          }
-                        >
-                          {ch}
-                        </span>
-                      );
-                    })}
-                  </span>
-                ))}
-              </h3>
-              <p className="mt-1.5 font-montreal text-[12px] sm:text-[14px] uppercase tracking-[0.12em] text-[#666] group-hover:text-black transition-colors">
-                0{idx + 1} // {srv.sub}
-              </p>
+              <span className="lg:col-span-1 font-clash-bold text-[18px] text-[#777] group-hover:text-black transition-colors">
+                0{idx + 1}
+              </span>
+
+              <div className="lg:col-span-5">
+                <h3 className="font-clash-bold text-[22px] sm:text-[28px] uppercase leading-[1.1] tracking-[-0.01em] text-black group-hover:translate-x-1 transition-transform">
+                  {srv.title}
+                </h3>
+                <p className="mt-2 font-montreal text-[12px] uppercase tracking-[0.08em] text-[#666]">
+                  {srv.proof}
+                </p>
+              </div>
+
+              <div className="lg:col-span-6">
+                <p className="font-montreal text-[15px] leading-[1.6] text-[#222]">
+                  {srv.description}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {srv.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-0.5 border border-black font-montreal text-[11px] uppercase tracking-[0.06em] bg-white text-black"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
