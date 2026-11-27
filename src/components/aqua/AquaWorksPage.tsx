@@ -5,7 +5,7 @@ import {
   getAquaProducts,
   getAquaProjects,
 } from '../../data/aquaPortfolioData';
-import { AquaProjectCard, AquaProjectModal } from './AquaProjectList';
+import { AquaProjectModal, AquaProjectTable } from './AquaProjectList';
 import { AquaContactFooter } from './AquaContactFooter';
 
 export const AquaWorksPage: React.FC = () => {
@@ -77,17 +77,13 @@ export const AquaWorksPage: React.FC = () => {
           </span>
         </div>
 
-        {/* Seamless Editorial Rows */}
-        <div className="flex flex-col mb-[110px] lg:mb-[180px]">
-          {currentList.map((item, idx) => (
-            <AquaProjectCard
-              key={item.id}
-              project={item}
-              index={idx}
-              cursorLabel="View Case"
-              onSelect={(p) => setSelectedItem(p)}
-            />
-          ))}
+        {/* Seamless Editorial Rows with Floating Hover Preview */}
+        <div className="mb-[110px] lg:mb-[180px]">
+          <AquaProjectTable
+            items={currentList}
+            cursorLabel="View Case"
+            onSelect={(p) => setSelectedItem(p)}
+          />
         </div>
       </section>
 

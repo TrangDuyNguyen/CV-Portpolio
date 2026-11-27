@@ -4,6 +4,7 @@ export interface AquaProjectItem {
   id: string;
   displayTitle: string;
   monogram: string;
+  categoryBadge?: string;
   iconUrl?: string;
   titleLines: [string, string];
   fullName: string;
@@ -48,64 +49,10 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
   const isEn = lang === 'en';
   return [
     {
-      id: 'astrobite',
-      displayTitle: 'AstroBite',
-      monogram: 'AB',
-      titleLines: ['ASTRO', 'BITE'],
-      fullName: 'AstroBite v3.6.0 — AI Food Scanner & Vietnamese Voice Calorie Tracker',
-      companyOrContext: isEn ? 'Personal Project · 13 Clean Modules · 222 Commits' : 'Dự án Cá nhân · 13 Phân hệ Clean Arch · 222 Commits',
-      period: '2026',
-      role: 'Mobile Engineer & System Architect',
-      shortDesc: isEn
-        ? 'Dual-mode AI food scanner (dish & barcode/label OCR), Vietnamese voice logging, and GenUI nutrition coach.'
-        : 'Ứng dụng quét món ăn AI (món đĩa & mã vạch/nhãn), ghi giọng nói tiếng Việt và huấn luyện viên GenUI.',
-      coverImage: '/screenshots/clay/cockpit_dashboard.png',
-      previewImage: '/screenshots/clay/genui_astrocoach_chat.png',
-      previewSlides: [
-        '/screenshots/clay/genui_astrocoach_chat.png',
-        '/screenshots/clay/cockpit_dashboard.png',
-        '/screenshots/clay/analytics_fl_chart.png',
-        '/screenshots/clay/manual_portion_scaler.png',
-        '/screenshots/clay/widget_home_screen.png',
-      ],
-      metrics: [
-        { label: isEn ? 'Automated QA' : 'Kiểm thử', value: '400 / 400 Tests Pass' },
-        { label: isEn ? 'Architecture' : 'Kiến trúc', value: '13 Modules · 50K+ LOC' },
-        { label: isEn ? 'AI Backend' : 'AI Proxy', value: '10 Scans/Day Proxy' },
-        { label: isEn ? 'Release' : 'Phát hành', value: 'v3.6.0 · 222 Commits' },
-      ],
-      techStack: [
-        'Flutter 3.x',
-        'Riverpod 2.6',
-        'Gemini Vision & NLU',
-        'GenUI (A2UI)',
-        'Speech-to-Text (vi-VN)',
-        'Cloud Functions Proxy',
-        'WidgetKit & AppWidget',
-        'Cloud Firestore & FCM',
-        'Fastlane & GitHub Actions',
-      ],
-      bullets: isEn
-        ? [
-            'Built solo on Feature-First Clean Architecture across 13 decoupled modules (50K+ LOC) with 400/400 unit & widget tests passing across 98 test files plus an integration test.',
-            'Implemented dual-mode Gemini Vision scanning (Dish mode for plated/Asian meals and Packaged mode for barcodes & nutrition fact labels) routed via a Cloud Function geminiProxy enforcing login and a 10 scans/user/day Firestore quota.',
-            'Engineered AstroVoice (on-device vi-VN speech_to_text + Gemini NLU) and AstroCoach GenUI (A2UI parser + local widget catalog, vi/en language mirroring, and Google Play AI content reporting).',
-            'Built offline-first food and water logging with a pending-sync queue coordinated by NetworkSyncCoordinator on connectivity_plus restore.',
-            'Shipped store compliance (in-app account deletion, Apple Privacy Manifest, Firestore owner-only field rules), Guilds/Streaks over FCM, HealthKit/Health Connect sync, and native iOS WidgetKit / Android AppWidget via GitHub Actions + Fastlane.',
-          ]
-        : [
-            'Tự xây dựng theo Feature-First Clean Architecture gồm 13 phân hệ độc lập (50K+ LOC), đạt 400/400 unit & widget tests pass trên 98 file test cùng 1 integration test.',
-            'Triển khai Scanner AI hai chế độ (Dish cho món ăn đĩa/món Á và Packaged cho mã vạch/nhãn dinh dưỡng) đi qua Cloud Function geminiProxy bắt buộc đăng nhập và giới hạn 10 lượt quét/user/ngày trên Firestore.',
-            'Xây dựng AstroVoice (nhận giọng nói vi-VN on-device + Gemini NLU) và AstroCoach GenUI (A2UI parser + catalog widget cục bộ, phản hồi song ngữ vi/en và nút báo cáo nội dung AI).',
-            'Lưu bữa ăn và lượng nước offline-first với hàng đợi pending-sync, tự đồng bộ lên Firestore qua NetworkSyncCoordinator khi mạng phục hồi.',
-            'Hoàn thiện tuân thủ store (xoá tài khoản trong app, Apple Privacy Manifest, Firestore rules kiểm tra từng trường), Guilds/Streak qua FCM, HealthKit/Health Connect và Widget iOS (Swift) / Android (Kotlin) qua GitHub Actions + Fastlane.',
-          ],
-      themeAccent: '#0d0f14',
-    },
-    {
       id: 'ecopos',
       displayTitle: 'Finviet ECO POS',
       monogram: 'POS',
+      categoryBadge: isEn ? 'COMMERCIAL' : 'THƯƠNG MẠI',
       titleLines: ['ECO', 'POS'],
       fullName: 'Finviet ECO POS — Retail & F&B POS, Kiosk & E-Invoice',
       companyOrContext: 'Finviet Technology · 860 Commits · 201 Tickets',
@@ -155,6 +102,7 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       id: 'hahalolo',
       displayTitle: 'Hahalolo',
       monogram: 'HH',
+      categoryBadge: isEn ? 'COMMERCIAL' : 'THƯƠNG MẠI',
       iconUrl: '/assets/apps/hahalolo.png',
       titleLines: ['HAHA', 'LOLO'],
       fullName: 'Hahalolo — Social Travel Network (1M+ Downloads)',
@@ -195,9 +143,66 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       themeAccent: '#0d2628',
     },
     {
+      id: 'astrobite',
+      displayTitle: 'AstroBite v3.6',
+      monogram: 'AB',
+      categoryBadge: isEn ? 'PERSONAL FLAGSHIP' : 'DỰ ÁN CHỦ LỰC',
+      titleLines: ['ASTRO', 'BITE'],
+      fullName: 'AstroBite v3.6.0 — AI Food Scanner & Vietnamese Voice Calorie Tracker',
+      companyOrContext: isEn ? 'Solo Architecture · 13 Modules · 222 Commits' : 'Tự thiết kế toàn bộ · 13 Phân hệ · 222 Commits',
+      period: '2026',
+      role: 'Mobile Engineer & System Architect',
+      shortDesc: isEn
+        ? 'Dual-mode AI food scanner (dish & barcode/label OCR), Vietnamese voice logging, and GenUI nutrition coach.'
+        : 'Ứng dụng quét món ăn AI (món đĩa & mã vạch/nhãn), ghi giọng nói tiếng Việt và huấn luyện viên GenUI.',
+      coverImage: '/screenshots/clay/cockpit_dashboard.png',
+      previewImage: '/screenshots/clay/genui_astrocoach_chat.png',
+      previewSlides: [
+        '/screenshots/clay/genui_astrocoach_chat.png',
+        '/screenshots/clay/cockpit_dashboard.png',
+        '/screenshots/clay/analytics_fl_chart.png',
+        '/screenshots/clay/manual_portion_scaler.png',
+        '/screenshots/clay/widget_home_screen.png',
+      ],
+      metrics: [
+        { label: isEn ? 'Automated QA' : 'Kiểm thử', value: '400 / 400 Tests Pass' },
+        { label: isEn ? 'Architecture' : 'Kiến trúc', value: '13 Modules · 50K+ LOC' },
+        { label: isEn ? 'AI Backend' : 'AI Proxy', value: '10 Scans/Day Proxy' },
+        { label: isEn ? 'Release' : 'Phát hành', value: 'v3.6.0 · 222 Commits' },
+      ],
+      techStack: [
+        'Flutter 3.x',
+        'Riverpod 2.6',
+        'Gemini Vision & NLU',
+        'GenUI (A2UI)',
+        'Speech-to-Text (vi-VN)',
+        'Cloud Functions Proxy',
+        'WidgetKit & AppWidget',
+        'Cloud Firestore & FCM',
+        'Fastlane & GitHub Actions',
+      ],
+      bullets: isEn
+        ? [
+            'Built solo on Feature-First Clean Architecture across 13 decoupled modules (50K+ LOC) with 400/400 unit & widget tests passing across 98 test files plus an integration test.',
+            'Implemented dual-mode Gemini Vision scanning (Dish mode for plated/Asian meals and Packaged mode for barcodes & nutrition fact labels) routed via a Cloud Function geminiProxy enforcing login and a 10 scans/user/day Firestore quota.',
+            'Engineered AstroVoice (on-device vi-VN speech_to_text + Gemini NLU) and AstroCoach GenUI (A2UI parser + local widget catalog, vi/en language mirroring, and Google Play AI content reporting).',
+            'Built offline-first food and water logging with a pending-sync queue coordinated by NetworkSyncCoordinator on connectivity_plus restore.',
+            'Shipped store compliance (in-app account deletion, Apple Privacy Manifest, Firestore owner-only field rules), Guilds/Streaks over FCM, HealthKit/Health Connect sync, and native iOS WidgetKit / Android AppWidget via GitHub Actions + Fastlane.',
+          ]
+        : [
+            'Tự xây dựng theo Feature-First Clean Architecture gồm 13 phân hệ độc lập (50K+ LOC), đạt 400/400 unit & widget tests pass trên 98 file test cùng 1 integration test.',
+            'Triển khai Scanner AI hai chế độ (Dish cho món ăn đĩa/món Á và Packaged cho mã vạch/nhãn dinh dưỡng) đi qua Cloud Function geminiProxy bắt buộc đăng nhập và giới hạn 10 lượt quét/user/ngày trên Firestore.',
+            'Xây dựng AstroVoice (nhận giọng nói vi-VN on-device + Gemini NLU) và AstroCoach GenUI (A2UI parser + catalog widget cục bộ, phản hồi song ngữ vi/en và nút báo cáo nội dung AI).',
+            'Lưu bữa ăn và lượng nước offline-first với hàng đợi pending-sync, tự đồng bộ lên Firestore qua NetworkSyncCoordinator khi mạng phục hồi.',
+            'Hoàn thiện tuân thủ store (xoá tài khoản trong app, Apple Privacy Manifest, Firestore rules kiểm tra từng trường), Guilds/Streak qua FCM, HealthKit/Health Connect và Widget iOS (Swift) / Android (Kotlin) qua GitHub Actions + Fastlane.',
+          ],
+      themeAccent: '#0d0f14',
+    },
+    {
       id: 'halome',
       displayTitle: 'Halome OTT',
       monogram: 'HM',
+      categoryBadge: isEn ? 'COMMERCIAL' : 'THƯƠNG MẠI',
       iconUrl: '/assets/apps/halome.png',
       titleLines: ['HALO', 'ME'],
       fullName: 'Halome — Real-time OTT Messaging & VoIP Calling',
@@ -242,6 +247,7 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       id: 'haloki',
       displayTitle: 'Haloki Fintech',
       monogram: 'HK',
+      categoryBadge: isEn ? 'COMMERCIAL' : 'THƯƠNG MẠI',
       iconUrl: '/assets/apps/haloki.png',
       titleLines: ['HALO', 'KI'],
       fullName: 'Haloki — Cross-Border Fintech Remittance (192 Countries)',
@@ -281,6 +287,7 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       id: 'invest',
       displayTitle: 'Hahalolo Invest',
       monogram: 'IV',
+      categoryBadge: isEn ? 'COMMERCIAL' : 'THƯƠNG MẠI',
       titleLines: ['IN', 'VEST'],
       fullName: 'Hahalolo Invest — Real-time Stock & Portfolio Trading',
       companyOrContext: 'Hahalolo Fintech · Securities & Equity Analytics',
@@ -319,6 +326,7 @@ export const getAquaProjects = (lang: Language = 'en'): AquaProjectItem[] => {
       id: 'aquannets',
       displayTitle: 'Aquannets',
       monogram: 'AQ',
+      categoryBadge: isEn ? 'OUTSOURCE' : 'OUTSOURCE',
       titleLines: ['AQUA', 'NNETS'],
       fullName: 'Aquannets — Offline-First Aquaculture Farm Management',
       companyOrContext: 'Galactic Holdings Outsource · 2-Engineer Mobile Team',

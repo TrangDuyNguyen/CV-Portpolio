@@ -7,7 +7,7 @@ import {
 } from '../../data/aquaPortfolioData';
 import { getProfileData, getVerifiedStats } from '../../data/profileData';
 import { AquaRoute, DualRollLink } from './AquaChrome';
-import { AquaProjectCard, AquaProjectModal } from './AquaProjectList';
+import { AquaProjectModal, AquaProjectTable } from './AquaProjectList';
 import { AquaContactFooter } from './AquaContactFooter';
 
 interface AquaHomePageProps {
@@ -89,8 +89,8 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
         ref={heroRef}
         className="landing_main heroupgrade relative w-full h-screen select-none overflow-hidden"
       >
-        {/* Left Margin Index Pointer: 01//04 — HOVER -> */}
-        <p className="text-[15px] font-montreal flex flex-row items-center uppercase justify-center gap-[5px] left-0 absolute md:top-[335px] top-56 px-5 lg:px-[70px] sm:px-[45px] z-[350] pointer-events-none text-black">
+        {/* Left Margin Index Pointer: 01//04 — HOVER -> (Desktop) / clean top position on Mobile */}
+        <p className="text-[12px] sm:text-[14px] font-montreal flex flex-row items-center uppercase justify-center gap-[5px] left-0 absolute top-24 md:top-[335px] px-5 lg:px-[70px] sm:px-[45px] z-[350] pointer-events-none text-[#555] md:text-black">
           <span className="hidden md:inline">01//04 — HOVER</span>
           <span className="md:hidden">01//04 — SCROLL</span>
           <svg
@@ -125,7 +125,7 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </svg>
         </p>
 
-        {/* Hidden Mask-Reveal Black Layer */}
+        {/* Hidden Mask-Reveal Black Layer — Authentic Mobile Engineering Proof */}
         <div
           ref={maskLayerRef}
           className="aqua-hero-mask hidden md:flex absolute inset-0 z-[300] pointer-events-none w-full h-full items-center justify-center"
@@ -136,29 +136,29 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
             maskPosition: '-200px -200px',
           }}
         >
-          <div className="relative -left-[2%] h-fit px-5 lg:px-[70px] sm:px-[45px]">
-            <p className="text-[13px] w-fit font-montreal font-bold tracking-[3px] uppercase relative md:left-48 lg:left-64 self-center md:self-auto text-white mb-1">
-              Trang_dev
+          <div className="relative -left-[2%] h-fit px-5 lg:px-[70px] sm:px-[45px] -mt-12">
+            <p className="text-[12px] sm:text-[13px] w-fit font-montreal font-bold tracking-[0.2em] uppercase relative md:left-40 lg:left-56 self-center md:self-auto text-white/85 mb-2">
+              {language === 'en' ? 'OPEN TO MOBILE ENGINEER ROLES' : 'SẴN SÀNG CƠ HỘI MOBILE ENGINEER'}
             </p>
-            <h1 className="flex items-center font-montreal font-bold uppercase xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white sm:relative sm:left-[18%]">
-              TALENTED
+            <h1 className="flex items-center font-montreal font-bold uppercase xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white sm:relative sm:left-[16%]">
+              1M+ USERS
             </h1>
-            <h1 className="whitespace-nowrap uppercase flex text-center items-center font-montreal font-bold xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white">
-              INNOVATIVE
+            <h1 className="whitespace-nowrap uppercase flex text-center items-center font-montreal font-bold xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white">
+              CLEAN ARCH
             </h1>
-            <h1 className="text-white relative sm:left-[18%] w-fit md:flex md:flex-row md:items-center">
-              <span className="font-montreal font-bold uppercase xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white">
-                DEVELOPER
+            <h1 className="text-white relative sm:left-[16%] w-fit md:flex md:flex-row md:items-center">
+              <span className="font-montreal font-bold uppercase xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-white">
+                SHIPPED
               </span>
-              <span className="text-[13px] lg:text-[15px] font-montreal font-medium uppercase ml-[22px] lg:ml-[27px] md:block hidden text-white tracking-[0.02em] whitespace-nowrap">
-                IF THE PAY IS HONEST
+              <span className="text-[13px] lg:text-[14px] font-montreal font-medium uppercase ml-[22px] lg:ml-[27px] md:block hidden text-white/90 tracking-[0.06em] whitespace-nowrap">
+                FINVIET POS · HAHALOLO · ASTROBITE
               </span>
             </h1>
           </div>
         </div>
 
-        {/* Foreground Default White Layer */}
-        <div className="landing_body w-full h-full flex items-center justify-center">
+        {/* Foreground Default White Layer — Instant 3-Second Recruiter Clarity */}
+        <div className="landing_body w-full h-full flex flex-col items-center justify-center px-5">
           <div
             onMouseEnter={() => {
               isHoveringTextRef.current = true;
@@ -166,25 +166,57 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
             onMouseLeave={() => {
               isHoveringTextRef.current = false;
             }}
-            className="relative"
+            className="relative -mt-10 sm:-mt-12"
           >
-            <p className="text-[13px] w-fit font-montreal font-bold tracking-[3px] uppercase relative md:left-[130px] lg:left-[152px] px-5 lg:px-[70px] sm:px-[45px] self-center md:self-auto text-black mb-1">
-              DT
+            <p className="text-[12px] sm:text-[13px] w-fit font-montreal font-bold tracking-[0.2em] uppercase relative md:left-[110px] lg:left-[145px] text-black mb-2">
+              {profile.name} · {language === 'en' ? 'HO CHI MINH CITY' : 'TP. HỒ CHÍ MINH'}
             </p>
-            <h1 className="flex items-center font-montreal font-bold uppercase xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black sm:relative sm:left-[18%]">
-              MULTI–
+            <h1 className="flex items-center font-montreal font-bold uppercase xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black sm:relative sm:left-[16%]">
+              MOBILE
             </h1>
-            <h1 className="whitespace-nowrap uppercase flex text-center items-center font-montreal font-bold xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black">
-              DISCIPLINED
+            <h1 className="whitespace-nowrap uppercase flex text-center items-center font-montreal font-bold xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black">
+              ENGINEER
             </h1>
-            <h1 className="text-black relative sm:left-[18%] w-fit md:flex md:flex-row md:items-center">
-              <span className="font-montreal font-bold uppercase xl:text-[120px] lg:text-[90px] md:text-[72px] sm:text-[64px] xs:text-[52px] text-[42px] w-fit xl:leading-[100px] lg:leading-[84px] md:leading-[68px] sm:leading-[60px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black">
-                DEVELOPER
+            <h1 className="text-black relative sm:left-[16%] w-fit md:flex md:flex-row md:items-center">
+              <span className="font-montreal font-bold uppercase xl:text-[116px] lg:text-[88px] md:text-[72px] sm:text-[62px] xs:text-[50px] text-[42px] w-fit xl:leading-[98px] lg:leading-[82px] md:leading-[68px] sm:leading-[58px] xs:leading-[46px] leading-[40px] tracking-[-0.03em] text-black">
+                5+ YEARS
               </span>
-              <span className="text-[13px] lg:text-[15px] font-montreal font-medium uppercase ml-[22px] lg:ml-[27px] md:block hidden text-black tracking-[0.02em] whitespace-nowrap">
-                GOOD DESIGN IS HONEST
+              <span className="text-[12px] lg:text-[14px] font-montreal font-medium uppercase md:ml-[22px] lg:ml-[27px] mt-2 md:mt-0 block text-[#222] tracking-[0.08em] whitespace-nowrap">
+                FLUTTER · NATIVE IOS SWIFT · KOTLIN
               </span>
             </h1>
+          </div>
+
+          {/* Above-the-Fold Recruiter Quick Actions */}
+          <div className="relative z-[360] mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-5 py-2.5 bg-black text-white font-montreal text-[12px] uppercase tracking-[0.12em] hover:bg-[#222] transition-colors"
+            >
+              {language === 'en' ? 'Selected Works (07) ↓' : 'Xem Dự án (07) ↓'}
+            </button>
+            <a
+              href="/about"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/about');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-5 py-2.5 border border-black bg-white text-black font-montreal text-[12px] uppercase tracking-[0.12em] hover:bg-black hover:text-white transition-colors"
+            >
+              {language === 'en' ? 'Experience & Q&A →' : 'Kinh nghiệm & Q&A →'}
+            </a>
+            <a
+              href={profile.cvViewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 border border-black bg-white text-black font-montreal text-[12px] uppercase tracking-[0.12em] hover:bg-black hover:text-white transition-colors"
+            >
+              {language === 'en' ? 'Printable ATS CV ↗' : 'Xem & Tải CV PDF ↗'}
+            </a>
           </div>
         </div>
 
@@ -351,18 +383,12 @@ export const AquaHomePage: React.FC<AquaHomePageProps> = ({ onNavigate }) => {
           </span>
         </div>
 
-        {/* 7 Interactive Editorial Rows */}
-        <div className="flex flex-col">
-          {projects.map((proj, idx) => (
-            <AquaProjectCard
-              key={proj.id}
-              project={proj}
-              index={idx}
-              cursorLabel="View Case"
-              onSelect={(p) => setSelectedProject(p)}
-            />
-          ))}
-        </div>
+        {/* 7 Interactive Editorial Rows with Floating Hover Preview */}
+        <AquaProjectTable
+          items={projects}
+          cursorLabel="View Case"
+          onSelect={(p) => setSelectedProject(p)}
+        />
       </section>
 
       {/* ============================================================

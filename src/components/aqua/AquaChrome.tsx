@@ -63,16 +63,28 @@ export const DualRollLink: React.FC<DualRollLinkProps> = ({
 };
 
 export const AquaPreloader: React.FC = () => {
-  const [phase, setPhase] = useState<'visible' | 'exiting' | 'done'>('visible');
+  const [phase, setPhase] = useState<'visible' | 'exiting' | 'done'>(() => {
+    try {
+      return sessionStorage.getItem('dt_preloader_seen') === '1' ? 'done' : 'visible';
+    } catch {
+      return 'visible';
+    }
+  });
 
   useEffect(() => {
-    const t1 = window.setTimeout(() => setPhase('exiting'), 1350);
-    const t2 = window.setTimeout(() => setPhase('done'), 2050);
+    if (phase === 'done') return;
+    try {
+      sessionStorage.setItem('dt_preloader_seen', '1');
+    } catch {
+      // ignore storage restrictions
+    }
+    const t1 = window.setTimeout(() => setPhase('exiting'), 520);
+    const t2 = window.setTimeout(() => setPhase('done'), 960);
     return () => {
       window.clearTimeout(t1);
       window.clearTimeout(t2);
     };
-  }, []);
+  }, [phase]);
 
   if (phase === 'done') return null;
 
@@ -182,7 +194,15 @@ export const AquaChrome: React.FC<AquaChromeProps> = ({ currentRoute, onNavigate
   const [timeStr, setTimeStr] = useState<string>('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const updateClock = () => {
@@ -241,42 +261,98 @@ export const AquaChrome: React.FC<AquaChromeProps> = ({ currentRoute, onNavigate
 
   return (
     <>
-      {/* 1. Top Fixed Navigation Bar — mix-blend-difference on the fixed root element so it blends directly against the page canvas */}
-      <header className="fixed top-0 left-0 right-0 z-[400] px-5 sm:px-[45px] lg:px-[70px] pt-6 pb-3 flex items-center justify-between pointer-events-none mix-blend-difference text-white">
-        {/* Left: Monogram (AD -> DT) */}
+      {/* 1. Top Fixed Navigation Bar — Blend-mode at top of Hero, crisp solid bar on scroll */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[400] px-5 sm:px-[45px] lg:px-[70px] flex items-center justify-between transition-colors duration-200 ${
+          scrolled
+            ? 'py-3 bg-white/95 backdrop-blur-sm border-b border-black/15 text-black'
+            : 'pt-5 pb-3 pointer-events-none mix-blend-difference text-white'
+        }`}
+      >
+        {/* Left: Monogram + Name */}
         <a
           href="/"
           onClick={(e) => handleNav('/', e)}
-          className="pointer-events-auto text-[20px] font-montreal font-medium tracking-tight text-white select-none"
+          className="pointer-events-auto flex items-center gap-2.5 select-none"
         >
-          DT
+          <span className="text-[19px] font-clash-bold tracking-tight">DT</span>
+          <span className="hidden xl:inline font-montreal text-[13px] uppercase tracking-[0.12em] opacity-85">
+            · NGUYEN DUY TRANG
+          </span>
         </a>
 
-        {/* Center: Status Link (Desktop only, matching CURRENT CONTRACT DEVELOPER @DREAMLABS) */}
-        <div className="hidden lg:block pointer-events-auto text-white">
-          <DualRollLink
-            text={
-              language === 'en'
-                ? 'MOBILE ENGINEER @FINVIET · 5+ YRS FLUTTER & IOS'
-                : 'MOBILE ENGINEER @FINVIET · 5+ NĂM FLUTTER & IOS'
-            }
-            href="/works"
-            onClick={(e) => handleNav('/works', e)}
-            className="text-[15px]"
-          />
-        </div>
+        {/* Center: Unhidden Primary Navigation Links (Desktop & Tablet) */}
+        <nav className="hidden md:flex items-center gap-7 lg:gap-9 pointer-events-auto">
+          {[
+            { label: language === 'en' ? 'Home' : 'Trang chủ', route: '/' as AquaRoute },
+            { label: language === 'en' ? 'Works (07)' : 'Dự án (07)', route: '/works' as AquaRoute },
+            { label: language === 'en' ? 'About & Exp' : 'Kinh nghiệm', route: '/about' as AquaRoute },
+          ].map((nav) => {
+            const active = currentRoute === nav.route;
+            return (
+              <a
+                key={nav.route}
+                href={nav.route}
+                onClick={(e) => handleNav(nav.route, e)}
+                className="relative flex items-center gap-1.5 font-montreal text-[13px] uppercase tracking-[0.1em] hover:opacity-70 transition-opacity"
+              >
+                {active && (
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      scrolled ? 'bg-black' : 'bg-white'
+                    }`}
+                  />
+                )}
+                <span className={active ? 'font-semibold' : 'opacity-85'}>{nav.label}</span>
+              </a>
+            );
+          })}
+          <a
+            href={profile.cvViewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`font-montreal text-[13px] uppercase tracking-[0.1em] border-b pb-0.5 hover:opacity-70 transition-opacity ${
+              scrolled ? 'border-black/70' : 'border-white/70'
+            }`}
+          >
+            {language === 'en' ? 'Resume CV ↗' : 'Xem CV ↗'}
+          </a>
+        </nav>
 
-        {/* Right: Language Switch + Live Local Clock Badge (white box inside mix-blend-difference header renders as sharp black pill with white text on white canvas!) */}
-        <div className="pointer-events-auto flex items-center gap-3">
+        {/* Right: Mobile Quick Nav + Language Switch + Live Local Clock Badge */}
+        <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+          <a
+            href="/about"
+            onClick={(e) => handleNav(currentRoute === '/about' ? '/works' : '/about', e)}
+            className={`md:hidden px-2.5 py-1.5 text-[12px] font-montreal uppercase tracking-wider border ${
+              scrolled ? 'border-black/40 text-black' : 'border-white/60 text-white'
+            }`}
+          >
+            {currentRoute === '/about'
+              ? language === 'en'
+                ? 'Works'
+                : 'Dự án'
+              : language === 'en'
+              ? 'About'
+              : 'Hồ sơ'}
+          </a>
           <button
             type="button"
             onClick={() => setLanguage(language === 'en' ? 'vi' : 'en')}
-            className="px-2.5 py-1.5 text-[13px] font-montreal uppercase tracking-wider text-white border border-white/60 hover:bg-white hover:text-black transition-colors"
+            className={`px-2.5 py-1.5 text-[12px] sm:text-[13px] font-montreal uppercase tracking-wider border transition-colors ${
+              scrolled
+                ? 'border-black/40 text-black hover:bg-black hover:text-white'
+                : 'border-white/60 text-white hover:bg-white hover:text-black'
+            }`}
             title="Switch Language (EN / VI)"
           >
             {language === 'en' ? 'VI' : 'EN'}
           </button>
-          <div className="w-[100px] px-3 py-2 text-[14px] text-center bg-white text-black font-montreal font-medium select-none">
+          <div
+            className={`hidden xs:block w-[96px] sm:w-[100px] px-2.5 py-1.5 text-[13px] sm:text-[14px] text-center font-montreal font-medium select-none ${
+              scrolled ? 'bg-black text-white' : 'bg-white text-black'
+            }`}
+          >
             {timeStr || '8:27: PM'}
           </div>
         </div>
@@ -292,7 +368,7 @@ export const AquaChrome: React.FC<AquaChromeProps> = ({ currentRoute, onNavigate
         <span className="font-bold">{soundOn ? 'ON' : 'OFF'}</span>
       </button>
 
-      {/* 3. Right-Edge Fixed Awwwards-Style Honors / CV Ribbon */}
+      {/* 3. Right-Edge Fixed Printable ATS CV Ribbon */}
       <a
         href={profile.cvViewUrl}
         target="_blank"
@@ -300,9 +376,9 @@ export const AquaChrome: React.FC<AquaChromeProps> = ({ currentRoute, onNavigate
         className="hidden sm:flex fixed right-0 top-[40%] z-[500] w-[42px] h-[160px] bg-black text-white border-l border-y border-white/15 flex-col items-center justify-between pt-3.5 pb-8 hover:w-[48px] transition-all"
         title={language === 'en' ? 'Open Printable ATS CV' : 'Mở bản in CV ATS'}
       >
-        <span className="font-clash-bold text-[16px] tracking-tight">W.</span>
-        <span className="-rotate-90 font-montreal text-[12px] tracking-[0.08em] whitespace-nowrap">
-          Honors
+        <span className="font-clash-bold text-[15px] tracking-tight">CV.</span>
+        <span className="-rotate-90 font-montreal text-[11px] uppercase tracking-[0.12em] whitespace-nowrap">
+          Resume ↗
         </span>
       </a>
 
